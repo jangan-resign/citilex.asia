@@ -38,7 +38,7 @@ const jsonLdData = {
       "@id": "https://citilex.asia/#localbusiness",
       "name": "Citilex Asia",
       "url": "https://citilex.asia",
-      "priceRange": "$$",
+      "priceRange": "Rp60.000-Rp95000",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Jakarta",
