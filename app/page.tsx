@@ -197,8 +197,14 @@ export default function LandingPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-5 bg-brand-primary text-brand-white text-xs font-bold tracking-[0.2em] uppercase border border-brand-primary hover:bg-white hover:text-brand-primary transition-all duration-300"
               >
+                <Image
+                  src="/wa.svg"
+                  alt="WhatsApp"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 mr-3"
+                />
                 KONSULTASI KAOS EVENT
-                <ArrowRight className="w-4 h-4 ml-3" />
               </a>
               <div className="flex items-center gap-3">
                 <span className="h-[1px] w-8 bg-brand-platinum"></span>
