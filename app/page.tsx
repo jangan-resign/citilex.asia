@@ -544,7 +544,7 @@ export default function LandingPage() {
                   height={16}
                   className="w-4 h-4 mr-3"
                 />
-                KONSULTASI VIA WHATSAPP
+                KONSULTASI GRATIS
               </a>
             </div>
           </div>
