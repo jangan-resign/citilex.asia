@@ -428,7 +428,7 @@ export default function LandingPage() {
             <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
-                  src="/porto1.jpg"
+                  src="/porto1.png"
                   alt="Citilex Asia Custom Event Kaos Panitia dan Peserta Acara"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -444,7 +444,7 @@ export default function LandingPage() {
             <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
-                  src="/porto2.jpg"
+                  src="/porto2.png"
                   alt="Citilex Asia Solstice Collective Hanging Black Custom Shirt"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -460,7 +460,7 @@ export default function LandingPage() {
             <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
-                  src="/porto3.jpg"
+                  src="/porto3.png"
                   alt="Citilex Asia Close Up Fabric Quality Check"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
