@@ -44,7 +44,7 @@ const jsonLdData = {
         "addressLocality": "Jakarta",
         "addressCountry": "ID"
       },
-      "image": "https://citilex.asia/hero.jpg",
+      "image": "https://citilex.asia/hero.png",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Layanan Kaos Custom",
