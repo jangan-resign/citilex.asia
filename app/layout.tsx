@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: "Citilex Asia",
     images: [
       {
-        url: "/images/og-image.jpg", // placeholder for local or standard fallback
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Citilex Asia - Kaos Custom Event",
@@ -28,11 +28,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kaos Custom untuk Event | Citilex Asia",
     description: "Citilex Asia menyediakan produksi kaos custom untuk event, gathering, seminar, dan kebutuhan acara dengan proses profesional.",
-    images: ["/images/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: "/favicon.png",
   },
 };
 
