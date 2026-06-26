@@ -217,11 +217,11 @@ export default function LandingPage() {
           <div className="lg:col-span-5 w-full">
             <div className="relative aspect-[4/5] w-full bg-brand-snow border border-brand-platinum p-3">
               <Image 
-               src="/citilex.png"
-               alt="Kaos Custom Event Citilex Asia"
-               fill
-               priority
-               className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                src="/citilex.png"
+                alt="Kaos Custom Event Citilex Asia"
+                fill
+                priority
+                className="object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
           </div>
@@ -431,7 +431,7 @@ export default function LandingPage() {
                   src="/porto1.png"
                   alt="Citilex Asia Custom Event Kaos Panitia dan Peserta Acara"
                   fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -447,7 +447,7 @@ export default function LandingPage() {
                   src="/porto2.png"
                   alt="Citilex Asia Solstice Collective Hanging Black Custom Shirt"
                   fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -463,7 +463,7 @@ export default function LandingPage() {
                   src="/porto3.png"
                   alt="Citilex Asia Close Up Fabric Quality Check"
                   fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
               </div>
