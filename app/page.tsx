@@ -211,7 +211,7 @@ export default function LandingPage() {
           <div className="lg:col-span-5 w-full">
             <div className="relative aspect-[4/5] w-full bg-brand-snow border border-brand-platinum p-3">
               <Image 
-               src="/hero.jpg"
+               src="/citilex.png"
                alt="Kaos Custom Event Citilex Asia"
                fill
                priority
