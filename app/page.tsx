@@ -175,7 +175,7 @@ export default function LandingPage() {
       </header>
 
       {/* Main Container */}
-      <main className="pt-20">
+      <main className="pt-8">
         
         {/* HERO SECTION */}
         <section className="py-16 md:py-28 px-6 md:px-12 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
