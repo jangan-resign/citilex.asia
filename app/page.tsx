@@ -535,7 +535,7 @@ export default function LandingPage() {
                 href={generateWaLink(defaultHeroMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-12 py-5 bg-white text-brand-primary text-xs font-bold tracking-[0.2em] uppercase border border-white hover:bg-brand-primary hover:text-white transition-all duration-300"
+                className="inline-flex items-center justify-center px-12 py-5 bg-brand-primary text-brand-white text-xs font-bold tracking-[0.2em] uppercase border border-white hover:-translate-y-1 transition-all duration-300"
               >
                 <Image
                   src="/wa.svg"
@@ -544,7 +544,7 @@ export default function LandingPage() {
                   height={16}
                   className="w-4 h-4 mr-3"
                 />
-                KONSULTASI CHAT VIA WHATSAPP
+                KONSULTASI VIA WHATSAPP
               </a>
             </div>
           </div>
