@@ -30,7 +30,7 @@ const jsonLdData = {
       "url": "https://citilex.asia",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://citilex.asia/images/logo.png",
+        "url": "https://citilex.asia/logo.png",
         "caption": "Citilex Asia Logo"
       }
     },
