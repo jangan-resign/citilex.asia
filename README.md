@@ -1,20 +1,31 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Citilex Asia
 
-# Run and deploy your AI Studio app
+Landing page resmi Citilex Asia.
 
-This contains everything you need to run your app locally.
+## About
 
-View your app in AI Studio: https://ai.studio/apps/15d66f92-51e7-4d03-9e74-694e02f909ff
+Citilex Asia menyediakan produksi **kaos custom untuk event** dengan fokus pada kualitas produksi, pilihan bahan, dan proses pemesanan yang mudah.
 
-## Run Locally
+Website ini dibuat sebagai landing page conversion untuk kebutuhan Google Ads dan customer inquiry melalui WhatsApp.
 
-**Prerequisites:**  Node.js
+## Tech Stack
 
+- React
+- Vite
+- Tailwind CSS
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Features
+
+- Responsive landing page
+- Pricing section
+- Product showcase
+- FAQ section
+- WhatsApp CTA
+- SEO metadata ready
+
+## Development
+
+Install dependencies:
+
+```bash
+npm install
