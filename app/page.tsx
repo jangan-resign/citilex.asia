@@ -6,7 +6,6 @@ import Link from "next/link";
 import { 
   Check, 
   ArrowRight, 
-  MessageCircle, 
   Layers, 
   Activity, 
   ShieldCheck, 
@@ -45,7 +44,7 @@ const jsonLdData = {
         "addressLocality": "Jakarta",
         "addressCountry": "ID"
       },
-      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuB3lAS_InpAp5TrXJwj3K2ChuVAz4_tE08rvFzqVek9hNIzvLCJGpU9YfTwd2gft8HfGgVewLViHKK78nkUD4vRrRvn89BWE61eRJIsNialyqva5pD0R4AbLvYY170vfWn6jR4AOYGJ3TBwFfaMOxoPr0dVvFY6hcCNp9zJrGQAboBx7IX-FWj7uWR3ixn7uSGSdMZkfMLCNz7senFd_YZth2V5cAfpvAZTzqP9n2QHamdjBGe5ZnMVab-DMYnnkPNQuTfa7DShmf_-",
+      "image": "https://citilex.asia/hero.jpg",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Layanan Kaos Custom",
@@ -164,7 +163,13 @@ export default function LandingPage() {
           rel="noopener noreferrer"
           className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-brand-primary text-brand-white text-xs font-semibold tracking-wider uppercase border border-brand-primary hover:bg-white hover:text-brand-primary transition-all duration-300"
         >
-          <MessageCircle className="w-4 h-4 mr-2" />
+          <Image
+            src="/wa.svg"
+            alt="WhatsApp"
+            width={16}
+            height={16}
+            className="w-4 h-4 mr-2"
+          />
           Tanya via WhatsApp
         </a>
       </header>
@@ -206,12 +211,11 @@ export default function LandingPage() {
           <div className="lg:col-span-5 w-full">
             <div className="relative aspect-[4/5] w-full bg-brand-snow border border-brand-platinum p-3">
               <Image 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3lAS_InpAp5TrXJwj3K2ChuVAz4_tE08rvFzqVek9hNIzvLCJGpU9YfTwd2gft8HfGgVewLViHKK78nkUD4vRrRvn89BWE61eRJIsNialyqva5pD0R4AbLvYY170vfWn6jR4AOYGJ3TBwFfaMOxoPr0dVvFY6hcCNp9zJrGQAboBx7IX-FWj7uWR3ixn7uSGSdMZkfMLCNz7senFd_YZth2V5cAfpvAZTzqP9n2QHamdjBGe5ZnMVab-DMYnnkPNQuTfa7DShmf_-"
-                alt="Premium Folded Event Custom T-Shirt Citilex Asia"
-                fill
-                priority
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                referrerPolicy="no-referrer"
+               src="/hero.jpg"
+               alt="Kaos Custom Event Citilex Asia"
+               fill
+               priority
+               className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>
           </div>
@@ -418,7 +422,7 @@ export default function LandingPage() {
             <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzELl_Nl36hGSL_2wNVMQZCgdkkMOrDnpMf6Bcx-v_CQoHOQTBZOGBw836XC5o9WvjaSjpBexpF13uE2a766K180WXTP0H7Ehq7IykIi8qMmuo9geght0RPNucAACwYCfgb0YebrPbxTCbtDhN_zhukqJ2kBUYQbwicKeVmb6fgV8wGF9HWTPtjrwYQzAEOTzPFVrGzVJoZ_KcM1eWxN9fgiRiQSPGGVQvNmcBSRbK5xyLiUIKqBOy9bQVIOeEfb99RlJGh-04dGGg"
+                  src="/porto1.jpg"
                   alt="Citilex Asia Custom Event Kaos Panitia dan Peserta Acara"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -434,7 +438,7 @@ export default function LandingPage() {
             <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuRSus59c7pCf4WgXkhpCbpMUyStb9DD8HsIdUTPHfHjp2dQk1yfHdTwn2Zi_6AEzke3Ff_Ld2Vx5CyNjysZsBR5nRpu8BD_USNb69stHXI6v3AF4NvqARwTH4xB9towMBl0rvcySqmGy9fETan7Te1fZLLSkk00eDoLBdeJWku8cG1KWUvfIHYrevzuzLmj5OWk92ZPFn4GincNp5LQ1grHMbs9bHvrYvNPxeDuuxun_VvZch7h_TN5SPZR34RL7QL0GfheRdVai5"
+                  src="/porto2.jpg"
                   alt="Citilex Asia Solstice Collective Hanging Black Custom Shirt"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -450,7 +454,7 @@ export default function LandingPage() {
             <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz7aKOLv5AYzY97_lkaC5ChQ9TNTi6CCCDoKBptQTVWxadYXGKfF8GlA5bkHjF8oFoC7DTWojy15L6SyQgZFBVY7Mwssn9th8ACozCRXgJ7qpCXZiYKOD-SNvGjCwaNqn9zjiTNDrbOBZdUb0AvkJnWiqg7qHu5xOjatikcoRpBwiifyJKeYmR-5n8FF5VPh1-8J2D4Fs2zFvxHoB8q-YWJ_u6w443tRh-mKxQ0ccXaRuAReDA6TYUKgtuaDxrNZR7lPI7VuHejRqX"
+                  src="/porto3.jpg"
                   alt="Citilex Asia Close Up Fabric Quality Check"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -527,7 +531,13 @@ export default function LandingPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-12 py-5 bg-white text-brand-primary text-xs font-bold tracking-[0.2em] uppercase border border-white hover:bg-brand-primary hover:text-white transition-all duration-300"
               >
-                <MessageCircle className="w-4 h-4 mr-3" />
+                <Image
+                  src="/wa.svg"
+                  alt="WhatsApp"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 mr-3"
+                />
                 KONSULTASI CHAT VIA WHATSAPP
               </a>
             </div>
