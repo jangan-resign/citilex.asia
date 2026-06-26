@@ -161,7 +161,7 @@ export default function LandingPage() {
           href={generateWaLink(defaultHeroMessage)}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-brand-primary text-brand-white text-xs font-semibold tracking-wider uppercase border border-brand-primary hover:bg-white hover:text-brand-primary transition-all duration-300"
+          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-brand-primary text-brand-white text-xs font-semibold tracking-wider uppercase border border-white hover:-translate-y-1 transition-transform duration-300"
         >
           <Image
             src="/wa.svg"
@@ -195,7 +195,7 @@ export default function LandingPage() {
                 href={generateWaLink(defaultHeroMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-5 bg-brand-primary text-brand-white text-xs font-bold tracking-[0.2em] uppercase border border-brand-primary hover:bg-white hover:text-brand-primary transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-5 bg-brand-primary text-brand-white text-xs font-bold tracking-[0.2em] uppercase border border-white hover:-translate-y-1 transition-transform duration-300"
               >
                 <Image
                   src="/wa.svg"
@@ -336,10 +336,10 @@ export default function LandingPage() {
                     href={generateWaLink(pkg.whatsappText)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`block w-full text-center py-4 text-xs font-bold tracking-widest uppercase transition-all duration-300 ${
+                    className={`block w-full text-center py-4 text-xs font-bold tracking-widest uppercase transition-transform duration-300 hover:-translate-y-1 ${
                       pkg.popular 
-                        ? "bg-white text-brand-primary hover:bg-brand-snow" 
-                        : "bg-brand-primary text-brand-white hover:bg-white hover:text-brand-primary border border-brand-primary"
+                        ? "bg-white text-brand-primary border border-white" 
+                        : "bg-brand-primary text-brand-white border border-white"
                     }`}
                   >
                     KONSULTASI PAKET INI
