@@ -468,7 +468,7 @@ export default function LandingPage() {
                 />
               </div>
               <div className="px-4 pb-4">
-                <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Premium Textile Weaving Weft</h4>
+                <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Full Color DTF Printing</h4>
                 <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Cotton Combed 30s • Sablon: DTF</p>
               </div>
             </div>
