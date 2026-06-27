@@ -1,18 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* System fonts and typography mappings */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 
-  /* Custom palette matching Monolith Luxe spec */
   --color-brand-primary: #000000;
   --color-brand-white: #ffffff;
   --color-brand-onyx: #333333;
   --color-brand-platinum: #e5e5e5;
   --color-brand-snow: #f5f5f5;
 
-  /* Strict sharp corners */
   --radius-none: 0px;
   --radius-sm: 0px;
   --radius-md: 0px;
@@ -23,10 +20,17 @@
   --radius-full: 0px;
 }
 
-/* Ensure global base styling follows the custom aesthetic */
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-inter), sans-serif;
   background-color: var(--color-brand-white);
   color: var(--color-brand-onyx);
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: var(--font-montserrat), sans-serif;
 }
