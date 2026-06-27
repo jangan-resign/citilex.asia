@@ -25,18 +25,18 @@ const jsonLdData = {
     {
       "@type": "Organization",
       "@id": "https://citilex.asia/#organization",
-      "name": "Citilex Asia",
+      "name": "CITILEX ASIA",
       "url": "https://citilex.asia",
       "logo": {
         "@type": "ImageObject",
         "url": "https://citilex.asia/logo.png",
-        "caption": "Citilex Asia Logo"
+        "caption": "CITILEX ASIA Logo"
       }
     },
     {
       "@type": "LocalBusiness",
       "@id": "https://citilex.asia/#localbusiness",
-      "name": "Citilex Asia",
+      "name": "CITILEX ASIA",
       "url": "https://citilex.asia",
       "priceRange": "Rp60.000-Rp95000",
       "address": {
@@ -70,13 +70,13 @@ export default function LandingPage() {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const WHATSAPP_NUMBER = "6281234567890"; // Template WhatsApp Number
+  const WHATSAPP_NUMBER = "6281319888488"; // Template WhatsApp Number
   
   const generateWaLink = (message: string) => {
     return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
   };
 
-  const defaultHeroMessage = "Halo Citilex Asia, saya ingin konsultasi mengenai produksi kaos custom untuk event kami.";
+  const defaultHeroMessage = "Halo CITILEX ASIA, saya ingin konsultasi mengenai produksi kaos custom untuk event kami.";
   
   const packages = [
     {
@@ -90,7 +90,7 @@ export default function LandingPage() {
         "Ukuran Standard Asia (XS - XL)",
         "Proses pengerjaan cepat"
       ],
-      whatsappText: "Halo Citilex Asia, saya ingin konsultasi pemesanan Kaos Polyester Custom (Rp 60.000/pcs) untuk event kami."
+      whatsappText: "Halo CITILEX ASIA, saya ingin konsultasi pemesanan Kaos Polyester Custom (Rp 60.000/pcs) untuk event kami."
     },
     {
       name: "Kaos Cotton Combed",
@@ -103,7 +103,7 @@ export default function LandingPage() {
         "Ukuran Standard Asia (XS - XL)",
         "Jahitan rantai standard distro rapi"
       ],
-      whatsappText: "Halo Citilex Asia, saya tertarik dengan paket terpopuler Kaos Cotton Combed (Rp 85.000/pcs) untuk event kami.",
+      whatsappText: "Halo CITILEX ASIA, saya tertarik dengan paket terpopuler Kaos Cotton Combed (Rp 85.000/pcs) untuk event kami.",
       popular: true
     },
     {
@@ -117,7 +117,7 @@ export default function LandingPage() {
         "Ukuran Standard Asia (XS - XL)",
         "Finishing premium, anti kusut & bakteri"
       ],
-      whatsappText: "Halo Citilex Asia, saya ingin memesan Kaos Cotton Bamboo Premium (Rp 95.000/pcs) untuk acara eksklusif kami."
+      whatsappText: "Halo CITILEX ASIA, saya ingin memesan Kaos Cotton Bamboo Premium (Rp 95.000/pcs) untuk acara eksklusif kami."
     }
   ];
 
@@ -188,7 +188,7 @@ export default function LandingPage() {
               <span className="text-brand-primary/40">untuk Event &amp; Acara</span>
             </h1>
             <p className="text-lg text-brand-onyx max-w-xl leading-relaxed">
-              Citilex Asia menyediakan jasa pembuatan kaos custom premium untuk event gathering, seminar, reuni, dan promosi korporasi. Kualitas terjamin dengan pengerjaan profesional tepat waktu.
+              CITILEX ASIA menyediakan jasa pembuatan kaos custom premium untuk event, gathering, seminar, reuni, dan promosi korporasi. Kualitas terjamin dengan pengerjaan profesional tepat waktu.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
               <a 
@@ -218,7 +218,7 @@ export default function LandingPage() {
             <div className="relative aspect-[4/5] w-full bg-brand-snow border border-brand-platinum p-3">
               <Image 
                 src="/citilex.png"
-                alt="Kaos Custom Event Citilex Asia"
+                alt="Kaos Custom Event CITILEX ASIA"
                 fill
                 priority
                 className="object-cover hover:scale-105 transition-transform duration-700"
@@ -420,7 +420,7 @@ export default function LandingPage() {
               Galeri Hasil Produksi Kaos
             </h2>
             <p className="text-sm text-brand-onyx max-w-xl mx-auto">
-              Dokumentasi nyata hasil pengerjaan kaos sablon premium dari portofolio klien Citilex Asia.
+              Dokumentasi nyata hasil pengerjaan kaos sablon premium dari portofolio klien CITILEX ASIA.
             </p>
           </div>
 
@@ -429,7 +429,7 @@ export default function LandingPage() {
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
                   src="/porto1.png"
-                  alt="Citilex Asia Custom Event Kaos Panitia dan Peserta Acara"
+                  alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
@@ -445,7 +445,7 @@ export default function LandingPage() {
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
                   src="/porto2.png"
-                  alt="Citilex Asia Solstice Collective Hanging Black Custom Shirt"
+                  alt="CITILEX ASIA Solstice Collective Hanging Black Custom Shirt"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
@@ -461,7 +461,7 @@ export default function LandingPage() {
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image 
                   src="/porto3.png"
-                  alt="Citilex Asia Close Up Fabric Quality Check"
+                  alt="CITILEX ASIA Close Up Fabric Quality Check"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
@@ -525,7 +525,7 @@ export default function LandingPage() {
               SIAPKAN SEKARANG UNTUK ACARA ANDA
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter uppercase leading-[1.1]">
-              Wujudkan Kaos Event <br /> Impian Bersama Citilex Asia
+              Wujudkan Kaos Event <br /> Impian Bersama CITILEX ASIA
             </h2>
             <p className="text-sm text-brand-white/80 max-w-lg mx-auto leading-relaxed">
               Hubungi tim marketing kami sekarang untuk konsultasi bahan gratis, pengajuan penawaran harga, dan pembuatan mockup visual digital awal gratis.
