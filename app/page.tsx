@@ -86,7 +86,7 @@ export default function LandingPage() {
       features: [
         "Minimal order 100 Pcs",
         "Bahan Polyester Double Knit / PE",
-        "Sablon Standard Plastisol / Rubber",
+        "Sablon DTF / Rubber",
         "Ukuran Standard Asia (XS - XL)",
         "Proses pengerjaan cepat"
       ],
@@ -99,7 +99,7 @@ export default function LandingPage() {
       features: [
         "Minimal order 100 Pcs",
         "Bahan 100% Cotton Combed 30s/24s",
-        "Sablon High-Quality Plastisol / Discharge",
+        "Sablon DTF / Rubber",
         "Ukuran Standard Asia (XS - XL)",
         "Jahitan rantai standard distro rapi"
       ],
@@ -113,7 +113,7 @@ export default function LandingPage() {
       features: [
         "Minimal order 100 Pcs",
         "Bahan Premium Cotton Bamboo 30s",
-        "Sablon Premium Discharge / Super White",
+        "Sablon DTF / Rubber",
         "Ukuran Standard Asia (XS - XL)",
         "Finishing premium, anti kusut & bakteri"
       ],
@@ -437,7 +437,7 @@ export default function LandingPage() {
               </div>
               <div className="px-4 pb-4">
                 <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Corporate Gathering Shirt</h4>
-                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Cotton Combed 30s • Sablon: High Density Plastisol</p>
+                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Cotton Combed 30s • Sablon: DTF</p>
               </div>
             </div>
 
@@ -453,7 +453,7 @@ export default function LandingPage() {
               </div>
               <div className="px-4 pb-4">
                 <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Solstice Collective Edition</h4>
-                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Premium Cotton Bamboo • Sablon: Discharge White</p>
+                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Premium Cotton Bamboo • Sablon: DTF</p>
               </div>
             </div>
 
@@ -469,7 +469,7 @@ export default function LandingPage() {
               </div>
               <div className="px-4 pb-4">
                 <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Premium Textile Weaving Weft</h4>
-                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Micro Weave Cotton Fiber • Kualitas Jahit Presisi</p>
+                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Cotton Combed 30s • Sablon: DTF</p>
               </div>
             </div>
           </div>
