@@ -197,9 +197,18 @@ export default function LandingPage() {
 
       {/* Top Navbar */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-20 bg-white/95 backdrop-blur-md border-b border-brand-platinum">
-        <Link href="/" className="text-xl font-bold tracking-[0.25em] text-brand-primary uppercase">
-          CITILEX ASIA
+  
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="CITILEX ASIA"
+            width={140}
+            height={40}
+            className="h-8 w-auto md:h-10"
+            priority
+          />
         </Link>
+      
         <a 
           href={generateWaLink(defaultHeroMessage)}
           target="_blank"
@@ -209,6 +218,7 @@ export default function LandingPage() {
           <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="w-4 h-4 mr-2" />
           Tanya via WhatsApp
         </a>
+      
       </header>
 
       {/* Main Container */}
