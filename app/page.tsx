@@ -747,7 +747,7 @@ export default function LandingPage() {
                   <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
                   <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
-                  <span className="relative z-10">KONSULTASI SEKARANG</span>
+                  <span className="relative z-10">HUBUNGI KAMI</span>
                 </a>
                 <p className="mt-4 text-[11px] md:text-xs tracking-[0.12em] uppercase text-white/45">
                   Biasanya dibalas dalam hitungan menit pada jam kerja
