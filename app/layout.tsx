@@ -35,12 +35,6 @@ export const metadata: Metadata = {
     locale: "id_ID",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Kaos Custom untuk Event | CITILEX ASIA",
-    description: "CITILEX ASIA menyediakan jasa produksi kaos custom untuk event, gathering, seminar, dan kebutuhan acara dengan proses profesional.",
-    images: ["/og-image.png"],
-  },
   robots: {
     index: true,
     follow: true,
@@ -56,48 +50,65 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html 
-      lang="id" 
+    <html
+      lang="id"
       className={`${inter.variable} ${montserrat.variable}`}
     >
+
       <head>
-   
-        {/* Google Ads Conversion Tracking */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18279242485"
-        />
-        
+
+        {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-        
-              gtag('config', 'AW-18279242485');
+            (function(w,d,s,l,i){
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;
+            j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5S44V8C2');
             `,
           }}
         />
-  
+
       </head>
 
+
       <body
-        
         className="
-          antialiased
-          font-inter
-          bg-white
-          text-brand-onyx
-          selection:bg-brand-primary
-          selection:text-brand-white
+        antialiased
+        font-inter
+        bg-white
+        text-brand-onyx
+        selection:bg-brand-primary
+        selection:text-brand-white
         "
       >
+
+        {/* Google Tag Manager noscript */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5S44V8C2"
+            height="0"
+            width="0"
+            style={{
+              display:"none",
+              visibility:"hidden"
+            }}
+          />
+        </noscript>
+
 
         {children}
 
       </body>
-      
+
     </html>
   );
 }
