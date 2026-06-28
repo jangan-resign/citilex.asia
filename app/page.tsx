@@ -279,7 +279,10 @@ export default function LandingPage() {
                 <div className="absolute inset-0 scale-95 rounded-full bg-brand-primary/10 blur-3xl"></div>
         
                 {/* floating card top */}
-                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
+                <div className="absolute -top-4 -left-4 md:-left-8 z-20">
+                  {/* gold corner accent */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
+                
                   <div
                     className="
                       relative
