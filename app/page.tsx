@@ -196,7 +196,7 @@ export default function LandingPage() {
               <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[0.95]">
                 Kaos Custom
                 <br />
-                <span className="text-brand-primary/35">
+                <span className="bg-gradient-to-r from-primary/35 via-[#F3D98B] to-primary/35 bg-clip-text text-transparent">
                   untuk Event &amp; Acara
                 </span>
               </h1>
@@ -213,24 +213,42 @@ export default function LandingPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
+                    group relative overflow-hidden
                     inline-flex items-center justify-center
                     px-10 py-5
-                    bg-brand-primary text-brand-white
+                    bg-[#000000] text-white
                     text-xs font-bold tracking-[0.22em] uppercase
-                    shadow-xl
+                    border border-[#D4AF37]/30
+                    shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_24px_rgba(212,175,55,0.12)]
                     hover:-translate-y-1
-                    hover:shadow-2xl
+                    hover:scale-[1.015]
+                    hover:border-[#D4AF37]/50
+                    hover:shadow-[0_22px_60px_rgba(0,0,0,0.36),0_0_34px_rgba(212,175,55,0.18)]
                     transition-all duration-500
                   "
                 >
+                  {/* gold glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
+                
+                  {/* top gold line */}
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+                
+                  {/* bottom gold line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+                
+                  {/* corner accents */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
+                
                   <Image
                     src="/wa.svg"
                     alt="WhatsApp"
                     width={16}
                     height={16}
-                    className="w-4 h-4 mr-3"
+                    className="relative z-10 w-4 h-4 mr-3"
                   />
-                  KONSULTASI KAOS EVENT
+                
+                  <span className="relative z-10">KONSULTASI KAOS EVENT</span>
                 </a>
         
                 <div className="flex items-center gap-3">
@@ -424,43 +442,49 @@ export default function LandingPage() {
                   pkg.popular
                     ? `
                       z-20
-                      bg-[#000000]
+                      bg-gradient-to-br from-[#111111] via-[#080808] to-[#151515]
                       text-white
-                      border border-white/10
-                      shadow-[0_30px_80px_rgba(0,0,0,0.28)]
+                      border border-[#D4AF37]/25
+                      shadow-[0_35px_90px_rgba(0,0,0,0.35),0_0_40px_rgba(212,175,55,0.08)]
                       lg:scale-[1.06]
                       lg:-translate-y-3
                       hover:-translate-y-4
-                      hover:shadow-[0_40px_100px_rgba(0,0,0,0.35)]
+                      hover:shadow-[0_45px_120px_rgba(0,0,0,0.45),0_0_60px_rgba(212,175,55,0.12)]
                       px-8 py-8
                       min-h-[720px]
                     `
                     : `
-                      bg-white
-                      text-brand-primary
-                      border border-brand-platinum
-                      hover:-translate-y-1
-                      hover:shadow-xl
+                      bg-gradient-to-br from-[#1B1B1B] to-[#101010]
+                      text-white
+                      border border-white/10
+                      hover:-translate-y-2
+                      hover:shadow-[0_25px_60px_rgba(0,0,0,0.24)]
                       px-8 py-8
                       min-h-[660px]
                     `
                 }`}
               >
+                {/* subtle gold glow */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[#F8E7B9]/[0.03] via-transparent to-[#D4AF37]/[0.04]" />
+        
                 {/* CONTENT */}
-                <div className="space-y-8">
+                <div className="relative space-y-8">
                   {pkg.popular && (
-                    <div className="flex justify-center mb-6">
+                    <div className="flex justify-center mb-8">
                       <div
                         className="
-                          px-5 py-2
+                          relative
+                          px-6 py-2.5
                           rounded-full
-                          bg-white/10
-                          border border-[#D4AF37]/25
+                          bg-white/[0.05]
                           backdrop-blur-xl
-                          shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_6px_18px_rgba(212,175,55,0.10)]
+                          border border-[#D4AF37]/35
+                          shadow-[0_10px_25px_rgba(212,175,55,0.12)]
                         "
                       >
-                        <span className="text-[10px] font-black tracking-[0.28em] uppercase text-white">
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10" />
+        
+                        <span className="relative text-[10px] font-black tracking-[0.28em] uppercase text-[#F8E7B9]">
                           TERPOPULER
                         </span>
                       </div>
@@ -468,46 +492,32 @@ export default function LandingPage() {
                   )}
         
                   <div className="text-center space-y-3">
-                    <h3
-                      className={`text-xl font-black tracking-[0.15em] uppercase ${
-                        pkg.popular ? "text-white" : "text-brand-primary"
-                      }`}
-                    >
+                    <h3 className="text-xl font-black tracking-[0.15em] uppercase">
                       {pkg.name}
                     </h3>
         
-                    <p
-                      className={`text-xs leading-relaxed max-w-xs mx-auto ${
-                        pkg.popular ? "text-white/70" : "text-brand-onyx/75"
-                      }`}
-                    >
+                    <p className="text-xs leading-relaxed max-w-xs mx-auto text-white/70">
                       {pkg.description}
                     </p>
                   </div>
         
                   <div
                     className={`py-7 border-y ${
-                      pkg.popular ? "border-white/10" : "border-brand-platinum"
+                      pkg.popular ? "border-[#D4AF37]/20" : "border-white/10"
                     }`}
                   >
-                    <span className="text-xs font-semibold tracking-[0.18em] uppercase block text-center opacity-60">
+                    <span className="text-xs font-semibold tracking-[0.18em] uppercase block text-center text-white/55">
                       Mulai Dari
                     </span>
         
                     <div className="flex items-end justify-center gap-1 mt-3">
-                      <span className="text-xl font-bold">Rp</span>
+                      <span className="text-xl font-bold text-[#D4AF37]">Rp</span>
         
-                      <span className="text-5xl md:text-6xl font-extrabold tracking-tighter leading-none">
+                      <span className="text-5xl md:text-6xl font-extrabold tracking-tighter leading-none bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent">
                         {pkg.price}
                       </span>
         
-                      <span
-                        className={`text-sm mb-1 ${
-                          pkg.popular ? "text-white/60" : "text-brand-onyx/60"
-                        }`}
-                      >
-                        /pcs
-                      </span>
+                      <span className="text-sm mb-1 text-white/55">/pcs</span>
                     </div>
                   </div>
         
@@ -517,28 +527,29 @@ export default function LandingPage() {
                         key={fIdx}
                         className="flex items-start text-sm leading-relaxed"
                       >
-                        <Check
-                          className={`w-4 h-4 mr-3 mt-1 shrink-0 ${
-                            pkg.popular ? "text-white" : "text-brand-primary"
-                          }`}
-                        />
-                        <span>{feature}</span>
+                        <Check className="w-4 h-4 mr-3 mt-1 shrink-0 text-[#D4AF37]" />
+                        <span className="text-white/85">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
         
                 {/* CTA */}
-                <div className="pt-8">
+                <div className="pt-8 relative">
                   <a
                     href={generateWaLink(pkg.whatsappText)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`block w-full text-center py-4 text-xs font-bold tracking-[0.18em] uppercase transition-all duration-300 hover:-translate-y-1 ${
-                      pkg.popular
-                        ? "bg-white text-black border border-white hover:shadow-xl"
-                        : "bg-brand-primary text-white border border-brand-primary"
-                    }`}
+                    className="
+                      relative block w-full text-center py-4
+                      text-xs font-bold tracking-[0.18em] uppercase
+                      bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B]
+                      text-black
+                      shadow-[0_16px_40px_rgba(212,175,55,0.18)]
+                      hover:-translate-y-1
+                      hover:shadow-[0_24px_60px_rgba(212,175,55,0.28)]
+                      transition-all duration-300
+                    "
                   >
                     KONSULTASI PAKET INI
                   </a>
@@ -578,127 +589,88 @@ export default function LandingPage() {
         
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-7 relative z-10">
         
-                {/* STEP 1 */}
-                <div className="group relative">
-                  <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
+                {[
+                  {
+                    no: "01",
+                    label: "KONSEP",
+                    title: "Konsultasi Desain",
+                    desc: "Diskusikan ide desain, pilihan material kain, jumlah order, dan timeline acara Anda dengan representasi kami secara praktis via WhatsApp.",
+                  },
+                  {
+                    no: "02",
+                    label: "APPROVAL",
+                    title: "Approval Mockup",
+                    desc: "Kami menyiapkan desain mockup visual digital secara detail untuk Anda teliti dan setujui demi menjamin kesesuaian posisi cetakan sablon.",
+                  },
+                  {
+                    no: "03",
+                    label: "PRODUKSI",
+                    title: "Mulai Produksi",
+                    desc: "Setelah DP 50% diterima, proses pembuatan massal (cutting, printing, sewing, QC) langsung dieksekusi oleh tim produksi profesional kami.",
+                  },
+                  {
+                    no: "04",
+                    label: "KIRIM",
+                    title: "QC & Pengiriman",
+                    desc: "Setiap kaos melewati final QC sebelum dikemas rapi, dilunasi sisa pembayarannya, dan langsung dikirim aman ke alamat lokasi event Anda.",
+                  },
+                ].map((step, idx) => (
+                  <div key={idx} className="group relative">
+                    <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
         
-                  <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
-                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
-                      <span className="relative text-lg font-black tracking-wider">01</span>
-                    </div>
+                    <div
+                      className="
+                        relative
+                        bg-gradient-to-br from-[#111111] via-[#181818] to-[#232323]
+                        border border-[#D4AF37]/20
+                        p-7 md:p-8 pt-16
+                        shadow-[0_18px_45px_rgba(0,0,0,0.22)]
+                        hover:-translate-y-1
+                        hover:border-[#D4AF37]/35
+                        hover:shadow-[0_24px_60px_rgba(0,0,0,0.3),0_0_26px_rgba(212,175,55,0.12)]
+                        transition-all duration-500
+                        h-full
+                        overflow-hidden
+                      "
+                    >
+                      {/* gold shine */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/[0.04] via-transparent to-[#D4AF37]/[0.04] pointer-events-none" />
         
-                    <div className="space-y-4">
-                      <span className="text-[11px] font-bold text-brand-primary/45 tracking-[0.2em] uppercase block">
-                        KONSEP
-                      </span>
+                      {/* top gold line */}
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
         
-                      <h3 className="text-sm font-bold tracking-[0.16em] uppercase text-brand-primary">
-                        Konsultasi Desain
-                      </h3>
+                      {/* number bubble */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#0D0D0D] text-white flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.32)]">
+                        <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_28px_rgba(212,175,55,0.35)]" />
         
-                      <p className="text-xs text-brand-onyx leading-relaxed">
-                        Diskusikan ide desain, pilihan material kain, jumlah order, dan
-                        timeline acara Anda dengan representasi kami secara praktis via
-                        WhatsApp.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                        <div className="absolute inset-[2px] rounded-full border border-[#D4AF37]/20 bg-white/[0.02]" />
         
-                {/* STEP 2 */}
-                <div className="group relative">
-                  <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
+                        <span className="relative text-lg font-black tracking-wider text-[#F6D98B]">
+                          {step.no}
+                        </span>
+                      </div>
         
-                  <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
-                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
-                      <span className="relative text-lg font-black tracking-wider">02</span>
-                    </div>
+                      <div className="space-y-4">
+                        <span className="text-[11px] font-bold text-[#D4AF37]/75 tracking-[0.2em] uppercase block">
+                          {step.label}
+                        </span>
         
-                    <div className="space-y-4">
-                      <span className="text-[11px] font-bold text-brand-primary/45 tracking-[0.2em] uppercase block">
-                        APPROVAL
-                      </span>
+                        <h3 className="text-sm font-bold tracking-[0.16em] uppercase text-white">
+                          {step.title}
+                        </h3>
         
-                      <h3 className="text-sm font-bold tracking-[0.16em] uppercase text-brand-primary">
-                        Approval Mockup
-                      </h3>
-        
-                      <p className="text-xs text-brand-onyx leading-relaxed">
-                        Kami menyiapkan desain mockup visual digital secara detail untuk
-                        Anda teliti dan setujui demi menjamin kesesuaian posisi cetakan
-                        sablon.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-        
-                {/* STEP 3 */}
-                <div className="group relative">
-                  <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
-        
-                  <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
-                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
-                      <span className="relative text-lg font-black tracking-wider">03</span>
-                    </div>
-        
-                    <div className="space-y-4">
-                      <span className="text-[11px] font-bold text-brand-primary/45 tracking-[0.2em] uppercase block">
-                        PRODUKSI
-                      </span>
-        
-                      <h3 className="text-sm font-bold tracking-[0.16em] uppercase text-brand-primary">
-                        Mulai Produksi
-                      </h3>
-        
-                      <p className="text-xs text-brand-onyx leading-relaxed">
-                        Setelah DP 50% diterima, proses pembuatan massal (cutting,
-                        printing, sewing, QC) langsung dieksekusi oleh tim produksi
-                        profesional kami.
-                      </p>
+                        <p className="text-xs text-white/72 leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-        
-                {/* STEP 4 */}
-                <div className="group relative">
-                  <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
-        
-                  <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
-                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
-                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
-                      <span className="relative text-lg font-black tracking-wider">04</span>
-                    </div>
-        
-                    <div className="space-y-4">
-                      <span className="text-[11px] font-bold text-brand-primary/45 tracking-[0.2em] uppercase block">
-                        KIRIM
-                      </span>
-        
-                      <h3 className="text-sm font-bold tracking-[0.16em] uppercase text-brand-primary">
-                        QC &amp; Pengiriman
-                      </h3>
-        
-                      <p className="text-xs text-brand-onyx leading-relaxed">
-                        Setiap kaos melewati final QC sebelum dikemas rapi, dilunasi
-                        sisa pembayarannya, dan langsung dikirim aman ke alamat lokasi
-                        event Anda.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
         
               </div>
             </div>
           </div>
         </section>
-
         {/* PORTFOLIO / GALLERY */}
         <section className="py-20 md:py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12">
           <div className="text-center space-y-4">
