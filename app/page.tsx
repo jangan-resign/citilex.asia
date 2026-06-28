@@ -380,7 +380,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 lg:items-stretch">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-0 lg:items-stretch">
             {packages.map((pkg, idx) => {
               const cardClass = [
                 "relative flex flex-col justify-between transition-all duration-500 ease-out",
