@@ -279,13 +279,31 @@ export default function LandingPage() {
                 <div className="absolute inset-0 scale-95 rounded-full bg-brand-primary/10 blur-3xl"></div>
         
                 {/* floating card top */}
-                <div className="absolute -top-4 -left-4 md:-left-8 z-20 bg-white border border-brand-platinum shadow-xl px-5 py-4">
-                  <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-brand-primary/60">
-                    PREMIUM MATERIAL
-                  </p>
-                  <p className="text-sm font-bold text-brand-primary mt-1">
-                    Cotton Combed 30s
-                  </p>
+                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
+                  <div
+                    className="
+                      relative
+                      px-5 py-4
+                      bg-black/65
+                      backdrop-blur-xl
+                      border border-[#D4AF37]/30
+                      shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]
+                    "
+                  >
+                    {/* subtle gold shine */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10 pointer-events-none" />
+                
+                    {/* top gold line */}
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+                
+                    <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">
+                      PREMIUM MATERIAL
+                    </p>
+                
+                    <p className="relative text-sm font-bold text-white mt-1">
+                      Cotton Combed 30s
+                    </p>
+                  </div>
                 </div>
         
                 {/* image */}
@@ -300,13 +318,31 @@ export default function LandingPage() {
                 </div>
         
                 {/* floating card bottom */}
-                <div className="absolute -bottom-4 right-0 md:-right-6 z-20 bg-[#000000] text-white shadow-2xl px-5 py-4">
-                  <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-white/60">
-                    FAST PRODUCTION
-                  </p>
-                  <p className="text-sm font-bold mt-1">
-                    Deadline Friendly
-                  </p>
+                <div className="absolute -bottom-4 right-0 md:-right-6 z-20">
+                  <div
+                    className="
+                      relative
+                      px-5 py-4
+                      bg-black/70
+                      backdrop-blur-xl
+                      border border-[#D4AF37]/30
+                      shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]
+                    "
+                  >
+                    {/* gold shine */}
+                    <div className="absolute inset-0 bg-gradient-to-tl from-[#D4AF37]/10 via-transparent to-[#F8E7B9]/10 pointer-events-none" />
+                
+                    {/* bottom gold line biar beda sama top card */}
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+                
+                    <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">
+                      FAST PRODUCTION
+                    </p>
+                
+                    <p className="relative text-sm font-bold text-white mt-1">
+                      Deadline Friendly
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -515,7 +551,7 @@ export default function LandingPage() {
           </p>
         </section>
 
-        {/* WORKFLOW PROCESS SECTION */}
+       {/* WORKFLOW PROCESS SECTION */}
         <section className="py-20 md:py-24 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12 overflow-hidden">
           <div className="max-w-[1280px] mx-auto space-y-14">
             <div className="text-center space-y-4">
@@ -535,16 +571,19 @@ export default function LandingPage() {
         
             <div className="relative">
               {/* desktop connector line */}
-              <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-brand-platinum z-0" />
+              <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent z-0" />
         
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-7 relative z-10">
+        
                 {/* STEP 1 */}
                 <div className="group relative">
                   <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
         
                   <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-xl border-8 border-brand-snow">
-                      <span className="text-lg font-black tracking-wider">01</span>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
+                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
+                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
+                      <span className="relative text-lg font-black tracking-wider">01</span>
                     </div>
         
                     <div className="space-y-4">
@@ -570,8 +609,10 @@ export default function LandingPage() {
                   <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
         
                   <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-xl border-8 border-brand-snow">
-                      <span className="text-lg font-black tracking-wider">02</span>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
+                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
+                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
+                      <span className="relative text-lg font-black tracking-wider">02</span>
                     </div>
         
                     <div className="space-y-4">
@@ -597,8 +638,10 @@ export default function LandingPage() {
                   <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
         
                   <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-xl border-8 border-brand-snow">
-                      <span className="text-lg font-black tracking-wider">03</span>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
+                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
+                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
+                      <span className="relative text-lg font-black tracking-wider">03</span>
                     </div>
         
                     <div className="space-y-4">
@@ -624,8 +667,10 @@ export default function LandingPage() {
                   <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
         
                   <div className="relative bg-white border border-brand-platinum p-7 md:p-8 pt-14 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-500 h-full">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-xl border-8 border-brand-snow">
-                      <span className="text-lg font-black tracking-wider">04</span>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-[0_18px_40px_rgba(0,0,0,0.18)]">
+                      <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_24px_rgba(212,175,55,0.28)]" />
+                      <div className="absolute inset-[2px] rounded-full border border-white/10 bg-white/[0.02]" />
+                      <span className="relative text-lg font-black tracking-wider">04</span>
                     </div>
         
                     <div className="space-y-4">
@@ -645,6 +690,7 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
+        
               </div>
             </div>
           </div>
@@ -683,10 +729,24 @@ export default function LandingPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
         
                 {/* number */}
-                <div className="absolute top-6 left-6 bg-white px-4 py-2 shadow-lg">
-                  <span className="text-[11px] font-black tracking-[0.28em] text-black">
-                    01
-                  </span>
+                <div className="absolute top-6 left-6">
+                  <div
+                    className="
+                      relative
+                      px-4 py-2
+                      bg-black/60
+                      backdrop-blur-xl
+                      border border-[#D4AF37]/30
+                      rounded-sm
+                      shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]
+                    "
+                  >
+                    <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+                
+                    <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">
+                      01
+                    </span>
+                  </div>
                 </div>
         
                 {/* caption */}
@@ -719,11 +779,25 @@ export default function LandingPage() {
         
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         
-                  <div className="absolute top-5 left-5 bg-white px-3 py-1.5 shadow-lg">
-                    <span className="text-[10px] font-black tracking-[0.24em] text-black">
+                  <div className="absolute top-6 left-6">
+                  <div
+                    className="
+                      relative
+                      px-4 py-2
+                      bg-black/60
+                      backdrop-blur-xl
+                      border border-[#D4AF37]/30
+                      rounded-sm
+                      shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]
+                    "
+                  >
+                    <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+                
+                    <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">
                       02
                     </span>
                   </div>
+                </div>
         
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h4 className="text-sm font-bold tracking-[0.16em] uppercase text-white">
@@ -750,11 +824,25 @@ export default function LandingPage() {
         
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         
-                  <div className="absolute top-5 left-5 bg-white px-3 py-1.5 shadow-lg">
-                    <span className="text-[10px] font-black tracking-[0.24em] text-black">
+                  <div className="absolute top-6 left-6">
+                  <div
+                    className="
+                      relative
+                      px-4 py-2
+                      bg-black/60
+                      backdrop-blur-xl
+                      border border-[#D4AF37]/30
+                      rounded-sm
+                      shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]
+                    "
+                  >
+                    <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+                
+                    <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">
                       03
                     </span>
                   </div>
+                </div>
         
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h4 className="text-sm font-bold tracking-[0.16em] uppercase text-white">
@@ -772,9 +860,9 @@ export default function LandingPage() {
         </section>
 
         {/* FAQ SECTION */}
-        <section className="py-20 md:py-24 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12">
+        <section className="py-20 md:py-24 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12 overflow-hidden">
           <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-            
+        
             {/* LEFT PANEL */}
             <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28 h-fit">
               <div className="space-y-4">
@@ -792,30 +880,45 @@ export default function LandingPage() {
                 </p>
               </div>
         
-              <div className="border border-brand-platinum bg-white p-6 space-y-4 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary/70">
-                  Masih ada pertanyaan?
-                </p>
+              <div className="relative overflow-hidden border border-white/10 bg-[#000000] p-7 md:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.18)]">
+                {/* gold glow */}
+                <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-amber-300/10 blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-yellow-200/10 blur-3xl pointer-events-none" />
         
-                <p className="text-sm text-brand-onyx leading-relaxed">
-                  Konsultasikan kebutuhan kaos event Anda langsung bersama tim kami.
-                </p>
+                {/* badge */}
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-amber-300/20 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                  <span className="text-[10px] font-black tracking-[0.24em] uppercase bg-gradient-to-r from-[#F7E7A1] via-[#D4AF37] to-[#FFF2B2] bg-clip-text text-transparent">
+                    CUSTOMER SUPPORT
+                  </span>
+                </div>
         
-                <a
-                  href={generateWaLink(defaultHeroMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full py-4 bg-brand-primary text-white text-xs font-bold tracking-[0.18em] uppercase hover:-translate-y-1 transition-all duration-300"
-                >
-                  <Image
-                    src="/wa.svg"
-                    alt="WhatsApp"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 mr-3"
-                  />
-                  HUBUNGI KAMI
-                </a>
+                <div className="relative mt-6 space-y-5">
+                  <p className="text-lg font-bold text-white leading-snug">
+                    Tim kami siap membantu Anda dari tahap konsultasi hingga kaos selesai diproduksi.
+                  </p>
+        
+                  <p className="text-sm text-white/65 leading-relaxed">
+                    Setiap project event memiliki kebutuhan unik. Karena itu kami
+                    memastikan komunikasi cepat, transparan, dan minim risiko revisi.
+                  </p>
+        
+                  <div className="space-y-3 pt-2">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-white/70">
+                      <span className="text-amber-300">✦</span>
+                      Respon Cepat
+                    </div>
+        
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-white/70">
+                      <span className="text-amber-300">✦</span>
+                      Mockup Gratis
+                    </div>
+        
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-white/70">
+                      <span className="text-amber-300">✦</span>
+                      Pengiriman Nasional
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
         
@@ -827,10 +930,10 @@ export default function LandingPage() {
                 return (
                   <div
                     key={idx}
-                    className={`group bg-white border transition-all duration-400 ${
+                    className={`group bg-white border transition-all duration-500 ${
                       isOpen
-                        ? "border-brand-primary shadow-xl"
-                        : "border-brand-platinum hover:border-brand-primary/20"
+                        ? "border-brand-primary shadow-xl ring-1 ring-amber-300/30"
+                        : "border-brand-platinum hover:border-brand-primary/20 hover:shadow-md"
                     }`}
                   >
                     <button
@@ -841,7 +944,7 @@ export default function LandingPage() {
                         <div
                           className={`w-11 h-11 shrink-0 flex items-center justify-center border transition-all ${
                             isOpen
-                              ? "bg-brand-primary border-brand-primary text-white"
+                              ? "bg-brand-primary border-brand-primary text-white shadow-[0_0_25px_rgba(212,175,55,0.15)]"
                               : "border-brand-platinum text-brand-primary"
                           }`}
                         >
@@ -869,7 +972,7 @@ export default function LandingPage() {
                     </button>
         
                     <div
-                      className={`grid transition-all duration-400 ${
+                      className={`grid transition-all duration-500 ${
                         isOpen
                           ? "grid-rows-[1fr] opacity-100"
                           : "grid-rows-[0fr] opacity-0"
@@ -893,21 +996,46 @@ export default function LandingPage() {
           {/* Background accents */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute bottom-[-10%] right-[-5%] w-[320px] h-[320px] rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute bottom-[-10%] right-[-5%] w-[320px] h-[320px] rounded-full bg-[#D4AF37]/10 blur-3xl" />
+            <div className="absolute top-[40%] left-[10%] w-[260px] h-[260px] rounded-full bg-[#D4AF37]/8 blur-3xl" />
           </div>
         
           <div className="relative max-w-5xl mx-auto">
-            <div className="border border-white/15 bg-white/[0.03] backdrop-blur-sm px-6 py-10 md:px-12 md:py-14 shadow-2xl text-center">
-              
+            <div
+              className="
+                border border-[#D4AF37]/20
+                bg-white/[0.03]
+                backdrop-blur-sm
+                px-6 py-10 md:px-12 md:py-14
+                shadow-[0_25px_70px_rgba(0,0,0,0.35)]
+                text-center
+              "
+            >
               <div className="space-y-5 md:space-y-6">
-                <span className="inline-block text-xs font-bold tracking-[0.3em] text-brand-white/55 uppercase">
-                  SIAPKAN SEKARANG UNTUK ACARA ANDA
-                </span>
+                {/* Gold badge */}
+                <div className="flex justify-center">
+                  <div
+                    className="
+                      px-5 py-2
+                      rounded-full
+                      bg-white/5
+                      border border-[#D4AF37]/25
+                      backdrop-blur-md
+                      shadow-[0_8px_24px_rgba(212,175,55,0.12)]
+                    "
+                  >
+                    <span className="text-xs font-bold tracking-[0.3em] text-[#D4AF37] uppercase">
+                      SIAPKAN SEKARANG UNTUK ACARA ANDA
+                    </span>
+                  </div>
+                </div>
         
                 <h2 className="text-3xl md:text-5xl xl:text-6xl font-extrabold tracking-tighter uppercase leading-[1.05]">
                   Wujudkan Kaos Event
                   <br />
-                  Impian Bersama CITILEX ASIA
+                  <span className="bg-gradient-to-r from-white via-[#F3D98B] to-white bg-clip-text text-transparent">
+                    Impian Bersama CITILEX ASIA
+                  </span>
                 </h2>
         
                 <p className="text-sm md:text-base text-brand-white/75 max-w-2xl mx-auto leading-relaxed">
@@ -935,10 +1063,10 @@ export default function LandingPage() {
                     px-10 md:px-14 py-5
                     bg-white text-brand-primary
                     text-xs md:text-sm font-black tracking-[0.22em] uppercase
-                    shadow-2xl
+                    shadow-[0_16px_40px_rgba(212,175,55,0.18)]
                     hover:-translate-y-1.5
                     hover:scale-[1.02]
-                    hover:shadow-[0_24px_70px_rgba(255,255,255,0.22)]
+                    hover:shadow-[0_24px_70px_rgba(212,175,55,0.28)]
                     transition-all duration-500
                   "
                 >
