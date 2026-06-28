@@ -741,7 +741,7 @@ export default function LandingPage() {
                 "
               >
                 <Image
-                  src="/wa.svg"
+                  src="/wablack.svg"
                   alt="WhatsApp"
                   width={16}
                   height={16}
