@@ -244,7 +244,7 @@ export default function LandingPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center pt-2">
-                
+                  <a 
                   href={generateWaLink(defaultHeroMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -735,7 +735,7 @@ export default function LandingPage() {
               </div>
 
               <div className="mt-10">
-                
+                  <a 
                   href={generateWaLink(defaultHeroMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
