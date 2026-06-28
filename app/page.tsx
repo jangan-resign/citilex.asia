@@ -379,11 +379,12 @@ export default function LandingPage() {
         
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0 lg:items-center">
             {packages.map((pkg, idx) => (
-              <div
+             <div
                 key={idx}
-                className={`relative flex flex-col justify-between transition-all duration-500 ${
+                className={`relative flex flex-col justify-between transition-all duration-500 ease-out ${
                   pkg.popular
                     ? `
+                      group
                       z-20
                       bg-[#000000]
                       text-white
@@ -391,7 +392,9 @@ export default function LandingPage() {
                       shadow-[0_30px_80px_rgba(0,0,0,0.28)]
                       lg:scale-[1.06]
                       lg:-translate-y-3
-                      px-8 pt-16 pb-8
+                      hover:-translate-y-4
+                      hover:shadow-[0_40px_100px_rgba(0,0,0,0.35)]
+                      px-8 py-8
                       min-h-[720px]
                     `
                     : `
@@ -405,15 +408,25 @@ export default function LandingPage() {
                     `
                 }`}
               >
-                {pkg.popular && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-                    <div className="px-7 py-3 bg-white border border-brand-platinum shadow-xl">
-                      <span className="text-[10px] font-black tracking-[0.28em] uppercase text-black">
-                        TERPOPULER
-                      </span>
+                <div className="space-y-8">
+                  {pkg.popular && (
+                    <div className="flex justify-center">
+                      <div
+                        className="
+                          px-5 py-2
+                          rounded-full
+                          bg-white/10
+                          border border-white/15
+                          backdrop-blur-xl
+                          shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
+                        "
+                      >
+                        <span className="text-[10px] font-black tracking-[0.28em] uppercase text-white">
+                          TERPOPULER
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
         
                 <div className="space-y-8">
                   <div className="text-center space-y-3">
