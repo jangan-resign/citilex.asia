@@ -379,12 +379,11 @@ export default function LandingPage() {
         
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0 lg:items-center">
             {packages.map((pkg, idx) => (
-             <div
+              <div
                 key={idx}
                 className={`relative flex flex-col justify-between transition-all duration-500 ease-out ${
                   pkg.popular
                     ? `
-                      group
                       z-20
                       bg-[#000000]
                       text-white
@@ -408,9 +407,10 @@ export default function LandingPage() {
                     `
                 }`}
               >
+                {/* CONTENT */}
                 <div className="space-y-8">
                   {pkg.popular && (
-                    <div className="flex justify-center">
+                    <div className="flex justify-center mb-2">
                       <div
                         className="
                           px-5 py-2
@@ -428,7 +428,6 @@ export default function LandingPage() {
                     </div>
                   )}
         
-                <div className="space-y-8">
                   <div className="text-center space-y-3">
                     <h3
                       className={`text-xl font-black tracking-[0.15em] uppercase ${
@@ -440,9 +439,7 @@ export default function LandingPage() {
         
                     <p
                       className={`text-xs leading-relaxed max-w-xs mx-auto ${
-                        pkg.popular
-                          ? "text-white/70"
-                          : "text-brand-onyx/75"
+                        pkg.popular ? "text-white/70" : "text-brand-onyx/75"
                       }`}
                     >
                       {pkg.description}
@@ -451,9 +448,7 @@ export default function LandingPage() {
         
                   <div
                     className={`py-7 border-y ${
-                      pkg.popular
-                        ? "border-white/10"
-                        : "border-brand-platinum"
+                      pkg.popular ? "border-white/10" : "border-brand-platinum"
                     }`}
                   >
                     <span className="text-xs font-semibold tracking-[0.18em] uppercase block text-center opacity-60">
@@ -469,9 +464,7 @@ export default function LandingPage() {
         
                       <span
                         className={`text-sm mb-1 ${
-                          pkg.popular
-                            ? "text-white/60"
-                            : "text-brand-onyx/60"
+                          pkg.popular ? "text-white/60" : "text-brand-onyx/60"
                         }`}
                       >
                         /pcs
@@ -487,9 +480,7 @@ export default function LandingPage() {
                       >
                         <Check
                           className={`w-4 h-4 mr-3 mt-1 shrink-0 ${
-                            pkg.popular
-                              ? "text-white"
-                              : "text-brand-primary"
+                            pkg.popular ? "text-white" : "text-brand-primary"
                           }`}
                         />
                         <span>{feature}</span>
@@ -498,6 +489,7 @@ export default function LandingPage() {
                   </ul>
                 </div>
         
+                {/* CTA */}
                 <div className="pt-8">
                   <a
                     href={generateWaLink(pkg.whatsappText)}
