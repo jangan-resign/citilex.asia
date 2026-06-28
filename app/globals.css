@@ -34,3 +34,14 @@ h4,
 .font-heading {
   font-family: var(--font-montserrat), sans-serif;
 }
+
+@import "tailwindcss";
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@utility animate-shimmer {
+  animation: shimmer 2.5s ease-in-out infinite;
+}
