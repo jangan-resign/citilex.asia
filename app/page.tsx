@@ -3,6 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+    gtag_report_conversion: (url?: string) => boolean;
+  }
+}
+
 import { 
   Check, 
   ArrowRight, 
@@ -64,6 +72,28 @@ const jsonLdData = {
 };
 
 const WHATSAPP_NUMBER = "6281319888488";
+
+const gtag_report_conversion = (url?: string) => {
+
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18279242485/OsqECO3h-cYcEPW1nIxE',
+      value: 1.0,
+      currency: 'IDR',
+      event_callback: () => {
+        if (url) {
+          window.location.href = url;
+        }
+      }
+    });
+  } else {
+    if (url) {
+      window.location.href = url;
+    }
+  }
+
+  return false;
+};
 
 const generateWaLink = (message: string) => {
   return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
@@ -211,9 +241,15 @@ export default function LandingPage() {
       
         <a 
           href={generateWaLink(defaultHeroMessage)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-brand-primary text-brand-white text-xs font-semibold tracking-wider uppercase border border-white hover:-translate-y-1 transition-transform duration-300"
+            onClick={(e) => {
+              e.preventDefault();
+              gtag_report_conversion(
+                generateWaLink(defaultHeroMessage)
+              );
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-brand-primary text-brand-white text-xs font-semibold tracking-wider uppercase border border-white hover:-translate-y-1 transition-transform duration-300"
         >
           <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="w-4 h-4 mr-2" />
           Tanya via WhatsApp
@@ -256,6 +292,12 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center pt-2">
                   <a 
                   href={generateWaLink(defaultHeroMessage)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      gtag_report_conversion(
+                        generateWaLink(defaultHeroMessage)
+                      );
+                    }}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={heroCtaClass}
@@ -477,7 +519,18 @@ export default function LandingPage() {
                   </div>
 
                   <div className="pt-8 relative">
-                    <a href={generateWaLink(pkg.whatsappText)} target="_blank" rel="noopener noreferrer" className={ctaClass}>
+                    <a 
+                      href={generateWaLink(pkg.whatsappText)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          gtag_report_conversion(
+                            generateWaLink(defaultHeroMessage)
+                          );
+                        }}
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={ctaClass}
+                    >
                       KONSULTASI PAKET INI
                     </a>
                   </div>
@@ -747,6 +800,12 @@ export default function LandingPage() {
               <div className="mt-10">
                   <a 
                   href={generateWaLink(defaultHeroMessage)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      gtag_report_conversion(
+                        generateWaLink(defaultHeroMessage)
+                      );
+                    }}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={heroCtaClass}
