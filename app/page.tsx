@@ -196,7 +196,7 @@ export default function LandingPage() {
               <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[0.95]">
                 Kaos Custom
                 <br />
-                <span className="bg-gradient-to-r from-primary/35 via-[#F3D98B] to-primary/35 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-black/75 via-[#F3D98B] to-black/75 bg-clip-text text-transparent">
                   untuk Event &amp; Acara
                 </span>
               </h1>
