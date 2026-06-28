@@ -178,24 +178,41 @@ export default function LandingPage() {
       <main className="pt-8">
         
         {/* HERO SECTION */}
-        <section className="py-16 md:py-28 px-6 md:px-12 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-8">
-            <span className="inline-block text-xs font-bold tracking-[0.25em] text-brand-primary/60 uppercase">
+        <section className="relative overflow-hidden pt-14 pb-20 md:pt-20 md:pb-28 px-6 md:px-12 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
+          <div className="lg:col-span-7 space-y-6 md:space-y-8">
+            <span className="inline-block text-xs font-bold tracking-[0.28em] text-brand-primary/55 uppercase">
               #1 PREMIUM CUSTOM APPAREL FOR EVENTS
             </span>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[1.05]">
-              Kaos Custom <br />
-              <span className="text-brand-primary/40">untuk Event &amp; Acara</span>
+        
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[0.98]">
+              Kaos Custom
+              <br />
+              <span className="text-brand-primary/35">
+                untuk Event &amp; Acara
+              </span>
             </h1>
-            <p className="text-lg text-brand-onyx max-w-xl leading-relaxed">
-              CITILEX ASIA menyediakan jasa pembuatan kaos custom premium untuk event, gathering, seminar, reuni, dan promosi korporasi. Kualitas terjamin dengan pengerjaan profesional tepat waktu.
+        
+            <p className="text-base md:text-lg text-brand-onyx max-w-2xl leading-relaxed">
+              CITILEX ASIA menyediakan jasa pembuatan kaos custom premium untuk
+              event, gathering, seminar, reuni, dan promosi korporasi.
+              Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.
             </p>
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <a 
+        
+            <div className="pt-2 flex flex-col sm:flex-row gap-4 sm:items-center">
+              <a
                 href={generateWaLink(defaultHeroMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-5 bg-brand-primary text-brand-white text-xs font-bold tracking-[0.2em] uppercase border border-white hover:-translate-y-1 transition-transform duration-300"
+                className="
+                  inline-flex items-center justify-center
+                  px-9 py-4
+                  bg-brand-primary text-brand-white
+                  text-xs font-bold tracking-[0.2em] uppercase
+                  shadow-xl
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  transition-all duration-500
+                "
               >
                 <Image
                   src="/wa.svg"
@@ -206,23 +223,37 @@ export default function LandingPage() {
                 />
                 KONSULTASI KAOS EVENT
               </a>
+        
               <div className="flex items-center gap-3">
                 <span className="h-[1px] w-8 bg-brand-platinum"></span>
-                <p className="text-xs font-semibold text-brand-onyx/70 tracking-widest uppercase">
-                  Mulai Dari Konsep Hingga Siap Pakai
+                <p className="text-xs font-semibold text-brand-onyx/65 tracking-[0.18em] uppercase">
+                  Dari Konsep Hingga Siap Pakai
                 </p>
               </div>
             </div>
+        
+            {/* Trust Row */}
+            <div className="pt-4 flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-onyx/60">
+              <span>✓ MOQ Fleksibel</span>
+              <span>✓ Mockup Gratis</span>
+              <span>✓ Pengiriman Nasional</span>
+            </div>
           </div>
+        
           <div className="lg:col-span-5 w-full">
-            <div className="relative aspect-[4/5] w-full bg-brand-snow border border-brand-platinum p-3">
-              <Image 
-                src="/citilexasiahero.png"
-                alt="Kaos Custom Event CITILEX ASIA"
-                fill
-                priority
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
+            <div className="relative">
+              {/* glow */}
+              <div className="absolute inset-0 scale-95 bg-brand-primary/10 blur-3xl rounded-full"></div>
+        
+              <div className="relative aspect-[4/5] w-full bg-white border border-brand-platinum p-3 shadow-2xl">
+                <Image
+                  src="/citilexasiahero.png"
+                  alt="Kaos Custom Event CITILEX ASIA"
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -271,75 +302,124 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* PRICING & TIER SECTION */}
-        <section id="pricing" className="py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-16">
-          <div className="text-center space-y-4">
+       {/* PRICING & TIER SECTION */}
+        <section
+          id="pricing"
+          className="pt-12 pb-20 md:pt-16 md:pb-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-10 md:space-y-12"
+        >
+          <div className="text-center space-y-3 md:space-y-4">
             <span className="text-xs font-bold tracking-[0.25em] text-brand-primary/60 uppercase">
               PRICE &amp; FABRIC OPTIONS
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-brand-primary uppercase">
               Daftar Paket Harga Kaos Event
             </h2>
-            <p className="text-sm text-brand-onyx max-w-xl mx-auto">
-              Pilih spesifikasi material yang paling ideal untuk anggaran dan kenyamanan peserta event Anda.
+            <p className="text-sm text-brand-onyx max-w-xl mx-auto leading-relaxed">
+              Pilih spesifikasi material yang paling ideal untuk anggaran dan
+              kenyamanan peserta event Anda.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-7">
             {packages.map((pkg, idx) => (
-              <div 
-                key={idx} 
-                className={`border p-8 flex flex-col justify-between transition-all duration-300 ${
-                  pkg.popular 
-                    ? "border-brand-primary bg-brand-primary text-brand-white scale-100 lg:scale-[1.03] shadow-lg relative" 
-                    : "border-brand-platinum bg-white text-brand-primary"
+              <div
+                key={idx}
+                className={`relative border p-7 md:p-8 flex flex-col justify-between transition-all duration-500 ease-out ${
+                  pkg.popular
+                    ? "border-white/10 bg-gradient-to-br from-brand-primary via-[#0F1115] to-black text-brand-white lg:-translate-y-2 shadow-2xl ring-1 ring-white/10"
+                    : "border-brand-platinum bg-white text-brand-primary hover:-translate-y-1 hover:shadow-xl hover:border-brand-primary/20"
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute top-0 right-0 bg-white text-brand-primary text-[10px] font-black tracking-widest uppercase px-4 py-1.5 border-b border-l border-brand-primary">
-                    TERPOPULER
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                    <div
+                      className="
+                        px-6 py-2.5
+                        bg-gradient-to-r
+                        from-[#111111]
+                        via-[#2A2A2A]
+                        to-[#111111]
+                        border border-white/15
+                        shadow-2xl
+                        backdrop-blur-md
+                      "
+                    >
+                      <span className="text-[10px] font-black tracking-[0.28em] uppercase text-white">
+                        TERPOPULER
+                      </span>
+                    </div>
                   </div>
                 )}
-                <div className="space-y-6">
+        
+                <div className="space-y-5">
                   <div>
-                    <h3 className={`text-lg font-bold tracking-widest uppercase ${pkg.popular ? "text-brand-white" : "text-brand-primary"}`}>
+                    <h3
+                      className={`text-lg font-bold tracking-widest uppercase ${
+                        pkg.popular ? "text-brand-white" : "text-brand-primary"
+                      }`}
+                    >
                       {pkg.name}
                     </h3>
-                    <p className={`text-xs mt-2 leading-relaxed ${pkg.popular ? "text-brand-white/80" : "text-brand-onyx/80"}`}>
+                    <p
+                      className={`text-xs mt-2 leading-relaxed ${
+                        pkg.popular
+                          ? "text-brand-white/80"
+                          : "text-brand-onyx/80"
+                      }`}
+                    >
                       {pkg.description}
                     </p>
                   </div>
-
-                  <div className="border-t border-b py-6 border-brand-platinum/30">
+        
+                  <div className="border-t border-b py-5 border-brand-platinum/30">
                     <span className="text-xs font-semibold tracking-wider uppercase block opacity-65">
                       Mulai Dari
                     </span>
                     <div className="flex items-baseline gap-1 mt-1">
                       <span className="text-lg font-bold">Rp</span>
-                      <span className="text-4xl font-extrabold tracking-tighter">{pkg.price}</span>
-                      <span className={`text-xs ${pkg.popular ? "text-brand-white/70" : "text-brand-onyx/70"}`}>/pcs</span>
+                      <span className="text-4xl font-extrabold tracking-tighter">
+                        {pkg.price}
+                      </span>
+                      <span
+                        className={`text-xs ${
+                          pkg.popular
+                            ? "text-brand-white/70"
+                            : "text-brand-onyx/70"
+                        }`}
+                      >
+                        /pcs
+                      </span>
                     </div>
                   </div>
-
-                  <ul className="space-y-4">
+        
+                  <ul className="space-y-3">
                     {pkg.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center text-xs tracking-wide">
-                        <Check className={`w-4 h-4 mr-3 shrink-0 ${pkg.popular ? "text-brand-white" : "text-brand-primary"}`} />
+                      <li
+                        key={fIdx}
+                        className="flex items-start text-xs tracking-wide leading-relaxed"
+                      >
+                        <Check
+                          className={`w-4 h-4 mr-3 mt-0.5 shrink-0 ${
+                            pkg.popular
+                              ? "text-brand-white"
+                              : "text-brand-primary"
+                          }`}
+                        />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-
-                <div className="pt-8">
-                  <a 
+        
+                <div className="pt-7">
+                  <a
                     href={generateWaLink(pkg.whatsappText)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`block w-full text-center py-4 text-xs font-bold tracking-widest uppercase transition-transform duration-300 hover:-translate-y-1 ${
-                      pkg.popular 
-                        ? "bg-white text-brand-primary border border-white" 
-                        : "bg-brand-primary text-brand-white border border-white"
+                    className={`block w-full text-center py-3.5 text-xs font-bold tracking-[0.18em] uppercase transition-all duration-300 hover:-translate-y-1 ${
+                      pkg.popular
+                        ? "bg-white text-brand-primary border border-white"
+                        : "bg-brand-primary text-brand-white border border-brand-primary"
                     }`}
                   >
                     KONSULTASI PAKET INI
@@ -348,59 +428,80 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-
-          <p className="text-center text-xs text-brand-onyx/60 max-w-xl mx-auto leading-relaxed pt-4">
-            * Harga final dapat bervariasi mengikuti jumlah pemesanan, jumlah posisi cetakan sablon/bordir, tenggat waktu pengerjaan, dan rentang ukuran di atas ukuran standard (XL).
+        
+          <p className="text-center text-xs text-brand-onyx/60 max-w-xl mx-auto leading-relaxed pt-2">
+            * Harga final dapat bervariasi mengikuti jumlah pemesanan, jumlah posisi
+            cetakan sablon/bordir, tenggat waktu pengerjaan, dan rentang ukuran di atas
+            ukuran standard (XL).
           </p>
         </section>
 
         {/* WORKFLOW PROCESS SECTION */}
-        <section className="py-24 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12">
-          <div className="max-w-[1280px] mx-auto space-y-16">
-            <div className="text-center space-y-4">
+        <section className="py-20 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12">
+          <div className="max-w-[1280px] mx-auto space-y-12">
+            <div className="text-center space-y-3 md:space-y-4">
               <span className="text-xs font-bold tracking-[0.25em] text-brand-primary/60 uppercase">
                 PRODUCTION TIMELINE
               </span>
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-brand-primary uppercase">
                 Proses Pemesanan &amp; Alur Kerja
               </h2>
-              <p className="text-sm text-brand-onyx max-w-xl mx-auto">
+              <p className="text-sm text-brand-onyx max-w-xl mx-auto leading-relaxed">
                 Langkah-langkah terstruktur untuk merealisasikan kebutuhan kaos event Anda dengan minim risiko kesalahan.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="bg-white p-8 border border-brand-platinum flex flex-col justify-between">
-                <div className="space-y-4">
-                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">01 / KONSEP</span>
-                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Konsultasi Desain</h3>
+        
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-7">
+              <div className="bg-white p-7 md:p-8 border border-brand-platinum flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">
+                    01 / KONSEP
+                  </span>
+                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
+                    Konsultasi Desain
+                  </h3>
                   <p className="text-xs text-brand-onyx leading-relaxed">
                     Diskusikan ide desain, pilihan material kain, jumlah order, dan timeline acara Anda dengan representasi kami secara praktis via WhatsApp.
                   </p>
                 </div>
               </div>
-              <div className="bg-white p-8 border border-brand-platinum flex flex-col justify-between">
-                <div className="space-y-4">
-                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">02 / APPROVAL</span>
-                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Approval Mockup</h3>
+        
+              <div className="bg-white p-7 md:p-8 border border-brand-platinum flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">
+                    02 / APPROVAL
+                  </span>
+                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
+                    Approval Mockup
+                  </h3>
                   <p className="text-xs text-brand-onyx leading-relaxed">
                     Kami menyiapkan desain mockup visual digital secara detail untuk Anda teliti dan setujui demi menjamin kesesuaian posisi cetakan sablon.
                   </p>
                 </div>
               </div>
-              <div className="bg-white p-8 border border-brand-platinum flex flex-col justify-between">
-                <div className="space-y-4">
-                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">03 / PRODUKSI</span>
-                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Mulai Produksi</h3>
+        
+              <div className="bg-white p-7 md:p-8 border border-brand-platinum flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">
+                    03 / PRODUKSI
+                  </span>
+                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
+                    Mulai Produksi
+                  </h3>
                   <p className="text-xs text-brand-onyx leading-relaxed">
                     Setelah DP 50% diterima, proses pembuatan massal (cutting, printing, sewing, QC) langsung dieksekusi oleh tim produksi profesional kami.
                   </p>
                 </div>
               </div>
-              <div className="bg-white p-8 border border-brand-platinum flex flex-col justify-between">
-                <div className="space-y-4">
-                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">04 / KIRIM</span>
-                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">QC &amp; Pengiriman</h3>
+        
+              <div className="bg-white p-7 md:p-8 border border-brand-platinum flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="text-xs font-bold text-brand-primary/40 tracking-widest block">
+                    04 / KIRIM
+                  </span>
+                  <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
+                    QC &amp; Pengiriman
+                  </h3>
                   <p className="text-xs text-brand-onyx leading-relaxed">
                     Setiap kaos melewati final QC sebelum dikemas rapi, dilunasi sisa pembayarannya, dan langsung dikirim aman ke alamat lokasi event Anda.
                   </p>
@@ -411,106 +512,186 @@ export default function LandingPage() {
         </section>
 
         {/* PORTFOLIO / GALLERY */}
-        <section className="py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-16">
-          <div className="text-center space-y-4">
+        <section className="py-20 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12">
+          <div className="text-center space-y-3 md:space-y-4">
             <span className="text-xs font-bold tracking-[0.25em] text-brand-primary/60 uppercase">
               GALLERY SHOWCASE
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-brand-primary uppercase">
               Galeri Hasil Produksi Kaos
             </h2>
-            <p className="text-sm text-brand-onyx max-w-xl mx-auto">
-              Dokumentasi nyata hasil pengerjaan kaos sablon premium dari portofolio klien CITILEX ASIA.
+            <p className="text-sm text-brand-onyx max-w-xl mx-auto leading-relaxed">
+              Dokumentasi nyata hasil pengerjaan kaos sablon premium dari portofolio
+              klien CITILEX ASIA.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
+        
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
+            {/* CARD 1 */}
+            <div className="group border border-brand-platinum bg-white p-2 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
               <div className="relative aspect-square w-full overflow-hidden">
-                <Image 
+                <Image
                   src="/porto1.png"
                   alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
+        
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1">
+                  <span className="text-[10px] font-black tracking-[0.22em] text-brand-primary">
+                    01
+                  </span>
+                </div>
               </div>
-              <div className="px-4 pb-4">
-                <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Corporate Gathering Shirt</h4>
-                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Cotton Combed 30s • Sablon: DTF</p>
+        
+              <div className="px-4 py-4 space-y-2">
+                <h4 className="text-xs font-bold tracking-[0.18em] uppercase text-brand-primary">
+                  Corporate Gathering Shirt
+                </h4>
+                <p className="text-[11px] text-brand-onyx/70 uppercase tracking-wider leading-relaxed">
+                  Bahan: Cotton Combed 30s • Sablon: DTF
+                </p>
               </div>
             </div>
-
-            <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
+        
+            {/* CARD 2 */}
+            <div className="group border border-brand-platinum bg-white p-2 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
               <div className="relative aspect-square w-full overflow-hidden">
-                <Image 
+                <Image
                   src="/porto2.png"
                   alt="CITILEX ASIA Solstice Collective Hanging Black Custom Shirt"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
+        
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1">
+                  <span className="text-[10px] font-black tracking-[0.22em] text-brand-primary">
+                    02
+                  </span>
+                </div>
               </div>
-              <div className="px-4 pb-4">
-                <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Solstice Collective Edition</h4>
-                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Premium Cotton Bamboo • Sablon: DTF</p>
+        
+              <div className="px-4 py-4 space-y-2">
+                <h4 className="text-xs font-bold tracking-[0.18em] uppercase text-brand-primary">
+                  Solstice Collective Edition
+                </h4>
+                <p className="text-[11px] text-brand-onyx/70 uppercase tracking-wider leading-relaxed">
+                  Bahan: Premium Cotton Bamboo • Sablon: DTF
+                </p>
               </div>
             </div>
-
-            <div className="border border-brand-platinum bg-brand-snow p-2 flex flex-col space-y-4">
+        
+            {/* CARD 3 */}
+            <div className="group border border-brand-platinum bg-white p-2 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
               <div className="relative aspect-square w-full overflow-hidden">
-                <Image 
+                <Image
                   src="/porto3.png"
                   alt="CITILEX ASIA Close Up Fabric Quality Check"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
+        
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1">
+                  <span className="text-[10px] font-black tracking-[0.22em] text-brand-primary">
+                    03
+                  </span>
+                </div>
               </div>
-              <div className="px-4 pb-4">
-                <h4 className="text-xs font-bold tracking-widest uppercase text-brand-primary">Full Color DTF Printing</h4>
-                <p className="text-[11px] text-brand-onyx/70 mt-1 uppercase tracking-wider">Bahan: Cotton Combed 30s • Sablon: DTF</p>
+        
+              <div className="px-4 py-4 space-y-2">
+                <h4 className="text-xs font-bold tracking-[0.18em] uppercase text-brand-primary">
+                  Full Color DTF Printing
+                </h4>
+                <p className="text-[11px] text-brand-onyx/70 uppercase tracking-wider leading-relaxed">
+                  Bahan: Cotton Combed 30s • Sablon: DTF
+                </p>
               </div>
             </div>
           </div>
         </section>
 
         {/* FAQ SECTION */}
-        <section className="py-24 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12">
-          <div className="max-w-3xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
+        <section className="py-20 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12">
+          <div className="max-w-4xl mx-auto space-y-10">
+            <div className="text-center space-y-3 md:space-y-4">
               <span className="text-xs font-bold tracking-[0.25em] text-brand-primary/60 uppercase">
                 FREQUENTLY ASKED QUESTIONS
               </span>
-              <h2 className="text-3xl font-extrabold tracking-tighter text-brand-primary uppercase">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-brand-primary uppercase">
                 Pertanyaan Yang Sering Diajukan
               </h2>
             </div>
-
-            <div className="border-t border-brand-platinum pt-4">
+        
+            <div className="space-y-4">
               {faqs.map((faq, idx) => {
                 const isOpen = activeFaq === idx;
+        
                 return (
-                  <div key={idx} className="border-b border-brand-platinum/60 py-5">
-                    <button 
+                  <div
+                    key={idx}
+                    className={`border transition-all duration-300 ${
+                      isOpen
+                        ? "border-brand-primary/20 bg-white shadow-md"
+                        : "border-brand-platinum bg-white hover:border-brand-primary/20"
+                    }`}
+                  >
+                    <button
                       onClick={() => toggleFaq(idx)}
-                      className="w-full flex justify-between items-center text-left py-2 font-bold text-xs tracking-wider uppercase text-brand-primary hover:opacity-85"
+                      className="w-full flex justify-between items-center text-left px-6 py-5 md:px-7 md:py-6"
                     >
-                      <span className="flex items-center gap-3">
-                        <HelpCircle className="w-4 h-4 text-brand-primary/50 shrink-0" />
-                        {faq.question}
+                      <span className="flex items-center gap-4 pr-4">
+                        <div
+                          className={`w-9 h-9 flex items-center justify-center border shrink-0 ${
+                            isOpen
+                              ? "border-brand-primary bg-brand-primary text-white"
+                              : "border-brand-platinum text-brand-primary"
+                          }`}
+                        >
+                          <HelpCircle className="w-4 h-4" />
+                        </div>
+        
+                        <span className="font-bold text-xs md:text-sm tracking-[0.12em] uppercase text-brand-primary leading-relaxed">
+                          {faq.question}
+                        </span>
                       </span>
-                      {isOpen ? (
-                        <Minus className="w-4 h-4 shrink-0 text-brand-primary" />
-                      ) : (
-                        <Plus className="w-4 h-4 shrink-0 text-brand-primary" />
-                      )}
+        
+                      <div
+                        className={`w-8 h-8 flex items-center justify-center border shrink-0 transition-all ${
+                          isOpen
+                            ? "border-brand-primary bg-brand-primary text-white"
+                            : "border-brand-platinum text-brand-primary"
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus className="w-4 h-4" />
+                        ) : (
+                          <Plus className="w-4 h-4" />
+                        )}
+                      </div>
                     </button>
-                    {isOpen && (
-                      <p className="mt-3 pl-7 text-xs text-brand-onyx leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    )}
+        
+                    <div
+                      className={`grid transition-all duration-300 ${
+                        isOpen
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="px-6 pb-6 md:px-7 md:pb-7 text-sm text-brand-onyx leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -519,23 +700,45 @@ export default function LandingPage() {
         </section>
 
         {/* FINAL CALL TO ACTION (CTA) */}
-        <section className="bg-brand-primary text-brand-white py-24 px-6 md:px-12 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <span className="inline-block text-xs font-bold tracking-[0.3em] text-brand-white/60 uppercase">
+        <section className="relative overflow-hidden bg-brand-primary text-brand-white pt-20 pb-24 px-6 md:px-12 text-center">
+          {/* Background Accent */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white blur-3xl opacity-10" />
+            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-white blur-3xl opacity-10" />
+          </div>
+        
+          <div className="relative max-w-3xl mx-auto space-y-6 md:space-y-8">
+            <span className="inline-block text-xs font-bold tracking-[0.3em] text-brand-white/55 uppercase">
               SIAPKAN SEKARANG UNTUK ACARA ANDA
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter uppercase leading-[1.1]">
-              Wujudkan Kaos Event <br /> Impian Bersama CITILEX ASIA
+        
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter uppercase leading-[1.08]">
+              Wujudkan Kaos Event
+              <br />
+              Impian Bersama CITILEX ASIA
             </h2>
-            <p className="text-sm text-brand-white/80 max-w-lg mx-auto leading-relaxed">
-              Hubungi tim marketing kami sekarang untuk konsultasi bahan gratis, pengajuan penawaran harga, dan pembuatan mockup visual digital awal gratis.
+        
+            <p className="text-sm text-brand-white/75 max-w-xl mx-auto leading-relaxed">
+              Hubungi tim marketing kami sekarang untuk konsultasi bahan gratis,
+              pengajuan penawaran harga, dan pembuatan mockup visual digital awal
+              gratis.
             </p>
-            <div className="pt-4">
-              <a 
+        
+            <div className="pt-2">
+              <a
                 href={generateWaLink(defaultHeroMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-12 py-5 bg-brand-primary text-brand-white text-xs font-bold tracking-[0.2em] uppercase border border-white hover:-translate-y-1 transition-all duration-300"
+                className="
+                  inline-flex items-center justify-center
+                  px-12 py-4
+                  bg-white text-brand-primary
+                  text-xs font-bold tracking-[0.22em] uppercase
+                  border border-white
+                  shadow-2xl
+                  hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(255,255,255,0.18)]
+                  transition-all duration-500
+                "
               >
                 <Image
                   src="/wa.svg"
