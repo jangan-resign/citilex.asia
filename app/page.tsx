@@ -434,7 +434,7 @@ export default function LandingPage() {
             </p>
           </div>
         
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0 lg:items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 lg:items-stretch">
             {packages.map((pkg, idx) => (
               <div
                 key={idx}
@@ -442,93 +442,103 @@ export default function LandingPage() {
                   pkg.popular
                     ? `
                       z-20
-                      bg-gradient-to-br from-[#111111] via-[#080808] to-[#151515]
+                      bg-gradient-to-br from-[#0e0c00] via-[#080808] to-[#111111]
                       text-white
-                      border border-[#D4AF37]/25
-                      shadow-[0_35px_90px_rgba(0,0,0,0.35),0_0_40px_rgba(212,175,55,0.08)]
-                      lg:scale-[1.06]
-                      lg:-translate-y-3
-                      hover:-translate-y-4
-                      hover:shadow-[0_45px_120px_rgba(0,0,0,0.45),0_0_60px_rgba(212,175,55,0.12)]
-                      px-8 py-8
-                      min-h-[720px]
+                      border-x border-[#D4AF37]/40
+                      shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_40px_100px_rgba(0,0,0,0.6),0_0_80px_rgba(212,175,55,0.12),0_0_160px_rgba(212,175,55,0.05)]
+                      lg:-translate-y-6
+                      hover:-translate-y-8
+                      hover:shadow-[0_0_0_1px_rgba(212,175,55,0.25),0_50px_120px_rgba(0,0,0,0.7),0_0_120px_rgba(212,175,55,0.18)]
+                      px-8 py-10
+                      min-h-[740px]
                     `
                     : `
                       bg-gradient-to-br from-[#1B1B1B] to-[#101010]
                       text-white
-                      border border-white/10
+                      border border-white/8
                       hover:-translate-y-2
-                      hover:shadow-[0_25px_60px_rgba(0,0,0,0.24)]
+                      hover:shadow-[0_25px_60px_rgba(0,0,0,0.3)]
                       px-8 py-8
                       min-h-[660px]
                     `
                 }`}
               >
-                {/* subtle gold glow */}
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[#F8E7B9]/[0.03] via-transparent to-[#D4AF37]/[0.04]" />
+                {/* Top gold line — hanya card popular */}
+                {pkg.popular && (
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+                )}
+        
+                {/* Gold radial glow background — hanya card popular */}
+                {pkg.popular && (
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[320px] h-[320px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.09)_0%,transparent_70%)] pointer-events-none" />
+                )}
+        
+                {/* Subtle overlay */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[#F8E7B9]/[0.02] via-transparent to-[#D4AF37]/[0.03]" />
         
                 {/* CONTENT */}
-                <div className="relative space-y-8">
+                <div className="relative space-y-7">
+                  {/* Badge terpopuler */}
                   {pkg.popular && (
-                    <div className="flex justify-center mb-8">
-                      <div
-                        className="
-                          relative
-                          px-6 py-2.5
-                          rounded-full
-                          bg-white/[0.05]
-                          backdrop-blur-xl
-                          border border-[#D4AF37]/35
-                          shadow-[0_10px_25px_rgba(212,175,55,0.12)]
-                        "
-                      >
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10" />
-        
-                        <span className="relative text-[10px] font-black tracking-[0.28em] uppercase text-[#F8E7B9]">
-                          TERPOPULER
+                    <div className="flex justify-center">
+                      <div className="relative px-5 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/50 shadow-[0_0_20px_rgba(212,175,55,0.15)] overflow-hidden">
+                        {/* shimmer effect pakai pseudo element via before — ganti ke animasi Tailwind */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#F8E7B9]/20 to-transparent -translate-x-full animate-[shimmer_2.5s_ease-in-out_infinite]" />
+                        <span className="relative text-[9px] font-black tracking-[0.3em] uppercase text-[#F8E7B9]">
+                          ⭐ TERPOPULER
                         </span>
                       </div>
                     </div>
                   )}
         
-                  <div className="text-center space-y-3">
-                    <h3 className="text-xl font-black tracking-[0.15em] uppercase">
+                  {/* Nama & deskripsi */}
+                  <div className="text-center space-y-2.5">
+                    <h3
+                      className={`font-black tracking-[0.15em] uppercase ${
+                        pkg.popular ? "text-2xl" : "text-xl"
+                      }`}
+                    >
                       {pkg.name}
                     </h3>
-        
-                    <p className="text-xs leading-relaxed max-w-xs mx-auto text-white/70">
+                    <p className="text-xs leading-relaxed max-w-xs mx-auto text-white/65">
                       {pkg.description}
                     </p>
                   </div>
         
+                  {/* Harga */}
                   <div
-                    className={`py-7 border-y ${
-                      pkg.popular ? "border-[#D4AF37]/20" : "border-white/10"
+                    className={`py-6 border-y ${
+                      pkg.popular ? "border-[#D4AF37]/25" : "border-white/10"
                     }`}
                   >
-                    <span className="text-xs font-semibold tracking-[0.18em] uppercase block text-center text-white/55">
+                    <span className="text-[10px] font-semibold tracking-[0.18em] uppercase block text-center text-white/45 mb-2">
                       Mulai Dari
                     </span>
-        
-                    <div className="flex items-end justify-center gap-1 mt-3">
-                      <span className="text-xl font-bold text-[#D4AF37]">Rp</span>
-        
-                      <span className="text-5xl md:text-6xl font-extrabold tracking-tighter leading-none bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent">
+                    <div className="flex items-end justify-center gap-1">
+                      <span
+                        className={`font-bold text-[#D4AF37] mb-1 ${
+                          pkg.popular ? "text-2xl" : "text-xl"
+                        }`}
+                      >
+                        Rp
+                      </span>
+                      <span
+                        className={`font-extrabold tracking-tighter leading-none bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent ${
+                          pkg.popular ? "text-7xl" : "text-5xl md:text-6xl"
+                        }`}
+                      >
                         {pkg.price}
                       </span>
-        
-                      <span className="text-sm mb-1 text-white/55">/pcs</span>
+                      <span className="text-sm mb-1.5 text-white/45">/pcs</span>
                     </div>
                   </div>
         
-                  <ul className="space-y-4">
+                  {/* Fitur */}
+                  <ul className="space-y-3.5">
                     {pkg.features.map((feature, fIdx) => (
-                      <li
-                        key={fIdx}
-                        className="flex items-start text-sm leading-relaxed"
-                      >
-                        <Check className="w-4 h-4 mr-3 mt-1 shrink-0 text-[#D4AF37]" />
-                        <span className="text-white/85">{feature}</span>
+                      <li key={fIdx} className="flex items-start text-sm leading-relaxed">
+                        <Check className="w-4 h-4 mr-3 mt-0.5 shrink-0 text-[#D4AF37]" />
+                        <span className="text-white/80">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -536,20 +546,15 @@ export default function LandingPage() {
         
                 {/* CTA */}
                 <div className="pt-8 relative">
-                  <a
+                  
                     href={generateWaLink(pkg.whatsappText)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="
-                      relative block w-full text-center py-4
-                      text-xs font-bold tracking-[0.18em] uppercase
-                      bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B]
-                      text-black
-                      shadow-[0_16px_40px_rgba(212,175,55,0.18)]
-                      hover:-translate-y-1
-                      hover:shadow-[0_24px_60px_rgba(212,175,55,0.28)]
-                      transition-all duration-300
-                    "
+                    className={`relative block w-full text-center font-bold tracking-[0.18em] uppercase bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] text-black hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(212,175,55,0.35)] transition-all duration-300 ${
+                      pkg.popular
+                        ? "py-5 text-xs shadow-[0_0_40px_rgba(212,175,55,0.2),inset_0_1px_0_rgba(255,255,255,0.15)]"
+                        : "py-4 text-xs shadow-[0_16px_40px_rgba(212,175,55,0.12)]"
+                    }`}
                   >
                     KONSULTASI PAKET INI
                   </a>
