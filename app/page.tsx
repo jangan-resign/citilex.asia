@@ -166,6 +166,20 @@ const workflowSteps = [
   }
 ];
 
+const heroCtaClass = [
+  "group relative overflow-hidden",
+  "inline-flex items-center justify-center",
+  "px-10 py-5",
+  "bg-[#000000] text-white",
+  "text-xs font-bold tracking-[0.22em] uppercase",
+  "border border-[#D4AF37]/30",
+  "shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_24px_rgba(212,175,55,0.12)]",
+  "hover:-translate-y-1 hover:scale-[1.015]",
+  "hover:border-[#D4AF37]/50",
+  "hover:shadow-[0_22px_60px_rgba(0,0,0,0.36),0_0_34px_rgba(212,175,55,0.18)]",
+  "transition-all duration-500",
+].join(" ");
+
 export default function LandingPage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
@@ -232,10 +246,10 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center pt-2">
                 
                   href={generateWaLink(defaultHeroMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 bg-[#000000] text-white text-xs font-bold tracking-[0.22em] uppercase border border-[#D4AF37]/30 shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_24px_rgba(212,175,55,0.12)] hover:-translate-y-1 hover:scale-[1.015] hover:border-[#D4AF37]/50 hover:shadow-[0_22px_60px_rgba(0,0,0,0.36),0_0_34px_rgba(212,175,55,0.18)] transition-all duration-500"
-                >
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={heroCtaClass}
+                  >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
@@ -723,10 +737,10 @@ export default function LandingPage() {
               <div className="mt-10">
                 
                   href={generateWaLink(defaultHeroMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-5 bg-[#000000] text-white text-xs font-bold tracking-[0.22em] uppercase border border-[#D4AF37]/30 shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_24px_rgba(212,175,55,0.12)] hover:-translate-y-1 hover:scale-[1.015] hover:border-[#D4AF37]/50 hover:shadow-[0_22px_60px_rgba(0,0,0,0.36),0_0_34px_rgba(212,175,55,0.18)] transition-all duration-500"
-                >
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={heroCtaClass}
+                  >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
