@@ -566,111 +566,269 @@ export default function LandingPage() {
         </section>
 
        {/* WORKFLOW PROCESS SECTION */}
-        <section className="py-20 md:py-24 bg-brand-snow border-t border-b border-brand-platinum px-6 md:px-12 overflow-hidden">
-          <div className="max-w-[1280px] mx-auto space-y-14">
-            <div className="text-center space-y-4">
-              <span className="inline-block text-xs font-bold tracking-[0.28em] text-brand-primary/60 uppercase">
-                PRODUCTION TIMELINE
+        <section className="py-24 bg-brand-snow border-y border-brand-platinum px-6 md:px-12 overflow-hidden">
+
+          <div className="max-w-[1280px] mx-auto">
+        
+            {/* Heading */}
+            <div className="text-center mb-20">
+        
+              <span className="inline-block text-xs font-bold tracking-[0.35em] uppercase text-brand-primary/60">
+                Production Timeline
               </span>
         
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-brand-primary uppercase">
-                Proses Pemesanan &amp; Alur Kerja
+              <h2 className="mt-4 text-3xl md:text-5xl font-black tracking-tight uppercase text-brand-primary">
+                Proses Pemesanan & Alur Kerja
               </h2>
         
-              <p className="text-sm md:text-base text-brand-onyx max-w-2xl mx-auto leading-relaxed">
-                Langkah-langkah terstruktur untuk merealisasikan kebutuhan kaos event
-                Anda dengan minim risiko kesalahan.
+              <p className="mt-5 max-w-2xl mx-auto text-brand-onyx text-sm md:text-base leading-8">
+                Langkah-langkah terstruktur untuk merealisasikan kebutuhan kaos event Anda
+                dengan minim risiko kesalahan.
               </p>
+        
             </div>
         
             <div className="relative">
-              {/* desktop connector line */}
-              <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent z-0" />
         
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-7 relative z-10">
+              {/* connector */}
+        
+              <div className="
+              hidden
+              xl:block
+              absolute
+              left-0
+              right-0
+              top-10
+              h-px
+              bg-gradient-to-r
+              from-transparent
+              via-[#D4AF37]/35
+              to-transparent
+              " />
+        
+              <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 relative">
         
                 {[
                   {
                     no: "01",
                     label: "KONSEP",
                     title: "Konsultasi Desain",
-                    desc: "Diskusikan ide desain, pilihan material kain, jumlah order, dan timeline acara Anda dengan representasi kami secara praktis via WhatsApp.",
+                    desc: "Diskusikan ide desain, pilihan material kain, jumlah order, dan timeline acara bersama tim kami secara praktis melalui WhatsApp."
                   },
                   {
                     no: "02",
                     label: "APPROVAL",
                     title: "Approval Mockup",
-                    desc: "Kami menyiapkan desain mockup visual digital secara detail untuk Anda teliti dan setujui demi menjamin kesesuaian posisi cetakan sablon.",
+                    desc: "Kami membuat mockup visual digital lengkap agar seluruh detail desain benar-benar sesuai sebelum proses produksi dimulai."
                   },
                   {
                     no: "03",
                     label: "PRODUKSI",
                     title: "Mulai Produksi",
-                    desc: "Setelah DP 50% diterima, proses pembuatan massal (cutting, printing, sewing, QC) langsung dieksekusi oleh tim produksi profesional kami.",
+                    desc: "Setelah pembayaran DP diterima, proses cutting, printing, sewing hingga QC langsung dikerjakan oleh tim produksi profesional."
                   },
                   {
                     no: "04",
                     label: "KIRIM",
                     title: "QC & Pengiriman",
-                    desc: "Setiap kaos melewati final QC sebelum dikemas rapi, dilunasi sisa pembayarannya, dan langsung dikirim aman ke alamat lokasi event Anda.",
-                  },
-                ].map((step, idx) => (
-                  <div key={idx} className="group relative">
-                    <div className="absolute hidden md:block top-7 left-1/2 -translate-x-1/2 w-6 h-6 bg-brand-snow rounded-full z-20" />
+                    desc: "Setelah lolos quality control, produk dikemas rapi lalu dikirim aman ke alamat perusahaan maupun lokasi event Anda."
+                  }
+        
+                ].map((step) => (
+        
+                  <div
+                    key={step.no}
+                    className="relative group pt-10"
+                  >
+        
+                    {/* GOLD TAB */}
         
                     <div
                       className="
-                        relative
-                        bg-gradient-to-br from-[#111111] via-[#181818] to-[#232323]
-                        border border-[#D4AF37]/20
-                        p-7 md:p-8 pt-16
-                        shadow-[0_18px_45px_rgba(0,0,0,0.22)]
-                        hover:-translate-y-1
-                        hover:border-[#D4AF37]/35
-                        hover:shadow-[0_24px_60px_rgba(0,0,0,0.3),0_0_26px_rgba(212,175,55,0.12)]
-                        transition-all duration-500
-                        h-full
-                        overflow-hidden
+                      absolute
+                      left-1/2
+                      top-0
+                      -translate-x-1/2
+                      w-24
+                      h-14
+                      rounded-b-lg
+                      bg-gradient-to-b
+                      from-[#F3DB8D]
+                      via-[#D7AF46]
+                      to-[#B88717]
+                      shadow-lg
+                      "
+                    />
+        
+                    {/* NUMBER BADGE */}
+        
+                    <div
+                      className="
+                      absolute
+                      left-1/2
+                      top-0
+                      -translate-x-1/2
+                      -translate-y-1/2
+                      z-20
                       "
                     >
-                      {/* gold shine */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/[0.04] via-transparent to-[#D4AF37]/[0.04] pointer-events-none" />
         
-                      {/* top gold line */}
-                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
+                      <div
+                        className="
+                        w-[70px]
+                        h-[54px]
+                        rounded-xl
+                        border-2
+                        border-[#D4AF37]
+                        bg-[#252525]
+                        flex
+                        items-center
+                        justify-center
+                        shadow-[0_12px_28px_rgba(0,0,0,.35)]
+                        transition-all
+                        duration-500
+                        group-hover:-translate-y-1
+                        group-hover:border-[#F3DB8D]
+                        "
+                      >
         
-                      {/* number bubble */}
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#0D0D0D] text-white flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.32)]">
-                        <div className="absolute inset-[-4px] rounded-full -z-10 bg-gradient-to-br from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] shadow-[0_0_28px_rgba(212,175,55,0.35)]" />
-        
-                        <div className="absolute inset-[2px] rounded-full border border-[#D4AF37]/20 bg-white/[0.02]" />
-        
-                        <span className="relative text-lg font-black tracking-wider text-[#F6D98B]">
+                        <span
+                          className="
+                          text-[#F6D98B]
+                          text-lg
+                          font-black
+                          tracking-[0.12em]
+                          "
+                        >
                           {step.no}
                         </span>
+        
                       </div>
         
-                      <div className="space-y-4">
-                        <span className="text-[11px] font-bold text-[#D4AF37]/75 tracking-[0.2em] uppercase block">
+                    </div>
+        
+                    {/* CARD */}
+        
+                    <div
+                      className="
+                      relative
+                      h-full
+                      min-h-[315px]
+                      pt-14
+                      px-8
+                      pb-8
+                      border
+                      border-[#D4AF37]/20
+                      bg-gradient-to-br
+                      from-[#101010]
+                      via-[#181818]
+                      to-[#222222]
+                      shadow-[0_18px_40px_rgba(0,0,0,.18)]
+                      transition-all
+                      duration-500
+                      hover:-translate-y-2
+                      hover:border-[#D4AF37]/45
+                      hover:shadow-[0_24px_60px_rgba(0,0,0,.28)]
+                      overflow-hidden
+                      "
+                    >
+        
+                      {/* top line */}
+        
+                      <div
+                        className="
+                        absolute
+                        top-0
+                        left-0
+                        right-0
+                        h-px
+                        bg-gradient-to-r
+                        from-transparent
+                        via-[#D4AF37]/70
+                        to-transparent
+                        "
+                      />
+        
+                      {/* gold reflection */}
+        
+                      <div
+                        className="
+                        absolute
+                        inset-0
+                        bg-gradient-to-br
+                        from-[#F6D98B]/[0.03]
+                        via-transparent
+                        to-[#D4AF37]/[0.03]
+                        pointer-events-none
+                        "
+                      />
+        
+                      <div className="relative">
+        
+                        <span
+                          className="
+                          block
+                          text-[11px]
+                          font-bold
+                          tracking-[0.30em]
+                          uppercase
+                          text-[#D4AF37]/75
+                          "
+                        >
                           {step.label}
                         </span>
         
-                        <h3 className="text-sm font-bold tracking-[0.16em] uppercase text-white">
+                        <h3
+                          className="
+                          mt-5
+                          text-lg
+                          font-black
+                          uppercase
+                          tracking-wide
+                          text-white
+                          "
+                        >
                           {step.title}
                         </h3>
         
-                        <p className="text-xs text-white/72 leading-relaxed">
+                        <div
+                          className="
+                          mt-5
+                          w-12
+                          h-[2px]
+                          bg-gradient-to-r
+                          from-[#D4AF37]
+                          to-transparent
+                          "
+                        />
+        
+                        <p
+                          className="
+                          mt-6
+                          text-sm
+                          leading-7
+                          text-white/70
+                          "
+                        >
                           {step.desc}
                         </p>
+        
                       </div>
+        
                     </div>
+        
                   </div>
+        
                 ))}
         
               </div>
+        
             </div>
+        
           </div>
+        
         </section>
+        
         {/* PORTFOLIO / GALLERY */}
         <section className="py-20 md:py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12">
           <div className="text-center space-y-4">
@@ -1034,25 +1192,42 @@ export default function LandingPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    group inline-flex items-center justify-center
-                    px-10 md:px-14 py-5
-                    bg-white text-brand-primary
-                    text-xs md:text-sm font-black tracking-[0.22em] uppercase
-                    shadow-[0_16px_40px_rgba(212,175,55,0.18)]
-                    hover:-translate-y-1.5
-                    hover:scale-[1.02]
-                    hover:shadow-[0_24px_70px_rgba(212,175,55,0.28)]
+                    group relative overflow-hidden
+                    inline-flex items-center justify-center
+                    px-10 py-5
+                    bg-[#000000] text-white
+                    text-xs font-bold tracking-[0.22em] uppercase
+                    border border-[#D4AF37]/30
+                    shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_24px_rgba(212,175,55,0.12)]
+                    hover:-translate-y-1
+                    hover:scale-[1.015]
+                    hover:border-[#D4AF37]/50
+                    hover:shadow-[0_22px_60px_rgba(0,0,0,0.36),0_0_34px_rgba(212,175,55,0.18)]
                     transition-all duration-500
                   "
                 >
+                  {/* gold glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
+                
+                  {/* top gold line */}
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+                
+                  {/* bottom gold line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+                
+                  {/* corner accents */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
+                
                   <Image
-                    src="/wablack.svg"
+                    src="/wa.svg"
                     alt="WhatsApp"
-                    width={18}
-                    height={18}
-                    className="w-[18px] h-[18px] mr-3"
+                    width={16}
+                    height={16}
+                    className="relative z-10 w-4 h-4 mr-3"
                   />
-                  KONSULTASI GRATIS SEKARANG
+                
+                  <span className="relative z-10">KONSULTASI SEKARANG</span>
                 </a>
         
                 <p className="mt-4 text-[11px] md:text-xs tracking-[0.12em] uppercase text-white/45">
