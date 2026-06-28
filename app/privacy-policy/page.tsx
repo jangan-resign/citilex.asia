@@ -5,8 +5,15 @@ export default function PrivacyPolicy() {
     <div className="min-h-screen bg-white text-brand-primary flex flex-col justify-between">
       {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-16 bg-white/90 backdrop-blur-md border-b border-brand-platinum">
-        <Link href="/" className="text-lg font-bold tracking-widest uppercase">
-          CITILEX ASIA
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="CITILEX ASIA"
+            width={140}
+            height={40}
+            className="h-8 w-auto md:h-10"
+            priority
+          />
         </Link>
         <Link href="/" className="text-xs font-semibold tracking-widest uppercase hover:underline">
           Back to Home
