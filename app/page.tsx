@@ -438,30 +438,12 @@ export default function LandingPage() {
             {packages.map((pkg, idx) => (
               <div
                 key={idx}
-                className={`relative flex flex-col justify-between transition-all duration-500 ease-out ${
+                className={[
+                  "relative flex flex-col justify-between transition-all duration-500 ease-out",
                   pkg.popular
-                    ? `
-                      z-20
-                      bg-gradient-to-br from-[#0e0c00] via-[#080808] to-[#111111]
-                      text-white
-                      border-x border-[#D4AF37]/40
-                      shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_40px_100px_rgba(0,0,0,0.6),0_0_80px_rgba(212,175,55,0.12),0_0_160px_rgba(212,175,55,0.05)]
-                      lg:-translate-y-6
-                      hover:-translate-y-8
-                      hover:shadow-[0_0_0_1px_rgba(212,175,55,0.25),0_50px_120px_rgba(0,0,0,0.7),0_0_120px_rgba(212,175,55,0.18)]
-                      px-8 py-10
-                      min-h-[740px]
-                    `
-                    : `
-                      bg-gradient-to-br from-[#1B1B1B] to-[#101010]
-                      text-white
-                      border border-white/8
-                      hover:-translate-y-2
-                      hover:shadow-[0_25px_60px_rgba(0,0,0,0.3)]
-                      px-8 py-8
-                      min-h-[660px]
-                    `
-                }`}
+                    ? "z-20 bg-gradient-to-br from-[#0e0c00] via-[#080808] to-[#111111] text-white border-x border-[#D4AF37]/40 shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_40px_100px_rgba(0,0,0,0.6),0_0_80px_rgba(212,175,55,0.12),0_0_160px_rgba(212,175,55,0.05)] lg:-translate-y-6 hover:-translate-y-8 hover:shadow-[0_0_0_1px_rgba(212,175,55,0.25),0_50px_120px_rgba(0,0,0,0.7),0_0_120px_rgba(212,175,55,0.18)] px-8 py-10 min-h-[740px]"
+                    : "bg-gradient-to-br from-[#1B1B1B] to-[#101010] text-white border border-white/10 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.3)] px-8 py-8 min-h-[660px]",
+                ].join(" ")}
               >
                 {/* Top gold line — hanya card popular */}
                 {pkg.popular && (
@@ -482,7 +464,6 @@ export default function LandingPage() {
                   {pkg.popular && (
                     <div className="flex justify-center">
                       <div className="relative px-5 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/50 shadow-[0_0_20px_rgba(212,175,55,0.15)] overflow-hidden">
-                        {/* shimmer effect pakai pseudo element via before — ganti ke animasi Tailwind */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#F8E7B9]/20 to-transparent -translate-x-full animate-[shimmer_2.5s_ease-in-out_infinite]" />
                         <span className="relative text-[9px] font-black tracking-[0.3em] uppercase text-[#F8E7B9]">
                           ⭐ TERPOPULER
@@ -494,9 +475,10 @@ export default function LandingPage() {
                   {/* Nama & deskripsi */}
                   <div className="text-center space-y-2.5">
                     <h3
-                      className={`font-black tracking-[0.15em] uppercase ${
-                        pkg.popular ? "text-2xl" : "text-xl"
-                      }`}
+                      className={[
+                        "font-black tracking-[0.15em] uppercase",
+                        pkg.popular ? "text-2xl" : "text-xl",
+                      ].join(" ")}
                     >
                       {pkg.name}
                     </h3>
@@ -507,25 +489,28 @@ export default function LandingPage() {
         
                   {/* Harga */}
                   <div
-                    className={`py-6 border-y ${
-                      pkg.popular ? "border-[#D4AF37]/25" : "border-white/10"
-                    }`}
+                    className={[
+                      "py-6 border-y",
+                      pkg.popular ? "border-[#D4AF37]/25" : "border-white/10",
+                    ].join(" ")}
                   >
                     <span className="text-[10px] font-semibold tracking-[0.18em] uppercase block text-center text-white/45 mb-2">
                       Mulai Dari
                     </span>
                     <div className="flex items-end justify-center gap-1">
                       <span
-                        className={`font-bold text-[#D4AF37] mb-1 ${
-                          pkg.popular ? "text-2xl" : "text-xl"
-                        }`}
+                        className={[
+                          "font-bold text-[#D4AF37] mb-1",
+                          pkg.popular ? "text-2xl" : "text-xl",
+                        ].join(" ")}
                       >
                         Rp
                       </span>
                       <span
-                        className={`font-extrabold tracking-tighter leading-none bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent ${
-                          pkg.popular ? "text-7xl" : "text-5xl md:text-6xl"
-                        }`}
+                        className={[
+                          "font-extrabold tracking-tighter leading-none bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent",
+                          pkg.popular ? "text-7xl" : "text-5xl md:text-6xl",
+                        ].join(" ")}
                       >
                         {pkg.price}
                       </span>
@@ -550,11 +535,14 @@ export default function LandingPage() {
                     href={generateWaLink(pkg.whatsappText)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`relative block w-full text-center font-bold tracking-[0.18em] uppercase bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] text-black hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(212,175,55,0.35)] transition-all duration-300 ${
+                    className={[
+                      "relative block w-full text-center font-bold tracking-[0.18em] uppercase",
+                      "bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] text-black",
+                      "hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(212,175,55,0.35)] transition-all duration-300",
                       pkg.popular
                         ? "py-5 text-xs shadow-[0_0_40px_rgba(212,175,55,0.2),inset_0_1px_0_rgba(255,255,255,0.15)]"
-                        : "py-4 text-xs shadow-[0_16px_40px_rgba(212,175,55,0.12)]"
-                    }`}
+                        : "py-4 text-xs shadow-[0_16px_40px_rgba(212,175,55,0.12)]",
+                    ].join(" ")}
                   >
                     KONSULTASI PAKET INI
                   </a>
@@ -569,7 +557,7 @@ export default function LandingPage() {
             ukuran standard (XL).
           </p>
         </section>
-
+        
        {/* WORKFLOW PROCESS SECTION */}
         <section className="py-24 bg-brand-snow border-y border-brand-platinum px-6 md:px-12 overflow-hidden">
 
