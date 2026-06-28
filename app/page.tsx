@@ -410,15 +410,15 @@ export default function LandingPage() {
                 {/* CONTENT */}
                 <div className="space-y-8">
                   {pkg.popular && (
-                    <div className="flex justify-center mb-2">
+                    <div className="flex justify-center mb-6">
                       <div
                         className="
                           px-5 py-2
                           rounded-full
                           bg-white/10
-                          border border-white/15
+                          border border-[#D4AF37]/25
                           backdrop-blur-xl
-                          shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
+                          shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_6px_18px_rgba(212,175,55,0.10)]
                         "
                       >
                         <span className="text-[10px] font-black tracking-[0.28em] uppercase text-white">
