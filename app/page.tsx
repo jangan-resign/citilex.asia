@@ -831,7 +831,13 @@ export default function LandingPage() {
       <footer className="bg-white border-t border-brand-platinum py-16 px-6 md:px-12">
         <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="space-y-3 text-center md:text-left">
-            <div className="text-lg font-black tracking-[0.25em] text-brand-primary">CITILEX ASIA</div>
+            <Image
+              src="/tekslogo.png"
+              alt="CITILEX ASIA"
+              width={180}
+              height={40}
+              className="h-auto w-auto object-contain"
+            />
             <p className="text-[10px] text-brand-onyx/60 tracking-widest uppercase">PREMIUM CUSTOM APPAREL MANUFACTURER</p>
           </div>
           <div className="flex flex-wrap gap-8 justify-center">
