@@ -646,7 +646,7 @@ export default function LandingPage() {
 
               <div className="group relative overflow-hidden bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
                 <div className="relative w-full h-full min-h-[296px] overflow-hidden">
-                  <Image src="/galeri3.png" alt="CITILEX ASIA Close Up Fabric Quality Check" fill className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                  <Image src="/galeri4.png" alt="CITILEX ASIA Close Up Fabric Quality Check" fill className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute top-6 left-6">
                     <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
