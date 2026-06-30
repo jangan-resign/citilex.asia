@@ -610,7 +610,7 @@ export default function LandingPage() {
             {/* HERO CARD */}
             <div className="lg:col-span-7 group relative overflow-hidden bg-white border border-brand-platinum min-h-[620px] shadow-xl">
               <div className="relative w-full h-full min-h-[620px] overflow-hidden">
-                <Image src="/galeri1.png" alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara" fill className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <Image src="/galeri5.png" alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara" fill className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
                 <div className="absolute top-6 left-6">
                   <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
