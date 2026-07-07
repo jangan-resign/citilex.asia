@@ -793,7 +793,7 @@ export default function LandingPage() {
               <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
                 <span>✓ Respon Cepat</span>
                 <span>✓ Mockup Gratis</span>
-                <span>✓ Tanpa Komitmen Awal</span>
+                <span>✓ Legalitas Lengkap</span>
               </div>
 
               <div className="mt-10">
