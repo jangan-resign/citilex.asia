@@ -852,7 +852,7 @@ export default function LandingPage() {
         <div className="max-w-[1280px] mx-auto border-t border-brand-platinum/40 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-brand-onyx/50 tracking-widest uppercase">
           <span>© 2026 CITILEX ASIA. All Rights Reserved.</span>
           <span className="flex items-center gap-1">
-            <MapPin className="w-3.5 h-3.5" /> Jakarta, Indonesia
+            <MapPin className="w-3.5 h-3.5" /> Bintaro Pesanggrahan Jakarta Selatan, Indonesia
           </span>
         </div>
       </footer>
