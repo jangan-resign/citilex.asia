@@ -593,7 +593,10 @@ export default function LandingPage() {
         </section>
 
         {/* PORTFOLIO / GALLERY */}
-        <section className="py-20 md:py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12">
+        <section 
+          id="gallery" 
+          className="py-20 md:py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
+        >
           <div className="text-center space-y-4">
             <span className="inline-block text-xs font-bold tracking-[0.28em] text-brand-primary/60 uppercase">
               GALLERY SHOWCASE
@@ -759,7 +762,10 @@ export default function LandingPage() {
         </section>
 
         {/* FINAL CALL TO ACTION (CTA) */}
-        <section className="relative overflow-hidden bg-brand-primary text-brand-white py-20 md:py-24 px-6 md:px-12">
+        <section 
+          id="contact" 
+          className="relative overflow-hidden bg-brand-primary text-brand-white py-20 md:py-24 px-6 md:px-12"
+        >
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-white/10 blur-3xl" />
             <div className="absolute bottom-[-10%] right-[-5%] w-[320px] h-[320px] rounded-full bg-[#D4AF37]/10 blur-3xl" />
