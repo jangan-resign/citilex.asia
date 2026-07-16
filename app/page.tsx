@@ -260,7 +260,10 @@ export default function LandingPage() {
       <main className="pt-8">
 
         {/* HERO SECTION */}
-        <section className="relative overflow-hidden px-6 md:px-12">
+        <section 
+          id="hero" 
+          className="relative overflow-hidden px-6 md:px-12"
+        >
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-brand-primary/[0.04] blur-3xl" />
             <div className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full bg-brand-primary/[0.05] blur-3xl" />
