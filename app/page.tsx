@@ -332,7 +332,7 @@ export default function LandingPage() {
                   <p className="text-[11px] uppercase tracking-[0.16em] text-brand-onyx/60 mt-1">Kaos Diproduksi</p>
                 </div>
                 <div>
-                  <p className="text-2xl md:text-3xl font-extrabold text-brand-primary">3 hari</p>
+                  <p className="text-2xl md:text-3xl font-extrabold text-brand-primary">3 Hari</p>
                   <p className="text-[11px] uppercase tracking-[0.16em] text-brand-onyx/60 mt-1">Pengerjaan Selesai</p>
                 </div>
               </div>
