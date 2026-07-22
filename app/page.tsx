@@ -45,7 +45,7 @@ const jsonLdData = {
       "@id": "https://citilex.asia/#localbusiness",
       "name": "CITILEX ASIA",
       "url": "https://citilex.asia",
-      "priceRange": "Rp60.000-Rp95000",
+      "priceRange": "Rp55.000-Rp89000",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Jakarta",
@@ -103,7 +103,7 @@ const defaultHeroMessage = "Halo CITILEX ASIA, saya ingin konsultasi mengenai pr
 const packages = [
   {
     name: "Kaos Polyester",
-    price: "60.000",
+    price: "55.000",
     description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, atau merchandise sekali pakai yang fungsional dan ekonomis.",
     features: [
       "Minimal order 100 Pcs",
@@ -112,12 +112,12 @@ const packages = [
       "Ukuran Standard Asia (XS - XL)",
       "Proses pengerjaan cepat"
     ],
-    whatsappText: "Halo CITILEX ASIA, saya ingin konsultasi pemesanan Kaos Polyester Custom (Rp 60.000/pcs) untuk event kami.",
+    whatsappText: "Halo CITILEX ASIA, saya ingin konsultasi pemesanan Kaos Polyester Custom (Rp 55.000/pcs) untuk event kami.",
     popular: false,
   },
   {
     name: "Kaos Cotton Combed",
-    price: "85.000",
+    price: "79.000",
     description: "Pilihan terbaik & terpopuler untuk gathering perusahaan, seragam seminar, serta panitia acara dengan ketebalan kain sempurna.",
     features: [
       "Minimal order 100 Pcs",
@@ -126,12 +126,12 @@ const packages = [
       "Ukuran Standard Asia (XS - XL)",
       "Jahitan rantai standard distro rapi"
     ],
-    whatsappText: "Halo CITILEX ASIA, saya tertarik dengan paket terpopuler Kaos Cotton Combed (Rp 85.000/pcs) untuk event kami.",
+    whatsappText: "Halo CITILEX ASIA, saya tertarik dengan paket terpopuler Kaos Cotton Combed (Rp 79.000/pcs) untuk event kami.",
     popular: true,
   },
   {
     name: "Kaos Cotton Bamboo",
-    price: "95.000",
+    price: "89.000",
     description: "Kualitas premium tertinggi yang super lembut, sejuk, antibakteri alami, sangat ramah lingkungan, ideal untuk acara eksklusif.",
     features: [
       "Minimal order 100 Pcs",
@@ -140,7 +140,7 @@ const packages = [
       "Ukuran Standard Asia (XS - XL)",
       "Finishing premium, anti kusut & bakteri"
     ],
-    whatsappText: "Halo CITILEX ASIA, saya ingin memesan Kaos Cotton Bamboo Premium (Rp 95.000/pcs) untuk acara eksklusif kami.",
+    whatsappText: "Halo CITILEX ASIA, saya ingin memesan Kaos Cotton Bamboo Premium (Rp 89.000/pcs) untuk acara eksklusif kami.",
     popular: false,
   }
 ];
