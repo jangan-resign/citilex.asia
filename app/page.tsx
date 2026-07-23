@@ -210,15 +210,18 @@ const heroCtaClass = [
 ].join(" ");
 
 export default function LandingPage() {
+
+  // =========================
+  // STATE
+  // =========================
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setActiveFaq(activeFaq === index ? null : index);
-
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
-
   const [galleryIndex, setGalleryIndex] = useState(0);
-  
+
+  const touchStartX = useRef(0);
+
+  // =========================
+  // GALLERY DATA
+  // =========================
   const gallerySlides = [
     {
       image: "/galeri5.png",
@@ -239,21 +242,27 @@ export default function LandingPage() {
       number: "03",
     },
   ];
-  
+
+  // =========================
+  // GALLERY FUNCTION
+  // =========================
   const nextGallery = () => {
     setGalleryIndex((prev) => (prev + 1) % gallerySlides.length);
   };
-  
+
   const prevGallery = () => {
     setGalleryIndex((prev) =>
       prev === 0 ? gallerySlides.length - 1 : prev - 1
     );
   };
-  
-  const touchStartX = useRef(0);
-    
-  };
 
+  // =========================
+  // FAQ FUNCTION
+  // =========================
+  const toggleFaq = (index: number) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+  
   return (
     <div className="min-h-screen bg-white text-brand-primary selection:bg-brand-primary selection:text-brand-white">
       {/* JSON-LD Structured Data Injection */}
