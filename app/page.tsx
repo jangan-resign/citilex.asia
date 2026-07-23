@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -214,6 +214,44 @@ export default function LandingPage() {
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
+
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  
+  const gallerySlides = [
+    {
+      image: "/galeri5.png",
+      title: "Corporate Gathering Shirt",
+      desc: "Bahan: Cotton Combed 30s • Sablon: DTF",
+      number: "01",
+    },
+    {
+      image: "/galeri2.png",
+      title: "Solstice Collective Edition",
+      desc: "Bahan: Premium Cotton Bamboo • Sablon: DTF",
+      number: "02",
+    },
+    {
+      image: "/galeri3.png",
+      title: "Full Color DTF Printing",
+      desc: "Bahan: Cotton Combed 30s • Sablon: DTF",
+      number: "03",
+    },
+  ];
+  
+  const nextGallery = () => {
+    setGalleryIndex((prev) => (prev + 1) % gallerySlides.length);
+  };
+  
+  const prevGallery = () => {
+    setGalleryIndex((prev) =>
+      prev === 0 ? gallerySlides.length - 1 : prev - 1
+    );
+  };
+  
+  const touchStartX = useRef(0);
+    
   };
 
   return (
@@ -599,7 +637,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-7">
+          <div className="hidden lg:grid lg:grid-cols-12 gap-6 md:gap-7">
             {/* HERO CARD */}
             <div className="lg:col-span-7 group relative overflow-hidden bg-white border border-brand-platinum min-h-[620px] shadow-xl">
               <div className="relative w-full h-full min-h-[620px] overflow-hidden">
@@ -655,6 +693,113 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
+
+          {/* MOBILE GALLERY */}
+          <div className="lg:hidden overflow-hidden">
+          
+            <div
+              className="
+              flex
+              select-none
+              touch-pan-y
+              transition-transform
+              duration-700
+              ease-[cubic-bezier(.22,.61,.36,1)]
+              "
+              style={{
+                transform: `translateX(-${galleryIndex * 100}%)`,
+              }}
+              onTouchStart={(e) => {
+                touchStartX.current = e.touches[0].clientX;
+              }}
+              onTouchEnd={(e) => {
+                const end = e.changedTouches[0].clientX;
+          
+                if (touchStartX.current - end > 60) {
+                  nextGallery();
+                }
+          
+                if (end - touchStartX.current > 60) {
+                  prevGallery();
+                }
+              }}
+            >
+              {gallerySlides.map((item) => (
+                <div
+                  key={item.number}
+                  className="w-full shrink-0"
+                >
+                  <div className="relative overflow-hidden bg-white border border-brand-platinum shadow-xl">
+          
+                    <div className="relative aspect-[4/5]">
+          
+                      className={`
+                        object-cover
+                        transition-transform
+                        duration-700
+                        ${
+                          galleryIndex === Number(item.number) - 1
+                            ? "scale-105"
+                            : "scale-100"
+                        }
+                      `}
+          
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+          
+                      <div className="absolute top-6 left-6">
+          
+                        <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+          
+                          <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+          
+                          <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">
+                            {item.number}
+                          </span>
+          
+                        </div>
+          
+                      </div>
+          
+                      <div className="absolute bottom-0 left-0 right-0 p-8 space-y-3">
+          
+                        <h4 className="text-lg font-bold tracking-[0.18em] uppercase text-white">
+                          {item.title}
+                        </h4>
+          
+                        <p className="text-xs text-white/75 uppercase tracking-[0.18em]">
+                          {item.desc}
+                        </p>
+          
+                      </div>
+          
+                    </div>
+          
+                  </div>
+                </div>
+              ))}
+            </div>
+          
+            {/* INDICATOR */}
+            <div className="flex justify-center gap-3 mt-6">
+          
+              {gallerySlides.map((_, i) => (
+          
+                <button
+                  key={i}
+                  onClick={() => setGalleryIndex(i)}
+                  className={`transition-all duration-300 rounded-full ${
+                    galleryIndex === i
+                      ? "w-8 h-2 bg-brand-primary"
+                      : "w-2 h-2 bg-gray-300"
+                  }`}
+                />
+          
+              ))}
+          
+            </div>
+          
+          </div>
+          
         </section>
 
         {/* FAQ SECTION */}
