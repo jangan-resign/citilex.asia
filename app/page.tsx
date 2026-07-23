@@ -281,13 +281,13 @@ export default function LandingPage() {
                 Kaos Custom
                 <br />
                 <span className="bg-gradient-to-r from-black/95 via-[#F3D98B] to-black/95 bg-clip-text text-transparent">
-                  untuk Event &amp; Acara
+                  untuk Event, Seragam &amp; Merchandise
                 </span>
               </h1>
 
               <p className="text-base md:text-lg text-brand-onyx max-w-2xl leading-relaxed">
                 CITILEX ASIA menyediakan jasa pembuatan kaos custom premium untuk
-                event, gathering, seminar, reuni, dan promosi korporasi.
+                event, gathering, seminar, reuni, merchandise dan promosi korporasi.
                 Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.
               </p>
 
