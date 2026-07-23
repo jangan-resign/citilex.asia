@@ -741,48 +741,55 @@ export default function LandingPage() {
                   <div className="relative overflow-hidden bg-white border border-brand-platinum shadow-xl">
           
                     <div className="relative aspect-[4/5]">
-          
-                      className={`
-                        object-cover
-                        transition-transform
-                        duration-700
-                        ${
-                          galleryIndex === Number(item.number) - 1
-                            ? "scale-105"
-                            : "scale-100"
-                        }
-                      `}
-          
+
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        draggable={false}
+                        referrerPolicy="no-referrer"
+                        className={`
+                          object-cover
+                          transition-transform
+                          duration-700
+                          ${
+                            galleryIndex === Number(item.number) - 1
+                              ? "scale-105"
+                              : "scale-100"
+                          }
+                        `}
+                      />
+                    
                       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-          
+                    
                       <div className="absolute top-6 left-6">
-          
+                    
                         <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-          
+                    
                           <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
-          
+                    
                           <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">
                             {item.number}
                           </span>
-          
+                    
                         </div>
-          
+                    
                       </div>
-          
+                    
                       <div className="absolute bottom-0 left-0 right-0 p-8 space-y-3">
-          
+                    
                         <h4 className="text-lg font-bold tracking-[0.18em] uppercase text-white">
                           {item.title}
                         </h4>
-          
+                    
                         <p className="text-xs text-white/75 uppercase tracking-[0.18em]">
                           {item.desc}
                         </p>
-          
+                    
                       </div>
-          
+                    
                     </div>
-          
+                    
                   </div>
                 </div>
               ))}
