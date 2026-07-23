@@ -272,11 +272,7 @@ export default function LandingPage() {
           <div className="relative max-w-[1280px] mx-auto pt-14 pb-20 md:pt-20 md:pb-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* LEFT */}
             <div className="lg:col-span-7 space-y-7 md:space-y-8">
-              <span className="inline-flex items-center gap-3 text-xs font-bold tracking-[0.28em] text-brand-primary/55 uppercase">
-                <span className="w-8 h-[1px] bg-brand-primary/20"></span>
-                #1 PREMIUM CUSTOM APPAREL FOR EVENTS
-              </span>
-
+              
               <h1 className="text-4xl md:text-6xl xl:text-7xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[0.95]">
                 Kaos Custom
                 <br />
@@ -423,9 +419,6 @@ export default function LandingPage() {
           className="pt-14 pb-20 md:pt-18 md:pb-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
         >
           <div className="text-center space-y-4">
-            <span className="inline-block text-xs font-bold tracking-[0.3em] text-brand-primary/55 uppercase">
-              PRICE &amp; FABRIC OPTIONS
-            </span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand-primary uppercase leading-none">
               Daftar Paket Harga Kaos Event
             </h2>
@@ -552,9 +545,6 @@ export default function LandingPage() {
         <section className="py-24 bg-brand-snow border-y border-brand-platinum px-6 md:px-12 overflow-hidden">
           <div className="max-w-[1280px] mx-auto">
             <div className="text-center mb-20">
-              <span className="inline-block text-xs font-bold tracking-[0.35em] uppercase text-brand-primary/60">
-                Production Timeline
-              </span>
               <h2 className="mt-4 text-3xl md:text-5xl font-black tracking-tight uppercase text-brand-primary">
                 Proses Pemesanan & Alur Kerja
               </h2>
@@ -601,9 +591,6 @@ export default function LandingPage() {
           className="py-20 md:py-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
         >
           <div className="text-center space-y-4">
-            <span className="inline-block text-xs font-bold tracking-[0.28em] text-brand-primary/60 uppercase">
-              GALLERY SHOWCASE
-            </span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand-primary uppercase leading-none">
               Galeri Hasil Produksi Kaos
             </h2>
