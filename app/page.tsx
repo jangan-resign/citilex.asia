@@ -778,7 +778,7 @@ export default function LandingPage() {
                     
                       <div className="absolute bottom-0 left-0 right-0 p-5 space-y-2">
                     
-                        <h4 className="text-[18px] font-bold tracking-[0.12em] uppercase text-white leading-tight">
+                        <h4 className="text-[15px] font-bold tracking-[0.12em] uppercase text-white leading-tight">
                           {item.title}
                         </h4>
                     
