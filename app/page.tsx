@@ -1019,7 +1019,8 @@ export default function LandingPage() {
             <MapPin className="mt-1 w-[15px] h-[15px] shrink-0 text-brand-primary" />
       
             <div className="text-sm md:text-base leading-relaxed">
-              <p>Bintaro Pesanggrahan Jakarta Selatan, Indonesia</p>
+              <p>Bintaro, Pesanggrahan</p>
+              <p>Jakarta Selatan, Indonesia</p>
             </div>
       
           </div>
