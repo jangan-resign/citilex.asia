@@ -998,19 +998,19 @@ export default function LandingPage() {
             <p className="text-[10px] text-brand-onyx/60 tracking-widest uppercase">PREMIUM CUSTOM APPAREL MANUFACTURER</p>
           </div>
           <div className="flex flex-wrap gap-8 justify-center">
-            <Link href="/terms-of-service" className="text-xs font-bold tracking-widest uppercase text-brand-onyx hover:text-brand-primary hover:underline">
-              Terms of Service
-            </Link>
-            <Link href="/privacy-policy" className="text-xs font-bold tracking-widest uppercase text-brand-onyx hover:text-brand-primary hover:underline">
-              Privacy Policy
-            </Link>
+          <span className="flex items-center gap-1">
+            <MapPin className="w-3.5 h-3.5" /> Bintaro Pesanggrahan Jakarta Selatan, Indonesia
+          </span>  
           </div>
         </div>
         <div className="max-w-[1280px] mx-auto border-t border-brand-platinum/40 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-brand-onyx/50 tracking-widest uppercase">
           <span>© 2026 CITILEX ASIA. All Rights Reserved.</span>
-          <span className="flex items-center gap-1">
-            <MapPin className="w-3.5 h-3.5" /> Bintaro Pesanggrahan Jakarta Selatan, Indonesia
-          </span>
+          <Link href="/terms-of-service" className="text-xs font-bold tracking-widest uppercase text-brand-onyx hover:text-brand-primary hover:underline">
+            Terms of Service
+          </Link>
+          <Link href="/privacy-policy" className="text-xs font-bold tracking-widest uppercase text-brand-onyx hover:text-brand-primary hover:underline">
+            Privacy Policy
+          </Link>
         </div>
       </footer>
     </div>
