@@ -991,8 +991,8 @@ export default function LandingPage() {
         <div className="space-y-3 max-w-sm">
           <Image
             src="/tekslogo.png"
-            alt={companyConfig.name}
-            width={180}
+            alt="CITILEX ASIA"
+            width={200}
             height={40}
             className="h-auto w-auto object-contain"
           />
