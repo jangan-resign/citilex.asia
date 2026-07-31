@@ -985,34 +985,107 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-brand-platinum py-16 px-6 md:px-12">
-        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="space-y-3 text-center md:text-left">
-            <Image
-              src="/tekslogo.png"
-              alt="CITILEX ASIA"
-              width={180}
-              height={40}
-              className="h-auto w-auto object-contain"
-            />
-            <p className="text-[10px] text-brand-onyx/60 tracking-widest uppercase">PREMIUM CUSTOM APPAREL MANUFACTURER</p>
+      <footer className="select-none bg-gradient-to-b from-[#fcfcfb] to-[#f8f7f5] border-t border-brand-platinum py-20 md:py-24 px-6 md:px-12">
+        
+        <div className="max-w-[700px] mx-auto text-center space-y-8">
+          <div className="space-y-3">
+            <div className="flex justify-center">
+              <Image
+                src="/tekslogo.png"
+                alt="CITILEX ASIA"
+                width={210}
+                height={40}
+                className="h-auto w-auto"
+              />
+            </div>
+            
+            <p
+              className="
+                text-[11px]
+                leading-relaxed
+                tracking-[0.2em]
+                uppercase
+                text-brand-onyx/55
+              "
+            >
+              PREMIUM CUSTOM APPAREL MANUFACTURER
+            </p>
           </div>
-          <div className="flex flex-wrap gap-8 justify-center">
-          <span className="flex items-center gap-1">
-            <MapPin className="w-3.5 h-3.5" /> Bintaro Pesanggrahan Jakarta Selatan, Indonesia
-          </span>  
+
+          <div className="pt-5">
+            <div className="flex items-start justify-center gap-2 text-brand-onyx/80">
+              <MapPin className="mt-1 w-[15px] h-[15px] shrink-0 text-brand-primary" />
+            
+              <div className="text-sm md:text-base leading-relaxed">
+                <p>Bintaro, Pesanggrahan</p>
+                <p>Jakarta Selatan, Indonesia</p>
+              </div>
+            </div>
           </div>
+          
         </div>
-        <div className="max-w-[1280px] mx-auto border-t border-brand-platinum/40 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-brand-onyx/50 tracking-widest uppercase">
-          <span>© 2026 CITILEX ASIA. All Rights Reserved.</span>
-          <Link href="/terms-of-service" className="text-xs font-bold tracking-widest uppercase text-brand-onyx hover:text-brand-primary hover:underline">
-            Terms of Service
-          </Link>
-          <Link href="/privacy-policy" className="text-xs font-bold tracking-widest uppercase text-brand-onyx hover:text-brand-primary hover:underline">
-            Privacy Policy
-          </Link>
+        
+        <div className="w-full max-w-[700px] mx-auto border-t border-brand-platinum/50 mt-12"></div>
+          <div
+          className="
+          max-w-[700px]
+          mx-auto
+          mt-8
+          flex
+          flex-col
+          items-center
+          gap-5
+          text-center
+          "
+          >
+            <span className="text-[10px] tracking-[0.22em] uppercase text-brand-onyx/55">
+              © 2026 CITILEX ASIA. All Rights Reserved.
+            </span>
+              <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
+                <Link 
+                  href="/terms-of-service"
+                  aria-label="Terms of Service"
+                  className="
+                    text-[11px]
+                    font-medium
+                    tracking-[0.22em]
+                    uppercase
+                    text-brand-onyx/80
+                    transition-all
+                    duration-300
+                    md:hover:-translate-y-0.5
+                    hover:text-brand-primary
+                    hover:opacity-90
+                    "
+                >
+                  Terms of Service
+                </Link>
+                
+                <Link 
+                  href="/privacy-policy"
+                  aria-label="Privacy Policy"
+                  className="
+                    text-[11px]
+                    font-medium
+                    tracking-[0.22em]
+                    uppercase
+                    text-brand-onyx/80
+                    transition-all
+                    duration-300
+                    md:hover:-translate-y-0.5
+                    hover:text-brand-primary
+                    hover:opacity-90
+                    "
+                >
+                  Privacy Policy
+                </Link>
+                
+              </div>
+            
         </div>
+        
       </footer>
+      
     </div>
   );
 }
