@@ -107,7 +107,7 @@ const packages = [
     description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, atau merchandise sekali pakai yang fungsional dan ekonomis.",
     features: [
       "Minimal order 100 Pcs",
-      "Bahan Polyester Double Knit / PE",
+      "Bahan Polyester Double Knit / PE Soft",
       "Sablon DTF / Rubber",
       "Ukuran Standard Asia (XS - XL)",
       "Proses pengerjaan cepat"
@@ -135,7 +135,7 @@ const packages = [
     description: "Kualitas premium tertinggi yang super lembut, sejuk, antibakteri alami, sangat ramah lingkungan, ideal untuk acara eksklusif.",
     features: [
       "Minimal order 100 Pcs",
-      "Bahan Premium Cotton Bamboo 30s",
+      "Bahan Premium Cotton Bamboo 30s/24s",
       "Sablon DTF / Rubber",
       "Ukuran Standard Asia (XS - XL)",
       "Finishing premium, anti kusut & bakteri"
