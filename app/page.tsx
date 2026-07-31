@@ -986,19 +986,20 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="select-none bg-gradient-to-b from-[#fcfcfb] to-[#f8f7f5] border-t border-brand-platinum py-20 md:py-24 px-6 md:px-12">
-        
-        <div className="max-w-[700px] mx-auto text-center space-y-8">
-          <div className="space-y-3">
-            <div className="flex justify-center">
-              <Image
-                src="/tekslogo.png"
-                alt="CITILEX ASIA"
-                width={210}
-                height={40}
-                className="h-auto w-auto"
-              />
-            </div>
-            
+      
+        {/* TOP */}
+        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+      
+          {/* LEFT */}
+          <div className="space-y-3 text-center md:text-left">
+            <Image
+              src="/tekslogo.png"
+              alt="CITILEX ASIA"
+              width={210}
+              height={40}
+              className="h-auto w-auto mx-auto md:mx-0"
+            />
+      
             <p
               className="
                 text-[11px]
@@ -1011,79 +1012,87 @@ export default function LandingPage() {
               PREMIUM CUSTOM APPAREL MANUFACTURER
             </p>
           </div>
-
-          <div className="pt-5">
-            <div className="flex items-start justify-center gap-2 text-brand-onyx/80">
-              <MapPin className="mt-1 w-[15px] h-[15px] shrink-0 text-brand-primary" />
-            
-              <div className="text-sm md:text-base leading-relaxed">
-                <p>Bintaro, Pesanggrahan</p>
-                <p>Jakarta Selatan, Indonesia</p>
-              </div>
+      
+          {/* RIGHT */}
+          <div className="flex items-start gap-2 text-brand-onyx/80 text-center md:text-right">
+      
+            <MapPin className="mt-1 w-[15px] h-[15px] shrink-0 text-brand-primary" />
+      
+            <div className="text-sm md:text-base leading-relaxed">
+              <p>Bintaro, Pesanggrahan</p>
+              <p>Jakarta Selatan, Indonesia</p>
             </div>
+      
           </div>
-          
+      
         </div>
-        
-        <div className="w-full max-w-[700px] mx-auto border-t border-brand-platinum/50 mt-12"></div>
-          <div
+      
+        {/* Divider */}
+        <div className="max-w-[1280px] mx-auto border-t border-brand-platinum/50 mt-12"></div>
+      
+        {/* Bottom */}
+        <div
           className="
-          max-w-[700px]
-          mx-auto
-          mt-8
-          flex
-          flex-col
-          items-center
-          gap-5
-          text-center
+            max-w-[1280px]
+            mx-auto
+            mt-8
+            flex
+            flex-col
+            md:flex-row
+            items-center
+            justify-between
+            gap-5
           "
-          >
-            <span className="text-[10px] tracking-[0.22em] uppercase text-brand-onyx/55">
-              © 2026 CITILEX ASIA. All Rights Reserved.
-            </span>
-              <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
-                <Link 
-                  href="/terms-of-service"
-                  aria-label="Terms of Service"
-                  className="
-                    text-[11px]
-                    font-medium
-                    tracking-[0.22em]
-                    uppercase
-                    text-brand-onyx/80
-                    transition-all
-                    duration-300
-                    md:hover:-translate-y-0.5
-                    hover:text-brand-primary
-                    hover:opacity-90
-                    "
-                >
-                  Terms of Service
-                </Link>
-                
-                <Link 
-                  href="/privacy-policy"
-                  aria-label="Privacy Policy"
-                  className="
-                    text-[11px]
-                    font-medium
-                    tracking-[0.22em]
-                    uppercase
-                    text-brand-onyx/80
-                    transition-all
-                    duration-300
-                    md:hover:-translate-y-0.5
-                    hover:text-brand-primary
-                    hover:opacity-90
-                    "
-                >
-                  Privacy Policy
-                </Link>
-                
-              </div>
-            
+        >
+      
+          <span className="text-[10px] tracking-[0.22em] uppercase text-brand-onyx/55">
+            © 2026 CITILEX ASIA. All Rights Reserved.
+          </span>
+      
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
+      
+            <Link
+              href="/terms-of-service"
+              aria-label="Terms of Service"
+              className="
+                text-[11px]
+                font-medium
+                tracking-[0.22em]
+                uppercase
+                text-brand-onyx/80
+                transition-all
+                duration-300
+                md:hover:-translate-y-0.5
+                hover:text-brand-primary
+                hover:opacity-90
+              "
+            >
+              Terms of Service
+            </Link>
+      
+            <Link
+              href="/privacy-policy"
+              aria-label="Privacy Policy"
+              className="
+                text-[11px]
+                font-medium
+                tracking-[0.22em]
+                uppercase
+                text-brand-onyx/80
+                transition-all
+                duration-300
+                md:hover:-translate-y-0.5
+                hover:text-brand-primary
+                hover:opacity-90
+              "
+            >
+              Privacy Policy
+            </Link>
+      
+          </div>
+      
         </div>
-        
+      
       </footer>
       
     </div>
