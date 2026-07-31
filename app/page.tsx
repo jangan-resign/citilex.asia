@@ -985,115 +985,53 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="select-none bg-gradient-to-b from-[#fcfcfb] to-[#f8f7f5] border-t border-brand-platinum py-20 md:py-24 px-6 md:px-12">
-      
-        {/* TOP */}
-        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
-      
-          {/* LEFT */}
-          <div className="space-y-3 text-center md:text-left">
-            <Image
-              src="/tekslogo.png"
-              alt="CITILEX ASIA"
-              width={210}
-              height={40}
-              className="h-auto w-auto mx-auto md:mx-0"
-            />
-      
-            <p
-              className="
-                text-[11px]
-                leading-relaxed
-                tracking-[0.2em]
-                uppercase
-                text-brand-onyx/55
-              "
-            >
-              PREMIUM CUSTOM APPAREL MANUFACTURER
-            </p>
-          </div>
-      
-          {/* RIGHT */}
-          <div className="flex items-start gap-2 text-brand-onyx/80 text-center md:text-right">
-      
-            <MapPin className="mt-1 w-[15px] h-[15px] shrink-0 text-brand-primary" />
-      
-            <div className="text-sm md:text-base leading-relaxed">
-              <p>Bintaro, Pesanggrahan</p>
-              <p>Jakarta Selatan, Indonesia</p>
+      <footer className="bg-white border-t border-slate-200 pt-16 pb-8 px-6 md:px-12">
+      <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+        {/* Kolom Kiri: Brand & Info */}
+        <div className="space-y-3 max-w-sm">
+          <Image
+            src="/tekslogo.png"
+            alt={companyConfig.name}
+            width={180}
+            height={40}
+            className="h-auto w-auto object-contain"
+          />
+          <p className="text-xs text-slate-500 tracking-widest uppercase">
+            PREMIUM CUSTOM APPAREL MANUFACTURER
+          </p>
+        </div>
+
+        {/* Kolom Kanan: Alamat */}
+        <div className="flex flex-col md:items-end max-w-sm">
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold text-slate-900 tracking-widest uppercase">
+              Kantor Pusat
+            </h4>
+            <div className="text-sm text-slate-600">
+              <p className="leading-relaxed text-left">
+                Bintaro Pesanggrahan<br/>
+                Jakarta Selatan, Indonesia
+              </p>
             </div>
-      
           </div>
-      
         </div>
-      
-        {/* Divider */}
-        <div className="max-w-[1280px] mx-auto border-t border-brand-platinum/50 mt-12"></div>
-      
-        {/* Bottom */}
-        <div
-          className="
-            max-w-[1280px]
-            mx-auto
-            mt-8
-            flex
-            flex-col
-            md:flex-row
-            items-center
-            justify-between
-            gap-5
-          "
-        >
-      
-          <span className="text-[10px] tracking-[0.22em] uppercase text-brand-onyx/55">
-            © 2026 CITILEX ASIA. All Rights Reserved.
-          </span>
-      
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
-      
-            <Link
-              href="/terms-of-service"
-              aria-label="Terms of Service"
-              className="
-                text-[11px]
-                font-medium
-                tracking-[0.22em]
-                uppercase
-                text-brand-onyx/80
-                transition-all
-                duration-300
-                md:hover:-translate-y-0.5
-                hover:text-brand-primary
-                hover:opacity-90
-              "
-            >
-              Terms of Service
-            </Link>
-      
-            <Link
-              href="/privacy-policy"
-              aria-label="Privacy Policy"
-              className="
-                text-[11px]
-                font-medium
-                tracking-[0.22em]
-                uppercase
-                text-brand-onyx/80
-                transition-all
-                duration-300
-                md:hover:-translate-y-0.5
-                hover:text-brand-primary
-                hover:opacity-90
-              "
-            >
-              Privacy Policy
-            </Link>
-      
-          </div>
-      
+      </div>
+
+      {/* Sub Footer (Legalitas & Copyright) */}
+      <div className="max-w-[1280px] mx-auto border-t border-slate-200 mt-16 pt-8 flex flex-col-reverse md:flex-row justify-between items-center gap-6 text-xs text-slate-500">
+        <span className="text-sm text-slate-500">
+          © {new Date().getFullYear()} CITILEX ASIA. All rights reserved.
+        </span>
+        <div className="flex items-center gap-6">
+          <Link href="/terms-of-service" className="hover:text-brand-primary transition-colors">
+            Terms of Service
+          </Link>
+          <Link href="/privacy-policy" className="hover:text-brand-primary transition-colors">
+            Privacy Policy
+          </Link>
         </div>
-      
-      </footer>
+      </div>
+    </footer>
       
     </div>
   );
