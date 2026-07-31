@@ -330,7 +330,7 @@ export default function LandingPage() {
 
               <p className="text-base md:text-lg text-brand-onyx max-w-2xl leading-relaxed">
                 CITILEX ASIA menyediakan jasa pembuatan kaos custom premium untuk
-                event, gathering, seminar, reuni, merchandise dan promosi korporasi.
+                event, gathering, seminar, reuni, merchandise dan promosi brand.
                 Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.
               </p>
 
