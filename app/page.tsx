@@ -358,7 +358,7 @@ export default function LandingPage() {
 
                 <div className="flex items-center gap-3">
                   <span className="h-[1px] w-8 bg-brand-platinum"></span>
-                  <p className="text-xs font-semibold text-brand-onyx/65 tracking-[0.18em] uppercase">
+                  <p className="text-xs font-bold text-brand-onyx/65 tracking-[0.18em] uppercase">
                     Minimal Order 100 Pcs
                   </p>
                 </div>
