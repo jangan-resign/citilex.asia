@@ -37,21 +37,156 @@ const jsonLdData = {
       "logo": {
         "@type": "ImageObject",
         "url": "https://citilex.asia/logo.png",
-        "caption": "CITILEX ASIA Logo"
-      }
+        "caption": "CITILEX ASIA Logo",
+      },
+      "email": "behagroup@gmail.com",
+
+      "telephone": "+6281319888488",
+
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "PT Nusa Garment Indonesia",
+      },
+
+      "slogan": "Produksi Kaos Skala Besar"
     },
     {
       "@type": "LocalBusiness",
       "@id": "https://citilex.asia/#localbusiness",
       "name": "CITILEX ASIA",
+      "legalName": "PT Nusa Garment Indonesia",
       "url": "https://citilex.asia",
-      "priceRange": "Rp55.000-Rp89000",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Jakarta",
-        "addressCountry": "ID"
-      },
       "image": "https://citilex.asia/hero.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://citilex.asia/logo.png",
+        "caption": "CITILEX ASIA Logo",
+      },
+      "founder": {
+        "@type": "Person",
+    
+        "name": "Thofhan Zaka Anshori",
+      },
+      "description":
+        "Vendor kaos custom untuk perusahaan, event, komunitas, dan instansi dengan kapasitas produksi skala besar.",
+      "keywords": [
+        "produksi kaos custom",
+        "vendor kaos custom",
+        "produksi polo shirt",
+        "konveksi kaos",
+        "kaos event",
+        "seragam perusahaan",
+      ],
+      "telephone": "+6281319888488",
+      "email": "behagroup@gmail.com",
+      "priceRange": "Rp55.000-Rp89000",
+      "currenciesAccepted": "IDR",
+      "paymentAccepted": [
+        "Bank Transfer",
+        "Cash",
+      ],
+      "address": {
+      "@type": "PostalAddress",
+      "streetAddress":
+        "Rep. Office PT Nusa Garment Indonesia, Jl. Bintaro Tengah Blok J4 No.12",
+      "addressLocality": "Jakarta Selatan",
+      "addressRegion": "DKI Jakarta",
+      "postalCode": "12330",
+      "addressCountry": "ID",
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude: -6.271811231366158",
+        "longitude: 106.75307544856076",
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+    
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+    
+          "opens": "09:00",
+    
+          "closes": "17:00",
+        },
+      ],
+    
+      "foundingLocation": {
+        "@type": "Place",
+    
+        "name": "Yogyakarta",
+      },
+    
+      "contactPoint": {
+      "@type": "ContactPoint",
+    
+      "telephone": "+6281319888488",
+    
+      "contactType": "customer service",
+    
+      "areaServed": "ID",
+    
+      "availableLanguage": "id",
+      },
+
+      "hasMap":
+        "https://maps.app.goo.gl/TCbUWmqaG9rHAdoL7",
+    
+      "sameAs": [
+        "https://www.instagram.com/citilexasia",
+        "https://www.youtube.com/@citilexasia",
+        "https://www.facebook.com/citilex.asia",
+      ],
+    
+      "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "DKI Jakarta",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Bandung Raya",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Semarang",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Daerah Istimewa Yogyakarta",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Surabaya",
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Malang",
+      },
+      ],
+    
+      "serviceArea": {
+      "@type": "Country",
+    
+      "name": "Indonesia",
+      },
+    
+      "knowsAbout": [
+        "Vendor Kaos Custom",
+        "Vendor Polo Shirt",
+        "Kaos Event",
+        "Kaos Perusahaan",
+        "Seragam Kerja",
+        "Polo Shirt Bordir",
+      ],
+      
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Layanan Kaos Custom",
@@ -61,7 +196,7 @@ const jsonLdData = {
             "itemOffered": {
               "@type": "Service",
               "name": "Kaos Custom Event",
-              "description": "Produksi kaos custom premium untuk event, gathering, seminar, dan acara perusahaan."
+              "description": "Produksi kaos custom skala besar untuk event, gathering, seminar, dan acara perusahaan."
             }
           }
         ]
