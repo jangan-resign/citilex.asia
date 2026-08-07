@@ -1140,7 +1140,7 @@ export default function LandingPage() {
         <div className="flex flex-col md:items-end max-w-sm">
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-slate-900 tracking-widest uppercase">
-              Kantor Pusat
+              Rep. Office
             </h4>
             <div className="text-sm text-slate-600">
               <p className="leading-relaxed text-left">
