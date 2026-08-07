@@ -239,7 +239,7 @@ const packages = [
   {
     name: "Kaos Polyester",
     price: "55.000",
-    description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, atau merchandise sekali pakai yang fungsional dan ekonomis.",
+    description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, merchandise atau promosi brand yang fungsional dan ekonomis.",
     features: [
       "Minimal order 100 Pcs",
       "Bahan Polyester Double Knit / PE Soft",
@@ -588,7 +588,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Ketepatan Waktu Mutlak</h3>
                 <p className="text-xs text-brand-onyx leading-relaxed">
-                  Kami memahami krusialnya timeline acara Anda. Penjadwalan produksi kami transparan dan terukur untuk menjamin kaos tiba tepat sebelum tanggal event dimulai.
+                  Kami memahami krusialnya timeline acara Anda. Penjadwalan produksi kami transparan dan terukur untuk menjamin kaos tiba tepat waktu.
                 </p>
               </div>
             </div>
@@ -602,10 +602,10 @@ export default function LandingPage() {
         >
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand-primary uppercase leading-none">
-              Daftar Paket Harga Kaos Event
+              Daftar Paket Harga Kaos
             </h2>
             <p className="text-sm md:text-base text-brand-onyx max-w-2xl mx-auto leading-relaxed">
-              Pilih spesifikasi material yang paling ideal untuk anggaran dan kenyamanan peserta event Anda.
+              Pilih spesifikasi material yang paling ideal untuk anggaran dan kenyamanan Anda.
             </p>
           </div>
 
@@ -731,7 +731,7 @@ export default function LandingPage() {
                 Proses Pemesanan & Alur Kerja
               </h2>
               <p className="mt-5 max-w-2xl mx-auto text-brand-onyx text-sm md:text-base leading-8">
-                Langkah-langkah terstruktur untuk merealisasikan kebutuhan kaos event Anda dengan minim risiko kesalahan.
+                Langkah-langkah terstruktur untuk merealisasikan kebutuhan kaos Anda dengan minim risiko kesalahan.
               </p>
             </div>
 
@@ -1064,13 +1064,13 @@ export default function LandingPage() {
                 <div className="flex justify-center">
                   <div className="px-5 py-2 rounded-full bg-white/5 border border-[#D4AF37]/25 backdrop-blur-md shadow-[0_8px_24px_rgba(212,175,55,0.12)]">
                     <span className="text-xs font-bold tracking-[0.3em] text-[#D4AF37] uppercase">
-                      SIAPKAN SEKARANG UNTUK ACARA ANDA
+                      SIAPKAN SEKARANG UNTUK KAOS ANDA
                     </span>
                   </div>
                 </div>
 
                 <h2 className="text-3xl md:text-5xl xl:text-6xl font-extrabold tracking-tighter uppercase leading-[1.05]">
-                  Wujudkan Kaos Event
+                  Wujudkan Kaos
                   <br />
                   <span className="bg-gradient-to-r from-white via-[#F3D98B] to-white bg-clip-text text-transparent">
                     Impian Bersama CITILEX ASIA
