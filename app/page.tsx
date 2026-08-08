@@ -456,16 +456,16 @@ export default function LandingPage() {
             <div className="lg:col-span-7 space-y-7 md:space-y-8">
               
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-brand-primary uppercase leading-[0.95]">
-                Produksi Kaos
+                Kaos Custom
                 <br />
                 <span className="bg-gradient-to-r from-black/95 via-[#F3D98B] to-black/95 bg-clip-text text-transparent">
-                  Custom Skala Besar untuk Event, Seragam &amp; Merchandise
+                   untuk Event, Seragam & Merchandise
                 </span>
               </h1>
 
               <p className="text-base md:text-lg text-brand-onyx max-w-2xl leading-relaxed">
-                Melayani produksi kaos custom skala besar untuk
-                event, gathering, seminar, reuni, merchandise dan promosi brand.
+                Melayani produksi kaos custom untuk
+                event, seragam kantor, gathering, seminar, reuni, merchandise dan promosi brand.
                 Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.
               </p>
 
