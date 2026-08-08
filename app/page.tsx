@@ -241,7 +241,7 @@ const packages = [
     price: "55.000",
     description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, merchandise atau promosi brand yang fungsional dan ekonomis.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 69 Pcs",
       "Bahan Polyester Double Knit / PE Soft",
       "Sablon DTF / Rubber",
       "Ukuran Standard Asia (XS - XL)",
@@ -255,7 +255,7 @@ const packages = [
     price: "79.000",
     description: "Pilihan terbaik & terpopuler untuk gathering perusahaan, seragam seminar, serta panitia acara dengan ketebalan kain sempurna.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 69 Pcs",
       "Bahan 100% Cotton Combed 30s/24s",
       "Sablon DTF / Rubber",
       "Ukuran Standard Asia (XS - XL)",
@@ -269,7 +269,7 @@ const packages = [
     price: "89.000",
     description: "Kualitas premium tertinggi yang super lembut, sejuk, antibakteri alami, sangat ramah lingkungan, ideal untuk acara eksklusif.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 69 Pcs",
       "Bahan Premium Cotton Bamboo 30s/24s",
       "Sablon DTF / Rubber",
       "Ukuran Standard Asia (XS - XL)",
@@ -494,7 +494,7 @@ export default function LandingPage() {
                 <div className="flex items-center gap-3">
                   <span className="h-[1px] w-8 bg-brand-platinum"></span>
                   <p className="text-xs font-bold text-brand-onyx/65 tracking-[0.18em] uppercase">
-                    Minimal Order 100 Pcs
+                    Minimal Order 69 Pcs
                   </p>
                 </div>
               </div>
