@@ -291,7 +291,7 @@ const faqs = [
   },
   {
     question: "Berapa lama proses pembuatan kaos hingga selesai?",
-    answer: "Rata-rata proses produksi berkisar antara 10 hingga 21 hari kerja setelah pembayaran DP diterima dan desain disetujui secara tertulis. Lama waktu pengerjaan bergantung pada kuantitas pemesanan dan kerumitan desain sablon atau bordir."
+    answer: "Rata-rata proses produksi berkisar antara 3 hingga 21 hari kerja setelah pembayaran DP diterima dan desain disetujui secara tertulis. Lama waktu pengerjaan bergantung pada kuantitas pemesanan dan kerumitan desain sablon atau bordir."
   },
   {
     question: "Apakah Citilex Asia bisa mengirim ke seluruh wilayah Indonesia?",
