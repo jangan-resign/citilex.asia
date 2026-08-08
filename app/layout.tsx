@@ -13,15 +13,15 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Produksi Kaos Skala Besar | CITILEX ASIA",
-  description: "Melayani produksi kaos custom skala besar untuk event, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
+  title: "Konveksi Kaos Custom | CITILEX ASIA",
+  description: "Melayani produksi kaos custom untuk event, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
   metadataBase: new URL("https://citilex.asia"),
   alternates: {
     canonical: "https://citilex.asia",
   },
   openGraph: {
-    title: "Produksi Kaos Skala Besar | CITILEX ASIA",
-    description: "Melayani produksi kaos custom skala besar untuk event, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
+    title: "Konveksi Kaos Custom | CITILEX ASIA",
+    description: "Melayani produksi kaos custom untuk event, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
     url: "https://citilex.asia",
     siteName: "Citilex Asia",
     images: [
