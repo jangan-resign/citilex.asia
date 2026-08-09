@@ -243,7 +243,7 @@ const packages = [
     features: [
       "Minimal order 69 Pcs",
       "Bahan Polyester Double Knit / PE Soft",
-      "Sablon DTF / Rubber",
+      "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
       "Proses pengerjaan cepat"
     ],
@@ -257,7 +257,7 @@ const packages = [
     features: [
       "Minimal order 69 Pcs",
       "Bahan 100% Cotton Combed 30s/24s",
-      "Sablon DTF / Rubber",
+      "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
       "Jahitan rantai standard distro rapi"
     ],
@@ -271,7 +271,7 @@ const packages = [
     features: [
       "Minimal order 69 Pcs",
       "Bahan Premium Cotton Bamboo 30s/24s",
-      "Sablon DTF / Rubber",
+      "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
       "Finishing premium, anti kusut & bakteri"
     ],
