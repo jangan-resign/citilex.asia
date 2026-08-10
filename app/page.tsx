@@ -233,7 +233,7 @@ const generateWaLink = (message: string) => {
   return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
 };
 
-const defaultHeroMessage = "Halo CITILEX ASIA, saya ingin konsultasi mengenai produksi kaos custom untuk event kami.";
+const defaultHeroMessage = "Halo CITILEX ASIA, saya ingin konsultasi mengenai produksi kaos custom. Mohon info harga dan minimum order.";
 
 const packages = [
   {
