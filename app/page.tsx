@@ -247,7 +247,7 @@ const packages = [
       "Ukuran Standard Asia (XS - XL)",
       "Proses pengerjaan cepat"
     ],
-    whatsappText: "Halo CITILEX ASIA, saya ingin konsultasi pemesanan Kaos Polyester Custom (Rp 55.000/pcs) untuk event kami.",
+    whatsappText: "Halo CITILEX ASIA, saya tertarik dengan Kaos Polyester Custom (Rp 55.000/pcs). Saya ingin konsultasi mengenai kebutuhan saya.",
     popular: false,
   },
   {
@@ -261,7 +261,7 @@ const packages = [
       "Ukuran Standard Asia (XS - XL)",
       "Jahitan rantai standard distro rapi"
     ],
-    whatsappText: "Halo CITILEX ASIA, saya tertarik dengan paket terpopuler Kaos Cotton Combed (Rp 79.000/pcs) untuk event kami.",
+    whatsappText: "Halo CITILEX ASIA, saya tertarik dengan Kaos Cotton Combed (Rp 79.000/pcs). Saya ingin konsultasi mengenai kebutuhan saya.",
     popular: true,
   },
   {
@@ -275,7 +275,7 @@ const packages = [
       "Ukuran Standard Asia (XS - XL)",
       "Finishing premium, anti kusut & bakteri"
     ],
-    whatsappText: "Halo CITILEX ASIA, saya ingin memesan Kaos Cotton Bamboo Premium (Rp 89.000/pcs) untuk acara eksklusif kami.",
+    whatsappText: "Halo CITILEX ASIA, saya tertarik dengan Kaos Cotton Bamboo Premium (Rp 89.000/pcs). Saya ingin konsultasi mengenai kebutuhan saya.",
     popular: false,
   }
 ];
@@ -696,17 +696,17 @@ export default function LandingPage() {
                   </div>
 
                   <div className="pt-8 relative">
-                    <a 
+                    <a
                       href={generateWaLink(pkg.whatsappText)}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          gtag_report_conversion(
-                            generateWaLink(defaultHeroMessage)
-                          );
-                        }}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className={ctaClass}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        gtag_report_conversion(
+                          generateWaLink(pkg.whatsappText)
+                        );
+                      }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={ctaClass}
                     >
                       KONSULTASI PAKET INI
                     </a>
