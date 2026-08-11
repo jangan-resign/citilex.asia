@@ -233,7 +233,7 @@ const generateWaLink = (message: string) => {
   return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
 };
 
-const defaultHeroMessage = "Halo CITILEX ASIA, saya ingin konsultasi mengenai produksi kaos custom. Mohon info harga dan minimum order.";
+const defaultHeroMessage = "Halo CITILEX ASIA, saya ingin konsultasi mengenai produksi kaos custom. Mohon info harga dan teknis pemesanan.";
 
 const packages = [
   {
@@ -241,7 +241,7 @@ const packages = [
     price: "55.000",
     description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, merchandise atau promosi brand yang fungsional dan ekonomis.",
     features: [
-      "Minimal order 69 Pcs",
+      "Minimal order 100 Pcs",
       "Bahan Polyester Double Knit / PE Soft",
       "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -255,7 +255,7 @@ const packages = [
     price: "79.000",
     description: "Pilihan terbaik & terpopuler untuk gathering perusahaan, seragam seminar, serta panitia acara dengan ketebalan kain sempurna.",
     features: [
-      "Minimal order 69 Pcs",
+      "Minimal order 100 Pcs",
       "Bahan 100% Cotton Combed 30s/24s",
       "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -269,7 +269,7 @@ const packages = [
     price: "89.000",
     description: "Kualitas premium tertinggi yang super lembut, sejuk, antibakteri alami, sangat ramah lingkungan, ideal untuk acara eksklusif.",
     features: [
-      "Minimal order 69 Pcs",
+      "Minimal order 100 Pcs",
       "Bahan Premium Cotton Bamboo 30s/24s",
       "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -456,7 +456,7 @@ export default function LandingPage() {
             <div className="lg:col-span-7 space-y-7 md:space-y-8">
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-brand-primary uppercase leading-[0.95]">
-                Konveksi Kaos Custom
+                Konveksi Kaos Custom B2B
                 <br />
                 <span className="bg-gradient-to-r from-black/95 via-[#F3D98B] to-black/95 bg-clip-text text-transparent">
                    untuk Event, Seragam & Merchandise
@@ -494,7 +494,7 @@ export default function LandingPage() {
                 <div className="flex items-center gap-3">
                   <span className="h-[1px] w-8 bg-brand-platinum"></span>
                   <p className="text-xs font-bold text-brand-onyx/65 tracking-[0.18em] uppercase">
-                    Cek harga sesuai kebutuhan
+                    Minimal Order 100 pcs
                   </p>
                 </div>
               </div>
