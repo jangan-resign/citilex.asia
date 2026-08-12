@@ -535,7 +535,7 @@ export default function LandingPage() {
                 {/* image */}
                 <div className="relative aspect-[4/5] bg-white border border-brand-platinum p-3 shadow-2xl">
                   <Image
-                    src="/liakarina.png"
+                    src="/lia-karina.png"
                     alt="Kaos Custom Event CITILEX ASIA"
                     fill
                     priority
