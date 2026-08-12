@@ -528,7 +528,7 @@ export default function LandingPage() {
                     <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10 pointer-events-none" />
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                     <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">PREMIUM MATERIAL</p>
-                    <p className="relative text-sm font-bold text-white mt-1">Cotton Combed 30s</p>
+                    <p className="relative text-sm font-bold text-white mt-1">Combed, Bamboo, Lacoste</p>
                   </div>
                 </div>
 
@@ -718,7 +718,7 @@ export default function LandingPage() {
 
           <p className="text-center text-xs text-brand-onyx/60 max-w-2xl mx-auto leading-relaxed pt-3">
             * Harga final dapat bervariasi mengikuti jumlah pemesanan, jumlah posisi
-            cetakan sablon/bordir, tenggat waktu pengerjaan, dan rentang ukuran di atas
+            cetakan sablon/bordir, tenggat waktu pengerjaan, aksesoris dan rentang ukuran di atas
             ukuran standard (XL).
           </p>
         </section>
