@@ -1120,7 +1120,10 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 pt-16 pb-8 px-6 md:px-12">
+      <footer 
+        id="address"
+        className="bg-white border-t border-slate-200 pt-16 pb-8 px-6 md:px-12"
+      >
       <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
         {/* Kolom Kiri: Brand & Info */}
         <div className="space-y-3 max-w-sm">
