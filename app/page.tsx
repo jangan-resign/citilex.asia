@@ -456,7 +456,7 @@ export default function LandingPage() {
             <div className="lg:col-span-7 space-y-7 md:space-y-8">
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[0.95]">
-                Kaos Custom
+                Vendor Kaos Custom
                 <br />
                 <span className="bg-gradient-to-r from-black/95 via-[#F3D98B] to-black/95 bg-clip-text text-transparent">
                    untuk Event, Seragam & Merchandise
