@@ -287,7 +287,7 @@ const faqs = [
   },
   {
     question: "Berapa minimal jumlah pemesanan kaos?",
-    answer: "Minimal pemesanan standar kami adalah 69 pcs per desain. Ini merupakan batas minimum efisiensi mesin sablon dan pemotongan bahan untuk dapat memberikan Anda harga penawaran terbaik dan kualitas yang konsisten."
+    answer: "Minimal pemesanan standar kami adalah 100 pcs per desain. Ini merupakan batas minimum efisiensi mesin sablon dan pemotongan bahan untuk dapat memberikan Anda harga penawaran terbaik dan kualitas yang konsisten."
   },
   {
     question: "Berapa lama proses pembuatan kaos hingga selesai?",
