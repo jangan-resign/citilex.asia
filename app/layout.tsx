@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Citilex Asia - Kaos Custom Event",
+        alt: "CITILEX ASIA - Vendor Kaos Custom",
       },
     ],
     locale: "id_ID",
