@@ -207,16 +207,8 @@ const jsonLdData = {
 
 const WHATSAPP_NUMBER = "6281319888488";
 
-const gtag_report_conversion = (url?: string) => {
-
+export const gtag_report_conversion = (url?: string) => {
   if (typeof window !== "undefined" && window.gtag) {
-
-    // GA4: mencatat klik WhatsApp
-    window.gtag('event', 'whatsapp_click', {
-      link_url: url,
-    });
-
-    // Google Ads: tetap mencatat conversion
     window.gtag('event', 'conversion', {
       send_to: 'AW-18279242485/OsqECO3h-cYcEPW1nIxE',
       value: 1.0,
@@ -227,7 +219,6 @@ const gtag_report_conversion = (url?: string) => {
         }
       }
     });
-
   } else {
     if (url) {
       window.location.href = url;
