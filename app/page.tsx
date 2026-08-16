@@ -455,17 +455,17 @@ export default function LandingPage() {
             <div className="lg:col-span-7 space-y-7 md:space-y-8">
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-brand-primary uppercase leading-[0.95]">
-                Vendor Kaos Custom
+                Produsen Kaos & Polo Custom
                 <br />
                 <span className="bg-gradient-to-r from-black/95 via-[#F3D98B] to-black/95 bg-clip-text text-transparent">
-                   untuk Event, Seragam & Merchandise
+                   untuk Korporat, Event & Merchandise
                 </span>
               </h1>
 
               <p className="text-base md:text-lg text-brand-onyx max-w-2xl leading-relaxed">
-                CITILEX ASIA menyediakan jasa pembuatan kaos custom premium untuk event, seragam kantor, 
-                gathering, seminar, reuni, merchandise dan promosi brand.
-                Kualitas terjamin, pengerjaan profesional dan pengiriman tepat waktu.
+                CITILEX ASIA - Solusi pengadaan kaos & polo custom premium 
+                untuk seragam korporat, event, gathering, seminar, reuni, merchandise dan promosi brand.
+                Kualitas terjamin, sablon/brodir presisi dan pengiriman tepat waktu.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center pt-2">
@@ -493,7 +493,7 @@ export default function LandingPage() {
                 <div className="flex items-center gap-3">
                   <span className="h-[1px] w-8 bg-brand-platinum"></span>
                   <p className="text-xs font-bold text-brand-onyx/65 tracking-[0.18em] uppercase">
-                    Minimal Order 100 pcs
+                    Minimal Order 100 Pcs • Gratis Mockup Desain
                   </p>
                 </div>
               </div>
