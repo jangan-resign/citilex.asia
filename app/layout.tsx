@@ -13,15 +13,15 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Vendor Kaos Custom | CITILEX ASIA",
-  description: "Melayani produksi kaos custom untuk event, seragam kantor, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
+  title: "Produsen Kaos & Polo Custom | CITILEX ASIA",
+  description: "Melayani produksi kaos & polo custom untuk event, seragam kantor, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
   metadataBase: new URL("https://citilex.asia"),
   alternates: {
     canonical: "https://citilex.asia",
   },
   openGraph: {
-    title: "Vendor Kaos Custom | CITILEX ASIA",
-    description: "Melayani produksi kaos custom untuk event, seragam kantor, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
+    title: "Produsen Kaos & Polo Custom | CITILEX ASIA",
+    description: "Melayani produksi kaos & polo custom untuk event, seragam kantor, gathering, seminar, reuni, merchandise dan promosi brand. Kualitas terjamin dengan pengerjaan profesional dan pengiriman tepat waktu.",
     url: "https://citilex.asia",
     siteName: "Citilex Asia",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "CITILEX ASIA - Vendor Kaos Custom",
+        alt: "CITILEX ASIA - Produsen Kaos & Polo Custom",
       },
     ],
     locale: "id_ID",
