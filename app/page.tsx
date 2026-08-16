@@ -465,7 +465,7 @@ export default function LandingPage() {
               <p className="text-base md:text-lg text-brand-onyx max-w-2xl leading-relaxed">
                 CITILEX ASIA - Solusi pengadaan kaos & polo custom premium 
                 untuk seragam korporat, event, gathering, seminar, reuni, merchandise dan promosi brand.
-                Kualitas terjamin, sablon/brodir presisi dan pengiriman tepat waktu.
+                Kualitas terjamin, sablon/bordir presisi dan pengiriman tepat waktu.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center pt-2">
