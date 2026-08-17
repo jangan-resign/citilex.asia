@@ -252,7 +252,7 @@ const packages = [
   {
     name: "Kaos Cotton Combed",
     price: "79.000",
-    description: "Pilihan terbaik & terpopuler untuk gathering perusahaan, seragam seminar, serta panitia acara dengan ketebalan kain sempurna.",
+    description: "Pilihan terbaik & terpopuler untuk gathering perusahaan, seragam seminar, merchandise premium, serta panitia acara dengan ketebalan kain sempurna.",
     features: [
       "Minimal order 100 Pcs",
       "Bahan 100% Cotton Combed 30s/24s",
