@@ -688,7 +688,7 @@ export default function LandingPage() {
               const priceNumClass = [
                 "font-extrabold tracking-tighter leading-none",
                 pkg.popular
-                  ? "text-7xl bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent"
+                  ? "text-7xl md:text-6xl bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent"
                   : "text-5xl md:text-6xl text-white",
               ].join(" ");
 
@@ -817,7 +817,7 @@ export default function LandingPage() {
               const priceNumClass = [
                 "font-extrabold tracking-tighter leading-none",
                 pkg.popular
-                  ? "text-7xl bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent"
+                  ? "text-6xl md:text-6xl bg-gradient-to-b from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] bg-clip-text text-transparent"
                   : "text-5xl md:text-6xl text-white",
               ].join(" ");
         
