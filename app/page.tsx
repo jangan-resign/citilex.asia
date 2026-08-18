@@ -364,7 +364,7 @@ export default function LandingPage() {
       number: "01",
     },
     {
-      image: "/galeri6.png",
+      image: "/galeri7.png",
       title: "Computer Embroidered Polo Shirt",
       desc: "Bahan: Lacoste Pique • Bordir Komputer",
       number: "02",
@@ -803,7 +803,7 @@ export default function LandingPage() {
             <div className="lg:col-span-5 grid grid-cols-1 gap-6 md:gap-7">
               <div className="group relative overflow-hidden bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
                 <div className="relative w-full h-full min-h-[296px] overflow-hidden">
-                  <Image src="/galeri6.png" alt="CITILEX ASIA Computer Embroidered Polo Shirt" fill className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                  <Image src="/galeri7.png" alt="CITILEX ASIA Computer Embroidered Polo Shirt" fill className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute top-6 left-6">
                     <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
@@ -812,8 +812,8 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h4 className="text-sm font-bold tracking-[0.16em] uppercase text-white">Solstice Collective Edition</h4>
-                    <p className="text-[11px] text-white/70 mt-2 uppercase tracking-[0.14em]">Bahan: Premium Cotton Bamboo • Sablon: DTF</p>
+                    <h4 className="text-sm font-bold tracking-[0.16em] uppercase text-white">Computer Embroidered Polo Shirt</h4>
+                    <p className="text-[11px] text-white/70 mt-2 uppercase tracking-[0.14em]">Bahan: Lacoste Pique • Bordir Komputer</p>
                   </div>
                 </div>
               </div>
