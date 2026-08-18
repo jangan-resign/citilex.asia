@@ -778,7 +778,7 @@ export default function LandingPage() {
         {/* PRICING POLO SHIRT SECTION */}
         <section
           id="pricing-polo"
-          className="pt-6 pb-20 md:pt-10 md:pb-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
+          className="pt-4 pb-20 md:pt-8 md:pb-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
         >
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand-primary uppercase leading-none">
