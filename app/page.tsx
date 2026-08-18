@@ -338,11 +338,11 @@ const faqs = [
     answer: "Tentu saja. Kami menerima file desain siap cetak dalam format AI, PSD, PDF, CDR, atau PNG resolusi tinggi tanpa latar belakang. Jika Anda hanya memiliki sketsa kasar, tim desainer ahli kami siap membantu menyempurnakannya untuk produksi."
   },
   {
-    question: "Berapa minimal jumlah pemesanan kaos?",
-    answer: "Minimal pemesanan standar kami adalah 100 pcs per desain. Ini merupakan batas minimum efisiensi mesin sablon dan pemotongan bahan untuk dapat memberikan Anda harga penawaran terbaik dan kualitas yang konsisten."
+    question: "Berapa minimal jumlah pemesanan kaos & polo?",
+    answer: "Minimal pemesanan standar kami adalah 100 pcs per desain. Ini merupakan batas minimum efisiensi mesin sablon, bordir dan pemotongan bahan untuk dapat memberikan Anda harga penawaran terbaik dan kualitas yang konsisten."
   },
   {
-    question: "Berapa lama proses pembuatan kaos hingga selesai?",
+    question: "Berapa lama proses pembuatan kaos & polo hingga selesai?",
     answer: "Rata-rata proses produksi berkisar antara 3 hingga 21 hari kerja setelah pembayaran DP diterima dan desain disetujui secara tertulis. Lama waktu pengerjaan bergantung pada kuantitas pemesanan dan kerumitan desain sablon atau bordir."
   },
   {
@@ -1192,7 +1192,7 @@ export default function LandingPage() {
 
                 <div className="relative mt-6 space-y-5">
                   <p className="text-lg font-bold text-white leading-snug">
-                    Tim kami siap membantu Anda dari tahap konsultasi hingga kaos selesai diproduksi.
+                    Tim kami siap membantu Anda dari tahap konsultasi hingga kaos & polo selesai diproduksi.
                   </p>
                   <p className="text-sm text-white/65 leading-relaxed">
                     Setiap project event memiliki kebutuhan unik. Karena itu kami memastikan komunikasi cepat, transparan, dan minim risiko revisi.
