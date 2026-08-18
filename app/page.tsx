@@ -1280,7 +1280,7 @@ export default function LandingPage() {
                 </div>
 
                 <h2 className="text-3xl md:text-5xl xl:text-6xl font-extrabold tracking-tighter uppercase leading-[1.05]">
-                  Wujudkan Kaos
+                  Wujudkan Kaos & Polo
                   <br />
                   <span className="bg-gradient-to-r from-white via-[#F3D98B] to-white bg-clip-text text-transparent">
                     Impian Bersama CITILEX ASIA
