@@ -773,7 +773,7 @@ export default function LandingPage() {
         >
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand-primary uppercase leading-none">
-              Galeri Hasil Produksi Kaos
+              Galeri Hasil Produksi Kaos & Polo
             </h2>
             <p className="text-sm md:text-base text-brand-onyx max-w-2xl mx-auto leading-relaxed">
               Dokumentasi nyata hasil pengerjaan kaos sablon premium dari portofolio klien CITILEX ASIA.
