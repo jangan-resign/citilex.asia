@@ -657,7 +657,7 @@ export default function LandingPage() {
               Daftar Paket Harga Kaos
             </h2>
             <p className="text-sm md:text-base text-brand-onyx max-w-2xl mx-auto leading-relaxed">
-              Pilih spesifikasi material yang paling ideal untuk anggaran dan kenyamanan Anda.
+              Pilih material dan spesifikasi kaos custom yang paling ideal untuk anggaran dan kenyamanan Anda.
             </p>
           </div>
 
@@ -778,7 +778,7 @@ export default function LandingPage() {
         {/* PRICING POLO SHIRT SECTION */}
         <section
           id="pricing-polo"
-          className="pt-14 pb-20 md:pt-18 md:pb-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
+          className="pt-10 pb-20 md:pt-14 md:pb-24 px-6 md:px-12 max-w-[1280px] mx-auto space-y-12"
         >
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand-primary uppercase leading-none">
@@ -786,8 +786,7 @@ export default function LandingPage() {
             </h2>
         
             <p className="text-sm md:text-base text-brand-onyx max-w-2xl mx-auto leading-relaxed">
-              Pilih material dan spesifikasi polo shirt yang paling sesuai untuk
-              kebutuhan perusahaan, event, seragam, dan merchandise Anda.
+              Pilih material dan spesifikasi polo shirt yang paling ideal untuk anggaran dan kenyamanan Anda.
             </p>
           </div>
         
