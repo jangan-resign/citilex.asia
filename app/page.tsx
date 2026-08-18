@@ -364,9 +364,9 @@ export default function LandingPage() {
       number: "01",
     },
     {
-      image: "/galeri2.png",
-      title: "Solstice Collective Edition",
-      desc: "Bahan: Premium Cotton Bamboo • Sablon: DTF",
+      image: "/galeri6.png",
+      title: "Computer Embroidered Polo Shirt",
+      desc: "Bahan: Lacoste Pique • Bordir Komputer",
       number: "02",
     },
     {
