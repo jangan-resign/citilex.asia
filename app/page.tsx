@@ -631,7 +631,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Quality Control Ketat</h3>
                 <p className="text-xs text-brand-onyx leading-relaxed">
-                  Setiap lembar pakaian menjalani proses inspeksi detail sejak pemotongan bahan pola, pencetakan warna sablon, penjahitan rantai, hingga proses pengemasan akhir.
+                  Setiap lembar pakaian menjalani proses inspeksi detail sejak pemotongan bahan pola, pencetakan warna sablon, bordir komputer, penjahitan rantai, hingga proses pengemasan akhir.
                 </p>
               </div>
               <div className="bg-white p-8 border border-brand-platinum space-y-4">
@@ -640,7 +640,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Ketepatan Waktu Mutlak</h3>
                 <p className="text-xs text-brand-onyx leading-relaxed">
-                  Kami memahami krusialnya timeline acara Anda. Penjadwalan produksi kami transparan dan terukur untuk menjamin kaos tiba tepat waktu.
+                  Kami memahami krusialnya timeline acara Anda. Penjadwalan produksi kami transparan dan terukur untuk menjamin kaos & polo tiba tepat waktu.
                 </p>
               </div>
             </div>
