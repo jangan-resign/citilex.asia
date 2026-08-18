@@ -776,7 +776,7 @@ export default function LandingPage() {
               Galeri Hasil Produksi Kaos & Polo
             </h2>
             <p className="text-sm md:text-base text-brand-onyx max-w-2xl mx-auto leading-relaxed">
-              Dokumentasi nyata hasil pengerjaan kaos sablon premium dari portofolio klien CITILEX ASIA.
+              Dokumentasi nyata hasil pengerjaan kaos sablon & polo shirt bordir dari portofolio klien CITILEX ASIA.
             </p>
           </div>
 
