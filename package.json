@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start -p 3000 -H 0.0.0.0",
     "clean": "rm -rf .next out",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.3",
