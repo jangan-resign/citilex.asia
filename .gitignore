@@ -20,3 +20,24 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/generated/prisma
+
+# Agent / IDE folders
+.agents/
+.claude/
+.windsurf/
+scratch/
+skills-lock.json
+metadata.json
+
+# Handover Docs & Templates
+*.md
+!README.md
+*.pdf
+colors_backup.txt
+depth.txt
+
+# Temp / Test Scripts
+check-pdf.js
+test_base64_pdf.js
+read-pdf.cjs
+update_tables.cjs
