@@ -41,3 +41,4 @@ check-pdf.js
 test_base64_pdf.js
 read-pdf.cjs
 update_tables.cjs
+scripts/
