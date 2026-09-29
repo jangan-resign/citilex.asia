@@ -1,0 +1,6 @@
+{
+  "name": "Citilex Asia",
+  "description": "Citilex Asia menyediakan produksi kaos custom untuk event, gathering, seminar, dan kebutuhan acara dengan proses profesional.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

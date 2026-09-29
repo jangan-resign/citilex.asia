@@ -1,0 +1,387 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// --- NextAuth Models ---
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  role          Role      @default(CS)
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+enum Role {
+  ADMIN
+  CS
+}
+
+// --- Business Models (CS CRM) ---
+
+model Customer {
+  id              String   @id @default(cuid())
+  name            String
+  phone           String   @unique
+  company         String?
+  domicile        String?
+  status          String   @default("active") // "active", "qualified", "won", "lost"
+  owner           String   @default("Karina") // "Karina" (Bot) or "CS"
+  internalNotes   String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  messages        Message[]
+  qualification   OrderQualification?
+  projects        Project[]
+  invoices        Invoice[]
+  quotations      Quotation[]
+
+  @@map("customers")
+}
+
+model Message {
+  id              String   @id @default(cuid())
+  customerId      String   @map("customer_id")
+  sender          String   // "customer", "bot", "cs"
+  text            String   @db.Text
+  isRead          Boolean  @default(false)
+  attachments     String[] // UploadThing URLs
+  createdAt       DateTime @default(now())
+
+  customer        Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+model OrderQualification {
+  id                  String   @id @default(cuid())
+  customerId          String   @unique @map("customer_id")
+  items               Json     @default("[]")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  customer            Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@map("order_qualifications")
+}
+
+model SystemConfig {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+
+  @@map("system_config")
+}
+
+enum PipelineStage {
+  DEAL
+  PRE_PROD
+  PROD
+  DELIVERY
+  PAYMENT
+}
+
+model Project {
+  id              String   @id @default(cuid())
+  customerId      String   @map("customer_id")
+  title           String   // e.g. "Kaos Gathering BEM"
+  value           Float    // Total value of the project
+  pipeline        PipelineStage @default(DEAL)
+  status          String   @default("active") // "active", "completed", "cancelled"
+  items           Json     @default("[]")
+  notes           String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  customer        Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  invoices        Invoice[]
+  quotations      Quotation[]
+  deliveries      Delivery[]
+
+  @@map("projects")
+}
+
+model Quotation {
+  id              String   @id @default(cuid())
+  projectId       String?  @map("project_id") // Nullable if generated directly without a project yet
+  customerId      String?  @map("customer_id")
+  docNumber       String   @unique
+  customerName    String
+  customerCompany String?
+  customerDomicile String?
+  customerPhone   String?
+  amount          Float
+  status          String   @default("Draft") // "Draft", "Sent", "Approved", "Rejected"
+  items           Json     @default("[]")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  project         Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  customer        Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  @@map("quotations")
+}
+
+model Invoice {
+  id              String   @id @default(cuid())
+  projectId       String?  @map("project_id") // Nullable = standalone invoice
+  customerId      String?  @map("customer_id")
+  docNumber       String?  @unique
+  customerName    String?  // For standalone invoices without a project
+  customerCompany String?
+  customerDomicile String?
+  customerPhone   String?
+  amount          Float
+  type            String   // "DP", "LUNAS", "FULL"
+  status          String   @default("UNPAID") // "UNPAID", "PAID"
+  items           Json     @default("[]")
+  dueDate         DateTime?
+  paidAt          DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  project         Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  customer        Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  @@map("invoices")
+}
+
+model Delivery {
+  id              String   @id @default(cuid())
+  projectId       String   @map("project_id")
+  courier         String?
+  trackingNumber  String?
+  status          String   @default("PENDING") // "PENDING", "SHIPPED", "DELIVERED"
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("deliveries")
+}
+
+// --- Factory & Inventory ---
+
+model Inventory {
+  id          String   @id @default(cuid())
+  fabric      String   // Jenis bahan, ex: "Cotton Combed 30s"
+  color       String   // Warna bahan, ex: "Hitam Solid"
+  stockKg     Float    @default(0) // Stok real-time dalam KG
+  updatedAt   DateTime @updatedAt
+  
+  logs        InventoryLog[]
+
+  @@map("inventory")
+}
+
+model InventoryLog {
+  id          String   @id @default(cuid())
+  inventoryId String   @map("inventory_id")
+  type        String   // "IN" or "OUT"
+  amountKg    Float    // Jumlah kg yang masuk/keluar
+  notes       String?  // Keterangan opsional
+  createdAt   DateTime @default(now())
+
+  inventory   Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@map("inventory_logs")
+}
+
+
+// --- Back-Office: HRD ---
+
+model Employee {
+  id              String   @id @default(cuid())
+  employeeId      String   @unique // 6-digit running number, e.g. 000001
+  name            String
+  position        String
+  department      String
+  joinedAt        DateTime
+  baseSalary      Float
+  status          String   // "Magang", "THL", "PKWT", "PKWTT", "Outsourced"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  attendances     Attendance[]
+  payrolls        Payroll[]
+  termination     Termination?
+
+  @@map("employees")
+}
+
+model Termination {
+  id              String   @id @default(cuid())
+  employeeId      String   @unique @map("employee_id")
+  date            DateTime
+  type            String
+  reason          String?  @db.Text
+  severancePay    Float    @default(0)
+  status          String   @default("PENDING")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  employee        Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@map("terminations")
+}
+
+model Attendance {
+  id              String   @id @default(cuid())
+  employeeId      String   @map("employee_id")
+  date            DateTime
+  checkIn         DateTime?
+  checkOut        DateTime?
+  status          String   @default("PRESENT") // "PRESENT", "ABSENT", "LATE", "LEAVE", "SICK"
+  notes           String?
+  createdAt       DateTime @default(now())
+
+  employee        Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@map("attendances")
+}
+
+model Payroll {
+  id              String   @id @default(cuid())
+  employeeId      String   @map("employee_id")
+  period          String   // e.g. "2026-09"
+  baseSalary      Float
+  allowance       Float    @default(0)
+  deduction       Float    @default(0)
+  dynamicBonus    Float    @default(0) // Untuk komponen harian/borongan dinamis
+  totalAmount     Float
+  status          String   @default("UNPAID") // "UNPAID", "PAID"
+  paidAt          DateTime?
+  createdAt       DateTime @default(now())
+
+  employee        Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@map("payrolls")
+}
+
+model Applicant {
+  id              String   @id @default(cuid())
+  name            String
+  position        String
+  email           String?
+  phone           String
+  resumeUrl       String?
+  status          String   @default("NEW") // "NEW", "REVIEW", "INTERVIEW", "HIRED", "REJECTED"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("applicants")
+}
+
+// --- Back-Office: Finance ---
+
+model CashFlow {
+  id              String   @id @default(cuid())
+  date            DateTime
+  type            String   // "IN", "OUT"
+  amount          Float
+  category        String   // "INVOICE", "OPERATIONAL", "PAYROLL", "TAX", "ASSET", dll
+  description     String
+  referenceId     String?  // Boleh nyambung ke invoiceId, payrollId, atau expenseId
+  createdAt       DateTime @default(now())
+
+  @@map("cash_flows")
+}
+
+model Expense {
+  id              String   @id @default(cuid())
+  date            DateTime
+  amount          Float
+  category        String
+  description     String
+  receiptUrl      String?
+  status          String   @default("PENDING") // "PENDING", "APPROVED", "REJECTED", "PAID"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("expenses")
+}
+
+model TaxRecord {
+  id              String   @id @default(cuid())
+  period          String   // e.g. "2026-09" or "2026"
+  type            String   // "PPN", "PPh 21", "PPh 23", dll
+  amount          Float
+  status          String   @default("UNPAID") // "UNPAID", "PAID"
+  paidAt          DateTime?
+  description     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("tax_records")
+}
+
+// --- Marketing (Ads) ---
+
+model AdsLead {
+  id              String   @id @default(cuid())
+  source          String   // "GOOGLE" atau "META"
+  campaignName    String
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  rawData         Json     // Menyimpan payload mentah
+  createdAt       DateTime @default(now())
+
+  @@map("ads_leads")
+}
