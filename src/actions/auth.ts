@@ -18,7 +18,7 @@ const authData: Record<string, string> = {
 
 export async function loginAction(prevState: any, formData: FormData) {
   const password = formData.get("password") as string;
-  
+
   if (!password) {
     return { error: "Password cannot be empty." };
   }
@@ -40,7 +40,7 @@ export async function loginAction(prevState: any, formData: FormData) {
 
     if (existingSession && existingSession.expiresAt > new Date()) {
       if (existingSession.sessionToken !== currentDeviceSession) {
-        return { error: "Akses ditolak: Akun ini sedang login di perangkat lain. Harap tunggu hingga sesi sebelumnya berakhir (maks 8 jam)." };
+        return { error: "Akses ditolak: Akun ini sedang login di perangkat/browser lain." };
       }
     }
 
@@ -75,12 +75,12 @@ export async function loginAction(prevState: any, formData: FormData) {
 export async function logoutAction() {
   const cookieStore = await cookies();
   const role = cookieStore.get("auth_role")?.value;
-  
+
   if (role && role !== "super-admin") {
     const currentDeviceSession = cookieStore.get("auth_session_token")?.value;
     if (currentDeviceSession) {
       await prisma.roleSession.deleteMany({
-        where: { 
+        where: {
           role,
           sessionToken: currentDeviceSession
         }
