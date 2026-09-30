@@ -385,3 +385,11 @@ model AdsLead {
 
   @@map("ads_leads")
 }
+
+model RoleSession {
+  role         String   @id
+  sessionToken String
+  expiresAt    DateTime
+
+  @@map("role_sessions")
+}
