@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../lib/prisma";
+import { generateKarinaResponse } from "../../../../lib/karina";
+import { sendWhatsAppMessage } from "../../../../lib/whatsapp";
 
 // GET: Verifikasi Webhook dari Meta (WhatsApp Cloud API)
 export async function GET(request: Request) {
@@ -31,10 +33,70 @@ export async function POST(request: Request) {
             const msg = change.value.messages[0];
             const senderPhone = msg.from; // Nomor pengirim
             const messageText = msg.text?.body || ""; // Isi pesan teks
+            const senderProfileName = change.value.contacts?.[0]?.profile?.name || "Customer Baru";
+
+            // Abaikan jika bukan pesan teks
+            if (!messageText) continue;
 
             console.log(`📩 Pesan masuk dari ${senderPhone}: ${messageText}`);
 
-            // TODO: Nanti di sini kita simpan ke database dan panggil AI Karina
+            // 1. Cari atau buat kustomer di DB
+            let customer = await prisma.customer.findUnique({
+              where: { phone: senderPhone },
+            });
+
+            if (!customer) {
+              customer = await prisma.customer.create({
+                data: {
+                  name: senderProfileName,
+                  phone: senderPhone,
+                  owner: "Karina", // Default ke bot Karina
+                }
+              });
+            }
+
+            // 2. Simpan pesan masuk ke DB
+            await prisma.message.create({
+              data: {
+                customerId: customer.id,
+                sender: "customer",
+                text: messageText,
+              }
+            });
+
+            // 3. Jika owner masih Karina, biarkan AI yang membalas
+            if (customer.owner === "Karina") {
+              // Ambil 5 riwayat chat terakhir untuk konteks AI
+              const history = await prisma.message.findMany({
+                where: { customerId: customer.id },
+                orderBy: { createdAt: 'desc' },
+                take: 6 // Termasuk pesan yang baru masuk
+              });
+              
+              // Balik urutannya agar dari terlama ke terbaru
+              const formattedHistory = history.reverse().slice(0, 5).map(m => ({
+                role: m.sender,
+                text: m.text
+              }));
+
+              // 4. Generate respons AI
+              const karinaReply = await generateKarinaResponse(senderPhone, formattedHistory, messageText);
+
+              // 5. Kirim balasan via WhatsApp API
+              const sent = await sendWhatsAppMessage(senderPhone, karinaReply);
+
+              if (sent) {
+                // 6. Simpan balasan bot ke DB
+                await prisma.message.create({
+                  data: {
+                    customerId: customer.id,
+                    sender: "bot",
+                    text: karinaReply,
+                    isRead: true, // Pesan keluar otomatis isRead
+                  }
+                });
+              }
+            }
           }
         }
       }
