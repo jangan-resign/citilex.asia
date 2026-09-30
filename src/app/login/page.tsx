@@ -81,7 +81,7 @@ export default function LoginPage() {
               </button>
             </div>
             {error && (
-              <p className="mt-2 text-sm text-red-500 animate-pulse">{error}</p>
+              <p className="mt-2 text-sm text-red-500 animate-pulse text-center">{error}</p>
             )}
           </div>
 
