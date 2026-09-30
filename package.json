@@ -42,6 +42,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.21",
+    "javascript-obfuscator": "^5.8.0",
     "postcss": "^8.5.15",
     "prisma": "^7.9.0",
     "tailwindcss": "^4.1.14",

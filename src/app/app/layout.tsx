@@ -5,6 +5,9 @@ import { prisma } from "../../lib/prisma";
 import { unstable_cache } from "next/cache";
 import { cookies } from "next/headers";
 
+// @ts-ignore
+import { LicenseFooter, validateCoreAccess } from "../../lib/core-ui";
+
 export const metadata = {
   title: "Dashboard | CITILEX ASIA Workspace",
   description: "Customer Service Workspace with AI Assistant",
@@ -31,6 +34,9 @@ export default async function CSLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();
   const role = cookieStore.get("auth_role")?.value || "Unknown";
 
+  // Jebakan validasi (kalau file dihapus, bakal error disini)
+  validateCoreAccess(role);
+
   return (
     <div className="flex h-screen w-full flex-col md:flex-row bg-slate-50 font-sans antialiased overflow-hidden">
       <FactoryDataProvider initialData={factoryData as any}>
@@ -38,8 +44,14 @@ export default async function CSLayout({ children }: { children: ReactNode }) {
         <Sidebar userRole={role} />
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-auto">
-          {children}
+        <main className="flex-1 overflow-auto flex flex-col relative">
+          <div className="flex-1">
+            {children}
+          </div>
+          {/* Obfuscated Footer (Will not show if License is set) */}
+          <div className="mt-auto">
+            <LicenseFooter />
+          </div>
         </main>
       </FactoryDataProvider>
     </div>
