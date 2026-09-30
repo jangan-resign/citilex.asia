@@ -34,7 +34,8 @@ import {
   Scale,
   Wallet,
   UserMinus,
-  PieChart
+  PieChart,
+  LogOut
 } from "lucide-react";
 
 const salesNavigation = [
@@ -431,22 +432,90 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                   disabled={isLoggingOut}
                   onClick={() => {
                     setIsLoggingOut(true);
-                    import("../../actions/auth").then(m => m.logoutAction());
+                    setIsProfileMenuOpen(false);
+                    // Small delay so the overlay animation starts, then logout
+                    setTimeout(() => {
+                      import("../../actions/auth").then(m => m.logoutAction());
+                    }, 600);
                   }}
-                  className="w-full flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-brand-primary hover:bg-slate-50 rounded-lg transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isLoggingOut ? (
-                    <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-out flex-shrink-0"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
-                  )}
-                  {isLoggingOut ? "Keluar..." : "Logout"}
+                  <LogOut className="w-4 h-4 flex-shrink-0" />
+                  Logout
                 </button>
               </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Full-Screen Logout Overlay */}
+      {isLoggingOut && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-md"
+          style={{
+            background: 'rgba(26, 29, 37, 0.95)',
+            animation: 'fadeIn 0.3s ease-out forwards',
+          }}
+        >
+          {/* Inject keyframes */}
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+            @keyframes spinSlow { to { transform: rotate(360deg); } }
+            @keyframes spinReverse { to { transform: rotate(-360deg); } }
+            @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+          `}} />
+
+          {/* Subtle dot pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          
+          <div 
+            className="relative flex flex-col items-center gap-8"
+            style={{ animation: 'zoomIn 0.5s ease-out 0.1s forwards', opacity: 0 }}
+          >
+            {/* Logo */}
+            <img
+              src="/workspace.png"
+              alt="Logo"
+              className="h-10 w-auto"
+              style={{ opacity: 0.85 }}
+            />
+
+            {/* Double-ring spinner */}
+            <div className="relative h-14 w-14">
+              <div className="absolute inset-0 rounded-full border-2 border-white/[0.08]" />
+              <div 
+                className="absolute inset-0 rounded-full border-2 border-transparent"
+                style={{ 
+                  borderTopColor: '#b8975a', 
+                  animation: 'spinSlow 0.8s linear infinite' 
+                }} 
+              />
+              <div 
+                className="absolute inset-2 rounded-full border-2 border-transparent"
+                style={{ 
+                  borderBottomColor: 'rgba(255,255,255,0.2)', 
+                  animation: 'spinReverse 1.2s linear infinite' 
+                }} 
+              />
+            </div>
+
+            {/* Text */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-sm font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                Signing you out...
+              </span>
+              <span 
+                className="text-xs"
+                style={{ color: 'rgba(255,255,255,0.35)', animation: 'pulse 2s ease-in-out infinite' }}
+              >
+                See you next time 👋
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
