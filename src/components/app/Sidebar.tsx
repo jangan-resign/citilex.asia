@@ -437,8 +437,6 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
               </div>
             </div>
           )}
-          {/* Obfuscated Footer (Will not show if License is set) */}
-          <LicenseFooter />
         </div>
       </div>
     </>
