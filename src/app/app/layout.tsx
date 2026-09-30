@@ -48,8 +48,6 @@ export default async function CSLayout({ children }: { children: ReactNode }) {
           <div className="flex-1">
             {children}
           </div>
-          {/* Obfuscated Footer (Will not show if License is set) */}
-          <LicenseFooter />
         </main>
       </FactoryDataProvider>
     </div>

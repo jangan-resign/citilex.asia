@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+// @ts-ignore
+import { LicenseFooter } from "../../lib/core-ui";
 import {
   MessageSquare,
   Users,
@@ -435,6 +437,8 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
               </div>
             </div>
           )}
+          {/* Obfuscated Footer (Will not show if License is set) */}
+          <LicenseFooter />
         </div>
       </div>
     </>
