@@ -108,7 +108,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
     "hrd": "HRD Staff",
     "finance": "Finance Staff",
   };
-  
+
   const displayRole = roleDisplayNames[userRole] || userRole;
   // create initials from displayRole (e.g. "Super Admin" -> "SA")
   const initials = displayRole.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
@@ -182,208 +182,208 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
         <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-4 scrollbar-hide">
           {/* Sales Area */}
           {(["super-admin", "business-partner", "sales"].includes(userRole)) && (
-          <div className="space-y-1">
-            <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-              Sales Area
-            </h4>
-            {salesNavigation.map((item) => {
-              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  title={!isExpanded ? item.name : undefined}
-                  className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                    ? "bg-brand-gold-light text-brand-gold"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
-                    } ${!isExpanded ? "justify-center" : ""}`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
-                      } ${isExpanded && "mr-3"}`}
-                    aria-hidden="true"
-                  />
-                  <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+            <div className="space-y-1">
+              <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                Sales Area
+              </h4>
+              {salesNavigation.map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    title={!isExpanded ? item.name : undefined}
+                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                      ? "bg-brand-gold-light text-brand-gold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
+                      } ${!isExpanded ? "justify-center" : ""}`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
+                        } ${isExpanded && "mr-3"}`}
+                      aria-hidden="true"
+                    />
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           )}
 
           {/* CRM Area */}
           {(["super-admin", "business-partner", "crm"].includes(userRole)) && (
-          <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
-            <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-              CRM Area
-            </h4>
-            {(() => {
-              const items = [...crmNavigation];
-              // Move Inbox to CRM Area specifically for CRM role
-              if (userRole === "crm") {
-                const inboxItem = salesNavigation.find(i => i.name === "Inbox");
-                if (inboxItem) items.unshift(inboxItem);
-              }
-              return items;
-            })().map((item) => {
-              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  title={!isExpanded ? item.name : undefined}
-                  className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                    ? "bg-brand-gold-light text-brand-gold"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
-                    } ${!isExpanded ? "justify-center" : ""}`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
-                      } ${isExpanded && "mr-3"}`}
-                    aria-hidden="true"
-                  />
-                  <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+            <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
+              <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                CRM Area
+              </h4>
+              {(() => {
+                const items = [...crmNavigation];
+                // Move Inbox to CRM Area specifically for CRM role
+                if (userRole === "crm") {
+                  const inboxItem = salesNavigation.find(i => i.name === "Inbox");
+                  if (inboxItem) items.unshift(inboxItem);
+                }
+                return items;
+              })().map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    title={!isExpanded ? item.name : undefined}
+                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                      ? "bg-brand-gold-light text-brand-gold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
+                      } ${!isExpanded ? "justify-center" : ""}`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
+                        } ${isExpanded && "mr-3"}`}
+                      aria-hidden="true"
+                    />
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           )}
 
           {/* Materials Area */}
           {(["super-admin", "business-partner", "materials"].includes(userRole)) && (
-          <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
-            <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-              Materials Area
-            </h4>
-            {operationNavigation.map((item) => {
-              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  title={!isExpanded ? item.name : undefined}
-                  className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                    ? "bg-brand-gold-light text-brand-gold"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
-                    } ${!isExpanded ? "justify-center" : ""}`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
-                      } ${isExpanded && "mr-3"}`}
-                    aria-hidden="true"
-                  />
-                  <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+            <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
+              <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                Materials Area
+              </h4>
+              {operationNavigation.map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    title={!isExpanded ? item.name : undefined}
+                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                      ? "bg-brand-gold-light text-brand-gold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
+                      } ${!isExpanded ? "justify-center" : ""}`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
+                        } ${isExpanded && "mr-3"}`}
+                      aria-hidden="true"
+                    />
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           )}
 
           {/* Marketing Area */}
           {(["super-admin", "business-partner", "marketing"].includes(userRole)) && (
-          <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
-            <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-              Marketing Area
-            </h4>
-            {marketingNavigation.map((item) => {
-              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  title={!isExpanded ? item.name : undefined}
-                  className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                    ? "bg-brand-gold-light text-brand-gold"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
-                    } ${!isExpanded ? "justify-center" : ""}`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
-                      } ${isExpanded && "mr-3"}`}
-                    aria-hidden="true"
-                  />
-                  <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+            <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
+              <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                Marketing Area
+              </h4>
+              {marketingNavigation.map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    title={!isExpanded ? item.name : undefined}
+                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                      ? "bg-brand-gold-light text-brand-gold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
+                      } ${!isExpanded ? "justify-center" : ""}`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
+                        } ${isExpanded && "mr-3"}`}
+                      aria-hidden="true"
+                    />
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           )}
 
           {/* HRD Area */}
           {(["super-admin", "business-partner", "hrd"].includes(userRole)) && (
-          <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
-            <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-              HRD Area
-            </h4>
-            {hrdNavigation.map((item) => {
-              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  title={!isExpanded ? item.name : undefined}
-                  className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                    ? "bg-brand-gold-light text-brand-gold"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
-                    } ${!isExpanded ? "justify-center" : ""}`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
-                      } ${isExpanded && "mr-3"}`}
-                    aria-hidden="true"
-                  />
-                  <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+            <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
+              <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                HRD Area
+              </h4>
+              {hrdNavigation.map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    title={!isExpanded ? item.name : undefined}
+                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                      ? "bg-brand-gold-light text-brand-gold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
+                      } ${!isExpanded ? "justify-center" : ""}`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
+                        } ${isExpanded && "mr-3"}`}
+                      aria-hidden="true"
+                    />
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           )}
 
           {/* Finance Area */}
           {(["super-admin", "business-partner", "finance"].includes(userRole)) && (
-          <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
-            <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-              Finance Area
-            </h4>
-            {financeNavigation.map((item) => {
-              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  title={!isExpanded ? item.name : undefined}
-                  className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
-                    ? "bg-brand-gold-light text-brand-gold"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
-                    } ${!isExpanded ? "justify-center" : ""}`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
-                      } ${isExpanded && "mr-3"}`}
-                    aria-hidden="true"
-                  />
-                  <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
-                    {item.name}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+            <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
+              <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
+                Finance Area
+              </h4>
+              {financeNavigation.map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    title={!isExpanded ? item.name : undefined}
+                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                      ? "bg-brand-gold-light text-brand-gold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
+                      } ${!isExpanded ? "justify-center" : ""}`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 flex-shrink-0 transition-colors ${isActive ? "text-brand-gold" : "text-slate-400 group-hover:text-brand-primary"
+                        } ${isExpanded && "mr-3"}`}
+                      aria-hidden="true"
+                    />
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           )}
 
           {/* Settings Area Removed - Now only in dropdown */}
@@ -391,7 +391,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
 
         {/* User Profile */}
         <div ref={profileRef} className="relative border-t border-slate-200 p-4">
-          <div 
+          <div
             onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
             className={`flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-slate-50 transition-colors ${!isExpanded ? "justify-center" : ""}`}
             title={!isExpanded ? displayRole : undefined}
@@ -404,7 +404,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
               <span className="text-xs text-slate-500">Online</span>
             </div>
           </div>
-          
+
           {/* Profile Dropdown Menu */}
           {isProfileMenuOpen && (
             <div className={`absolute bottom-full left-4 mb-2 bg-white border border-slate-200 rounded-xl shadow-lg shadow-slate-200/50 overflow-hidden transition-all duration-200 ${isExpanded ? "w-56" : "w-48"}`}>
@@ -428,7 +428,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                   <Settings className="h-4 w-4" />
                   Settings
                 </Link>
-                <button 
+                <button
                   disabled={isLoggingOut}
                   onClick={() => {
                     setIsLoggingOut(true);
@@ -438,7 +438,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                       import("../../actions/auth").then(m => m.logoutAction());
                     }, 600);
                   }}
-                  className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-brand-primary hover:bg-slate-50 rounded-lg transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <LogOut className="w-4 h-4 flex-shrink-0" />
                   Logout
@@ -451,7 +451,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
 
       {/* Full-Screen Logout Overlay */}
       {isLoggingOut && (
-        <div 
+        <div
           className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-md"
           style={{
             background: 'rgba(26, 29, 37, 0.95)',
@@ -459,7 +459,8 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           }}
         >
           {/* Inject keyframes */}
-          <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
             @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
             @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
             @keyframes spinSlow { to { transform: rotate(360deg); } }
@@ -469,14 +470,14 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
 
           {/* Subtle dot pattern */}
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          
-          <div 
+
+          <div
             className="relative flex flex-col items-center gap-8"
             style={{ animation: 'zoomIn 0.5s ease-out 0.1s forwards', opacity: 0 }}
           >
             {/* Logo */}
             <img
-              src="/workspace.png"
+              src="/logout.png"
               alt="Logo"
               className="h-10 w-auto"
               style={{ opacity: 0.85 }}
@@ -485,19 +486,19 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
             {/* Double-ring spinner */}
             <div className="relative h-14 w-14">
               <div className="absolute inset-0 rounded-full border-2 border-white/[0.08]" />
-              <div 
+              <div
                 className="absolute inset-0 rounded-full border-2 border-transparent"
-                style={{ 
-                  borderTopColor: '#b8975a', 
-                  animation: 'spinSlow 0.8s linear infinite' 
-                }} 
+                style={{
+                  borderTopColor: '#b8975a',
+                  animation: 'spinSlow 0.8s linear infinite'
+                }}
               />
-              <div 
+              <div
                 className="absolute inset-2 rounded-full border-2 border-transparent"
-                style={{ 
-                  borderBottomColor: 'rgba(255,255,255,0.2)', 
-                  animation: 'spinReverse 1.2s linear infinite' 
-                }} 
+                style={{
+                  borderBottomColor: 'rgba(255,255,255,0.2)',
+                  animation: 'spinReverse 1.2s linear infinite'
+                }}
               />
             </div>
 
@@ -506,7 +507,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
               <span className="text-sm font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.85)' }}>
                 Signing you out...
               </span>
-              <span 
+              <span
                 className="text-xs"
                 style={{ color: 'rgba(255,255,255,0.35)', animation: 'pulse 2s ease-in-out infinite' }}
               >
