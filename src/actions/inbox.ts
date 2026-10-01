@@ -29,7 +29,7 @@ export async function getMessages(customerId: string) {
 
 import { sendWhatsAppMessage } from "../lib/whatsapp";
 
-export async function sendMessage(customerId: string, text: string, sender: "customer" | "bot" | "cs" | "crm") {
+export async function sendMessage(customerId: string, text: string, sender: "customer" | "bot" | "cs" | "crm", waText?: string) {
   // Ambil data customer untuk mengetahui nomor WA-nya
   const customer = await prisma.customer.findUnique({
     where: { id: customerId }
@@ -38,15 +38,16 @@ export async function sendMessage(customerId: string, text: string, sender: "cus
   if (!customer) throw new Error("Customer not found");
 
   // Jika yang ngirim bukan customer (yaitu dari dashboard kita), kirim via WA API
+  // Kirim waText (teks bersih tanpa format quote) jika tersedia, jika tidak kirim text biasa
   if (sender !== "customer") {
-    const sent = await sendWhatsAppMessage(customer.phone, text);
+    const textToSend = waText || text;
+    const sent = await sendWhatsAppMessage(customer.phone, textToSend);
     if (!sent) {
       console.error("Gagal mengirim pesan WA ke:", customer.phone);
-      // Opsional: Kamu bisa melempar error agar UI tahu pesan gagal terkirim,
-      // tapi untuk sekarang kita biarkan lanjut simpan ke DB sebagai history.
     }
   }
 
+  // Simpan text lengkap (termasuk format reply) ke DB untuk tampilan di inbox kita
   const message = await prisma.message.create({
     data: {
       customerId,

@@ -171,18 +171,26 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
     await changeChatOwner(customerId, owner);
   };
 
-  const handleSendMessage = async (customerId: string, text: string) => {
+  const handleSendMessage = async (customerId: string, text: string, replyContext?: { sender: string; text: string }) => {
     const customer = customers.find(c => c.id === customerId);
     if (!customer) return;
 
     const sender = customer.owner === "Karina" ? "bot" : customer.owner === "CRM" ? "crm" : "cs";
+
+    // Format teks untuk disimpan di DB (termasuk quote context jika ada)
+    let dbText = text;
+    if (replyContext) {
+      const senderName = replyContext.sender === "customer" ? customer.name : replyContext.sender === "bot" ? "Karina" : replyContext.sender === "crm" ? "CRM" : "CS";
+      const quotedSnippet = replyContext.text.length > 100 ? replyContext.text.slice(0, 100) + "..." : replyContext.text;
+      dbText = `[REPLY:${senderName}]${quotedSnippet}[/REPLY]\n${text}`;
+    }
 
     // Optimistic update
     const tempMessage = {
       id: Date.now().toString(),
       customerId,
       sender,
-      text,
+      text: dbText,
       isRead: true,
       attachments: [],
       createdAt: new Date(),
@@ -198,8 +206,8 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
       return c;
     }));
 
-    // Server Action
-    await sendMessage(customerId, text, sender);
+    // Server Action — kirim teks asli (tanpa quote) ke WA, tapi simpan dbText ke DB
+    await sendMessage(customerId, dbText, sender, text);
 
     // Smart Detection: Check if text looks like a quotation
     if (text.includes("*Total Keseluruhan: Rp") || text.includes("*Total Keseluruhan (Termasuk Jumbo): Rp")) {
@@ -240,7 +248,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
             customer={selectedCustomer}
             allCustomers={customers}
             onChangeOwner={(owner) => handleChangeOwner(selectedCustomer.id, owner)}
-            onSendMessage={(text) => handleSendMessage(selectedCustomer.id, text)}
+            onSendMessage={(text, replyContext) => handleSendMessage(selectedCustomer.id, text, replyContext)}
             onDeleteMessage={(messageId) => {
               setCustomers(customers.map(c => ({
                 ...c,

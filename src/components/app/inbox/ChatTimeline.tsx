@@ -8,7 +8,7 @@ interface ChatTimelineProps {
   customer: CustomerWithMessages;
   allCustomers?: CustomerWithMessages[];
   onChangeOwner: (owner: string) => void;
-  onSendMessage: (text: string) => void;
+  onSendMessage: (text: string, replyContext?: { sender: string; text: string }) => void;
   onDeleteMessage?: (messageId: string) => void;
   injectedText?: string;
   onInjectedTextCleared?: () => void;
@@ -57,15 +57,12 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   const handleSend = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (inputText.trim()) {
-      // Jika reply, format pesan dengan quote
-      let finalText = inputText;
       if (replyTo) {
-        const senderName = replyTo.sender === "customer" ? customer.name : replyTo.sender === "bot" ? "Karina" : replyTo.sender === "crm" ? "CRM" : "CS";
-        const quotedSnippet = replyTo.text.length > 80 ? replyTo.text.slice(0, 80) + "..." : replyTo.text;
-        finalText = `> _${senderName}: ${quotedSnippet}_\n\n${inputText}`;
+        onSendMessage(inputText, { sender: replyTo.sender, text: replyTo.text });
         setReplyTo(null);
+      } else {
+        onSendMessage(inputText);
       }
-      onSendMessage(finalText);
       setInputText("");
       if (textareaRef.current) {
         textareaRef.current.style.height = "auto";
@@ -107,6 +104,42 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     if (sender === "bot") return "Karina";
     if (sender === "crm") return "CRM Citilex";
     return "CS Citilex";
+  };
+
+  // Parse dan render pesan dengan visual quote block (seperti WA)
+  const renderMessageContent = (text: string) => {
+    // Format baru: [REPLY:SenderName]quoted text[/REPLY]\nactual reply
+    const newFormatMatch = text.match(/^\[REPLY:(.+?)\]([\s\S]*?)\[\/REPLY\]\n?([\s\S]*)$/);
+    if (newFormatMatch) {
+      const [, senderName, quotedText, replyText] = newFormatMatch;
+      return (
+        <div className="pr-5">
+          <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
+            <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
+            <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
+          </div>
+          <p className="text-sm whitespace-pre-wrap leading-relaxed">{replyText.trim()}</p>
+        </div>
+      );
+    }
+
+    // Format lama: > _Sender: quoted text_\n\nactual reply
+    const oldFormatMatch = text.match(/^> _(.+?): ([\s\S]*?)_\n\n([\s\S]*)$/);
+    if (oldFormatMatch) {
+      const [, senderName, quotedText, replyText] = oldFormatMatch;
+      return (
+        <div className="pr-5">
+          <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
+            <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
+            <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
+          </div>
+          <p className="text-sm whitespace-pre-wrap leading-relaxed">{replyText.trim()}</p>
+        </div>
+      );
+    }
+
+    // Pesan biasa tanpa quote
+    return <p className="text-sm whitespace-pre-wrap leading-relaxed pr-5">{text}</p>;
   };
 
   const filteredForwardCustomers = allCustomers
@@ -268,7 +301,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                   </div>
                 )}
                 
-                <p className="text-sm whitespace-pre-wrap leading-relaxed pr-5">{msg.text}</p>
+                {/* Message Content */}
+                {renderMessageContent(msg.text)}
                 
                 <div className="flex items-center justify-end gap-1 mt-1">
                   <span suppressHydrationWarning className="text-[10px] text-slate-400">
