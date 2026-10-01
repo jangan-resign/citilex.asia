@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import { ChatList } from "./ChatList";
 import { ChatTimeline } from "./ChatTimeline";
@@ -17,6 +18,15 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
   const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [injectedText, setInjectedText] = useState("");
+  const router = useRouter();
+
+  // Auto-refresh data (polling) setiap 5 detik agar pesan WA baru masuk otomatis
+  useEffect(() => {
+    const interval = setInterval(() => {
+      router.refresh();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [router]);
 
   useEffect(() => {
     setCustomers(initialCustomers);
