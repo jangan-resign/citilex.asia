@@ -239,8 +239,41 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
     }
   };
 
+  const handleSendMedia = async (customerId: string, assetUrl: string, mediaType: "document" | "image", filename: string) => {
+    const customer = customers.find(c => c.id === customerId);
+    if (!customer) return;
+
+    const sender = customer.owner === "Karina" ? "bot" : customer.owner === "CRM" ? "crm" : "cs";
+
+    // Optimistic update
+    const tempMessage = {
+      id: Date.now().toString(),
+      customerId,
+      sender,
+      text: filename,
+      isRead: true,
+      attachments: [assetUrl],
+      createdAt: new Date(),
+      wamid: null,
+      replyToWamid: null,
+    };
+
+    setCustomers(customers.map(c => {
+      if (c.id === customerId) {
+        return {
+          ...c,
+          messages: [...c.messages, tempMessage]
+        };
+      }
+      return c;
+    }));
+
+    const { sendMediaMessage } = await import("../../../actions/inbox");
+    await sendMediaMessage(customerId, assetUrl, mediaType, filename, sender);
+  };
+
   return (
-    <div className="flex h-full w-full bg-white relative">
+    <div className="absolute inset-0 flex bg-white z-10">
       {/* Kolom Kiri: Daftar Chat */}
       <div className={`w-full md:w-80 border-r border-slate-200 flex-col shrink-0 ${isMobileChatOpen ? 'hidden md:flex' : 'flex'}`}>
         <ChatList
@@ -261,6 +294,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
             allCustomers={customers}
             onChangeOwner={(owner) => handleChangeOwner(selectedCustomer.id, owner)}
             onSendMessage={(text, replyContext) => handleSendMessage(selectedCustomer.id, text, replyContext)}
+            onSendMedia={(assetUrl, mediaType, filename) => handleSendMedia(selectedCustomer.id, assetUrl, mediaType, filename)}
             onDeleteMessage={(messageId) => {
               setCustomers(customers.map(c => ({
                 ...c,

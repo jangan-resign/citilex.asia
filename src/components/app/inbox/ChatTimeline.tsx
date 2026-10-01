@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X, Loader2 } from "lucide-react";
-import { deleteMessage, forwardMessage, sendMediaMessage } from "../../../actions/inbox";
+import { deleteMessage, forwardMessage } from "../../../actions/inbox";
 import { getAssets } from "../../../actions/assets";
 import { CustomerWithMessages } from "./InboxClient";
 
@@ -10,13 +10,14 @@ interface ChatTimelineProps {
   allCustomers?: CustomerWithMessages[];
   onChangeOwner: (owner: string) => void;
   onSendMessage: (text: string, replyContext?: { sender: string; text: string; id: string }) => void;
+  onSendMedia?: (assetUrl: string, mediaType: "document" | "image", filename: string) => void;
   onDeleteMessage?: (messageId: string) => void;
   injectedText?: string;
   onInjectedTextCleared?: () => void;
   onBack?: () => void;
 }
 
-export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSendMessage, onDeleteMessage, injectedText, onInjectedTextCleared, onBack }: ChatTimelineProps) {
+export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSendMessage, onSendMedia, onDeleteMessage, injectedText, onInjectedTextCleared, onBack }: ChatTimelineProps) {
   const [inputText, setInputText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -131,9 +132,10 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     setIsSendingMedia(true);
     
     try {
-      const sender = customer.owner === "Karina" ? "bot" : customer.owner === "CRM" ? "crm" : "cs";
       const mediaType = asset.type === "image" ? "image" : "document";
-      await sendMediaMessage(customer.id, asset.url, mediaType, asset.name, sender);
+      if (onSendMedia) {
+        await onSendMedia(asset.url, mediaType, asset.name);
+      }
     } catch (err) {
       console.error(err);
       alert("Gagal mengirim aset");
@@ -228,7 +230,16 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     .filter(c => c.name.toLowerCase().includes(forwardSearch.toLowerCase()) || c.phone.includes(forwardSearch));
 
   return (
-    <div className="flex flex-col h-full bg-[#EFEAE2]"> {/* BG color similar to WA Web */}
+    <div className="flex flex-col h-full bg-[#EFEAE2] relative"> {/* BG color similar to WA Web */}
+      
+      {/* Full-screen Loading Overlay for Media Upload (WhatsApp Style) */}
+      {isSendingMedia && (
+        <div className="absolute inset-0 z-50 bg-[#0b141a]/80 flex flex-col items-center justify-center backdrop-blur-sm">
+          <Loader2 className="w-16 h-16 text-brand-gold animate-spin mb-4" />
+          <p className="text-white font-medium">Mengirim Asset...</p>
+        </div>
+      )}
+
       {/* Header */}
       <div className="h-16 px-4 md:px-6 border-b border-slate-200 bg-white flex items-center justify-between shrink-0 shadow-sm z-10">
         <div className="flex items-center gap-3 md:gap-4">
