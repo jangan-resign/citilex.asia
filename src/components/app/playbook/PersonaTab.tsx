@@ -61,7 +61,7 @@ export function PersonaTab() {
             <label className={`flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer transition-colors ${formData.tone === "ramah" ? "border-brand-gold bg-brand-gold-light/20" : "border-slate-200 hover:border-slate-300"}`}>
               <input type="radio" name="tone" value="ramah" className="sr-only" checked={formData.tone === "ramah"} onChange={(e) => setFormData({...formData, tone: e.target.value})} />
               <span className="font-bold text-slate-900 mb-1">Ramah & Santai</span>
-              <span className="text-xs text-slate-500 text-center">Banyak emoji, panggilan "Kak", hangat.</span>
+              <span className="text-xs text-slate-500 text-center">Emoji seperlunya, panggilan "Kak", hangat.</span>
             </label>
             <label className={`flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer transition-colors ${formData.tone === "profesional" ? "border-brand-gold bg-brand-gold-light/20" : "border-slate-200 hover:border-slate-300"}`}>
               <input type="radio" name="tone" value="profesional" className="sr-only" checked={formData.tone === "profesional"} onChange={(e) => setFormData({...formData, tone: e.target.value})} />
