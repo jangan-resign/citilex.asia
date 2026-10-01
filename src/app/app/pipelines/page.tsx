@@ -414,7 +414,7 @@ export default function PipelinesPage() {
               </div>
             </div>
             <div className="p-4 border-t border-slate-200 bg-slate-50 shrink-0 flex justify-end gap-2">
-              <button onClick={() => setIsAddModalOpen(false)} className="px-4 py-2 text-slate-600 font-semibold hover:bg-slate-200 rounded-lg transition-colors text-sm">Batal</button>
+              <button onClick={() => setIsAddModalOpen(false)} className="px-4 py-2 text-slate-600 font-semibold hover:bg-slate-200 rounded-lg transition-colors text-sm">Cancel</button>
               <button 
                 className="px-4 py-2 bg-brand-primary text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-sm shadow-sm"
                 onClick={async () => {
@@ -444,7 +444,7 @@ export default function PipelinesPage() {
                   setIsAddModalOpen(false);
                   window.location.reload();
                 }}
-              >Simpan</button>
+              >Save</button>
             </div>
           </div>
         </div>

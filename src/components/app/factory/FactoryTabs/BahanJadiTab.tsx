@@ -46,9 +46,7 @@ export function BahanJadiTab({ isReadOnly = false }: { isReadOnly?: boolean }) {
                 <button 
                   onClick={handleCancel}
                   className="flex-1 md:flex-none text-xs font-semibold whitespace-nowrap cursor-pointer px-3 py-2 md:py-1.5 rounded-md transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200"
-                >
-                  Batal
-                </button>
+                >Cancel</button>
               )}
               <button 
                 onClick={handleSave}
@@ -58,7 +56,7 @@ export function BahanJadiTab({ isReadOnly = false }: { isReadOnly?: boolean }) {
                     : "bg-slate-800 text-white hover:bg-slate-900 border border-slate-900"
                 }`}
               >
-                {isEditing ? "Simpan Perubahan" : "Edit Data Baju Jadi"}
+                {isEditing ? "Save" : "Edit Data Baju Jadi"}
               </button>
             </>
           )}

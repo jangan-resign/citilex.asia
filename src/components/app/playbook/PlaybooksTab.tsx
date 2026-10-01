@@ -173,16 +173,16 @@ export function PlaybooksTab() {
                   <textarea required value={formData.content} onChange={(e) => setFormData({...formData, content: e.target.value})} rows={10} className="w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50 font-mono text-sm"></textarea>
                 </div>
                 <div className="flex items-center gap-2">
-                  <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} className="w-4 h-4 text-brand-gold rounded focus:ring-brand-gold" />
+                  <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} className="w-4 h-4 rounded cursor-pointer accent-brand-gold shrink-0" />
                   <label htmlFor="isActive" className="text-sm font-medium text-slate-700">Aktif (Gunakan di Karina AI)</label>
                 </div>
               </form>
             </div>
             <div className="p-4 border-t border-slate-200 bg-slate-50 flex justify-end gap-2">
-              <button onClick={() => setIsModalOpen(false)} type="button" className="px-4 py-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 font-medium">Batal</button>
-              <button type="submit" form="sopForm" disabled={isSubmitting} className="px-4 py-2 bg-brand-gold text-white rounded-lg hover:bg-[#8a6f44] font-medium disabled:opacity-50 flex items-center gap-2">
+              <button onClick={() => setIsModalOpen(false)} type="button" className="px-4 py-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 font-medium">Cancel</button>
+              <button type="submit" form="sopForm" disabled={isSubmitting} className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium disabled:opacity-50 flex items-center gap-2">
                 {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                Simpan SOP
+                Save
               </button>
             </div>
           </div>

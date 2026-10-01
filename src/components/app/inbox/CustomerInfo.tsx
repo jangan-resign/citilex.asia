@@ -160,14 +160,13 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
                     disabled={isSaving}
                     className="flex-1 px-3 py-1.5 border border-slate-200 text-slate-600 rounded font-bold text-xs hover:bg-slate-50 cursor-pointer flex justify-center items-center gap-1"
                   >
-                    <X className="w-3 h-3" /> Batal
-                  </button>
+                    <X className="w-3 h-3" /> Cancel</button>
                   <button 
                     onClick={handleSave}
                     disabled={isSaving}
                     className="flex-1 px-3 py-1.5 bg-brand-primary text-white rounded font-bold text-xs hover:bg-brand-primary/90 cursor-pointer flex justify-center items-center gap-1"
                   >
-                    {isSaving ? "Menyimpan..." : <><Save className="w-3 h-3" /> Simpan</>}
+                    {isSaving ? "Menyimpan..." : <><Save className="w-3 h-3" /> Save</>}
                   </button>
                 </div>
               </div>

@@ -487,9 +487,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
               <button
                 onClick={() => setPendingUploadUrl(null)}
                 className="text-xs text-slate-400 hover:text-slate-600 font-bold underline cursor-pointer"
-              >
-                Batal
-              </button>
+              >Cancel</button>
             </div>
           </div>
         )}
@@ -519,9 +517,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
               <button
                 onClick={() => setShowDownloadPrompt(false)}
                 className="text-xs text-slate-400 hover:text-slate-600 font-bold underline cursor-pointer"
-              >
-                Batal
-              </button>
+              >Cancel</button>
             </div>
           </div>
         )}

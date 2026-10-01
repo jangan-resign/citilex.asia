@@ -356,16 +356,14 @@ export function InventoryClient({ initialInventory }: { initialInventory: Invent
                   type="button"
                   onClick={() => setIsModalOpen(false)}
                   className="px-5 py-2.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl font-medium text-sm transition-colors"
-                >
-                  Batal
-                </button>
+                >Cancel</button>
                 <button 
                   type="submit"
                   disabled={isSubmitting}
                   className="px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 text-white rounded-xl font-bold text-sm disabled:opacity-50 transition-all shadow-sm shadow-brand-primary/20 flex items-center gap-2 relative overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                  <span className="relative z-10">{isSubmitting ? 'Menyimpan...' : 'Simpan Stok'}</span>
+                  <span className="relative z-10">{isSubmitting ? 'Menyimpan...' : 'Save'}</span>
                 </button>
               </div>
             </form>
