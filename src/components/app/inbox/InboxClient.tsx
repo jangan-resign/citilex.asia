@@ -238,8 +238,15 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
         {selectedCustomer ? (
           <ChatTimeline
             customer={selectedCustomer}
+            allCustomers={customers}
             onChangeOwner={(owner) => handleChangeOwner(selectedCustomer.id, owner)}
             onSendMessage={(text) => handleSendMessage(selectedCustomer.id, text)}
+            onDeleteMessage={(messageId) => {
+              setCustomers(customers.map(c => ({
+                ...c,
+                messages: c.messages.filter(m => m.id !== messageId)
+              })));
+            }}
             injectedText={injectedText}
             onInjectedTextCleared={() => setInjectedText("")}
             onBack={() => setIsMobileChatOpen(false)}

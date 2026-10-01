@@ -146,3 +146,45 @@ export async function markMessagesAsRead(customerId: string) {
   revalidatePath("/app");
 }
 
+export async function deleteMessage(messageId: string) {
+  await prisma.message.delete({
+    where: { id: messageId }
+  });
+  revalidatePath("/app");
+}
+
+export async function forwardMessage(messageId: string, targetCustomerId: string) {
+  // Ambil pesan asli
+  const originalMessage = await prisma.message.findUnique({
+    where: { id: messageId },
+    include: { customer: true }
+  });
+  if (!originalMessage) throw new Error("Message not found");
+
+  // Ambil customer tujuan
+  const targetCustomer = await prisma.customer.findUnique({
+    where: { id: targetCustomerId }
+  });
+  if (!targetCustomer) throw new Error("Target customer not found");
+
+  const forwardedText = `*[Diteruskan dari ${originalMessage.customer.name}]*\n\n${originalMessage.text}`;
+
+  // Kirim via WA API
+  await sendWhatsAppMessage(targetCustomer.phone, forwardedText);
+
+  // Simpan ke DB
+  await prisma.message.create({
+    data: {
+      customerId: targetCustomerId,
+      text: forwardedText,
+      sender: "cs",
+    }
+  });
+
+  await prisma.customer.update({
+    where: { id: targetCustomerId },
+    data: { updatedAt: new Date() }
+  });
+
+  revalidatePath("/app");
+}
