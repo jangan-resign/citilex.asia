@@ -63,10 +63,11 @@ export function AssetsClient() {
                   alert(`ERROR! ${error.message}`);
                 }}
                 appearance={{
-                  button: "bg-brand-gold",
-                  label: "text-brand-gold font-semibold hover:text-brand-gold-dark",
+                  container: "cursor-pointer border-brand-gold/20 hover:border-brand-gold/50 transition-colors",
+                  button: "bg-slate-800 text-white hover:bg-slate-900 cursor-pointer",
+                  label: "text-brand-gold font-bold hover:text-brand-gold-dark",
                   allowedContent: "text-slate-500",
-                  uploadIcon: "text-brand-gold"
+                  uploadIcon: "text-slate-800"
                 }}
               />
             </div>
