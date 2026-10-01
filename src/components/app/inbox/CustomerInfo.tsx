@@ -113,7 +113,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
         {/* Tombol Kalkulator HPP */}
         <button 
           onClick={onOpenCalculator}
-          className="w-full bg-gradient-to-r from-brand-gold to-yellow-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-gold/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer text-sm"
+          className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer text-sm"
         >
           <ChevronLeft className="w-5 h-5" /> <Calculator className="w-5 h-5" /> Buka Calculator
         </button>

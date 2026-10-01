@@ -273,7 +273,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
             {/* Drawer Handle */}
             <button
               onClick={() => setIsCalculatorOpen(false)}
-              className="absolute -left-6 top-8 z-10 w-12 h-12 bg-brand-gold rounded-full shadow-lg flex items-center justify-center text-white hover:bg-yellow-600 cursor-pointer transition-all"
+              className="absolute -left-6 top-8 z-10 w-12 h-12 bg-slate-800 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-slate-900 cursor-pointer transition-all"
               title="Tutup Kalkulator"
             >
               <ChevronRight className="w-6 h-6" />

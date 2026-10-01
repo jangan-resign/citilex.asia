@@ -204,7 +204,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
               </button>
             ))}
             <div className="flex-1"></div>
-            <button onClick={() => setShowDownloadPrompt(true)} className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-brand-primary text-xs font-bold rounded-full shadow-sm border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <button onClick={() => setShowDownloadPrompt(true)} className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 text-white text-xs font-bold rounded-full shadow-sm hover:bg-slate-900 cursor-pointer transition-colors">
               <Download className="w-3.5 h-3.5" /> Download
             </button>
           </div>
@@ -458,7 +458,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
             <button
               onClick={handleApplyClick}
               disabled={logos.length === 0}
-              className="w-full bg-gradient-to-r from-brand-gold to-yellow-600 text-white font-black py-4 rounded-xl shadow-lg shadow-brand-gold/20 hover:opacity-90 disabled:opacity-50 disabled:shadow-none transition-all flex items-center justify-center gap-2 text-sm cursor-pointer"
+              className="w-full bg-slate-800 text-white font-bold py-4 rounded-xl shadow-sm hover:bg-slate-900 disabled:opacity-50 disabled:shadow-none transition-colors flex items-center justify-center gap-2 text-sm cursor-pointer"
             >
               <Ruler className="w-4 h-4" /> Terapkan ({logos.length} Titik Cetak)
             </button>
