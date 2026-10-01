@@ -41,10 +41,10 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     }
   }, [injectedText, onInjectedTextCleared]);
 
-  // Auto scroll to bottom
+  // Auto scroll to bottom (hanya jika ada pesan baru atau ganti chat)
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [customer.messages]);
+  }, [customer.id, customer.messages.length]);
 
   // Close dropdown on click outside
   useEffect(() => {

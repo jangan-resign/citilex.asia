@@ -86,7 +86,25 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Fetch unread count initially and every 5 seconds
+    const fetchUnread = async () => {
+      try {
+        const { getTotalUnreadCount } = await import("../../actions/inbox");
+        const count = await getTotalUnreadCount();
+        setUnreadCount(count);
+      } catch (err) {
+        // ignore
+      }
+    };
+    
+    fetchUnread();
+    const interval = setInterval(fetchUnread, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -194,7 +212,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                     href={item.href}
                     onClick={() => setIsMobileOpen(false)}
                     title={!isExpanded ? item.name : undefined}
-                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                    className={`relative group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
                       ? "bg-brand-gold-light text-brand-gold"
                       : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
                       } ${!isExpanded ? "justify-center" : ""}`}
@@ -204,9 +222,16 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                         } ${isExpanded && "mr-3"}`}
                       aria-hidden="true"
                     />
-                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 flex-1 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
                       {item.name}
                     </span>
+                    {item.name === "Inbox" && unreadCount > 0 && (
+                      <span className={`bg-red-500 text-white font-bold rounded-full flex items-center justify-center transition-all ${
+                        isExpanded ? "ml-2 w-5 h-5 text-[10px]" : "absolute top-2 right-2 w-3 h-3 text-[0px]"
+                      }`}>
+                        {isExpanded ? (unreadCount > 99 ? '99+' : unreadCount) : ''}
+                      </span>
+                    )}
                   </Link>
                 );
               })}
@@ -235,7 +260,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                     href={item.href}
                     onClick={() => setIsMobileOpen(false)}
                     title={!isExpanded ? item.name : undefined}
-                    className={`group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
+                    className={`relative group flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${isActive
                       ? "bg-brand-gold-light text-brand-gold"
                       : "text-slate-500 hover:bg-slate-50 hover:text-brand-primary"
                       } ${!isExpanded ? "justify-center" : ""}`}
@@ -245,9 +270,16 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                         } ${isExpanded && "mr-3"}`}
                       aria-hidden="true"
                     />
-                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
+                    <span className={`overflow-hidden whitespace-nowrap transition-all duration-300 flex-1 ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>
                       {item.name}
                     </span>
+                    {item.name === "Inbox" && unreadCount > 0 && (
+                      <span className={`bg-red-500 text-white font-bold rounded-full flex items-center justify-center transition-all ${
+                        isExpanded ? "ml-2 w-5 h-5 text-[10px]" : "absolute top-2 right-2 w-3 h-3 text-[0px]"
+                      }`}>
+                        {isExpanded ? (unreadCount > 99 ? '99+' : unreadCount) : ''}
+                      </span>
+                    )}
                   </Link>
                 );
               })}

@@ -3,6 +3,16 @@
 import { prisma } from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 
+export async function getTotalUnreadCount() {
+  const count = await prisma.message.count({
+    where: {
+      isRead: false,
+      sender: "customer",
+    },
+  });
+  return count;
+}
+
 export async function getCustomers() {
   const customers = await prisma.customer.findMany({
     where: {
