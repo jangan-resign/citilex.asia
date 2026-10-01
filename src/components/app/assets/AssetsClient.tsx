@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { FileText, Image as ImageIcon, Trash2, FolderOpen, Loader2 } from "lucide-react";
 import { UploadDropzone } from "../../../utils/uploadthing";
