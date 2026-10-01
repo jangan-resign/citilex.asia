@@ -194,6 +194,8 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
       isRead: true,
       attachments: [],
       createdAt: new Date(),
+      wamid: null,
+      replyToWamid: null,
     };
 
     setCustomers(customers.map(c => {
