@@ -37,7 +37,7 @@ export async function getMessages(customerId: string) {
   return messages;
 }
 
-import { sendWhatsAppMessage } from "../lib/whatsapp";
+import { sendWhatsAppMessage, sendWhatsAppMedia } from "../lib/whatsapp";
 
 export async function sendMessage(customerId: string, text: string, sender: "customer" | "bot" | "cs" | "crm", waText?: string, replyToMessageId?: string) {
   const customer = await prisma.customer.findUnique({ where: { id: customerId } });
@@ -71,6 +71,41 @@ export async function sendMessage(customerId: string, text: string, sender: "cus
       sender,
       ...(sentWamid && { wamid: sentWamid }),
       ...(replyToWamid && { replyToWamid }),
+    },
+  });
+
+  await prisma.customer.update({
+    where: { id: customerId },
+    data: { updatedAt: new Date() },
+  });
+
+  revalidatePath("/app");
+  return message;
+}
+
+export async function sendMediaMessage(customerId: string, mediaUrl: string, mediaType: "document" | "image", filename: string, sender: "customer" | "bot" | "cs" | "crm") {
+  const customer = await prisma.customer.findUnique({ where: { id: customerId } });
+  if (!customer) throw new Error("Customer not found");
+
+  let sentWamid: string | null = null;
+
+  if (sender !== "customer") {
+    const result = await sendWhatsAppMedia(customer.phone, mediaUrl, mediaType, filename);
+    if (result && typeof result === "string") {
+      sentWamid = result;
+    } else if (!result) {
+      console.error("Gagal mengirim media WA ke:", customer.phone);
+    }
+  }
+
+  // Simpan ke DB dengan attachments
+  const message = await prisma.message.create({
+    data: {
+      customerId,
+      text: filename, // Gunakan nama file sebagai teks fallback
+      sender,
+      attachments: [mediaUrl],
+      ...(sentWamid && { wamid: sentWamid }),
     },
   });
 

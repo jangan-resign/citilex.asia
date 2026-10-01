@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X } from "lucide-react";
-import { CustomerWithMessages } from "./InboxClient";
-import { deleteMessage, forwardMessage } from "../../../actions/inbox";
+import { deleteMessage, forwardMessage, sendMediaMessage } from "../../../actions/inbox";
 import { getAssets } from "../../../actions/assets";
+import { CustomerWithMessages } from "./InboxClient";
 
 
 interface ChatTimelineProps {
@@ -125,10 +125,18 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     }
   };
 
-  const handleSelectAsset = (asset: any) => {
-    const textToInject = `*${asset.name}*\n${asset.url}`;
-    setInputText(prev => prev ? prev + '\n' + textToInject : textToInject);
+  const handleSelectAsset = async (asset: any) => {
     setShowAssetModal(false);
+    
+    try {
+      const sender = customer.owner === "Karina" ? "bot" : customer.owner === "CRM" ? "crm" : "cs";
+      const mediaType = asset.type === "image" ? "image" : "document";
+      await sendMediaMessage(customer.id, asset.url, mediaType, asset.name, sender);
+      // alert("Aset sedang dikirim. Pesan akan muncul sesaat lagi.");
+    } catch (err) {
+      console.error(err);
+      alert("Gagal mengirim aset");
+    }
   };
 
   const getSenderLabel = (sender: string) => {
@@ -139,13 +147,45 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   };
 
   // Parse dan render pesan dengan visual quote block (seperti WA)
-  const renderMessageContent = (text: string) => {
+  const renderMessageContent = (msg: any) => {
+    const { text, attachments } = msg;
+
+    let attachmentElements = null;
+    if (attachments && attachments.length > 0) {
+      attachmentElements = (
+        <div className="flex flex-col gap-2 mb-2">
+          {attachments.map((url: string, i: number) => {
+            const isImage = url.match(/\.(jpeg|jpg|gif|png)$/) != null || text === "image";
+            if (isImage) {
+              return (
+                <div key={i} className="rounded-lg overflow-hidden border border-slate-200">
+                  <img src={url} alt="Attachment" className="max-w-full h-auto max-h-60 object-contain bg-slate-50" />
+                </div>
+              );
+            }
+            return (
+              <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-black/5 rounded-lg border border-slate-200 hover:bg-black/10 transition-colors">
+                <div className="h-10 w-10 bg-red-100 text-red-500 rounded flex items-center justify-center shrink-0">
+                  <span className="font-bold text-[10px]">PDF</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-semibold text-slate-800 truncate">{text || "Document"}</p>
+                  <p className="text-[10px] text-slate-500">Klik untuk melihat file</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      );
+    }
+
     // Format baru: [REPLY:SenderName]quoted text[/REPLY]\nactual reply
     const newFormatMatch = text.match(/^\[REPLY:(.+?)\]([\s\S]*?)\[\/REPLY\]\n?([\s\S]*)$/);
     if (newFormatMatch) {
       const [, senderName, quotedText, replyText] = newFormatMatch;
       return (
         <div className="pr-5">
+          {attachmentElements}
           <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
             <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
             <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
@@ -161,6 +201,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
       const [, senderName, quotedText, replyText] = oldFormatMatch;
       return (
         <div className="pr-5">
+          {attachmentElements}
           <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
             <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
             <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
@@ -171,7 +212,12 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     }
 
     // Pesan biasa tanpa quote
-    return <p className="text-sm whitespace-pre-wrap leading-relaxed pr-5">{text}</p>;
+    return (
+      <div className="pr-5">
+        {attachmentElements}
+        {!attachmentElements && <p className="text-sm whitespace-pre-wrap leading-relaxed">{text}</p>}
+      </div>
+    );
   };
 
   const filteredForwardCustomers = allCustomers
@@ -336,7 +382,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                 )}
                 
                 {/* Message Content */}
-                {renderMessageContent(msg.text)}
+                {renderMessageContent(msg)}
                 
                 <div className="flex items-center justify-end gap-1 mt-1">
                   <span suppressHydrationWarning className="text-[10px] text-slate-400">
