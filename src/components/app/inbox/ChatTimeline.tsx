@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X } from "lucide-react";
+import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X, Loader2 } from "lucide-react";
 import { deleteMessage, forwardMessage, sendMediaMessage } from "../../../actions/inbox";
 import { getAssets } from "../../../actions/assets";
 import { CustomerWithMessages } from "./InboxClient";
@@ -30,6 +30,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   const [showAssetModal, setShowAssetModal] = useState(false);
   const [assets, setAssets] = useState<any[]>([]);
   const [isLoadingAssets, setIsLoadingAssets] = useState(false);
+  const [isSendingMedia, setIsSendingMedia] = useState(false);
 
   // Auto-expand textarea
   useEffect(() => {
@@ -127,15 +128,17 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
 
   const handleSelectAsset = async (asset: any) => {
     setShowAssetModal(false);
+    setIsSendingMedia(true);
     
     try {
       const sender = customer.owner === "Karina" ? "bot" : customer.owner === "CRM" ? "crm" : "cs";
       const mediaType = asset.type === "image" ? "image" : "document";
       await sendMediaMessage(customer.id, asset.url, mediaType, asset.name, sender);
-      // alert("Aset sedang dikirim. Pesan akan muncul sesaat lagi.");
     } catch (err) {
       console.error(err);
       alert("Gagal mengirim aset");
+    } finally {
+      setIsSendingMedia(false);
     }
   };
 
@@ -418,8 +421,9 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
         <form onSubmit={handleSend} className="flex items-center gap-2 max-w-4xl mx-auto">
           <button 
             type="button"
-            className="p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-200 rounded-full transition-colors cursor-pointer"
+            className="p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-200 rounded-full transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleOpenAssetPicker}
+            disabled={isSendingMedia || customer.owner === "Karina"}
           >
             <Paperclip className="h-5 w-5" />
           </button>
@@ -431,22 +435,28 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
-                handleSend();
+                if (!isSendingMedia) handleSend();
               }
             }}
-            disabled={customer.owner === "Karina"}
-            placeholder={customer.owner === "Karina" ? "Pindahkan ke mode CS/CRM untuk membalas..." : "Ketik pesan untuk pelanggan..."}
+            disabled={customer.owner === "Karina" || isSendingMedia}
+            placeholder={isSendingMedia ? "Mengirim Aset..." : customer.owner === "Karina" ? "Pindahkan ke mode CS/CRM untuk membalas..." : "Ketik pesan untuk pelanggan..."}
             className="flex-1 px-4 py-3 bg-white border-none rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold/50 shadow-sm disabled:bg-slate-100 disabled:cursor-not-allowed resize-none min-h-[44px] overflow-y-auto"
             rows={1}
           />
           
-          <button 
-            type="submit"
-            disabled={!inputText.trim() || customer.owner === "Karina"}
-            className="p-3 bg-brand-primary text-white rounded-full hover:bg-brand-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm cursor-pointer"
-          >
-            <Send className="h-5 w-5 ml-1" />
-          </button>
+          {isSendingMedia ? (
+            <div className="p-3 bg-slate-200 text-slate-500 rounded-full">
+              <Loader2 className="h-5 w-5 animate-spin" />
+            </div>
+          ) : (
+            <button 
+              type="submit"
+              disabled={!inputText.trim() || customer.owner === "Karina"}
+              className="p-3 bg-brand-primary text-white rounded-full hover:bg-brand-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm cursor-pointer"
+            >
+              <Send className="h-5 w-5 -ml-0.5" />
+            </button>
+          )}
         </form>
       </div>
 
