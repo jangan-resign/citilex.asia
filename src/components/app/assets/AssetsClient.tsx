@@ -64,7 +64,7 @@ export function AssetsClient() {
                 }}
                 appearance={{
                   container: "cursor-pointer border-brand-gold/20 hover:border-brand-gold/50 transition-colors",
-                  button: "bg-slate-800 text-white hover:bg-slate-900 cursor-pointer",
+                  button: "bg-slate-800 text-white hover:bg-slate-900 !cursor-pointer",
                   label: "text-brand-gold font-bold hover:text-brand-gold-dark",
                   allowedContent: "text-slate-500",
                   uploadIcon: "text-slate-800"
