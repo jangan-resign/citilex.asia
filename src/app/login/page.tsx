@@ -11,6 +11,7 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,8 +28,11 @@ export default function LoginPage() {
       setError(result.error);
       setIsLoading(false);
     } else if (result?.success) {
-      router.push("/app");
-      router.refresh();
+      setIsTransitioning(true);
+      setTimeout(() => {
+        router.push("/app");
+        router.refresh();
+      }, 600);
     }
   };
 
@@ -105,6 +109,75 @@ export default function LoginPage() {
           <p className="text-xs text-brand-onyx/40">Secure Area &copy; {new Date().getFullYear()} CITILEX ASIA</p>
         </div>
       </div>
+
+      {/* Full-Screen Login Transition Overlay */}
+      {isTransitioning && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center backdrop-blur-md"
+          style={{
+            background: 'rgba(26, 29, 37, 0.95)',
+            animation: 'fadeIn 0.3s ease-out forwards',
+          }}
+        >
+          {/* Inject keyframes */}
+          <style dangerouslySetInnerHTML={{
+            __html: `
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+            @keyframes spinSlow { to { transform: rotate(360deg); } }
+            @keyframes spinReverse { to { transform: rotate(-360deg); } }
+            @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+          `}} />
+
+          {/* Subtle dot pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+          <div
+            className="relative flex flex-col items-center gap-8"
+            style={{ animation: 'zoomIn 0.5s ease-out 0.1s forwards', opacity: 0 }}
+          >
+            {/* Logo */}
+            <img
+              src="/login-logout.png"
+              alt="Logo"
+              className="h-10 w-auto"
+              style={{ opacity: 0.85 }}
+            />
+
+            {/* Double-ring spinner */}
+            <div className="relative h-14 w-14">
+              <div className="absolute inset-0 rounded-full border-2 border-white/[0.08]" />
+              <div
+                className="absolute inset-0 rounded-full border-2 border-transparent"
+                style={{
+                  borderTopColor: '#b8975a',
+                  animation: 'spinSlow 0.8s linear infinite'
+                }}
+              />
+              <div
+                className="absolute inset-2 rounded-full border-2 border-transparent"
+                style={{
+                  borderBottomColor: 'rgba(255,255,255,0.2)',
+                  animation: 'spinReverse 1.2s linear infinite'
+                }}
+              />
+            </div>
+
+            {/* Text */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-sm font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                Signing you in...
+              </span>
+              <span
+                className="text-xs"
+                style={{ color: 'rgba(255,255,255,0.35)', animation: 'pulse 2s ease-in-out infinite' }}
+              >
+                Preparing your workspace ✨
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
