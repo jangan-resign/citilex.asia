@@ -1,4 +1,6 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
+import { prisma } from "../../../lib/prisma";
+import { compileKarinaContext } from "../../../actions/playbook";
 
 const f = createUploadthing();
 
@@ -9,14 +11,27 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async () => {
       // This code runs on your server before upload
-      // For now, return a dummy user ID since we haven't integrated auth fully
       return { userId: "admin" };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
-      console.log("Upload complete for userId:", metadata.userId);
-      console.log("file url", file.url);
+      // Simpan metadata ke DB agar tidak hilang meskipun client crash
+      const asset = await prisma.asset.create({
+        data: {
+          name: file.name,
+          type: file.type.startsWith("image/") ? "image" : "pdf",
+          url: file.url,
+          size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+        },
+      });
+
+      // Auto-compile context Karina agar tahu ada aset baru
+      await compileKarinaContext();
+
+      console.log("Asset saved to DB:", asset.id, "for userId:", metadata.userId);
+      return { assetId: asset.id };
     }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
+

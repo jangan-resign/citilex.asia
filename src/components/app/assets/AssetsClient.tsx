@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { FileText, Image as ImageIcon, Trash2, FolderOpen, Loader2 } from "lucide-react";
 import { UploadDropzone } from "../../../utils/uploadthing";
-import { getAssets, createAsset, deleteAsset } from "../../../actions/assets";
+import { getAssets, deleteAsset } from "../../../actions/assets";
 
 export function AssetsClient() {
   const [assets, setAssets] = useState<any[]>([]);
@@ -53,16 +53,8 @@ export function AssetsClient() {
             <div className="p-6 border-b border-slate-200 bg-slate-50/50">
               <UploadDropzone
                 endpoint="assetUploader"
-                onClientUploadComplete={async (res) => {
+                onClientUploadComplete={(res) => {
                   if (res && res.length > 0) {
-                    for (const file of res) {
-                      await createAsset({
-                        name: file.name,
-                        type: file.type.startsWith("image/") ? "image" : "pdf",
-                        url: file.url,
-                        size: (file.size / 1024 / 1024).toFixed(2) + " MB",
-                      });
-                    }
                     fetchAssets();
                     alert("Upload berhasil!");
                   }

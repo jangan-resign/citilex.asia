@@ -10,8 +10,7 @@ export async function generateKarinaResponse(customerPhone: string, messageHisto
   // Konteks Karina dari DB
   let systemInstruction = `Kamu adalah Karina, Customer Service ramah dari Citilex Asia.`;
   try {
-    const { PrismaClient } = require('@prisma/client');
-    const prisma = new PrismaClient();
+    const { prisma } = require('../lib/prisma');
     const config = await prisma.systemConfig.findUnique({ where: { key: "karina_context" } });
     if (config?.value) {
       systemInstruction = JSON.parse(config.value as string);
