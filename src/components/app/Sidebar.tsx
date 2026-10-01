@@ -226,7 +226,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                       {item.name}
                     </span>
                     {item.name === "Inbox" && unreadCount > 0 && (
-                      <span className={`bg-red-500 text-white font-bold rounded-full flex items-center justify-center transition-all ${
+                      <span className={`bg-brand-primary text-white font-bold rounded-full flex items-center justify-center transition-all ${
                         isExpanded ? "ml-2 w-5 h-5 text-[10px]" : "absolute top-2 right-2 w-3 h-3 text-[0px]"
                       }`}>
                         {isExpanded ? (unreadCount > 99 ? '99+' : unreadCount) : ''}
@@ -274,7 +274,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                       {item.name}
                     </span>
                     {item.name === "Inbox" && unreadCount > 0 && (
-                      <span className={`bg-red-500 text-white font-bold rounded-full flex items-center justify-center transition-all ${
+                      <span className={`bg-brand-primary text-white font-bold rounded-full flex items-center justify-center transition-all ${
                         isExpanded ? "ml-2 w-5 h-5 text-[10px]" : "absolute top-2 right-2 w-3 h-3 text-[0px]"
                       }`}>
                         {isExpanded ? (unreadCount > 99 ? '99+' : unreadCount) : ''}
