@@ -241,15 +241,12 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
       )}
 
       {/* Header */}
-      <div className="h-16 px-4 md:px-6 border-b border-slate-200 bg-white flex items-center justify-between shrink-0 shadow-sm z-10">
-        <div className="flex items-center gap-3 md:gap-4">
-          {onBack && (
-            <button onClick={onBack} className="md:hidden p-2 -ml-2 text-slate-500 hover:text-slate-800">
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-          )}
-          {/* Customer info dipindah ke Sidebar Kanan */}
-        </div>
+      <div className="h-16 px-4 md:px-6 border-b border-slate-200 bg-white flex items-center justify-center shrink-0 shadow-sm z-10 relative">
+        {onBack && (
+          <button onClick={onBack} className="md:hidden absolute left-4 p-2 -ml-2 text-slate-500 hover:text-slate-800">
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+        )}
 
         <div className="flex items-center gap-3">
           {/* Ownership Controls */}
