@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Bot, User } from "lucide-react";
+import { Search, Bot, User, Briefcase } from "lucide-react";
 import { CustomerWithMessages } from "./InboxClient";
 
 interface ChatListProps {
