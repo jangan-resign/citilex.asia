@@ -477,7 +477,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           >
             {/* Logo */}
             <img
-              src="/logout.png"
+              src="/login-logout.png"
               alt="Logo"
               className="h-10 w-auto"
               style={{ opacity: 0.85 }}
