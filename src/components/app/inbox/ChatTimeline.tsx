@@ -23,6 +23,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   const [replyTo, setReplyTo] = useState<{ id: string; sender: string; text: string } | null>(null);
   const [showForwardModal, setShowForwardModal] = useState<string | null>(null);
   const [forwardSearch, setForwardSearch] = useState("");
+  const [isForwarding, setIsForwarding] = useState(false);
 
   // Auto-expand textarea
   useEffect(() => {
@@ -89,6 +90,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   };
 
   const handleForward = async (messageId: string, targetCustomerId: string) => {
+    if (isForwarding) return;
+    setIsForwarding(true);
     try {
       await forwardMessage(messageId, targetCustomerId);
       setShowForwardModal(null);
@@ -96,6 +99,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
       alert("Pesan berhasil diteruskan!");
     } catch (err) {
       alert("Gagal meneruskan pesan");
+    } finally {
+      setIsForwarding(false);
     }
   };
 
@@ -400,15 +405,19 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                   <button
                     key={c.id}
                     onClick={() => handleForward(showForwardModal, c.id)}
-                    className="w-full px-4 py-3 hover:bg-slate-50 flex items-center gap-3 text-left cursor-pointer transition-colors"
+                    disabled={isForwarding}
+                    className="w-full px-4 py-3 hover:bg-slate-50 flex items-center justify-between text-left cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold uppercase shrink-0">
-                      {c.name.charAt(0)}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold uppercase shrink-0">
+                        {c.name.charAt(0)}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-slate-800 truncate">{c.name}</p>
+                        <p className="text-xs text-slate-500">{c.phone}</p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-slate-800 truncate">{c.name}</p>
-                      <p className="text-xs text-slate-500">{c.phone}</p>
-                    </div>
+                    {isForwarding && <span className="text-xs text-brand-gold animate-pulse">Mengirim...</span>}
                   </button>
                 ))
               )}
