@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X } from "lucide-react";
 import { CustomerWithMessages } from "./InboxClient";
 import { deleteMessage, forwardMessage } from "../../../actions/inbox";
+import { getAssets } from "../../../actions/assets";
 
 
 interface ChatTimelineProps {
@@ -24,6 +25,11 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   const [showForwardModal, setShowForwardModal] = useState<string | null>(null);
   const [forwardSearch, setForwardSearch] = useState("");
   const [forwardingTo, setForwardingTo] = useState<string | null>(null);
+  
+  // Asset Picker
+  const [showAssetModal, setShowAssetModal] = useState(false);
+  const [assets, setAssets] = useState<any[]>([]);
+  const [isLoadingAssets, setIsLoadingAssets] = useState(false);
 
   // Auto-expand textarea
   useEffect(() => {
@@ -102,6 +108,27 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     } finally {
       setForwardingTo(null);
     }
+  };
+
+  const handleOpenAssetPicker = async () => {
+    setShowAssetModal(true);
+    if (assets.length === 0) {
+      setIsLoadingAssets(true);
+      try {
+        const fetchedAssets = await getAssets();
+        setAssets(fetchedAssets);
+      } catch (err) {
+        console.error("Failed to load assets", err);
+      } finally {
+        setIsLoadingAssets(false);
+      }
+    }
+  };
+
+  const handleSelectAsset = (asset: any) => {
+    const textToInject = `*${asset.name}*\n${asset.url}`;
+    setInputText(prev => prev ? prev + '\n' + textToInject : textToInject);
+    setShowAssetModal(false);
   };
 
   const getSenderLabel = (sender: string) => {
@@ -346,7 +373,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
           <button 
             type="button"
             className="p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-200 rounded-full transition-colors cursor-pointer"
-            onClick={() => alert("Upload file via UploadThing (TBD)")}
+            onClick={handleOpenAssetPicker}
           >
             <Paperclip className="h-5 w-5" />
           </button>
@@ -420,6 +447,48 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                     {forwardingTo === c.id && <span className="text-xs text-brand-gold animate-pulse">Mengirim...</span>}
                   </button>
                 ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Asset Picker */}
+      {showAssetModal && (
+        <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl w-full max-w-md shadow-xl overflow-hidden flex flex-col max-h-[80vh]">
+            <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0">
+              <h3 className="font-bold text-slate-800">Pilih Asset</h3>
+              <button onClick={() => setShowAssetModal(false)} className="text-slate-400 hover:text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto">
+              {isLoadingAssets ? (
+                <div className="p-8 text-center text-slate-500">Memuat asset...</div>
+              ) : assets.length === 0 ? (
+                <div className="p-8 text-center text-slate-500">
+                  Belum ada asset. Tambahkan di menu Assets.
+                </div>
+              ) : (
+                <div className="divide-y divide-slate-100">
+                  {assets.map((asset) => (
+                    <button
+                      key={asset.id}
+                      onClick={() => handleSelectAsset(asset)}
+                      className="w-full px-4 py-3 hover:bg-slate-50 flex items-center justify-between text-left cursor-pointer transition-colors"
+                    >
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-slate-800 truncate">{asset.name}</p>
+                        <p className="text-xs text-slate-500">{asset.type} • {asset.size}</p>
+                      </div>
+                      <span className="text-brand-primary text-xs font-semibold whitespace-nowrap ml-4">
+                        Pilih
+                      </span>
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
           </div>
