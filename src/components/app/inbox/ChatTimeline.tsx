@@ -248,13 +248,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
               <ChevronLeft className="h-6 w-6" />
             </button>
           )}
-          <div className="h-10 w-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold uppercase">
-            {customer.name.charAt(0)}
-          </div>
-          <div>
-            <h2 className="font-semibold text-slate-800">{customer.name}</h2>
-            <p className="text-xs text-slate-500">{customer.phone}</p>
-          </div>
+          {/* Customer info dipindah ke Sidebar Kanan */}
         </div>
 
         <div className="flex items-center gap-3">
