@@ -23,7 +23,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   const [replyTo, setReplyTo] = useState<{ id: string; sender: string; text: string } | null>(null);
   const [showForwardModal, setShowForwardModal] = useState<string | null>(null);
   const [forwardSearch, setForwardSearch] = useState("");
-  const [isForwarding, setIsForwarding] = useState(false);
+  const [forwardingTo, setForwardingTo] = useState<string | null>(null);
 
   // Auto-expand textarea
   useEffect(() => {
@@ -90,8 +90,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   };
 
   const handleForward = async (messageId: string, targetCustomerId: string) => {
-    if (isForwarding) return;
-    setIsForwarding(true);
+    if (forwardingTo) return;
+    setForwardingTo(targetCustomerId);
     try {
       await forwardMessage(messageId, targetCustomerId);
       setShowForwardModal(null);
@@ -100,7 +100,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     } catch (err) {
       alert("Gagal meneruskan pesan");
     } finally {
-      setIsForwarding(false);
+      setForwardingTo(null);
     }
   };
 
@@ -405,7 +405,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                   <button
                     key={c.id}
                     onClick={() => handleForward(showForwardModal, c.id)}
-                    disabled={isForwarding}
+                    disabled={!!forwardingTo}
                     className="w-full px-4 py-3 hover:bg-slate-50 flex items-center justify-between text-left cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -417,7 +417,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                         <p className="text-xs text-slate-500">{c.phone}</p>
                       </div>
                     </div>
-                    {isForwarding && <span className="text-xs text-brand-gold animate-pulse">Mengirim...</span>}
+                    {forwardingTo === c.id && <span className="text-xs text-brand-gold animate-pulse">Mengirim...</span>}
                   </button>
                 ))
               )}
