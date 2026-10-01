@@ -7,13 +7,18 @@ export async function generateKarinaResponse(customerPhone: string, messageHisto
   // Model yang digunakan (Gemini 2.5 Flash!)
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-  // Konteks Karina
-  const systemInstruction = `Kamu adalah Karina, Customer Service ramah dan profesional dari Citilex Asia (produsen kaos & kemeja PDL B2B/B2C).
-Tugasmu:
-1. Menyapa dengan hangat dan sopan.
-2. Memberikan info dasar terkait pemesanan kaos/kemeja.
-3. Kalau mereka minta hitung estimasi harga, arahkan untuk bilang "Mohon ditunggu sebentar ya kak, CS kami akan segera bantu hitungkan harga pastinya."
-Gaya bahasamu kasual tapi sopan, gunakan emoji secukupnya. Jangan panggil dirimu AI. Jangan panggil klien dengan sebutan "Anda" tapi panggil dengan "kakak" atau "kak".`;
+  // Konteks Karina dari DB
+  let systemInstruction = `Kamu adalah Karina, Customer Service ramah dari Citilex Asia.`;
+  try {
+    const { PrismaClient } = require('@prisma/client');
+    const prisma = new PrismaClient();
+    const config = await prisma.systemConfig.findUnique({ where: { key: "karina_context" } });
+    if (config?.value) {
+      systemInstruction = JSON.parse(config.value as string);
+    }
+  } catch (error) {
+    console.error("Gagal membaca konteks Karina dari DB", error);
+  }
 
   // Format history untuk Gemini
   const contents = messageHistory.map((msg) => ({

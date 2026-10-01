@@ -361,3 +361,48 @@ enum PipelineStage {
   DELIVERY
   PAYMENT
 }
+
+model Sop {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("sops")
+}
+
+model Knowledge {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("knowledges")
+}
+
+model Persona {
+  id               String   @id @default(cuid())
+  tone             String   @default("ramah")
+  coreInstructions String
+  updatedAt        DateTime @updatedAt
+
+  @@map("personas")
+}
+
+model Asset {
+  id          String   @id @default(cuid())
+  name        String
+  type        String
+  url         String
+  size        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("assets")
+}

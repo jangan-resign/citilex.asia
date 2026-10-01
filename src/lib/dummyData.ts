@@ -102,70 +102,8 @@ export const dummyChats: ChatSession[] = [
 ];
 
 // --- ACADEMY DUMMY DATA ---
+// Data dipindahkan ke Database (Tabel SOP, Knowledge, Persona, Asset)
 
-export interface Playbook {
-  id: string;
-  title: string;
-  description: string;
-  lastUpdated: string;
-  isActive: boolean;
-}
-
-export const dummyPlaybooks: Playbook[] = [
-  {
-    id: "pb-1",
-    title: "SOP Product & Client Identification",
-    description: "Panduan 6 script awal opening WA untuk menggali kebutuhan pelanggan.",
-    lastUpdated: "Hari ini, 10:00",
-    isActive: true,
-  },
-  {
-    id: "pb-2",
-    title: "SOP Komplain Pelanggan",
-    description: "Cara menangani pelanggan yang marah atau barang cacat.",
-    lastUpdated: "Kemarin, 14:30",
-    isActive: true,
-  },
-  {
-    id: "pb-3",
-    title: "SOP Penawaran Harga (Quotation)",
-    description: "Cara mengirimkan hasil kalkulator dan melakukan follow up.",
-    lastUpdated: "12 Ags 2026",
-    isActive: false,
-  }
-];
-
-export interface Knowledge {
-  id: string;
-  category: "Produk" | "Operasional" | "FAQ";
-  title: string;
-  content: string;
-  lastUpdated: string;
-}
-
-export const dummyKnowledge: Knowledge[] = [
-  {
-    id: "kn-1",
-    category: "Operasional",
-    title: "MOQ (Minimum Order Quantity)",
-    content: "Minimal order untuk kaos sablon adalah 100 pcs. Di bawah itu tidak bisa diproses.",
-    lastUpdated: "Hari ini"
-  },
-  {
-    id: "kn-2",
-    category: "Produk",
-    title: "Perbedaan Sablon dan Bordir",
-    content: "Sablon cocok untuk desain besar dan rumit di bahan kaos. Bordir cocok untuk logo kecil dan memberi kesan eksklusif, biasanya di kemeja atau polo.",
-    lastUpdated: "Kemarin"
-  },
-  {
-    id: "kn-3",
-    category: "FAQ",
-    title: "Waktu Produksi (Lead Time)",
-    content: "Standar waktu produksi adalah 3 hari kerja setelah DP diterima dan desain disetujui (tergantung antrean dan kerumitan).",
-    lastUpdated: "15 Ags 2026"
-  }
-];
 
 // --- PRODUCTS (MASTER DATA) DUMMY DATA ---
 
