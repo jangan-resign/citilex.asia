@@ -62,7 +62,12 @@ export function AssetsClient() {
                 onUploadError={(error: Error) => {
                   alert(`ERROR! ${error.message}`);
                 }}
-                className="ut-button:bg-brand-gold ut-button:ut-readying:bg-brand-gold/50 ut-label:text-brand-gold"
+                appearance={{
+                  button: "bg-brand-gold",
+                  label: "text-brand-gold font-semibold hover:text-brand-gold-dark",
+                  allowedContent: "text-slate-500",
+                  uploadIcon: "text-brand-gold"
+                }}
               />
             </div>
 
