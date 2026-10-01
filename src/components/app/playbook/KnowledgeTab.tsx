@@ -91,7 +91,7 @@ export function KnowledgeTab() {
             Kategori
           </button>
         </div>
-        <button onClick={() => handleOpenModal()} className="flex w-full md:w-auto justify-center items-center gap-2 px-4 py-2 bg-brand-gold text-white rounded-lg text-sm font-medium hover:bg-[#8a6f44] transition-colors cursor-pointer">
+        <button onClick={() => handleOpenModal()} className="flex w-full md:w-auto justify-center items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg text-sm font-medium hover:bg-slate-900 transition-colors cursor-pointer">
           <Plus className="h-4 w-4" />
           Tambah Knowledge
         </button>
@@ -175,7 +175,7 @@ export function KnowledgeTab() {
             </div>
             <div className="p-4 border-t border-slate-200 bg-slate-50 flex justify-end gap-2">
               <button onClick={() => setIsModalOpen(false)} type="button" className="px-4 py-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 font-medium">Batal</button>
-              <button type="submit" form="knowledgeForm" disabled={isSubmitting} className="px-4 py-2 bg-brand-gold text-white rounded-lg hover:bg-[#8a6f44] font-medium disabled:opacity-50 flex items-center gap-2">
+              <button type="submit" form="knowledgeForm" disabled={isSubmitting} className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium disabled:opacity-50 flex items-center gap-2">
                 {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
                 Simpan
               </button>
