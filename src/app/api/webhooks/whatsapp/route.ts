@@ -31,8 +31,9 @@ export async function POST(request: Request) {
           if (change.value && change.value.messages) {
             // Ada pesan masuk!
             const msg = change.value.messages[0];
-            const senderPhone = msg.from; // Nomor pengirim
-            const messageText = msg.text?.body || ""; // Isi pesan teks
+            const senderPhone = msg.from;
+            const messageText = msg.text?.body || "";
+            const incomingWamid = msg.id; // WhatsApp Message ID
             const senderProfileName = change.value.contacts?.[0]?.profile?.name || "Customer Baru";
 
             // Abaikan jika bukan pesan teks
@@ -55,12 +56,13 @@ export async function POST(request: Request) {
               });
             }
 
-            // 2. Simpan pesan masuk ke DB
+            // 2. Simpan pesan masuk ke DB (dengan wamid)
             await prisma.message.create({
               data: {
                 customerId: customer.id,
                 sender: "customer",
                 text: messageText,
+                wamid: incomingWamid,
               }
             });
 
@@ -82,17 +84,20 @@ export async function POST(request: Request) {
               // 4. Generate respons AI
               const karinaReply = await generateKarinaResponse(senderPhone, formattedHistory, messageText);
 
-              // 5. Kirim balasan via WhatsApp API
-              const sent = await sendWhatsAppMessage(senderPhone, karinaReply);
+              // 5. Kirim balasan via WhatsApp API (reply ke pesan masuk)
+              const sentResult = await sendWhatsAppMessage(senderPhone, karinaReply, incomingWamid);
 
-              if (sent) {
+              if (sentResult) {
+                const botWamid = typeof sentResult === "string" ? sentResult : null;
                 // 6. Simpan balasan bot ke DB
                 await prisma.message.create({
                   data: {
                     customerId: customer.id,
                     sender: "bot",
                     text: karinaReply,
-                    isRead: true, // Pesan keluar otomatis isRead
+                    isRead: true,
+                    ...(botWamid && { wamid: botWamid }),
+                    replyToWamid: incomingWamid,
                   }
                 });
               }

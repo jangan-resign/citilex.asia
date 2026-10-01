@@ -171,7 +171,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
     await changeChatOwner(customerId, owner);
   };
 
-  const handleSendMessage = async (customerId: string, text: string, replyContext?: { sender: string; text: string }) => {
+  const handleSendMessage = async (customerId: string, text: string, replyContext?: { sender: string; text: string; id: string }) => {
     const customer = customers.find(c => c.id === customerId);
     if (!customer) return;
 
@@ -207,7 +207,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
     }));
 
     // Server Action — kirim teks asli (tanpa quote) ke WA, tapi simpan dbText ke DB
-    await sendMessage(customerId, dbText, sender, text);
+    await sendMessage(customerId, dbText, sender, text, replyContext?.id);
 
     // Smart Detection: Check if text looks like a quotation
     if (text.includes("*Total Keseluruhan: Rp") || text.includes("*Total Keseluruhan (Termasuk Jumbo): Rp")) {

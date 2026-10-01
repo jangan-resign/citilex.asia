@@ -29,33 +29,41 @@ export async function getMessages(customerId: string) {
 
 import { sendWhatsAppMessage } from "../lib/whatsapp";
 
-export async function sendMessage(customerId: string, text: string, sender: "customer" | "bot" | "cs" | "crm", waText?: string) {
-  // Ambil data customer untuk mengetahui nomor WA-nya
-  const customer = await prisma.customer.findUnique({
-    where: { id: customerId }
-  });
-
+export async function sendMessage(customerId: string, text: string, sender: "customer" | "bot" | "cs" | "crm", waText?: string, replyToMessageId?: string) {
+  const customer = await prisma.customer.findUnique({ where: { id: customerId } });
   if (!customer) throw new Error("Customer not found");
 
-  // Jika yang ngirim bukan customer (yaitu dari dashboard kita), kirim via WA API
-  // Kirim waText (teks bersih tanpa format quote) jika tersedia, jika tidak kirim text biasa
+  let sentWamid: string | null = null;
+  let replyToWamid: string | null = null;
+
+  // Jika ini reply, cari wamid dari pesan yang di-reply
+  if (replyToMessageId) {
+    const replyToMsg = await prisma.message.findUnique({ where: { id: replyToMessageId } });
+    if (replyToMsg?.wamid) replyToWamid = replyToMsg.wamid;
+  }
+
+  // Kirim via WA API jika bukan customer
   if (sender !== "customer") {
     const textToSend = waText || text;
-    const sent = await sendWhatsAppMessage(customer.phone, textToSend);
-    if (!sent) {
+    const result = await sendWhatsAppMessage(customer.phone, textToSend, replyToWamid || undefined);
+    if (result && typeof result === "string") {
+      sentWamid = result;
+    } else if (!result) {
       console.error("Gagal mengirim pesan WA ke:", customer.phone);
     }
   }
 
-  // Simpan text lengkap (termasuk format reply) ke DB untuk tampilan di inbox kita
+  // Simpan ke DB (text lengkap termasuk format reply untuk inbox kita)
   const message = await prisma.message.create({
     data: {
       customerId,
       text,
       sender,
+      ...(sentWamid && { wamid: sentWamid }),
+      ...(replyToWamid && { replyToWamid }),
     },
   });
-  
+
   await prisma.customer.update({
     where: { id: customerId },
     data: { updatedAt: new Date() },
@@ -170,8 +178,9 @@ export async function forwardMessage(messageId: string, targetCustomerId: string
 
   const forwardedText = `*[Diteruskan dari ${originalMessage.customer.name}]*\n\n${originalMessage.text}`;
 
-  // Kirim via WA API
-  await sendWhatsAppMessage(targetCustomer.phone, forwardedText);
+  // Kirim via WA API dan capture wamid
+  const fwdResult = await sendWhatsAppMessage(targetCustomer.phone, forwardedText);
+  const fwdWamid = (fwdResult && typeof fwdResult === "string") ? fwdResult : null;
 
   // Simpan ke DB
   await prisma.message.create({
@@ -179,6 +188,7 @@ export async function forwardMessage(messageId: string, targetCustomerId: string
       customerId: targetCustomerId,
       text: forwardedText,
       sender: "cs",
+      ...(fwdWamid && { wamid: fwdWamid }),
     }
   });
 

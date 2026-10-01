@@ -78,14 +78,16 @@ model Customer {
 }
 
 model Message {
-  id          String   @id @default(cuid())
-  customerId  String   @map("customer_id")
-  sender      String
-  text        String
-  isRead      Boolean  @default(false)
-  attachments String[]
-  createdAt   DateTime @default(now())
-  customer    Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  id            String   @id @default(cuid())
+  customerId    String   @map("customer_id")
+  sender        String
+  text          String
+  isRead        Boolean  @default(false)
+  attachments   String[]
+  wamid         String?  @unique
+  replyToWamid  String?  @map("reply_to_wamid")
+  createdAt     DateTime @default(now())
+  customer      Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 
   @@map("messages")
 }

@@ -8,7 +8,7 @@ interface ChatTimelineProps {
   customer: CustomerWithMessages;
   allCustomers?: CustomerWithMessages[];
   onChangeOwner: (owner: string) => void;
-  onSendMessage: (text: string, replyContext?: { sender: string; text: string }) => void;
+  onSendMessage: (text: string, replyContext?: { sender: string; text: string; id: string }) => void;
   onDeleteMessage?: (messageId: string) => void;
   injectedText?: string;
   onInjectedTextCleared?: () => void;
@@ -58,7 +58,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     if (e) e.preventDefault();
     if (inputText.trim()) {
       if (replyTo) {
-        onSendMessage(inputText, { sender: replyTo.sender, text: replyTo.text });
+        onSendMessage(inputText, { sender: replyTo.sender, text: replyTo.text, id: replyTo.id });
         setReplyTo(null);
       } else {
         onSendMessage(inputText);
