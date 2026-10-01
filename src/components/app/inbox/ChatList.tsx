@@ -112,9 +112,13 @@ export function ChatList({ customers, selectedChatId, onSelectChat }: ChatListPr
                     {customer.phone}
                   </span>
                   <div className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold ${
-                    customer.owner === "Karina" ? "bg-purple-100 text-purple-700" : "bg-emerald-100 text-emerald-700"
+                    customer.owner === "Karina" 
+                      ? "bg-blue-100 text-blue-700" 
+                      : customer.owner === "CS"
+                        ? "bg-amber-100 text-amber-700"
+                        : "bg-emerald-100 text-emerald-700"
                   }`}>
-                    {customer.owner === "Karina" ? <Bot className="w-3 h-3" /> : <User className="w-3 h-3" />}
+                    {customer.owner === "Karina" ? <Bot className="w-3 h-3" /> : customer.owner === "CRM" ? <Briefcase className="w-3 h-3" /> : <User className="w-3 h-3" />}
                     <span>{customer.owner}</span>
                   </div>
                 </div>

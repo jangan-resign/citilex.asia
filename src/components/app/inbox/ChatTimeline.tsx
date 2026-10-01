@@ -210,7 +210,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
             </div>
           )}
           {customer.owner === "CS" && (
-            <div className="bg-brand-gold-light/50 text-brand-gold-dark text-xs px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm border border-brand-gold/20">
+            <div className="bg-amber-50 text-amber-700 text-xs px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm border border-amber-200">
               <Info className="h-4 w-4" />
               Percakapan ini sedang ditangani oleh CS.
             </div>
@@ -238,7 +238,9 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                     ? "bg-white text-slate-800 rounded-tl-sm border border-slate-100" 
                     : isBot
                       ? "bg-blue-50 text-slate-800 rounded-tr-sm border border-blue-100"
-                      : "bg-[#dcf8c6] text-slate-800 rounded-tr-sm border border-[#c1e8a8]"
+                      : msg.sender === "crm"
+                        ? "bg-emerald-50 text-slate-800 rounded-tr-sm border border-emerald-200"
+                        : "bg-amber-50 text-slate-800 rounded-tr-sm border border-amber-200"
                 }`}
               >
                 {/* Dropdown Toggle - inside bubble, top-right corner */}
@@ -248,7 +250,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                     setActiveDropdown(activeDropdown === msg.id ? null : msg.id);
                   }}
                   className={`absolute top-1 right-1 p-0.5 rounded-full text-slate-400 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity ${
-                    isCustomer ? "hover:bg-slate-100" : isBot ? "hover:bg-blue-100" : "hover:bg-[#c1e8a8]"
+                    isCustomer ? "hover:bg-slate-100" : isBot ? "hover:bg-blue-100" : msg.sender === "crm" ? "hover:bg-emerald-100" : "hover:bg-amber-100"
                   }`}
                 >
                   <ChevronDown className="w-4 h-4" />
