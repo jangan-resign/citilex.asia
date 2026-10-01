@@ -128,7 +128,7 @@ export function ChatList({ customers, selectedChatId, onSelectChat }: ChatListPr
                     {lastMessage?.text || "Tidak ada pesan."}
                   </p>
                   {unreadCount > 0 && (
-                    <span className="bg-brand-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0">
+                    <span className="bg-slate-800 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 shadow-sm">
                       {unreadCount}
                     </span>
                   )}
