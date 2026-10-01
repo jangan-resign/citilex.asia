@@ -77,6 +77,10 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
           { createdAt: "asc" },
           { id: "asc" }
         ],
+      },
+      invoices: {
+        where: { status: "PAID" },
+        orderBy: { updatedAt: "asc" },
       }
     }
   });
@@ -88,35 +92,42 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   let responseCountCRM = 0;
 
   customersWithMessages.forEach(customer => {
-    let lastCustomerMsgTimeCS: Date | null = null;
-    let lastCustomerMsgTimeCRM: Date | null = null;
-    let foundFirstCS = false;
-    let foundFirstCRM = false;
+    // 1. CS Response Time: waktu antara bubble terakhir Karina (atau klien) sebelum CS pertama kali membalas
+    const firstCSMsg = customer.messages.find(m => m.sender === "cs");
     
-    for (const msg of customer.messages) {
-      if (msg.sender === "customer") {
-        if (!foundFirstCS) lastCustomerMsgTimeCS = msg.createdAt;
-        if (!foundFirstCRM) lastCustomerMsgTimeCRM = msg.createdAt;
-      } else if (msg.sender === "cs" && !foundFirstCS) {
-        if (lastCustomerMsgTimeCS) {
-          const diffMs = msg.createdAt.getTime() - lastCustomerMsgTimeCS.getTime();
-          if (diffMs >= 0) {
-             totalResponseTimeCSMs += diffMs;
-             responseCountCS++;
-          }
-          foundFirstCS = true;
-        }
-      } else if (msg.sender === "crm" && !foundFirstCRM) {
-        if (lastCustomerMsgTimeCRM) {
-          const diffMs = msg.createdAt.getTime() - lastCustomerMsgTimeCRM.getTime();
-          if (diffMs >= 0) {
-             totalResponseTimeCRMMs += diffMs;
-             responseCountCRM++;
-          }
-          foundFirstCRM = true;
+    if (firstCSMsg) {
+      const firstCSIndex = customer.messages.indexOf(firstCSMsg);
+      let referenceMsg = null;
+      // Cari bubble bot (Karina) atau customer persis sebelum CS membalas
+      for (let i = firstCSIndex - 1; i >= 0; i--) {
+        if (customer.messages[i].sender === "bot" || customer.messages[i].sender === "customer") {
+          referenceMsg = customer.messages[i];
+          break;
         }
       }
-      if (foundFirstCS && foundFirstCRM) break;
+      
+      const referenceTime = referenceMsg ? referenceMsg.createdAt : customer.messages[0]?.createdAt;
+
+      if (referenceTime) {
+        const diffMs = firstCSMsg.createdAt.getTime() - referenceTime.getTime();
+        if (diffMs >= 0) {
+          totalResponseTimeCSMs += diffMs;
+          responseCountCS++;
+        }
+      }
+    }
+
+    // 2. CRM Response Time: waktu antara Invoice menjadi PAID dengan bubble pertama CRM setelahnya
+    const firstPaidInvoice = customer.invoices?.[0];
+    if (firstPaidInvoice) {
+      const firstCRMMsg = customer.messages.find(m => m.sender === "crm" && m.createdAt.getTime() >= firstPaidInvoice.updatedAt.getTime());
+      if (firstCRMMsg) {
+        const diffMs = firstCRMMsg.createdAt.getTime() - firstPaidInvoice.updatedAt.getTime();
+        if (diffMs >= 0) {
+          totalResponseTimeCRMMs += diffMs;
+          responseCountCRM++;
+        }
+      }
     }
   });
 
