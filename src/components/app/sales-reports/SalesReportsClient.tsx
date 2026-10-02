@@ -138,8 +138,8 @@ export function SalesReportsClient({
                     }}
                   />
                   {savingNotes[lead.id] && (
-                    <div className="absolute left-3 bottom-3 text-xs text-brand-primary flex items-center gap-1.5 font-bold animate-pulse bg-white/80 px-2 py-1 rounded shadow-sm">
-                      <Save className="w-4 h-4" /> Saving...
+                    <div className="absolute right-2 top-2 text-[10px] text-white flex items-center gap-1.5 font-bold animate-pulse bg-brand-primary/90 px-2 py-1 rounded shadow-sm backdrop-blur-sm pointer-events-none">
+                      <Save className="w-3 h-3" /> Saving...
                     </div>
                   )}
                 </div>
