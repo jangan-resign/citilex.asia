@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Save, Scissors, Plus, TrendingDown, TrendingUp, History, Package } from "lucide-react";
+import { Save, Scissors, Plus, TrendingDown, TrendingUp, History, Package, Loader2 } from "lucide-react";
 import { FABRIC_YIELD, FABRIC_COLORS_MAP } from "@/src/lib/factoryData";
 import { updateStock } from "@/src/actions/inventory";
 
@@ -363,7 +363,7 @@ export function InventoryClient({ initialInventory }: { initialInventory: Invent
                   className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                  <span className="relative z-10 flex items-center justify-center">{isSubmitting ? 'Menyimpan...' : <><Save className="w-4 h-4 mr-2" /> Save</>}</span>
+                  <span className="relative z-10 flex items-center justify-center">{isSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Menyimpan...</> : <><Save className="w-4 h-4 mr-2" /> Save</>}</span>
                 </button>
               </div>
             </form>

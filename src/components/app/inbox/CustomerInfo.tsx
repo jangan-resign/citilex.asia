@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Building, Phone, Calculator, ClipboardList, CheckCircle2, Edit3, X, Save, ChevronLeft, StickyNote, Trash2, FileText, Receipt, Copy, MessageSquare, ShoppingCart } from "lucide-react";
+import { Building, Phone, Calculator, ClipboardList, CheckCircle2, Edit3, X, Save, ChevronLeft, StickyNote, Trash2, FileText, Receipt, Copy, MessageSquare, ShoppingCart, Loader2 } from "lucide-react";
 import { CustomerWithMessages } from "./InboxClient";
 import { updateCustomerQualification, updateInboxNotes } from "../../../actions/inbox";
 
@@ -164,9 +164,9 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
                   <button 
                     onClick={handleSave}
                     disabled={isSaving}
-                    className="flex-1 px-3 py-1.5 bg-brand-primary text-white rounded font-bold text-xs hover:bg-brand-primary/90 cursor-pointer flex justify-center items-center gap-1"
+                    className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSaving ? "Menyimpan..." : <><Save className="w-4 h-4 mr-2" /> Save</>}
+                    {isSaving ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Menyimpan...</> : <><Save className="w-4 h-4 mr-2" /> Save</>}
                   </button>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { Plus, Trash2, FileText, Search, ArrowLeft, MoreHorizontal, CheckCircle, XCircle, Send, FileEdit, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useTransition } from 'react';
+import { Plus, Trash2, FileText, Search, ArrowLeft, MoreHorizontal, CheckCircle, XCircle, Send, FileEdit, ChevronDown, Loader2 } from 'lucide-react';
 import { getCustomers } from '@/src/actions/inbox';
 import { getQuotations, saveQuotationToDb } from '@/src/actions/documents';
 import { MonthYearFilter } from '../MonthYearFilter';
@@ -57,6 +57,7 @@ export function QuotationsClient({ initialMonth = "all" as any, initialYear = "a
   const [loadingList, setLoadingList] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [isPending, startTransition] = useTransition();
 
   const refreshList = () => {
     setLoadingList(true);
@@ -534,12 +535,15 @@ export function QuotationsClient({ initialMonth = "all" as any, initialYear = "a
     <div className="p-8 max-w-4xl mx-auto pb-32">
       <button 
         onClick={() => {
-          setView('list');
-          setDocNumberOverride(null); // Reset override when going back to list
+          startTransition(() => {
+            setView('list');
+            setDocNumberOverride(null); // Reset override when going back to list
+          });
         }}
-        className="flex items-center gap-2 text-slate-500 hover:text-slate-800 mb-6 font-medium transition-colors cursor-pointer"
+        disabled={isPending}
+        className="flex items-center gap-2 text-slate-500 hover:text-slate-800 mb-6 font-medium transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <ArrowLeft className="w-4 h-4" /> Kembali ke Riwayat
+        {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowLeft className="w-4 h-4" />} Kembali ke Riwayat
       </button>
 
       <h1 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">

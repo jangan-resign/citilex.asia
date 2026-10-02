@@ -9,6 +9,7 @@ import Link from "next/link";
 export default function NewTaxPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCanceling, setIsCanceling] = useState(false);
   const [formData, setFormData] = useState({
     period: new Date().toISOString().slice(0, 7), // "2026-09"
     type: "PPN",
@@ -40,9 +41,14 @@ export default function NewTaxPage() {
     <div className="flex flex-col h-full w-full bg-slate-50">
       <div className="bg-white border-b border-slate-200 px-8 py-8 shrink-0">
         <div className="max-w-3xl mx-auto">
-          <Link href="/app/finance/tax" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-4 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Tax Records
-          </Link>
+          <button 
+            type="button"
+            onClick={() => { setIsCanceling(true); router.push('/app/finance/tax'); }}
+            disabled={isCanceling}
+            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          >
+            {isCanceling ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowLeft className="w-4 h-4" />} Back to Tax Records
+          </button>
           <h1 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
             <Calculator className="h-7 w-7 text-brand-gold" />
             Record Tax
@@ -115,7 +121,14 @@ export default function NewTaxPage() {
             </div>
 
             <div className="pt-6 border-t border-slate-100 flex justify-end gap-3">
-              <Link href="/app/finance/tax" className="px-4 py-2 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-sm font-medium transition-colors">Cancel</Link>
+              <button 
+                type="button" 
+                onClick={() => { setIsCanceling(true); router.push('/app/finance/tax'); }} 
+                disabled={isSubmitting || isCanceling} 
+                className="px-4 py-2 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isCanceling ? <><Loader2 className="w-4 h-4 animate-spin" /> Membatalkan...</> : "Cancel"}
+              </button>
               <button 
                 type="submit" 
                 disabled={isSubmitting}
