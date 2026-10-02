@@ -94,7 +94,7 @@ export function PersonaTab() {
 
       {/* Footer */}
       <div className="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
-        <button onClick={handleSubmit} disabled={isSubmitting} className="flex items-center gap-2 px-6 py-2.5 bg-slate-800 text-white rounded-lg text-sm font-bold hover:bg-slate-900 transition-colors cursor-pointer shadow-sm disabled:opacity-50">
+        <button onClick={handleSubmit} disabled={isSubmitting} className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
           {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
           Save
         </button>

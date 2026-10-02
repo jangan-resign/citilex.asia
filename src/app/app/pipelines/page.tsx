@@ -416,7 +416,7 @@ export default function PipelinesPage() {
             <div className="p-4 border-t border-slate-200 bg-slate-50 shrink-0 flex justify-end gap-2">
               <button onClick={() => setIsAddModalOpen(false)} className="px-4 py-2 text-slate-600 font-semibold hover:bg-slate-200 rounded-lg transition-colors text-sm">Cancel</button>
               <button 
-                className="px-4 py-2 bg-brand-primary text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-sm shadow-sm"
+                className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={async () => {
                   const clientId = (document.getElementById('modal-client') as HTMLSelectElement).value;
                   const title = (document.getElementById('modal-project') as HTMLInputElement).value;
@@ -444,7 +444,9 @@ export default function PipelinesPage() {
                   setIsAddModalOpen(false);
                   window.location.reload();
                 }}
-              ><><Save className="w-4 h-4 mr-2" /> Save</></button>
+              >
+                <Save className="w-4 h-4 mr-2" /> Save
+              </button>
             </div>
           </div>
         </div>

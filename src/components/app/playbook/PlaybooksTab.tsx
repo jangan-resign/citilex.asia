@@ -180,8 +180,8 @@ export function PlaybooksTab() {
             </div>
             <div className="p-4 border-t border-slate-200 bg-slate-50 flex justify-end gap-2">
               <button onClick={() => setIsModalOpen(false)} type="button" className="px-4 py-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 font-medium">Cancel</button>
-              <button type="submit" form="sopForm" disabled={isSubmitting} className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 font-medium disabled:opacity-50 flex items-center gap-2">
-                {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
+              <button type="submit" form="sopForm" disabled={isSubmitting} className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 Save
               </button>
             </div>

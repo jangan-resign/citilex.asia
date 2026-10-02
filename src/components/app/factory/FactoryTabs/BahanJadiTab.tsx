@@ -46,7 +46,7 @@ export function BahanJadiTab({ isReadOnly = false }: { isReadOnly?: boolean }) {
               {isEditing && (
                 <button 
                   onClick={handleCancel}
-                  className="flex-1 md:flex-none text-xs font-semibold whitespace-nowrap cursor-pointer px-3 py-2 md:py-1.5 rounded-md transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200"
+                  className="px-4 py-2 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-sm font-medium transition-colors"
                 >Cancel</button>
               )}
               <button 

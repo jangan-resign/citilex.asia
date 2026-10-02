@@ -158,7 +158,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
                   <button 
                     onClick={handleCancel}
                     disabled={isSaving}
-                    className="flex-1 px-3 py-1.5 border border-slate-200 text-slate-600 rounded font-bold text-xs hover:bg-slate-50 cursor-pointer flex justify-center items-center gap-1"
+                    className="px-4 py-2 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-sm font-medium transition-colors"
                   >
                     <X className="w-3 h-3" /> Cancel</button>
                   <button 
