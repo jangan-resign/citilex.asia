@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Save, Plus, Edit3, Trash2, Search, Filter, Loader2 } from "lucide-react";
+import { Save, Plus, FileEdit, Trash2, Search, Filter, Loader2 } from "lucide-react";
 import { getKnowledge, createKnowledge, updateKnowledge, deleteKnowledge } from "../../../actions/playbook";
 
 export function KnowledgeTab() {
@@ -115,18 +115,18 @@ export function KnowledgeTab() {
                 
                 {/* Card Header */}
                 <div className="flex justify-between items-start mb-3">
-                  <span className={`inline-flex items-center px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${
-                    kn.category === "Operasional" ? "bg-purple-100 text-purple-700" :
-                    kn.category === "Produk" ? "bg-orange-100 text-orange-700" :
-                    "bg-blue-100 text-blue-700"
+                  <span className={`inline-flex items-center px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${
+                    kn.category === "Operasional" ? "bg-slate-100 text-slate-600 border-slate-200" :
+                    kn.category === "Produk" ? "bg-brand-gold/10 text-brand-gold border-brand-gold/30" :
+                    "bg-slate-800 text-white border-slate-800"
                   }`}>
                     {kn.category}
                   </span>
                   
                   {/* Actions (visible on hover) */}
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={() => handleOpenModal(kn)} className="p-1.5 text-slate-400 hover:text-blue-600 rounded-lg cursor-pointer transition-colors" title="Edit">
-                      <Edit3 className="h-4 w-4" />
+                    <button onClick={() => handleOpenModal(kn)} className="p-1.5 text-slate-400 hover:text-brand-gold rounded-lg cursor-pointer transition-colors" title="Edit">
+                      <FileEdit className="h-4 w-4" />
                     </button>
                     <button onClick={() => handleDelete(kn.id)} className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg cursor-pointer transition-colors" title="Hapus">
                       <Trash2 className="h-4 w-4" />

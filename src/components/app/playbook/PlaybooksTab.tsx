@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Save, Plus, Edit3, Trash2, Search, Loader2, MoreHorizontal } from "lucide-react";
+import { Save, Plus, FileEdit, Trash2, Search, Loader2, MoreHorizontal } from "lucide-react";
 import { getSops, createSop, updateSop, deleteSop } from "../../../actions/playbook";
 
 export function PlaybooksTab() {
@@ -158,7 +158,7 @@ export function PlaybooksTab() {
                             }}
                             className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 font-medium text-left transition-colors cursor-pointer"
                           >
-                            <Edit3 className="w-4 h-4 text-brand-gold" />
+                            <FileEdit className="w-4 h-4 text-brand-gold" />
                             Edit SOP
                           </button>
                           <button
