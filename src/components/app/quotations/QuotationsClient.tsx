@@ -57,7 +57,7 @@ export function QuotationsClient({ initialMonth = "all" as any, initialYear = "a
   const [loadingList, setLoadingList] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [isPending, startTransition] = useTransition();
+  const [isReturning, setIsReturning] = useState(false);
 
   const refreshList = () => {
     setLoadingList(true);
@@ -535,15 +535,17 @@ export function QuotationsClient({ initialMonth = "all" as any, initialYear = "a
     <div className="p-8 max-w-4xl mx-auto pb-32">
       <button 
         onClick={() => {
-          startTransition(() => {
+          setIsReturning(true);
+          setTimeout(() => {
             setView('list');
-            setDocNumberOverride(null); // Reset override when going back to list
-          });
+            setDocNumberOverride(null);
+            setIsReturning(false);
+          }, 400); // 400ms delay to ensure loading state is visible
         }}
-        disabled={isPending}
+        disabled={isReturning}
         className="flex items-center gap-2 text-slate-500 hover:text-slate-800 mb-6 font-medium transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowLeft className="w-4 h-4" />} Kembali ke Riwayat
+        {isReturning ? <><Loader2 className="w-4 h-4 animate-spin" /> Membatalkan...</> : <><ArrowLeft className="w-4 h-4" /> Kembali ke Riwayat</>}
       </button>
 
       <h1 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
