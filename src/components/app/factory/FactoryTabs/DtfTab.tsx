@@ -1,3 +1,4 @@
+import { Save } from "lucide-react";
 import { useState } from "react";
 import { useFactoryData } from "../../../providers/FactoryDataProvider";
 
@@ -50,7 +51,7 @@ export function DtfTab({ isReadOnly = false }: { isReadOnly?: boolean }) {
                     : "bg-slate-800 text-white hover:bg-slate-900 border border-slate-900"
                 }`}
               >
-                {isEditing ? "Save" : "Edit Harga DTF"}
+                {isEditing ? <><Save className="w-4 h-4 mr-2" /><><Save className="w-4 h-4 mr-2" /> Save</></> : "Edit Harga DTF"}
               </button>
             </>
           )}

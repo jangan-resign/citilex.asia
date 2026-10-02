@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Edit3, Trash2, Search, Filter, Loader2 } from "lucide-react";
+import { Save, Plus, Edit3, Trash2, Search, Filter, Loader2 } from "lucide-react";
 import { getKnowledge, createKnowledge, updateKnowledge, deleteKnowledge } from "../../../actions/playbook";
 
 export function KnowledgeTab() {

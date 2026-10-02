@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { KanbanBoard, KanbanColumn, KanbanItem } from "../../../components/app/pipelines/KanbanBoard";
 import { Customer } from "@prisma/client";
-import { Plus, Trash2 } from "lucide-react";
+import { Save, Plus, Trash2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { MonthYearFilter } from "../../../components/app/MonthYearFilter";
 
@@ -444,7 +444,7 @@ export default function PipelinesPage() {
                   setIsAddModalOpen(false);
                   window.location.reload();
                 }}
-              >Save</button>
+              ><><Save className="w-4 h-4 mr-2" /> Save</></button>
             </div>
           </div>
         </div>

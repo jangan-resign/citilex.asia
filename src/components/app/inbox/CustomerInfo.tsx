@@ -166,7 +166,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
                     disabled={isSaving}
                     className="flex-1 px-3 py-1.5 bg-brand-primary text-white rounded font-bold text-xs hover:bg-brand-primary/90 cursor-pointer flex justify-center items-center gap-1"
                   >
-                    {isSaving ? "Menyimpan..." : <><Save className="w-3 h-3" /> Save</>}
+                    {isSaving ? "Menyimpan..." : <><Save className="w-3 h-3" /><><Save className="w-4 h-4 mr-2" /> Save</></>}
                   </button>
                 </div>
               </div>

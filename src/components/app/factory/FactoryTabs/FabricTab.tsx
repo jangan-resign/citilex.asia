@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFactoryData } from "../../../providers/FactoryDataProvider";
-import { Edit3 } from "lucide-react";
+import { Save, Edit3 } from "lucide-react";
 
 const COLOR_CATEGORY_LABELS: Record<string, string> = {
   "P": "Putih",
@@ -93,7 +93,7 @@ export function FabricTab({ isReadOnly = false }: { isReadOnly?: boolean }) {
                     : "bg-slate-800 text-white hover:bg-slate-900 border border-slate-900"
                 }`}
               >
-                {isEditing ? "Save" : "Edit Harga Kain & CMT"}
+                {isEditing ? <><Save className="w-4 h-4 mr-2" /><><Save className="w-4 h-4 mr-2" /> Save</></> : "Edit Harga Kain & CMT"}
               </button>
             </>
           )}

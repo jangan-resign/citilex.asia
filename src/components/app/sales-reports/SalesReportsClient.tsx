@@ -41,17 +41,17 @@ type DashboardData = {
   closingDetails: ClosingDetail[];
 };
 
-export function SalesReportsClient({ 
+export function SalesReportsClient({
   dashboardData,
   currentMonth,
   currentYear
-}: { 
+}: {
   dashboardData: DashboardData;
   currentMonth: number | "all";
   currentYear: number | "all";
 }) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  
+
   const [activeTab, setActiveTab] = useState<"raw" | "qualified" | "closed" | "conversion">("conversion");
   const [notesState, setNotesState] = useState<Record<string, string>>({});
   const [savingNotes, setSavingNotes] = useState<Record<string, boolean>>({});
@@ -126,7 +126,7 @@ export function SalesReportsClient({
               </td>
               <td className="px-6 py-4">
                 <div className="relative">
-                  <textarea 
+                  <textarea
                     className="w-full text-sm border border-slate-200 rounded-lg p-2.5 bg-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary resize-none min-h-[60px]"
                     placeholder="Contoh: Kemahalan, Kabur, Deal karena diskon..."
                     defaultValue={lead.notes}
@@ -138,8 +138,8 @@ export function SalesReportsClient({
                     }}
                   />
                   {savingNotes[lead.id] && (
-                    <div className="absolute right-2 bottom-2 text-[10px] text-brand-primary flex items-center gap-1 font-bold animate-pulse">
-                      <Save className="w-3 h-3" /> Menyimpan...
+                    <div className="absolute left-3 bottom-3 text-xs text-brand-primary flex items-center gap-1.5 font-bold animate-pulse bg-white/80 px-2 py-1 rounded shadow-sm">
+                      <Save className="w-4 h-4" /> Saving...
                     </div>
                   )}
                 </div>
@@ -155,44 +155,40 @@ export function SalesReportsClient({
     <div className="flex flex-col space-y-6">
       {/* Interactive Metrics Cards (Tabs) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <button 
+        <button
           onClick={() => setActiveTab("raw")}
-          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${
-            activeTab === "raw" ? "bg-white border-brand-primary ring-2 ring-brand-primary/20" : "bg-white border-slate-200 hover:border-slate-300"
-          }`}
+          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${activeTab === "raw" ? "bg-white border-brand-primary ring-2 ring-brand-primary/20" : "bg-white border-slate-200 hover:border-slate-300"
+            }`}
         >
           <div className="text-sm font-bold text-slate-500 mb-2">Total Raw Leads</div>
           <div className="text-3xl font-black text-slate-800">{dashboardData.metrics.rawLeadsCount}</div>
           <div className="text-[10px] font-semibold text-slate-400 mt-1 uppercase">Semua Leads Masuk (All)</div>
         </button>
 
-        <button 
+        <button
           onClick={() => setActiveTab("qualified")}
-          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${
-            activeTab === "qualified" ? "bg-white border-brand-primary ring-2 ring-brand-primary/20" : "bg-white border-slate-200 hover:border-slate-300"
-          }`}
+          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${activeTab === "qualified" ? "bg-white border-brand-primary ring-2 ring-brand-primary/20" : "bg-white border-slate-200 hover:border-slate-300"
+            }`}
         >
           <div className="text-sm font-bold text-slate-500 mb-2">Qualified Leads</div>
           <div className="text-3xl font-black text-slate-800">{dashboardData.metrics.qualifiedLeadsCount}</div>
           <div className="text-[10px] font-semibold text-slate-400 mt-1 uppercase">Sudah Dihitung Calculator</div>
         </button>
 
-        <button 
+        <button
           onClick={() => setActiveTab("closed")}
-          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${
-            activeTab === "closed" ? "bg-brand-gold/10 border-brand-gold ring-2 ring-brand-gold/20" : "bg-white border-slate-200 hover:border-slate-300"
-          }`}
+          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${activeTab === "closed" ? "bg-brand-gold/10 border-brand-gold ring-2 ring-brand-gold/20" : "bg-white border-slate-200 hover:border-slate-300"
+            }`}
         >
           <div className="text-sm font-bold text-brand-gold mb-2">Closing Leads (Projects)</div>
           <div className="text-3xl font-black text-slate-800">{dashboardData.metrics.closingProjectsCount}</div>
           <div className="text-[10px] font-semibold text-brand-gold/70 mt-1 uppercase">Lanjut ke Produksi</div>
         </button>
 
-        <button 
+        <button
           onClick={() => setActiveTab("conversion")}
-          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${
-            activeTab === "conversion" ? "bg-slate-800 border-slate-800 ring-2 ring-brand-gold/50" : "bg-slate-700 border-slate-600 hover:bg-slate-600"
-          } text-white`}
+          className={`text-left p-6 rounded-xl shadow-sm border transition-all duration-200 ${activeTab === "conversion" ? "bg-slate-800 border-slate-800 ring-2 ring-brand-gold/50" : "bg-slate-700 border-slate-600 hover:bg-slate-600"
+            } text-white`}
         >
           <div className="text-sm font-bold text-brand-gold mb-2">Conversion Rate</div>
           <div className="text-3xl font-black">{dashboardData.metrics.closingRate.toFixed(1)}%</div>
@@ -204,7 +200,7 @@ export function SalesReportsClient({
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
           <h3 className="font-bold text-slate-800 flex items-center gap-2">
-            <Users className="w-5 h-5 text-brand-primary" /> 
+            <Users className="w-5 h-5 text-brand-primary" />
             {activeTab === "raw" && "Daftar Semua Leads"}
             {activeTab === "qualified" && "Daftar Qualified Leads"}
             {activeTab === "closed" && "Rincian Pembelian (Closing Details)"}
@@ -217,11 +213,11 @@ export function SalesReportsClient({
             {activeTab === "conversion" && `${dashboardData.allLeads.length} Data`}
           </span>
         </div>
-        
+
         {activeTab === "raw" && (dashboardData.allLeads.length === 0 ? <div className="p-12 text-center flex flex-col items-center justify-center"><div className="text-slate-500 font-medium">Wah, gurun pasir nih! Belum ada raw leads masuk.</div><div className="text-sm text-slate-400 mt-1">Ayo tim marketing, kencangkan lagi iklannya!</div></div> : renderLeadsTable(dashboardData.allLeads))}
         {activeTab === "qualified" && (dashboardData.qualifiedLeads.length === 0 ? <div className="p-12 text-center flex flex-col items-center justify-center"><div className="text-slate-500 font-medium">Kalkulatornya nganggur nih!</div><div className="text-sm text-slate-400 mt-1">Belum ada leads yang berani nanya harga. CS ayo sapa mereka!</div></div> : renderLeadsTable(dashboardData.qualifiedLeads))}
         {activeTab === "conversion" && (dashboardData.allLeads.length === 0 ? <div className="p-12 text-center flex flex-col items-center justify-center"><div className="text-slate-500 font-medium">Belum ada data untuk dianalisa.</div><div className="text-sm text-slate-400 mt-1">Hei CS Citilex Asia, ayo lebih semangat konversi leads jadi clients!</div></div> : renderConversionTable(dashboardData.allLeads))}
-        
+
         {activeTab === "closed" && (
           dashboardData.closingDetails.length === 0 ? (
             <div className="p-12 text-center flex flex-col items-center justify-center">
@@ -243,10 +239,10 @@ export function SalesReportsClient({
                   {dashboardData.closingDetails.map((detail) => {
                     const isExpanded = expandedId === detail.id;
                     const itemArray = Array.isArray(detail.items) ? detail.items : [];
-                    
+
                     return (
                       <React.Fragment key={detail.id}>
-                        <tr 
+                        <tr
                           className={`hover:bg-slate-50 transition-colors border-b border-slate-100 ${isExpanded ? "bg-brand-primary/5" : ""}`}
                         >
                           <td className="px-6 py-4">
@@ -270,11 +266,10 @@ export function SalesReportsClient({
                             Rp {detail.value.toLocaleString("id-ID")}
                           </td>
                           <td className="px-6 py-4 text-right">
-                            <button 
+                            <button
                               onClick={() => setExpandedId(isExpanded ? null : detail.id)}
-                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-                                isExpanded ? "bg-brand-primary text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                              }`}
+                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${isExpanded ? "bg-brand-primary text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                                }`}
                             >
                               {itemArray.length} Item {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                             </button>

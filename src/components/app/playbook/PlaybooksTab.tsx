@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Edit3, Trash2, Search, Loader2 } from "lucide-react";
+import { Save, Plus, Edit3, Trash2, Search, Loader2 } from "lucide-react";
 import { getSops, createSop, updateSop, deleteSop } from "../../../actions/playbook";
 
 export function PlaybooksTab() {
