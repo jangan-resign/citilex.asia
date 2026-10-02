@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X, Loader2 } from "lucide-react";
+import { Bot, User, Send, Paperclip, CheckCheck, Info, Briefcase, ChevronLeft, ChevronDown, Copy, Trash2, Reply, Forward, X, Loader2, Smile } from "lucide-react";
 import { deleteMessage, forwardMessage } from "../../../actions/inbox";
 import { getAssets } from "../../../actions/assets";
 import { CustomerWithMessages } from "./InboxClient";
@@ -32,6 +32,9 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
   const [assets, setAssets] = useState<any[]>([]);
   const [isLoadingAssets, setIsLoadingAssets] = useState(false);
   const [isSendingMedia, setIsSendingMedia] = useState(false);
+  
+  // Emoji Picker
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   // Auto-expand textarea
   useEffect(() => {
@@ -421,14 +424,49 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
       {/* Input Area */}
       <div className="p-4 bg-[#f0f2f5] border-t border-slate-200 shrink-0">
         <form onSubmit={handleSend} className="flex items-center gap-2 max-w-4xl mx-auto">
-          <button 
-            type="button"
-            className="p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-200 rounded-full transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={handleOpenAssetPicker}
-            disabled={isSendingMedia || customer.owner === "Karina"}
-          >
-            <Paperclip className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-1">
+            <div className="relative flex items-center">
+              <button 
+                type="button"
+                className="p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-200 rounded-full transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                disabled={isSendingMedia || customer.owner === "Karina"}
+              >
+                <Smile className="h-5 w-5" />
+              </button>
+              
+              {showEmojiPicker && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowEmojiPicker(false)} />
+                  <div className="absolute bottom-full left-0 mb-2 bg-white border border-slate-200 rounded-lg shadow-lg z-50 p-2 flex gap-1">
+                    {["😊", "🙏", "👍", "👌"].map(emoji => (
+                      <button
+                        key={emoji}
+                        type="button"
+                        onClick={() => {
+                          setInputText(prev => prev + emoji);
+                          setShowEmojiPicker(false);
+                          textareaRef.current?.focus();
+                        }}
+                        className="w-10 h-10 text-xl hover:bg-slate-100 rounded-lg flex items-center justify-center transition-colors cursor-pointer"
+                      >
+                        {emoji}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+            
+            <button 
+              type="button"
+              className="p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-200 rounded-full transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={handleOpenAssetPicker}
+              disabled={isSendingMedia || customer.owner === "Karina"}
+            >
+              <Paperclip className="h-5 w-5" />
+            </button>
+          </div>
           
           <textarea 
             ref={textareaRef}
