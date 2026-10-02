@@ -543,21 +543,21 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
         <div className="grid grid-cols-3 gap-4">
           <button 
             onClick={() => setPaymentType('FULL')}
-            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-1 font-semibold transition-colors ${paymentType === 'FULL' ? 'bg-brand-primary border-brand-primary text-white shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-1 font-semibold transition-colors ${paymentType === 'FULL' ? 'bg-slate-800 border-slate-800 text-white shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
           >
             <span className="text-sm">Pembayaran Penuh</span>
             <span className="text-[10px] opacity-80">100% Total</span>
           </button>
           <button 
             onClick={() => setPaymentType('DP_70')}
-            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-1 font-semibold transition-colors ${paymentType === 'DP_70' ? 'bg-brand-primary border-brand-primary text-white shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-1 font-semibold transition-colors ${paymentType === 'DP_70' ? 'bg-slate-800 border-slate-800 text-white shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
           >
             <span className="text-sm">Down Payment</span>
             <span className="text-[10px] opacity-80">70% Total</span>
           </button>
           <button 
             onClick={() => setPaymentType('LUNAS_30')}
-            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-1 font-semibold transition-colors ${paymentType === 'LUNAS_30' ? 'bg-brand-primary border-brand-primary text-white shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-1 font-semibold transition-colors ${paymentType === 'LUNAS_30' ? 'bg-slate-800 border-slate-800 text-white shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
           >
             <span className="text-sm">Pelunasan</span>
             <span className="text-[10px] opacity-80">30% Sisa Total</span>
@@ -823,9 +823,9 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
         <button 
           onClick={handleGenerate}
           disabled={isLoading || (!customerName && selectedCustomerId === 'manual') || items.length === 0}
-          className="px-6 py-3 bg-brand-primary text-white font-bold rounded-xl hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-brand-gold/20 transition-all active:scale-[0.98] flex items-center gap-2 cursor-pointer"
+          className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isLoading ? 'Processing...' : `Generate Invoice`}
+          {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Processing...</> : "Generate Invoice"}
         </button>
       </div>
     </div>
