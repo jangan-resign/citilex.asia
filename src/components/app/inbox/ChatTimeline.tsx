@@ -165,22 +165,26 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
           {attachments.map((url: string, i: number) => {
             const isImage = url.match(/\.(jpeg|jpg|gif|png)$/i) != null || url.includes("image") || text?.toLowerCase().includes("gambar") || text?.toLowerCase().includes("image");
             if (isImage) {
+              const isCustomer = msg.sender === "customer";
+              const radiusClass = isCustomer ? "rounded-tr-2xl rounded-tl-[2px]" : "rounded-tl-2xl rounded-tr-[2px]";
+              
               return (
-                <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-lg overflow-hidden border border-black/5 mb-1.5 cursor-zoom-in bg-black/5 hover:opacity-90 transition-opacity">
-                  <img src={url} alt="Attachment" className="w-full h-auto max-h-[320px] object-contain" />
+                <a key={i} href={url} target="_blank" rel="noopener noreferrer" className={`block -mx-4 -mt-2 mb-2 cursor-zoom-in relative bg-black/5 hover:opacity-95 transition-opacity overflow-hidden ${radiusClass}`}>
+                  <img src={url} alt="Attachment" className="w-full h-auto max-h-[350px] object-cover" />
                 </a>
               );
-            }
             return (
-              <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-black/5 rounded-lg border border-slate-200 hover:bg-black/10 transition-colors">
-                <div className="h-10 w-10 bg-red-100 text-red-500 rounded flex items-center justify-center shrink-0">
-                  <span className="font-bold text-[10px]">PDF</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-slate-800 truncate">{text || "Document"}</p>
-                  <p className="text-[10px] text-slate-500">Klik untuk melihat file</p>
-                </div>
-              </a>
+              <div key={i} className="pr-5">
+                <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-black/5 rounded-lg border border-slate-200 hover:bg-black/10 transition-colors">
+                  <div className="h-10 w-10 bg-red-100 text-red-500 rounded flex items-center justify-center shrink-0">
+                    <span className="font-bold text-[10px]">PDF</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-slate-800 truncate">{text || "Document"}</p>
+                    <p className="text-[10px] text-slate-500">Klik untuk melihat file</p>
+                  </div>
+                </a>
+              </div>
             );
           })}
         </div>
@@ -192,13 +196,15 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     if (newFormatMatch) {
       const [, senderName, quotedText, replyText] = newFormatMatch;
       return (
-        <div className="pr-5">
+        <div className="w-full">
           {attachmentElements}
-          <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
-            <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
-            <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
+          <div className="pr-5">
+            <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
+              <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
+              <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
+            </div>
+            <p className="text-sm whitespace-pre-wrap leading-relaxed">{replyText.trim()}</p>
           </div>
-          <p className="text-sm whitespace-pre-wrap leading-relaxed">{replyText.trim()}</p>
         </div>
       );
     }
@@ -208,13 +214,15 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     if (oldFormatMatch) {
       const [, senderName, quotedText, replyText] = oldFormatMatch;
       return (
-        <div className="pr-5">
+        <div className="w-full">
           {attachmentElements}
-          <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
-            <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
-            <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
+          <div className="pr-5">
+            <div className="bg-black/5 rounded-lg p-2 mb-1.5 border-l-4 border-brand-gold cursor-pointer hover:bg-black/10 transition-colors">
+              <p className="text-[11px] font-bold text-brand-gold">{senderName}</p>
+              <p className="text-xs text-slate-600 line-clamp-2">{quotedText.trim()}</p>
+            </div>
+            <p className="text-sm whitespace-pre-wrap leading-relaxed">{replyText.trim()}</p>
           </div>
-          <p className="text-sm whitespace-pre-wrap leading-relaxed">{replyText.trim()}</p>
         </div>
       );
     }
@@ -240,10 +248,12 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
 
     // Pesan biasa tanpa quote
     return (
-      <div className="pr-5">
+      <div className="w-full">
         {attachmentElements}
         {shouldShowText && (
-          <p className="text-sm whitespace-pre-wrap leading-relaxed mt-1">{text}</p>
+          <div className="pr-5">
+            <p className="text-sm whitespace-pre-wrap leading-relaxed mt-1">{text}</p>
+          </div>
         )}
       </div>
     );
