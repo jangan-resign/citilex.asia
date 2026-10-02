@@ -38,11 +38,8 @@ export default async function CSLayout({ children }: { children: ReactNode }) {
         <Sidebar userRole={role} />
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-hidden flex flex-col relative">
-          <div className="flex-1 overflow-auto flex flex-col relative">
-            {children}
-          </div>
-
+        <main className="flex-1 overflow-auto flex flex-col relative">
+          {children}
         </main>
       </FactoryDataProvider>
     </div>
