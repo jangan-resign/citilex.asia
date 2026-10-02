@@ -160,7 +160,8 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
                     disabled={isSaving}
                     className="px-4 py-2 bg-white border border-slate-300 text-slate-600 hover:bg-slate-50 rounded-lg text-sm font-medium transition-colors"
                   >
-                    <X className="w-3 h-3" /> Cancel</button>
+                    Cancel
+                  </button>
                   <button 
                     onClick={handleSave}
                     disabled={isSaving}
