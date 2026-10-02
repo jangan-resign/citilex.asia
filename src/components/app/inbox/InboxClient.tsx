@@ -273,7 +273,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
   };
 
   return (
-    <div className="absolute inset-0 flex bg-white z-10">
+    <div className="flex-1 flex bg-white z-10 min-h-0">
       {/* Kolom Kiri: Daftar Chat */}
       <div className={`w-full md:w-80 border-r border-slate-200 flex-col shrink-0 ${isMobileChatOpen ? 'hidden md:flex' : 'flex'}`}>
         <ChatList

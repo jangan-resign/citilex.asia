@@ -67,7 +67,7 @@ export function EmbroideryTab({ isReadOnly = false }: { isReadOnly?: boolean }) 
                     : "bg-slate-800 text-white hover:bg-slate-900 border border-slate-900"
                 }`}
               >
-                {isEditing ? <><Save className="w-4 h-4 mr-2" /><><Save className="w-4 h-4 mr-2" /> Save</></> : "Edit Harga Bordir"}
+                {isEditing ? <><Save className="w-4 h-4 mr-2" /> Save</> : "Edit Harga Bordir"}
               </button>
             </>
           )}

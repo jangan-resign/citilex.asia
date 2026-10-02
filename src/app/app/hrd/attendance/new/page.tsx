@@ -164,7 +164,7 @@ export default function NewAttendancePage() {
                 disabled={isSubmitting || !formData.employeeId}
                 className="px-6 py-3 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-primary/90 transition-all flex items-center gap-2 disabled:opacity-50"
               >
-                {isSubmitting ? <><Loader2 className="w-5 h-5 animate-spin" /> Menyimpan...</> : <><Save className="w-4 h-4 mr-2" /><><Save className="w-4 h-4 mr-2" /> Save</></>}
+                {isSubmitting ? <><Loader2 className="w-5 h-5 animate-spin" /> Menyimpan...</> : <><Save className="w-4 h-4 mr-2" /> Save</>}
               </button>
             </div>
           </form>

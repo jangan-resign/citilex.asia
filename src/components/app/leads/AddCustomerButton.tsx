@@ -118,7 +118,7 @@ export function AddCustomerButton({ type }: AddCustomerButtonProps) {
                   disabled={isLoading}
                   className="px-6 py-2 bg-brand-primary text-white rounded-lg text-sm font-bold hover:bg-slate-900 flex items-center gap-2"
                 >
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Save className="w-4 h-4 mr-2" /><><Save className="w-4 h-4 mr-2" /> Save</></>}
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Save className="w-4 h-4 mr-2" /> Save</>}
                 </button>
               </div>
             </form>

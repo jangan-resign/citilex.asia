@@ -66,6 +66,7 @@ model Customer {
   status        String              @default("active")
   owner         String              @default("Karina")
   internalNotes String?
+  inboxNotes    String?
   createdAt     DateTime            @default(now())
   updatedAt     DateTime            @updatedAt
   invoices      Invoice[]

@@ -244,3 +244,11 @@ export async function forwardMessage(messageId: string, targetCustomerId: string
 
   revalidatePath("/app");
 }
+
+export async function updateInboxNotes(customerId: string, inboxNotes: string) {
+  await prisma.customer.update({
+    where: { id: customerId },
+    data: { inboxNotes }
+  });
+  revalidatePath("/app");
+}

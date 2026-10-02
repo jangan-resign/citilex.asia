@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Building, Phone, Calculator, ClipboardList, CheckCircle2, Edit3, X, Save, ChevronLeft, StickyNote, Trash2, FileText, Receipt, Copy, MessageSquare, ShoppingCart } from "lucide-react";
 import { CustomerWithMessages } from "./InboxClient";
-import { updateCustomerQualification } from "../../../actions/inbox";
+import { updateCustomerQualification, updateInboxNotes } from "../../../actions/inbox";
 
 interface CustomerInfoProps {
   customer: CustomerWithMessages;
@@ -166,7 +166,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
                     disabled={isSaving}
                     className="flex-1 px-3 py-1.5 bg-brand-primary text-white rounded font-bold text-xs hover:bg-brand-primary/90 cursor-pointer flex justify-center items-center gap-1"
                   >
-                    {isSaving ? "Menyimpan..." : <><Save className="w-3 h-3" /><><Save className="w-4 h-4 mr-2" /> Save</></>}
+                    {isSaving ? "Menyimpan..." : <><Save className="w-4 h-4 mr-2" /> Save</>}
                   </button>
                 </div>
               </div>
@@ -294,13 +294,14 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
         <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
           <h3 className="font-semibold text-sm text-slate-800 flex items-center gap-2 mb-3">
             <StickyNote className="h-4 w-4 text-brand-gold" />
-            Catatan Internal
+            Internal Notes
           </h3>
           <textarea 
             className="w-full text-xs text-slate-600 bg-yellow-50/50 border border-yellow-200 p-3 rounded-lg resize-none focus:outline-none focus:ring-1 focus:ring-brand-gold"
             rows={4}
             placeholder="Tambahkan catatan khusus untuk tim produksi / CS lain di sini..."
-            defaultValue={customer.internalNotes || ""}
+            defaultValue={customer.inboxNotes || ""}
+            onBlur={(e) => updateInboxNotes(customer.id, e.target.value)}
           />
         </div>
 

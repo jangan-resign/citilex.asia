@@ -93,7 +93,7 @@ export function FabricTab({ isReadOnly = false }: { isReadOnly?: boolean }) {
                     : "bg-slate-800 text-white hover:bg-slate-900 border border-slate-900"
                 }`}
               >
-                {isEditing ? <><Save className="w-4 h-4 mr-2" /><><Save className="w-4 h-4 mr-2" /> Save</></> : "Edit Harga Kain & CMT"}
+                {isEditing ? <><Save className="w-4 h-4 mr-2" /> Save</> : "Edit Harga Kain & CMT"}
               </button>
             </>
           )}
