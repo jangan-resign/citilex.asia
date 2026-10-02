@@ -160,12 +160,23 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
 
     let attachmentElements = null;
     if (attachments && attachments.length > 0) {
+      const isImageOnlyLocal = (!text || text === "🖼️ Mengirim gambar" || text === "image");
       attachmentElements = (
-        <div className="flex flex-col gap-2 mb-2">
+        <div className={`flex flex-col gap-2 ${isImageOnlyLocal ? "" : "mb-2"}`}>
           {attachments.map((url: string, i: number) => {
             const isImage = url.match(/\.(jpeg|jpg|gif|png)$/i) != null || url.includes("image") || text?.toLowerCase().includes("gambar") || text?.toLowerCase().includes("image");
             if (isImage) {
               const isCustomer = msg.sender === "customer";
+              
+              if (isImageOnlyLocal) {
+                const radiusClass = isCustomer ? "rounded-tr-xl rounded-tl-[2px] rounded-b-xl" : "rounded-tl-xl rounded-tr-[2px] rounded-b-xl";
+                return (
+                  <a key={i} href={url} target="_blank" rel="noopener noreferrer" className={`block cursor-zoom-in relative bg-black/5 hover:opacity-95 transition-opacity overflow-hidden ${radiusClass}`}>
+                    <img src={url} alt="Attachment" className="w-full h-auto max-h-[350px] object-cover" />
+                  </a>
+                );
+              }
+
               const radiusClass = isCustomer ? "rounded-tr-2xl rounded-tl-[2px]" : "rounded-tl-2xl rounded-tr-[2px]";
               
               return (
@@ -344,6 +355,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
         {customer.messages.map((msg, index) => {
           const isCustomer = msg.sender === "customer";
           const isBot = msg.sender === "bot";
+          const hasAttachments = msg.attachments && msg.attachments.length > 0;
+          const isImageOnly = hasAttachments && msg.attachments.every((url: string) => url.match(/\.(jpeg|jpg|gif|png)$/i) != null || url.includes("image")) && (!msg.text || msg.text === "🖼️ Mengirim gambar" || msg.text === "image");
           
           return (
             <div 
@@ -351,7 +364,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
               className={`flex flex-col ${isCustomer ? "items-start" : "items-end"}`}
             >
               <div 
-                className={`max-w-[75%] rounded-2xl px-4 py-2 shadow-sm relative group ${
+                className={`max-w-[75%] rounded-2xl ${isImageOnly ? "p-1" : "px-4 py-2"} shadow-sm relative group ${
                   isCustomer 
                     ? "bg-white text-slate-800 rounded-tl-sm border border-slate-100" 
                     : isBot
@@ -367,8 +380,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                     e.stopPropagation();
                     setActiveDropdown(activeDropdown === msg.id ? null : msg.id);
                   }}
-                  className={`absolute top-1 right-1 p-0.5 rounded-full text-slate-400 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity ${
-                    isCustomer ? "hover:bg-slate-100" : isBot ? "hover:bg-blue-100" : msg.sender === "crm" ? "hover:bg-emerald-100" : "hover:bg-amber-100"
+                  className={`absolute ${isImageOnly ? "top-2 right-2 bg-black/40 text-white hover:bg-black/60" : "top-1 right-1 text-slate-400"} p-0.5 rounded-full cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity z-10 ${
+                    !isImageOnly && (isCustomer ? "hover:bg-slate-100" : isBot ? "hover:bg-blue-100" : msg.sender === "crm" ? "hover:bg-emerald-100" : "hover:bg-amber-100")
                   }`}
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -433,15 +446,15 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                   renderMessageContent(msg)
                 )}
                 
-                <div className="flex items-center justify-end gap-1 mt-1">
-                  <span suppressHydrationWarning className="text-[10px] text-slate-400">
+                <div className={`flex items-center justify-end gap-1 ${isImageOnly ? "absolute bottom-2 right-2 z-10 bg-black/40 rounded-full px-1.5 py-0.5" : "mt-1"}`}>
+                  <span suppressHydrationWarning className={`text-[10px] ${isImageOnly ? "text-white" : "text-slate-400"}`}>
                     {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                   {!isCustomer && (
                     msg.text?.startsWith("[GAGAL]") ? (
                       <X className="h-3 w-3 text-red-500" />
                     ) : (
-                      <CheckCheck className={`h-3 w-3 ${msg.isRead ? "text-blue-500" : "text-slate-400"}`} />
+                      <CheckCheck className={`h-3 w-3 ${msg.isRead ? (isImageOnly ? "text-blue-400" : "text-blue-500") : (isImageOnly ? "text-white" : "text-slate-400")}`} />
                     )
                   )}
                 </div>
@@ -474,8 +487,8 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
           
           if (is24hClosed) {
             return (
-              <div className="bg-amber-50 text-amber-800 border border-amber-200 p-3 rounded-lg flex items-center justify-center gap-2 text-sm shadow-sm">
-                <Info className="w-4 h-4 shrink-0" />
+              <div className="bg-slate-800 text-white p-3 rounded-lg flex items-center justify-center gap-2 text-sm shadow-sm font-medium">
+                <Info className="w-4 h-4 shrink-0 text-brand-gold" />
                 <span><strong>Jendela 24-jam tertutup.</strong> Klien harus membalas terlebih dahulu sebelum Anda bisa mengirim pesan baru.</span>
               </div>
             );
