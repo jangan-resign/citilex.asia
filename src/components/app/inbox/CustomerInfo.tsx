@@ -299,7 +299,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
           <textarea 
             className="w-full text-xs text-slate-600 bg-yellow-50/50 border border-yellow-200 p-3 rounded-lg resize-none focus:outline-none focus:ring-1 focus:ring-brand-gold"
             rows={4}
-            placeholder="Tambahkan catatan khusus untuk tim produksi / CS lain di sini..."
+            placeholder="Tambahkan catatan khusus untuk tim internal di sini.."
             defaultValue={customer.inboxNotes || ""}
             onBlur={(e) => updateInboxNotes(customer.id, e.target.value)}
           />

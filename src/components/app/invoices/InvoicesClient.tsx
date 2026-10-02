@@ -408,18 +408,7 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
                           </span>
                         </td>
                         <td className="px-6 py-4 text-right relative">
-                          {inv.status === 'UNPAID' && (
-                            <button 
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleEditInvoice(inv);
-                              }}
-                              className="p-1 text-slate-400 hover:text-brand-primary rounded transition-colors"
-                              title="Edit"
-                            >
-                              <FileEdit className="w-4 h-4" />
-                            </button>
-                          )}
+
                           <button
                             onClick={() => setOpenDropdownId(openDropdownId === inv.id ? null : inv.id)}
                             className="p-2 text-slate-400 hover:text-brand-primary hover:bg-slate-100 rounded-lg transition-colors"
@@ -434,6 +423,18 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
                                 onClick={() => setOpenDropdownId(null)} 
                               />
                               <div className="absolute right-6 top-10 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50">
+                                {inv.status === 'UNPAID' && (
+                                  <button 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setOpenDropdownId(null);
+                                      handleEditInvoice(inv);
+                                    }}
+                                    className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 font-medium text-left border-b border-slate-100"
+                                  >
+                                    <FileEdit className="w-4 h-4 text-brand-gold" /> Edit Invoice
+                                  </button>
+                                )}
                                 <button
                                   onClick={async () => {
                                     setOpenDropdownId(null);
@@ -500,7 +501,7 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
                                       </td>
                                       <td className="px-4 py-3 text-center text-slate-600">{item.qty}</td>
                                       <td className="px-4 py-3 text-right font-medium text-slate-700">
-                                        Rp {(item.totalPrice || item.pricePerPcs * item.qty).toLocaleString('id-ID')}
+                                        Rp {(item.totalPrice || ((item.pricePerPcs || item.price || 0) * (item.qty || 1))).toLocaleString('id-ID')}
                                       </td>
                                     </tr>
                                   ))}

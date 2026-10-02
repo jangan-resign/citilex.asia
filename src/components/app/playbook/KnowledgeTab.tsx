@@ -168,8 +168,8 @@ export function KnowledgeTab() {
                   <input type="text" required value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} className="w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Isi Pengetahuan</label>
-                  <textarea required value={formData.content} onChange={(e) => setFormData({...formData, content: e.target.value})} rows={8} className="w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50 text-sm"></textarea>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Isi Pengetahuan (Bisa menggunakan format Markdown)</label>
+                  <textarea required value={formData.content} onChange={(e) => setFormData({...formData, content: e.target.value})} rows={8} className="w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50 font-mono text-sm"></textarea>
                 </div>
               </form>
             </div>

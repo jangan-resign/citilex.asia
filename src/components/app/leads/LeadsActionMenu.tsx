@@ -166,11 +166,7 @@ export function LeadsActionMenu({ lead }: LeadsActionMenuProps) {
                 <div className="font-medium text-slate-800">{lead.phone}</div>
               </div>
             </div>
-            <div className="bg-slate-50 p-4 border-t border-slate-100 flex justify-end">
-              <button onClick={() => setShowProfile(false)} className="px-4 py-2 bg-slate-200 text-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-300">
-                Tutup
-              </button>
-            </div>
+
           </div>
         </div>
       )}

@@ -13,7 +13,7 @@ export function ClientProfileDrawer({ client, onClose }: ClientProfileDrawerProp
         {/* Drawer Handle / Close Button */}
         <button
           onClick={onClose}
-          className="absolute -left-6 top-8 z-10 w-12 h-12 bg-brand-gold rounded-full shadow-lg flex items-center justify-center text-white hover:bg-yellow-600 transition-all"
+          className="absolute -left-6 top-8 z-10 w-12 h-12 bg-slate-800 rounded-lg shadow-lg flex items-center justify-center text-white hover:bg-slate-900 cursor-pointer transition-all"
           title="Tutup Profil"
         >
           <ChevronRight className="w-6 h-6" />
@@ -99,10 +99,10 @@ export function ClientProfileDrawer({ client, onClose }: ClientProfileDrawerProp
                             </div>
                             <div className="text-right">
                               <div className="text-xs text-slate-500">
-                                {item.qty} pcs @ Rp {item.pricePerPcs?.toLocaleString('id-ID')}
+                                {item.qty} pcs @ Rp {(item.pricePerPcs || item.price || 0).toLocaleString('id-ID')}
                               </div>
                               <div className="text-sm font-bold text-slate-700 mt-0.5">
-                                Rp {(item.totalPrice || (item.qty * item.pricePerPcs)).toLocaleString('id-ID')}
+                                Rp {(item.totalPrice || ((item.pricePerPcs || item.price || 0) * (item.qty || 1))).toLocaleString('id-ID')}
                               </div>
                             </div>
                           </div>

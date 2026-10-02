@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Save, Plus, Edit3, Trash2, Search, Loader2 } from "lucide-react";
+import { Save, Plus, Edit3, Trash2, Search, Loader2, MoreHorizontal } from "lucide-react";
 import { getSops, createSop, updateSop, deleteSop } from "../../../actions/playbook";
 
 export function PlaybooksTab() {
@@ -12,6 +12,7 @@ export function PlaybooksTab() {
   const [editId, setEditId] = useState<string | null>(null);
   const [formData, setFormData] = useState({ title: "", description: "", content: "", isActive: true });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchSops();
@@ -128,21 +129,51 @@ export function PlaybooksTab() {
                     </p>
                   </td>
                   <td className="p-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      pb.isActive ? "bg-green-100 text-green-800" : "bg-slate-100 text-slate-600"
+                    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
+                      pb.isActive ? "bg-brand-gold-light text-brand-gold border border-brand-gold/30" : "bg-slate-100 text-slate-600 border border-slate-200"
                     }`}>
-                      {pb.isActive ? "Aktif" : "Draft"}
+                      {pb.isActive ? "Active" : "Draft"}
                     </span>
                   </td>
-                  <td className="p-4 pr-6 text-right">
-                    <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => handleOpenModal(pb)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg cursor-pointer transition-colors" title="Edit">
-                        <Edit3 className="h-4 w-4" />
-                      </button>
-                      <button onClick={() => handleDelete(pb.id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg cursor-pointer transition-colors" title="Hapus">
-                        <Trash2 className="h-4 w-4" />
+                  <td className="p-4 pr-6 text-right relative">
+                    <div className="flex items-center justify-end gap-1">
+                      <button
+                        onClick={() => setOpenDropdownId(openDropdownId === pb.id ? null : pb.id)}
+                        className="p-2 text-slate-400 hover:text-brand-primary hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                      >
+                        <MoreHorizontal className="w-5 h-5" />
                       </button>
                     </div>
+                    {openDropdownId === pb.id && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-40" 
+                          onClick={() => setOpenDropdownId(null)} 
+                        />
+                        <div className="absolute right-6 top-10 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50">
+                          <button
+                            onClick={() => {
+                              setOpenDropdownId(null);
+                              handleOpenModal(pb);
+                            }}
+                            className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 font-medium text-left transition-colors cursor-pointer"
+                          >
+                            <Edit3 className="w-4 h-4 text-brand-gold" />
+                            Edit SOP
+                          </button>
+                          <button
+                            onClick={() => {
+                              setOpenDropdownId(null);
+                              handleDelete(pb.id);
+                            }}
+                            className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-medium text-left transition-colors cursor-pointer"
+                          >
+                            <Trash2 className="w-4 h-4 text-red-600" />
+                            Hapus SOP
+                          </button>
+                        </div>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))
@@ -169,12 +200,12 @@ export function PlaybooksTab() {
                   <input type="text" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Isi SOP (Markdown didukung)</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Detail Instruksi SOP (Bisa menggunakan format Markdown)</label>
                   <textarea required value={formData.content} onChange={(e) => setFormData({...formData, content: e.target.value})} rows={10} className="w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50 font-mono text-sm"></textarea>
                 </div>
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="isActive" checked={formData.isActive} onChange={(e) => setFormData({...formData, isActive: e.target.checked})} className="w-4 h-4 rounded cursor-pointer accent-brand-gold shrink-0" />
-                  <label htmlFor="isActive" className="text-sm font-medium text-slate-700">Aktif (Gunakan di Karina AI)</label>
+                  <label htmlFor="isActive" className="text-sm font-medium text-slate-700">Active (Gunakan di Karina AI)</label>
                 </div>
               </form>
             </div>
