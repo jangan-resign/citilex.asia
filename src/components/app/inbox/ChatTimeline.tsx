@@ -263,7 +263,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
             <button
               onClick={() => onChangeOwner("CS")}
               className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                customer.owner === "CS" ? "bg-brand-gold-light text-brand-gold shadow-sm" : "text-slate-500 hover:bg-slate-200"
+                customer.owner === "CS" ? "bg-amber-100 text-amber-700 shadow-sm" : "text-slate-500 hover:bg-slate-200"
               }`}
             >
               <User className="h-4 w-4" />
@@ -454,7 +454,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
             <button 
               type="submit"
               disabled={!inputText.trim() || customer.owner === "Karina"}
-              className="p-3 bg-brand-primary text-white rounded-full hover:bg-brand-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm cursor-pointer"
+              className="p-3 bg-slate-800 text-white rounded-full hover:bg-slate-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm cursor-pointer"
             >
               <Send className="h-5 w-5 -ml-0.5" />
             </button>
