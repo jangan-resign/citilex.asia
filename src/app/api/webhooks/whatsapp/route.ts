@@ -32,14 +32,30 @@ export async function POST(request: Request) {
             // Ada pesan masuk!
             const msg = change.value.messages[0];
             const senderPhone = msg.from;
-            const messageText = msg.text?.body || "";
             const incomingWamid = msg.id; // WhatsApp Message ID
             const senderProfileName = change.value.contacts?.[0]?.profile?.name || "Customer Baru";
 
-            // Abaikan jika bukan pesan teks
-            if (!messageText) continue;
+            let messageText = msg.text?.body || "";
+            let attachments: string[] = [];
 
-            console.log(`📩 Pesan masuk dari ${senderPhone}: ${messageText}`);
+            if (msg.type === "image" && msg.image?.id) {
+              attachments.push(`/api/media/${msg.image.id}`);
+              messageText = msg.image.caption || "🖼️ Mengirim gambar";
+            } else if (msg.type === "document" && msg.document?.id) {
+              attachments.push(`/api/media/${msg.document.id}`);
+              messageText = msg.document.filename || msg.document.caption || "📄 Mengirim dokumen";
+            } else if (msg.type === "video" && msg.video?.id) {
+              attachments.push(`/api/media/${msg.video.id}`);
+              messageText = msg.video.caption || "🎥 Mengirim video";
+            } else if (msg.type === "audio" && msg.audio?.id) {
+              attachments.push(`/api/media/${msg.audio.id}`);
+              messageText = "🎵 Mengirim audio";
+            }
+
+            // Abaikan jika bukan pesan teks atau media yang kita dukung
+            if (!messageText && attachments.length === 0) continue;
+
+            console.log(`📩 Pesan masuk dari ${senderPhone}: ${messageText} ${attachments.length > 0 ? '(dengan lampiran)' : ''}`);
 
             // 1. Cari atau buat kustomer di DB
             let customer = await prisma.customer.findUnique({
@@ -56,12 +72,13 @@ export async function POST(request: Request) {
               });
             }
 
-            // 2. Simpan pesan masuk ke DB (dengan wamid)
+            // 2. Simpan pesan masuk ke DB (dengan wamid dan lampiran)
             await prisma.message.create({
               data: {
                 customerId: customer.id,
                 sender: "customer",
                 text: messageText,
+                attachments: attachments,
                 wamid: incomingWamid,
               }
             });
@@ -99,6 +116,27 @@ export async function POST(request: Request) {
                     ...(botWamid && { wamid: botWamid }),
                     replyToWamid: incomingWamid,
                   }
+                });
+              }
+            }
+          }
+          
+          if (change.value && change.value.statuses) {
+            for (const status of change.value.statuses) {
+              const wamid = status.id;
+              if (status.status === "failed") {
+                console.log(`❌ Pesan gagal dikirim (wamid: ${wamid}):`, status.errors);
+                const failedMsg = await prisma.message.findUnique({ where: { wamid } });
+                if (failedMsg && !failedMsg.text.startsWith("[GAGAL]")) {
+                  await prisma.message.update({
+                    where: { wamid },
+                    data: { text: `[GAGAL] ${failedMsg.text}` }
+                  });
+                }
+              } else if (status.status === "read") {
+                await prisma.message.update({
+                  where: { wamid },
+                  data: { isRead: true }
                 });
               }
             }

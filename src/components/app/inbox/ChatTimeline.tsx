@@ -163,7 +163,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
       attachmentElements = (
         <div className="flex flex-col gap-2 mb-2">
           {attachments.map((url: string, i: number) => {
-            const isImage = url.match(/\.(jpeg|jpg|gif|png)$/) != null || text === "image";
+            const isImage = url.match(/\.(jpeg|jpg|gif|png)$/i) != null || url.includes("image") || text?.toLowerCase().includes("gambar") || text?.toLowerCase().includes("image");
             if (isImage) {
               return (
                 <div key={i} className="rounded-lg overflow-hidden border border-slate-200">
@@ -223,7 +223,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
     return (
       <div className="pr-5">
         {attachmentElements}
-        {!attachmentElements && <p className="text-sm whitespace-pre-wrap leading-relaxed">{text}</p>}
+        {text && text !== "image" && text !== "document" && <p className="text-sm whitespace-pre-wrap leading-relaxed">{text}</p>}
       </div>
     );
   };
@@ -390,14 +390,27 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                 )}
                 
                 {/* Message Content */}
-                {renderMessageContent(msg)}
+                {msg.text?.startsWith("[GAGAL]") ? (
+                  <div className="flex flex-col">
+                    <span className="text-red-500 font-semibold text-xs mb-1.5 flex items-center gap-1 bg-red-50/50 p-1.5 rounded border border-red-100">
+                      <X className="w-3.5 h-3.5" /> Gagal dikirim (diblokir sistem / di luar jendela 24-jam)
+                    </span>
+                    {renderMessageContent({ ...msg, text: msg.text.replace("[GAGAL] ", "").replace("[GAGAL]", "") })}
+                  </div>
+                ) : (
+                  renderMessageContent(msg)
+                )}
                 
                 <div className="flex items-center justify-end gap-1 mt-1">
                   <span suppressHydrationWarning className="text-[10px] text-slate-400">
                     {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                   {!isCustomer && (
-                    <CheckCheck className={`h-3 w-3 ${msg.isRead ? "text-blue-500" : "text-slate-400"}`} />
+                    msg.text?.startsWith("[GAGAL]") ? (
+                      <X className="h-3 w-3 text-red-500" />
+                    ) : (
+                      <CheckCheck className={`h-3 w-3 ${msg.isRead ? "text-blue-500" : "text-slate-400"}`} />
+                    )
                   )}
                 </div>
               </div>
@@ -423,7 +436,21 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
 
       {/* Input Area */}
       <div className="p-4 bg-[#f0f2f5] border-t border-slate-200 shrink-0">
-        <form onSubmit={handleSend} className="flex items-center gap-2 max-w-4xl mx-auto">
+        {(() => {
+          const lastCustomerMsg = [...customer.messages].reverse().find(m => m.sender === "customer");
+          const is24hClosed = lastCustomerMsg && (Date.now() - new Date(lastCustomerMsg.createdAt).getTime() > 24 * 60 * 60 * 1000);
+          
+          if (is24hClosed) {
+            return (
+              <div className="bg-amber-50 text-amber-800 border border-amber-200 p-3 rounded-lg flex items-center justify-center gap-2 text-sm shadow-sm">
+                <Info className="w-4 h-4 shrink-0" />
+                <span><strong>Jendela 24-jam tertutup.</strong> Klien harus membalas terlebih dahulu sebelum Anda bisa mengirim pesan baru.</span>
+              </div>
+            );
+          }
+          
+          return (
+            <form onSubmit={handleSend} className="flex items-center gap-2 max-w-4xl mx-auto">
           <div className="flex items-center gap-1">
             <div className="relative flex items-center">
               <button 
@@ -498,6 +525,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
             </button>
           )}
         </form>
+        );})()}
       </div>
 
       {/* Forward Modal */}
