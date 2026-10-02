@@ -173,6 +173,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
                   <img src={url} alt="Attachment" className="w-full h-auto max-h-[350px] object-cover" />
                 </a>
               );
+            }
             return (
               <div key={i} className="pr-5">
                 <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-black/5 rounded-lg border border-slate-200 hover:bg-black/10 transition-colors">
