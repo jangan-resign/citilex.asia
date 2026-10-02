@@ -109,7 +109,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
       items.forEach((item: any, i: number) => {
         let jenisProduk = "";
         let otherSpecs: string[] = [];
-        
+
         if (item.specs && Array.isArray(item.specs)) {
           jenisProduk = item.specs.find((s: string) => s.startsWith("Jenis Produk:")) || "";
           otherSpecs = item.specs.filter((s: string) => !s.startsWith("Jenis Produk:"));
@@ -149,24 +149,24 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
       } else {
         setInjectedText(text);
       }
-      } else if (action === "sph" || action === "invoice") {
-        try {
-          const payload = {
-            customerId: selectedCustomer.id,
-            customerName: selectedCustomer.name,
-            items: items.map((item: any, index: number) => ({
-              name: `Item ${index + 1}`,
-              qty: item.qty,
-              price: item.pricePerPcs || item.price,
-              specs: item.specs || [],
-              hasAttachment: false
-            })),
-          };
+    } else if (action === "sph" || action === "invoice") {
+      try {
+        const payload = {
+          customerId: selectedCustomer.id,
+          customerName: selectedCustomer.name,
+          items: items.map((item: any, index: number) => ({
+            name: `Item ${index + 1}`,
+            qty: item.qty,
+            price: item.pricePerPcs || item.price,
+            specs: item.specs || [],
+            hasAttachment: false
+          })),
+        };
 
-          localStorage.setItem(`doc_draft_${selectedCustomer.id}`, JSON.stringify(payload));
-          
-          const targetPath = action === "sph" ? "/app/quotations" : "/app/invoices";
-          window.open(`${targetPath}?customerId=${selectedCustomer.id}&action=create`, '_blank');
+        localStorage.setItem(`doc_draft_${selectedCustomer.id}`, JSON.stringify(payload));
+
+        const targetPath = action === "sph" ? "/app/quotations" : "/app/invoices";
+        window.open(`${targetPath}?customerId=${selectedCustomer.id}&action=create`, '_blank');
 
       } catch (error) {
         console.error(error);
