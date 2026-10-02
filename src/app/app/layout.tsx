@@ -49,7 +49,7 @@ export default async function CSLayout({ children }: { children: ReactNode }) {
             {children}
           </div>
           {/* Obfuscated Footer (Will not show if License is set) */}
-          <div className="mt-auto bg-slate-50 shrink-0 border-t border-slate-200/60 p-8 flex justify-center items-center [&_*]:text-4xl [&_*]:font-black [&_*]:text-red-600 [&_*]:uppercase">
+          <div className="mt-auto bg-slate-50 shrink-0 border-t border-slate-200/60">
             <LicenseFooter />
           </div>
         </main>
