@@ -44,12 +44,12 @@ export default async function CSLayout({ children }: { children: ReactNode }) {
         <Sidebar userRole={role} />
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-auto flex flex-col relative">
-          <div className="flex-1">
+        <main className="flex-1 overflow-hidden flex flex-col relative">
+          <div className="flex-1 overflow-auto flex flex-col relative">
             {children}
           </div>
           {/* Obfuscated Footer (Will not show if License is set) */}
-          <div className="mt-auto bg-slate-50 shrink-0 border-t border-slate-200/60">
+          <div className="shrink-0 bg-slate-50 border-t border-slate-200/60 z-[9999]">
             <LicenseFooter />
           </div>
         </main>
