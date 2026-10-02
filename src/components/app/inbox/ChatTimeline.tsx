@@ -166,9 +166,9 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
             const isImage = url.match(/\.(jpeg|jpg|gif|png)$/i) != null || url.includes("image") || text?.toLowerCase().includes("gambar") || text?.toLowerCase().includes("image");
             if (isImage) {
               return (
-                <div key={i} className="rounded-lg overflow-hidden border border-slate-200">
-                  <img src={url} alt="Attachment" className="max-w-full h-auto max-h-60 object-contain bg-slate-50" />
-                </div>
+                <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="block rounded-lg overflow-hidden border border-black/5 mb-1.5 cursor-zoom-in bg-black/5 hover:opacity-90 transition-opacity">
+                  <img src={url} alt="Attachment" className="w-full h-auto max-h-[320px] object-contain" />
+                </a>
               );
             }
             return (
@@ -219,11 +219,32 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
       );
     }
 
+    // Sembunyikan teks fallback agar tidak dobel di bawah bubble media
+    const isFallbackText = 
+      text === "🖼️ Mengirim gambar" || 
+      text === "📄 Mengirim dokumen" || 
+      text === "🎥 Mengirim video" || 
+      text === "🎵 Mengirim audio" || 
+      text === "image" || 
+      text === "document";
+      
+    // Jika ada attachment dokumen, filename biasanya sama dengan text, jadi kita sembunyikan jika identik
+    let shouldShowText = !!text && !isFallbackText;
+    if (attachments && attachments.length > 0 && text) {
+      const isDocumentFallback = attachments.some((url: string) => !url.match(/\.(jpeg|jpg|gif|png)$/i) && !url.includes("image"));
+      if (isDocumentFallback) {
+         // jika text sudah dipakai sebagai judul dokumen di block atas, sembunyikan
+         shouldShowText = false; 
+      }
+    }
+
     // Pesan biasa tanpa quote
     return (
       <div className="pr-5">
         {attachmentElements}
-        {text && text !== "image" && text !== "document" && <p className="text-sm whitespace-pre-wrap leading-relaxed">{text}</p>}
+        {shouldShowText && (
+          <p className="text-sm whitespace-pre-wrap leading-relaxed mt-1">{text}</p>
+        )}
       </div>
     );
   };
