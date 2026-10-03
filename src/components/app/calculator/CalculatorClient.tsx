@@ -1261,8 +1261,8 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                             }
                           }}
                           className={`flex flex-col border transition-all cursor-pointer hover:border-brand-gold hover:shadow-md ${isHighest ? "bg-emerald-50 border-emerald-300 rounded-xl px-4 py-3 shadow-sm ring-1 ring-emerald-100" :
-                              isLowest ? "bg-rose-50 border-rose-200 rounded-lg px-3 py-2" :
-                                "bg-slate-50 border-slate-200 rounded-lg px-3 py-2"
+                            isLowest ? "bg-rose-50 border-rose-200 rounded-lg px-3 py-2" :
+                              "bg-slate-50 border-slate-200 rounded-lg px-3 py-2"
                             } hover:border-brand-gold hover:ring-1 hover:ring-brand-gold`}
                         >
                           <div className="flex justify-between items-center w-full mb-1">
