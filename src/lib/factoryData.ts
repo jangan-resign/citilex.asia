@@ -59,8 +59,10 @@ export const FABRIC_PRICES: Record<string, Record<string, { roll: number, grosir
     TS2: { roll: 128500, grosir: 141500, ecer: 144500 } 
   },
   "PE Soft 30S": {
-    M: { roll: 67000, grosir: 70500, ecer: 76500 },
-    P: { roll: 69000, grosir: 72500, ecer: 78500 }
+    A: { roll: 61000, grosir: 64000, ecer: 64000 },
+    B: { roll: 63000, grosir: 66000, ecer: 66000 },
+    C: { roll: 62000, grosir: 65000, ecer: 65000 },
+    D: { roll: 65000, grosir: 68000, ecer: 68000 }
   },
   "PE Pique Soft 30S": {
     A: { roll: 63000, grosir: 66000, ecer: 66000 },
@@ -287,7 +289,7 @@ export const DATABASE_WARNA_KAOS = [
   { n: "17 - Turkis Muda", k: "M", av: ["C24S", "C30S"] },
   { n: "18 - Turkis", k: "S", av: ["C20S", "C24S", "C30S"] },
   { n: "19 - Turkis Tua", k: "T", av: ["C24S", "C30S"] },
-  { n: "104 - Benhur Special", k: "TUASPC", av: ["C24S", "C30S"] },
+  { n: "104 - Benhur Special", k: "TS", av: ["C24S", "C30S"] },
   { n: "101 - Light Navy", k: "T", av: ["C30S"] },
   { n: "23 - Navy", k: "T", av: ["C16S", "C20S", "C24S", "C30S"] },
   { n: "24 - Ungu Tua", k: "T", av: ["C24S", "C30S"] },

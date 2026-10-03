@@ -225,6 +225,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
   let hargaRoll = 0;
   let hargaSisa = 0;
 
+  let totalKainBiaya = 0;
   if (isBajuJadi) {
     hppKainPerPcs = HARGA_BAJU_JADI[material] || 0;
     // hppJahitPerPcs = 0
@@ -243,7 +244,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
     hargaRoll = prices.roll;
     hargaSisa = sisaKg > 5 ? prices.grosir : prices.ecer;
 
-    const totalKainBiaya = (jmlRoll * 25 * hargaRoll) + (sisaKg * hargaSisa);
+    totalKainBiaya = (jmlRoll * 25 * hargaRoll) + (sisaKg * hargaSisa);
     hppKainPerPcs = Math.round(totalKainBiaya / qty) || 0;
 
     const currentSewingCost = SEWING_COST[productType] || SEWING_COST["KAOS"];
@@ -949,16 +950,20 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                       </div>
                       {jmlRoll > 0 && (
                         <div className="flex justify-between text-slate-500 text-xs pl-2">
-                          <span>- {jmlRoll} Roll (x 25kg)</span>
+                          <span>- {jmlRoll} Roll (x 25kg) <span className="text-[10px] text-slate-400">@ Rp {hargaRoll.toLocaleString('id-ID')}</span></span>
                           <span>Rp {(jmlRoll * 25 * hargaRoll).toLocaleString('id-ID')}</span>
                         </div>
                       )}
                       {sisaKg > 0 && (
                         <div className="flex justify-between text-slate-500 text-xs pl-2">
-                          <span>- {sisaKg.toFixed(2)} Kg (Ecer)</span>
+                          <span>- {sisaKg.toFixed(2)} Kg (Ecer) <span className="text-[10px] text-slate-400">@ Rp {hargaSisa.toLocaleString('id-ID')}</span></span>
                           <span>Rp {(sisaKg * hargaSisa).toLocaleString('id-ID')}</span>
                         </div>
                       )}
+                      <div className="flex justify-between text-slate-600 text-xs pl-2 pt-1 mt-1 border-t border-slate-100">
+                        <span>Total Harga Kain</span>
+                        <span className="font-medium">Rp {totalKainBiaya.toLocaleString('id-ID')}</span>
+                      </div>
                     </div>
                     <div className="flex justify-between text-brand-primary font-bold mb-1">
                       <span>HPP Dasar S-XL / pcs</span>
