@@ -175,6 +175,37 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
     }
   };
 
+  const handleRemoveQualificationItem = async (customerId: string, index: number) => {
+    const customer = customers.find(c => c.id === customerId);
+    if (!customer) return;
+    if (!confirm("Hapus item ini dari Lead Qualifications?")) return;
+
+    const currentItems = Array.isArray(customer.qualification?.items) ? [...customer.qualification!.items] : [];
+    currentItems.splice(index, 1);
+
+    // Optimistic update
+    setCustomers(customers.map(c => {
+      if (c.id === customerId) {
+        return {
+          ...c,
+          qualification: {
+            ...(c.qualification || {} as any),
+            items: currentItems
+          }
+        };
+      }
+      return c;
+    }));
+
+    try {
+      const { updateCustomerQualification } = await import("../../../actions/inbox");
+      await updateCustomerQualification(customerId, {}, { items: currentItems });
+    } catch (error) {
+      console.error(error);
+      alert("Gagal menghapus item");
+    }
+  };
+
   const handleChangeOwner = async (customerId: string, owner: string) => {
     // Optimistic update
     setCustomers(customers.map(c => c.id === customerId ? { ...c, owner } : c));
@@ -319,6 +350,7 @@ export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWi
             customer={selectedCustomer}
             onOpenCalculator={() => setIsCalculatorOpen(true)}
             onActionSelect={handleDocumentAction}
+            onRemoveItem={(index) => handleRemoveQualificationItem(selectedCustomer.id, index)}
           />
         ) : (
           <div className="flex-1 flex items-center justify-center text-slate-400 text-sm p-8 text-center">

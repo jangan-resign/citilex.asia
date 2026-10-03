@@ -960,10 +960,12 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                           <span>Rp {(sisaKg * hargaSisa).toLocaleString('id-ID')}</span>
                         </div>
                       )}
-                      <div className="flex justify-between text-slate-600 text-xs pl-2 pt-1 mt-1 border-t border-slate-100">
-                        <span>Total Harga Kain</span>
-                        <span className="font-medium">Rp {totalKainBiaya.toLocaleString('id-ID')}</span>
-                      </div>
+                      {(jmlRoll > 0 && sisaKg > 0) && (
+                        <div className="flex justify-between text-slate-600 text-xs pl-2 pt-1 mt-1 border-t border-slate-100">
+                          <span>Total Harga Kain</span>
+                          <span className="font-medium">Rp {totalKainBiaya.toLocaleString('id-ID')}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="flex justify-between text-brand-primary font-bold mb-1">
                       <span>HPP Dasar S-XL / pcs</span>

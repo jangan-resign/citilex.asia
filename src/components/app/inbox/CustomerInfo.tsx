@@ -9,9 +9,10 @@ interface CustomerInfoProps {
   customer: CustomerWithMessages;
   onOpenCalculator: () => void;
   onActionSelect: (action: "copy_text" | "send_text" | "sph" | "invoice", data?: any) => void;
+  onRemoveItem?: (index: number) => void;
 }
 
-export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: CustomerInfoProps) {
+export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRemoveItem }: CustomerInfoProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -58,6 +59,10 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect }: Cus
   };
 
   const handleRemoveItem = async (index: number) => {
+    if (onRemoveItem) {
+      onRemoveItem(index);
+      return;
+    }
     if (!confirm("Hapus item ini dari Lead Qualifications?")) return;
     
     const newItems = [...items];
