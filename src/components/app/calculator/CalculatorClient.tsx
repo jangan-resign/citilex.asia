@@ -165,7 +165,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
   const [spots, setSpots] = useLocalStorageState<CustomSpot[]>("calc_spots", []);
 
   // --- STATE: Big Sizes (Jumbo) ---
-  const [bigSizes, setBigSizes] = useLocalStorageState<{size: string, qty: number, pricePerPcs: number}[]>("calc_bigSizes", []);
+  const [bigSizes, setBigSizes] = useLocalStorageState<{ size: string, qty: number, pricePerPcs: number }[]>("calc_bigSizes", []);
 
   // --- STATE: Aksesoris ---
   const [ribLeher, setRibLeher] = useLocalStorageState("calc_ribLeher", false);
@@ -176,7 +176,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
   // --- STATE: AI ---
   const [isVisualModalOpen, setIsVisualModalOpen] = useState(false);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState<number | null>(null);
-  
+
   // --- STATE: SPH Design ---
 
 
@@ -184,14 +184,14 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
   useEffect(() => {
     if (customerContext?.qualification) {
       const q = customerContext.qualification;
-      
+
       // Auto-fill Product Type
       if (q.product) {
         const prod = q.product.toLowerCase();
         if (prod.includes("polo")) setProductType("POLO");
         else if (prod.includes("kaos")) setProductType("KAOS");
       }
-      
+
       // Auto-fill Qty
       if (q.quantity) {
         const parsedQty = parseInt(q.quantity.replace(/\D/g, ''));
@@ -199,7 +199,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
           setQty(parsedQty);
         }
       }
-      
+
       // Kita bisa expand mapping material dsb disini nanti
     }
   }, [customerContext?.id]); // Re-run jika ganti customer
@@ -313,7 +313,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
   const rubberFiltered = rubberPriceList.filter(p => p.ukuran === rubberAreaCode && p.warna === rubberWarnaSearch);
   const rubberMatch = rubberFiltered.find(p => qty >= p.min && qty <= p.max) || rubberFiltered[rubberFiltered.length - 1];
   let totalRubberPrice = isRubberExceeded ? 0 : (rubberMatch?.hargaDasar || 0);
-  
+
   if (!isRubberExceeded && rubberSpots.length > MANUAL_SCREEN_PRINT_CONFIG.rubber.maxTitik) {
     totalRubberPrice += (rubberSpots.length - MANUAL_SCREEN_PRINT_CONFIG.rubber.maxTitik) * MANUAL_SCREEN_PRINT_CONFIG.rubber.dendaTitik;
   }
@@ -325,7 +325,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
   const plastisolArea = calculateCombinedArea(plastisolSpots.map(s => ({ W: s.designW, H: s.designH })), 37);
   let plastisolAreaCode = "A2";
   let isPlastisolExceeded = false;
-  
+
   if (checkFit(plastisolArea.width, plastisolArea.height, 31, 47)) plastisolAreaCode = "A3+";
   else if (checkFit(plastisolArea.width, plastisolArea.height, 37, 54)) plastisolAreaCode = "A2";
   else isPlastisolExceeded = true;
@@ -443,35 +443,35 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
             </div>
           </div>
 
-            <div className="mt-6 mb-8 flex items-center gap-4">
-              <span className={`text-sm font-bold cursor-pointer ${productType === "KAOS" ? "text-brand-primary" : "text-slate-400"}`} onClick={() => { setProductType("KAOS"); setMaterial("Cotton Combed 30S"); }}>
-                KAOS
-              </span>
+          <div className="mt-6 mb-8 flex items-center gap-4">
+            <span className={`text-sm font-bold cursor-pointer ${productType === "KAOS" ? "text-brand-primary" : "text-slate-400"}`} onClick={() => { setProductType("KAOS"); setMaterial("Cotton Combed 30S"); }}>
+              KAOS
+            </span>
 
-              <button
-                type="button"
-                onClick={() => {
-                  if (productType === "KAOS") {
-                    setProductType("POLO");
-                    setMaterial("Lacoste Pique 24s");
-                  } else {
-                    setProductType("KAOS");
-                    setMaterial("Cotton Combed 30S");
-                  }
-                }}
-                className={`relative inline-flex h-7 w-14 flex-shrink-0 items-center transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 ${productType === "POLO" ? "bg-slate-800" : "bg-slate-300"}`}
-                style={{ borderRadius: '9999px' }}
-              >
-                <span
-                  className={`inline-block h-5 w-5 transform bg-white shadow-md transition-transform duration-200 ease-in-out ${productType === "POLO" ? "translate-x-8" : "translate-x-1"}`}
-                  style={{ borderRadius: '50%' }}
-                />
-              </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (productType === "KAOS") {
+                  setProductType("POLO");
+                  setMaterial("Lacoste Pique 24s");
+                } else {
+                  setProductType("KAOS");
+                  setMaterial("Cotton Combed 30S");
+                }
+              }}
+              className={`relative inline-flex h-7 w-14 flex-shrink-0 items-center transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 ${productType === "POLO" ? "bg-slate-800" : "bg-slate-300"}`}
+              style={{ borderRadius: '9999px' }}
+            >
+              <span
+                className={`inline-block h-5 w-5 transform bg-white shadow-md transition-transform duration-200 ease-in-out ${productType === "POLO" ? "translate-x-8" : "translate-x-1"}`}
+                style={{ borderRadius: '50%' }}
+              />
+            </button>
 
-              <span className={`text-sm font-bold cursor-pointer ${productType === "POLO" ? "text-brand-primary" : "text-slate-400"}`} onClick={() => { setProductType("POLO"); setMaterial("Lacoste Pique 24s"); }}>
-                POLO SHIRT
-              </span>
-            </div>
+            <span className={`text-sm font-bold cursor-pointer ${productType === "POLO" ? "text-brand-primary" : "text-slate-400"}`} onClick={() => { setProductType("POLO"); setMaterial("Lacoste Pique 24s"); }}>
+              POLO SHIRT
+            </span>
+          </div>
 
           <div className="space-y-6">
 
@@ -691,7 +691,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                   <button
                     onClick={() => setIsVisualModalOpen(true)}
                     className="flex items-center gap-1 text-[10px] sm:text-xs font-bold text-white bg-gradient-to-r from-brand-gold to-yellow-600 px-2 sm:px-3 py-1.5 rounded-lg hover:opacity-90 transition-opacity shadow-sm shadow-brand-gold/30 cursor-pointer whitespace-nowrap">
-                    <Ruler className="w-3 h-3 sm:w-4 sm:h-4" /> 
+                    <Ruler className="w-3 h-3 sm:w-4 sm:h-4" />
                     Visual Estimator
                   </button>
                   <button
@@ -712,11 +712,11 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                 </div>
               </div>
 
-              <VisualEstimatorModal 
-                isOpen={isVisualModalOpen} 
+              <VisualEstimatorModal
+                isOpen={isVisualModalOpen}
                 garmentType={productType === "POLO" ? "polo" : "kaos"}
-                onClose={() => setIsVisualModalOpen(false)} 
-                onApply={handleVisualApply} 
+                onClose={() => setIsVisualModalOpen(false)}
+                onApply={handleVisualApply}
               />
 
               {spots.length === 0 ? (
@@ -778,7 +778,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                             }}
                             className="w-full p-2 border border-slate-300 rounded text-sm" />
                         </div>
-                        
+
                         <div className="flex flex-col items-center justify-center pb-2">
                           <button
                             title={spot.isLocked ? "Rasio Terkunci" : "Rasio Bebas"}
@@ -917,406 +917,405 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
             <p className="text-slate-500 text-sm">Ada ukuran desain yang melebihi batas maksimal mesin. Silakan perbaiki input ukuran (yang bertanda error merah di kolom kiri) untuk melihat hasil kalkulasi.</p>
           </div>
         ) : (
-        <div className="bg-white border border-slate-200 w-full max-w-md mx-auto rounded-2xl shadow-xl overflow-hidden flex flex-col z-10 text-slate-800 my-4">
+          <div className="bg-white border border-slate-200 w-full max-w-md mx-auto rounded-2xl shadow-xl overflow-hidden flex flex-col z-10 text-slate-800 my-4">
 
-          <div className="bg-slate-50 p-6 text-center border-b border-slate-200">
-            <h2 className="text-xl font-bold tracking-widest uppercase text-brand-primary">RINGKASAN BIAYA</h2>
-            <p className="text-slate-500 text-xs mt-1 font-mono">ESTIMASI HPP & REKOMENDASI HARGA JUAL</p>
-          </div>
+            <div className="bg-slate-50 p-6 text-center border-b border-slate-200">
+              <h2 className="text-xl font-bold tracking-widest uppercase text-brand-primary">RINGKASAN BIAYA</h2>
+              <p className="text-slate-500 text-xs mt-1 font-mono">ESTIMASI HPP & REKOMENDASI HARGA JUAL</p>
+            </div>
 
-          <div className="p-6 flex-1 overflow-y-auto font-mono text-sm">
+            <div className="p-6 flex-1 overflow-y-auto font-mono text-sm">
 
-            {/* Kain & Jahit */}
-            <div className="mb-6">
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">1. Material & CMT</p>
-              {isBajuJadi ? (
-                <div className="space-y-1 mb-2">
-                  <div className="flex justify-between text-slate-600">
-                    <span>Base Baju Jadi</span>
-                    <span>{material}</span>
-                  </div>
-                  <div className="flex justify-between text-brand-primary font-bold mt-2 pt-2 border-t border-slate-200">
-                    <span>Harga Satuan / pcs</span>
-                    <span>Rp {hppKainPerPcs.toLocaleString('id-ID')}</span>
-                  </div>
-                </div>
-              ) : (
-                <>
+              {/* Kain & Jahit */}
+              <div className="mb-6">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">1. Material & CMT</p>
+                {isBajuJadi ? (
                   <div className="space-y-1 mb-2">
                     <div className="flex justify-between text-slate-600">
-                      <span>Kebutuhan Kain</span>
-                      <span>{totalKg.toFixed(2)} Kg</span>
+                      <span>Base Baju Jadi</span>
+                      <span>{material}</span>
                     </div>
-                    {jmlRoll > 0 && (
-                      <div className="flex justify-between text-slate-500 text-xs pl-2">
-                        <span>- {jmlRoll} Roll (x 25kg)</span>
-                        <span>Rp {(jmlRoll * 25 * hargaRoll).toLocaleString('id-ID')}</span>
-                      </div>
-                    )}
-                    {sisaKg > 0 && (
-                      <div className="flex justify-between text-slate-500 text-xs pl-2">
-                        <span>- {sisaKg.toFixed(2)} Kg (Ecer)</span>
-                        <span>Rp {(sisaKg * hargaSisa).toLocaleString('id-ID')}</span>
-                      </div>
-                    )}
+                    <div className="flex justify-between text-brand-primary font-bold mt-2 pt-2 border-t border-slate-200">
+                      <span>Harga Satuan / pcs</span>
+                      <span>Rp {hppKainPerPcs.toLocaleString('id-ID')}</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-brand-primary font-bold mb-1">
-                    <span>HPP Dasar S-XL / pcs</span>
-                    <span>Rp {hppKainPerPcs.toLocaleString('id-ID')}</span>
+                ) : (
+                  <>
+                    <div className="space-y-1 mb-2">
+                      <div className="flex justify-between text-slate-600">
+                        <span>Kebutuhan Kain</span>
+                        <span>{totalKg.toFixed(2)} Kg</span>
+                      </div>
+                      {jmlRoll > 0 && (
+                        <div className="flex justify-between text-slate-500 text-xs pl-2">
+                          <span>- {jmlRoll} Roll (x 25kg)</span>
+                          <span>Rp {(jmlRoll * 25 * hargaRoll).toLocaleString('id-ID')}</span>
+                        </div>
+                      )}
+                      {sisaKg > 0 && (
+                        <div className="flex justify-between text-slate-500 text-xs pl-2">
+                          <span>- {sisaKg.toFixed(2)} Kg (Ecer)</span>
+                          <span>Rp {(sisaKg * hargaSisa).toLocaleString('id-ID')}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex justify-between text-brand-primary font-bold mb-1">
+                      <span>HPP Dasar S-XL / pcs</span>
+                      <span>Rp {hppKainPerPcs.toLocaleString('id-ID')}</span>
+                    </div>
+                    <div className="flex justify-between text-brand-primary font-bold">
+                      <span>Biaya Jahit (CMT) / pcs</span>
+                      <span>Rp {hppJahitPerPcs.toLocaleString('id-ID')}</span>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Aksesoris */}
+              {aksesorisBiaya > 0 && (
+                <div className="mb-6">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">2. Aksesoris Tambahan</p>
+                  <div className="space-y-1 mb-2">
+                    {productType === "KAOS" ? (
+                      <>
+                        {ribLeher && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Rib Leher</span>
+                            <span>Rp {biayaRibLeher.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                        {ribLengan && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Rib Lengan</span>
+                            <span>Rp {biayaRibLengan.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                        {saku && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Saku</span>
+                            <span>Rp {biayaSaku.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                        {kerah && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Kerah</span>
+                            <span>Rp {biayaKerah.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {kCost > 0 && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Kerah {kerahPolo}</span>
+                            <span>Rp {kCost.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                        {mCost > 0 && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Manset {mansetPolo}</span>
+                            <span>Rp {mCost.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                        {sCost > 0 && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Saku {sakuPolo}</span>
+                            <span>Rp {sCost.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                        {meletCost > 0 && (
+                          <div className="flex justify-between text-slate-600 text-xs pl-2">
+                            <span>- Melet</span>
+                            <span>Rp {meletCost.toLocaleString('id-ID')}</span>
+                          </div>
+                        )}
+                      </>
+                    )}
                   </div>
                   <div className="flex justify-between text-brand-primary font-bold">
-                    <span>Biaya Jahit (CMT) / pcs</span>
-                    <span>Rp {hppJahitPerPcs.toLocaleString('id-ID')}</span>
+                    <span>Total Aksesoris / pcs</span>
+                    <span>Rp {aksesorisBiaya.toLocaleString('id-ID')}</span>
                   </div>
-                </>
+                </div>
               )}
-            </div>
 
-            {/* Aksesoris */}
-            {aksesorisBiaya > 0 && (
-              <div className="mb-6">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">2. Aksesoris Tambahan</p>
-                <div className="space-y-1 mb-2">
-                  {productType === "KAOS" ? (
-                    <>
-                      {ribLeher && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Rib Leher</span>
-                          <span>Rp {biayaRibLeher.toLocaleString('id-ID')}</span>
+              {/* Customisasi Multi-Spot */}
+              {spotDetails.length > 0 && (
+                <div className="mb-6">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{aksesorisBiaya > 0 ? "3" : "2"}. Customisasi ({spotDetails.length} Titik)</p>
+                  <div className="space-y-3 mb-2">
+                    {spotDetails.map((spot, i) => (
+                      <div key={spot.id} className="border-b border-slate-100 pb-2 last:border-0 last:pb-0">
+                        <div className="flex justify-between text-slate-600 text-xs mb-1">
+                          <span className="font-bold">Titik {i + 1} ({spot.type})</span>
+                          <span>Rp {spot.price.toLocaleString('id-ID')}</span>
                         </div>
-                      )}
-                      {ribLengan && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Rib Lengan</span>
-                          <span>Rp {biayaRibLengan.toLocaleString('id-ID')}</span>
+                        <div className="text-slate-400 text-[10px]">
+                          {spot.info}
                         </div>
-                      )}
-                      {saku && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Saku</span>
-                          <span>Rp {biayaSaku.toLocaleString('id-ID')}</span>
-                        </div>
-                      )}
-                      {kerah && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Kerah</span>
-                          <span>Rp {biayaKerah.toLocaleString('id-ID')}</span>
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      {kCost > 0 && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Kerah {kerahPolo}</span>
-                          <span>Rp {kCost.toLocaleString('id-ID')}</span>
-                        </div>
-                      )}
-                      {mCost > 0 && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Manset {mansetPolo}</span>
-                          <span>Rp {mCost.toLocaleString('id-ID')}</span>
-                        </div>
-                      )}
-                      {sCost > 0 && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Saku {sakuPolo}</span>
-                          <span>Rp {sCost.toLocaleString('id-ID')}</span>
-                        </div>
-                      )}
-                      {meletCost > 0 && (
-                        <div className="flex justify-between text-slate-600 text-xs pl-2">
-                          <span>- Melet</span>
-                          <span>Rp {meletCost.toLocaleString('id-ID')}</span>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-                <div className="flex justify-between text-brand-primary font-bold">
-                  <span>Total Aksesoris / pcs</span>
-                  <span>Rp {aksesorisBiaya.toLocaleString('id-ID')}</span>
-                </div>
-              </div>
-            )}
-
-            {/* Customisasi Multi-Spot */}
-            {spotDetails.length > 0 && (
-              <div className="mb-6">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{aksesorisBiaya > 0 ? "3" : "2"}. Customisasi ({spotDetails.length} Titik)</p>
-                <div className="space-y-3 mb-2">
-                  {spotDetails.map((spot, i) => (
-                    <div key={spot.id} className="border-b border-slate-100 pb-2 last:border-0 last:pb-0">
-                      <div className="flex justify-between text-slate-600 text-xs mb-1">
-                        <span className="font-bold">Titik {i + 1} ({spot.type})</span>
-                        <span>Rp {spot.price.toLocaleString('id-ID')}</span>
                       </div>
-                      <div className="text-slate-400 text-[10px]">
-                        {spot.info}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex justify-between text-brand-primary font-bold mt-2 pt-2 border-t border-slate-200">
-                  <span>Total Custom / pcs</span>
-                  <span>Rp {totalHppCustomPerPcs.toLocaleString('id-ID')}</span>
-                </div>
-              </div>
-            )}
-
-            {/* Size Jumbo */}
-            {bigSizes.length > 0 && (
-              <div className="mb-6">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{aksesorisBiaya > 0 ? "4" : "3"}. Extra Size Jumbo</p>
-                <div className="space-y-1 mb-2">
-                  {bigSizes.map((bs, i) => (
-                    <div key={i} className="flex justify-between text-slate-600 text-xs pl-2">
-                      <span>- {bs.size} ({bs.qty} pcs)</span>
-                      <span>Rp {(bs.qty * bs.pricePerPcs).toLocaleString('id-ID')}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex justify-between text-brand-primary font-bold mt-2 pt-2 border-t border-slate-200">
-                  <span>Total Extra Size</span>
-                  <span>Rp {totalBigSizeCost.toLocaleString('id-ID')}</span>
-                </div>
-              </div>
-            )}
-
-            <div className="border-t border-dashed border-slate-200 my-4"></div>
-
-            {/* TOTAL HPP BREAKDOWN */}
-            <div className="mb-6 p-4 bg-slate-200/50 rounded-xl">
-              {bigSizes.length > 0 ? (
-                <div className="flex flex-col gap-2">
-                  <div className="flex justify-between items-center text-xs font-medium text-slate-600">
-                    <span>Total HPP S-XL ({(qty - bigSizes.reduce((a,b)=>a+b.qty,0))} pcs)</span>
-                    <div className="flex flex-col items-end">
-                      <span>Rp {((qty - bigSizes.reduce((a,b)=>a+b.qty,0)) * totalHppPerPcs).toLocaleString('id-ID')}</span>
-                      <span className="text-[10px] text-slate-400">@ Rp {Math.ceil(totalHppPerPcs).toLocaleString('id-ID')} / pcs</span>
-                    </div>
+                    ))}
                   </div>
-                  {bigSizes.map((bs, index) => (
-                    <div key={`hpp-jumbo-${index}`} className="flex justify-between items-center text-xs font-medium text-slate-600 mt-2">
-                      <span>Total HPP {bs.size} ({bs.qty} pcs)</span>
+                  <div className="flex justify-between text-brand-primary font-bold mt-2 pt-2 border-t border-slate-200">
+                    <span>Total Custom / pcs</span>
+                    <span>Rp {totalHppCustomPerPcs.toLocaleString('id-ID')}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Size Jumbo */}
+              {bigSizes.length > 0 && (
+                <div className="mb-6">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">{aksesorisBiaya > 0 ? "4" : "3"}. Extra Size Jumbo</p>
+                  <div className="space-y-1 mb-2">
+                    {bigSizes.map((bs, i) => (
+                      <div key={i} className="flex justify-between text-slate-600 text-xs pl-2">
+                        <span>- {bs.size} ({bs.qty} pcs)</span>
+                        <span>Rp {(bs.qty * bs.pricePerPcs).toLocaleString('id-ID')}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between text-brand-primary font-bold mt-2 pt-2 border-t border-slate-200">
+                    <span>Total Extra Size</span>
+                    <span>Rp {totalBigSizeCost.toLocaleString('id-ID')}</span>
+                  </div>
+                </div>
+              )}
+
+              <div className="border-t border-dashed border-slate-200 my-4"></div>
+
+              {/* TOTAL HPP BREAKDOWN */}
+              <div className="mb-6 p-4 bg-slate-200/50 rounded-xl">
+                {bigSizes.length > 0 ? (
+                  <div className="flex flex-col gap-2">
+                    <div className="flex justify-between items-center text-xs font-medium text-slate-600">
+                      <span>Total HPP S-XL ({(qty - bigSizes.reduce((a, b) => a + b.qty, 0))} pcs)</span>
                       <div className="flex flex-col items-end">
-                        <span>Rp {Math.ceil(bs.qty * (totalHppPerPcs + bs.pricePerPcs)).toLocaleString('id-ID')}</span>
-                        <span className="text-[10px] text-slate-400">@ Rp {Math.ceil(totalHppPerPcs + bs.pricePerPcs).toLocaleString('id-ID')} / pcs</span>
+                        <span>Rp {((qty - bigSizes.reduce((a, b) => a + b.qty, 0)) * totalHppPerPcs).toLocaleString('id-ID')}</span>
+                        <span className="text-[10px] text-slate-400">@ Rp {Math.ceil(totalHppPerPcs).toLocaleString('id-ID')} / pcs</span>
                       </div>
                     </div>
-                  ))}
-                  <div className="border-t border-slate-300 my-1"></div>
-                  <div className="flex justify-between items-center text-sm font-black text-slate-800">
-                    <span>TOTAL HPP KESELURUHAN ({qty} PCS)</span>
-                    <span>Rp {Math.ceil((qty * totalHppPerPcs) + totalBigSizeCost).toLocaleString('id-ID')}</span>
+                    {bigSizes.map((bs, index) => (
+                      <div key={`hpp-jumbo-${index}`} className="flex justify-between items-center text-xs font-medium text-slate-600 mt-2">
+                        <span>Total HPP {bs.size} ({bs.qty} pcs)</span>
+                        <div className="flex flex-col items-end">
+                          <span>Rp {Math.ceil(bs.qty * (totalHppPerPcs + bs.pricePerPcs)).toLocaleString('id-ID')}</span>
+                          <span className="text-[10px] text-slate-400">@ Rp {Math.ceil(totalHppPerPcs + bs.pricePerPcs).toLocaleString('id-ID')} / pcs</span>
+                        </div>
+                      </div>
+                    ))}
+                    <div className="border-t border-slate-300 my-1"></div>
+                    <div className="flex justify-between items-center text-sm font-black text-slate-800">
+                      <span>TOTAL HPP KESELURUHAN ({qty} PCS)</span>
+                      <span>Rp {Math.ceil((qty * totalHppPerPcs) + totalBigSizeCost).toLocaleString('id-ID')}</span>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center gap-1 w-full">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">TOTAL HPP ({qty} PCS)</span>
-                  <span className="text-lg font-black text-slate-800 mb-1">Rp {Math.ceil(qty * totalHppPerPcs).toLocaleString('id-ID')}</span>
-                  
-                  <div className="w-full border-t border-slate-300 border-dashed max-w-[200px] opacity-60"></div>
-                  
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">HPP / PCS</span>
-                  <span className="text-sm font-bold text-brand-primary">Rp {Math.ceil(totalHppPerPcs).toLocaleString('id-ID')}</span>
-                </div>
-              )}
-            </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center gap-1 w-full">
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">TOTAL HPP ({qty} PCS)</span>
+                    <span className="text-lg font-black text-slate-800 mb-1">Rp {Math.ceil(qty * totalHppPerPcs).toLocaleString('id-ID')}</span>
 
-            {/* REKOMENDASI TIER HARGA JUAL */}
-            <div className="mb-2">
-              <p className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-3">Rekomendasi Harga Jual (Margin)</p>
-              <div className="space-y-2 relative">
-                {/* Overlay transparan buat click-away listener */}
-                {activeDropdownIndex !== null && (
-                  <div 
-                    className="fixed inset-0 z-[55] cursor-default" 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveDropdownIndex(null);
-                    }}
-                  />
+                    <div className="w-full border-t border-slate-300 border-dashed max-w-[200px] opacity-60"></div>
+
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">HPP / PCS</span>
+                    <span className="text-sm font-bold text-brand-primary">Rp {Math.ceil(totalHppPerPcs).toLocaleString('id-ID')}</span>
+                  </div>
                 )}
+              </div>
 
-                {[
-                  { label: "TERTINGGI (47%)", margin: 0.53 },
-                  { label: "TIER 4 (45%)", margin: 0.55 },
-                  { label: "TIER 3 (43%)", margin: 0.57 },
-                  { label: "TIER 2 (40%)", margin: 0.60 },
-                  { label: "TIER 1 (37%)", margin: 0.63 },
-                  { label: "TERENDAH (35%)", margin: 0.65 },
-                ].map((tier, i) => {
-                  const isHighest = tier.label === "TERTINGGI (47%)";
-                  const isLowest = tier.label === "TERENDAH (35%)";
-                  const pricePerPcs = Math.ceil(totalHppPerPcs / tier.margin);
-                  
-                  const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
-                  let totalPrice = pricePerPcs * baseQty;
-                  bigSizes.forEach(bs => {
-                    const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
-                    const fullPrice = pricePerPcs + extraCostWithMargin;
-                    totalPrice += fullPrice * bs.qty;
-                  });
-                  
-                  const sablonSpots = spots.filter((s: CustomSpot) => ["DTF", "RUBBER", "PLASTISOL"].includes(s.type));
-                  const bordirSpots = spots.filter((s: CustomSpot) => s.type === "BORDIR");
-                  let aksesorisTeks = "";
-                  if (productType === "KAOS") {
-                    aksesorisTeks = [ribLeher && "Rib Leher", ribLengan && "Rib Lengan", saku && "Saku"].filter(Boolean).join(", ") || "-";
-                  } else {
-                    const poloAks = [];
-                    if (kerahPolo) poloAks.push(`Kerah ${kerahPolo}`);
-                    if (mansetPolo && mansetPolo !== "tanpa") poloAks.push(`Manset ${mansetPolo}`);
-                    if (sakuPolo && sakuPolo !== "tanpa") poloAks.push(`Saku ${sakuPolo}`);
-                    if (meletPolo && meletPolo !== "tanpa") poloAks.push(`Dengan Melet`);
-                    aksesorisTeks = poloAks.join(", ") || "-";
-                  }
+              {/* REKOMENDASI TIER HARGA JUAL */}
+              <div className="mb-2">
+                <p className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-3">Rekomendasi Harga Jual (Margin)</p>
+                <div className="space-y-2 relative">
+                  {/* Overlay transparan buat click-away listener */}
+                  {activeDropdownIndex !== null && (
+                    <div
+                      className="fixed inset-0 z-[55] cursor-default"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveDropdownIndex(null);
+                      }}
+                    />
+                  )}
 
-                  return (
-                    <div key={i} className="relative mb-2">
-                      <div
-                        onClick={async (e) => {
-                          e.stopPropagation();
-                          if (customerContext) {
-                            const isConfirmed = window.confirm("Tambahkan ke Leads Qualification?");
-                            if (isConfirmed) {
-                              const modelLabel = model === "regular" ? "Regular" : model === "tunik" ? "Tunik" : model === "tunik_aline" ? "Tunik A-Line" : model === "paud" ? "PAUD" : model === "sd" ? "SD" : model === "raglan" ? "Raglan" : model;
-                              const sablonTypes = Array.from(new Set(sablonSpots.map((s: any) => s.type === 'RUBBER' ? 'Rubber' : s.type === 'PLASTISOL' ? 'Plastisol' : 'DTF'))).join(', ');
-                              const customText = `${sablonSpots.length > 0 ? sablonSpots.length + " Titik Sablon (" + sablonTypes + ")" : "Tanpa Sablon"}${bordirSpots.length > 0 ? ", " + bordirSpots.length + " Titik Bordir" : ""}`;
-                              
-                              const lenganLabel = model === "pendek" ? 
-                                (lengan === "tigaperempat" ? "3/4" : lengan === "tujuhperlapan" ? "7/8" : lengan === "panjang" ? "Panjang" : "Pendek") 
-                                : "Bawaan Pola";
+                  {[
+                    { label: "TERTINGGI (47%)", margin: 0.53 },
+                    { label: "TIER 4 (45%)", margin: 0.55 },
+                    { label: "TIER 3 (43%)", margin: 0.57 },
+                    { label: "TIER 2 (40%)", margin: 0.60 },
+                    { label: "TIER 1 (37%)", margin: 0.63 },
+                    { label: "TERENDAH (35%)", margin: 0.65 },
+                  ].map((tier, i) => {
+                    const isHighest = tier.label === "TERTINGGI (47%)";
+                    const isLowest = tier.label === "TERENDAH (35%)";
+                    const pricePerPcs = Math.ceil(totalHppPerPcs / tier.margin);
 
-                              const specLines = [
-                                `Jenis Produk: ${productType === "KAOS" ? "Kaos" : "Polo Shirt"}`,
-                                `Pola Badan: ${modelLabel}`,
-                                `Panjang Lengan: ${lenganLabel}`,
-                                `Bahan Baku: ${material}`,
-                                `Warna Kain: ${colorName.replace(/^\d+\s*-\s*/, '')}`,
-                                `Aksesoris: ${aksesorisTeks}`,
-                                `Custom: ${customText}`
-                              ];
+                    const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
+                    let totalPrice = pricePerPcs * baseQty;
+                    bigSizes.forEach(bs => {
+                      const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
+                      const fullPrice = pricePerPcs + extraCostWithMargin;
+                      totalPrice += fullPrice * bs.qty;
+                    });
 
-                              const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
-                              const itemsToAdd: any[] = [];
-                                
-                              if (baseQty > 0) {
-                                itemsToAdd.push({
-                                  name: `${productType === "KAOS" ? "Kaos" : "Polo"} - ${modelLabel}`,
-                                  tierLabel: `${tier.label} (S-XL)`,
-                                  qty: baseQty,
-                                  pricePerPcs,
-                                  totalPrice: pricePerPcs * baseQty,
-                                  specs: specLines
+                    const sablonSpots = spots.filter((s: CustomSpot) => ["DTF", "RUBBER", "PLASTISOL"].includes(s.type));
+                    const bordirSpots = spots.filter((s: CustomSpot) => s.type === "BORDIR");
+                    let aksesorisTeks = "";
+                    if (productType === "KAOS") {
+                      aksesorisTeks = [ribLeher && "Rib Leher", ribLengan && "Rib Lengan", saku && "Saku"].filter(Boolean).join(", ") || "-";
+                    } else {
+                      const poloAks = [];
+                      if (kerahPolo) poloAks.push(`Kerah ${kerahPolo}`);
+                      if (mansetPolo && mansetPolo !== "tanpa") poloAks.push(`Manset ${mansetPolo}`);
+                      if (sakuPolo && sakuPolo !== "tanpa") poloAks.push(`Saku ${sakuPolo}`);
+                      if (meletPolo && meletPolo !== "tanpa") poloAks.push(`Dengan Melet`);
+                      aksesorisTeks = poloAks.join(", ") || "-";
+                    }
+
+                    return (
+                      <div key={i} className="relative mb-2">
+                        <div
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            if (customerContext) {
+                              const isConfirmed = window.confirm("Tambahkan ke Leads Qualification?");
+                              if (isConfirmed) {
+                                const modelLabel = model === "regular" ? "Regular" : model === "tunik" ? "Tunik" : model === "tunik_aline" ? "Tunik A-Line" : model === "paud" ? "PAUD" : model === "sd" ? "SD" : model === "raglan" ? "Raglan" : model;
+                                const sablonTypes = Array.from(new Set(sablonSpots.map((s: any) => s.type === 'RUBBER' ? 'Rubber' : s.type === 'PLASTISOL' ? 'Plastisol' : 'DTF'))).join(', ');
+                                const customText = `${sablonSpots.length > 0 ? sablonSpots.length + " Titik Sablon (" + sablonTypes + ")" : "Tanpa Sablon"}${bordirSpots.length > 0 ? ", " + bordirSpots.length + " Titik Bordir" : ""}`;
+
+                                const lenganLabel = model === "pendek" ?
+                                  (lengan === "tigaperempat" ? "3/4" : lengan === "tujuhperlapan" ? "7/8" : lengan === "panjang" ? "Panjang" : "Pendek")
+                                  : "Bawaan Pola";
+
+                                const specLines = [
+                                  `Jenis Produk: ${productType === "KAOS" ? "Kaos" : "Polo Shirt"}`,
+                                  `Pola Badan: ${modelLabel}`,
+                                  `Panjang Lengan: ${lenganLabel}`,
+                                  `Bahan Baku: ${material}`,
+                                  `Warna Kain: ${colorName.replace(/^\d+\s*-\s*/, '')}`,
+                                  `Aksesoris: ${aksesorisTeks}`,
+                                  `Custom: ${customText}`
+                                ];
+
+                                const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
+                                const itemsToAdd: any[] = [];
+
+                                if (baseQty > 0) {
+                                  itemsToAdd.push({
+                                    name: `${productType === "KAOS" ? "Kaos" : "Polo"} - ${modelLabel}`,
+                                    tierLabel: `${tier.label} (S-XL)`,
+                                    qty: baseQty,
+                                    pricePerPcs,
+                                    totalPrice: pricePerPcs * baseQty,
+                                    specs: specLines
+                                  });
+                                }
+
+                                bigSizes.forEach(bs => {
+                                  const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
+                                  const fullPrice = pricePerPcs + extraCostWithMargin;
+                                  itemsToAdd.push({
+                                    name: `${productType === "KAOS" ? "Kaos" : "Polo"} - ${modelLabel}`,
+                                    tierLabel: `${tier.label} (${bs.size})`,
+                                    qty: bs.qty,
+                                    pricePerPcs: fullPrice,
+                                    totalPrice: fullPrice * bs.qty,
+                                    specs: [
+                                      `Jenis Produk: ${productType === "KAOS" ? "Kaos" : "Polo Shirt"}`,
+                                      `Size Khusus: ${bs.size}`,
+                                      `Pola Badan: ${modelLabel}`,
+                                      `Panjang Lengan: ${lenganLabel}`,
+                                      `Bahan Baku: ${material}`,
+                                      `Warna Kain: ${colorName.replace(/^\d+\s*-\s*/, '')}`,
+                                      `Aksesoris: ${aksesorisTeks}`,
+                                      `Custom: ${customText}`
+                                    ]
+                                  });
                                 });
+
+                                onActionSelect?.("add_to_lead", itemsToAdd);
+                                alert("Hitunganmu berhasil ditambahkan ke lead qualifications. silahkan tutup (>) calculator dan cek panel kanan inbox.");
                               }
-                                
+                            } else {
+                              const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
+                              let textToCopy = `Estimasi Harga:\n\n`;
+                              if (baseQty > 0) {
+                                textToCopy += `*Size S-XL (${baseQty} pcs)*\n@ Rp ${pricePerPcs.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(pricePerPcs * baseQty).toLocaleString('id-ID')}\n\n`;
+                              }
                               bigSizes.forEach(bs => {
                                 const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
                                 const fullPrice = pricePerPcs + extraCostWithMargin;
-                                itemsToAdd.push({
-                                  name: `${productType === "KAOS" ? "Kaos" : "Polo"} - ${modelLabel}`,
-                                  tierLabel: `${tier.label} (${bs.size})`,
-                                  qty: bs.qty,
-                                  pricePerPcs: fullPrice,
-                                  totalPrice: fullPrice * bs.qty,
-                                  specs: [
-                                    `Jenis Produk: ${productType === "KAOS" ? "Kaos" : "Polo Shirt"}`,
-                                    `Size Khusus: ${bs.size}`,
-                                    `Pola Badan: ${modelLabel}`,
-                                    `Panjang Lengan: ${lenganLabel}`,
-                                    `Bahan Baku: ${material}`,
-                                    `Warna Kain: ${colorName.replace(/^\d+\s*-\s*/, '')}`,
-                                    `Aksesoris: ${aksesorisTeks}`,
-                                    `Custom: ${customText}`
-                                  ]
-                                });
+                                textToCopy += `*Size ${bs.size} (${bs.qty} pcs)*\n@ Rp ${fullPrice.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(fullPrice * bs.qty).toLocaleString('id-ID')}\n\n`;
                               });
+                              textToCopy += `*Total Keseluruhan (Termasuk Jumbo): Rp ${totalPrice.toLocaleString('id-ID')}*`;
 
-                              onActionSelect?.("add_to_lead", itemsToAdd);
-                              alert("Hitunganmu berhasil ditambahkan ke lead qualifications. silahkan tutup (>) calculator dan cek panel kanan inbox.");
+                              try {
+                                await navigator.clipboard.writeText(textToCopy);
+                                alert("Teks berhasil dicopy!");
+                              } catch (err) {
+                                console.error(err);
+                                alert("Gagal copy text");
+                              }
                             }
-                          } else {
-                            const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
-                            let textToCopy = `Estimasi Harga:\n\n`;
-                            if (baseQty > 0) {
-                              textToCopy += `*Size S-XL (${baseQty} pcs)*\n@ Rp ${pricePerPcs.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(pricePerPcs * baseQty).toLocaleString('id-ID')}\n\n`;
-                            }
-                            bigSizes.forEach(bs => {
-                              const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
-                              const fullPrice = pricePerPcs + extraCostWithMargin;
-                              textToCopy += `*Size ${bs.size} (${bs.qty} pcs)*\n@ Rp ${fullPrice.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(fullPrice * bs.qty).toLocaleString('id-ID')}\n\n`;
-                            });
-                            textToCopy += `*Total Keseluruhan (Termasuk Jumbo): Rp ${totalPrice.toLocaleString('id-ID')}*`;
-                            
-                            try {
-                              await navigator.clipboard.writeText(textToCopy);
-                              alert("Teks berhasil dicopy!");
-                            } catch(err) {
-                              console.error(err);
-                              alert("Gagal copy text");
-                            }
-                          }
-                        }}
-                        className={`flex flex-col border transition-all cursor-pointer hover:border-brand-gold hover:shadow-md ${
-                          isHighest ? "bg-emerald-50 border-emerald-300 rounded-xl px-4 py-3 shadow-sm ring-1 ring-emerald-100" :
-                          isLowest ? "bg-rose-50 border-rose-200 rounded-lg px-3 py-2" :
-                          "bg-slate-50 border-slate-200 rounded-lg px-3 py-2"
-                        } hover:border-brand-gold hover:ring-1 hover:ring-brand-gold`}
-                      >
-                        <div className="flex justify-between items-center w-full mb-1">
-                          <span className={`${isHighest ? "text-sm text-emerald-800" : "text-xs text-slate-600"} font-bold`}>{tier.label}</span>
-                          <div className="flex flex-col items-end text-right">
-                            <span className={`${isHighest ? "text-[10px] text-emerald-600" : "text-[10px] text-slate-500"} uppercase font-semibold`}>Total Jual ({qty} Pcs)</span>
-                            <span className={`font-black ${isHighest ? "text-emerald-700 text-lg sm:text-xl" : "text-brand-primary text-sm"}`}>
-                              Rp {totalPrice.toLocaleString('id-ID')}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        {bigSizes.length === 0 ? (
-                          <div className={`flex justify-between items-center mt-1 pt-1 border-t ${isHighest ? "border-emerald-200/50" : isLowest ? "border-rose-200/50" : "border-slate-200/50"}`}>
-                            <span className={`${isHighest ? "text-emerald-900" : "text-slate-600"} text-xs font-medium`}>S-XL ({qty} pcs)</span>
-                            <div className="text-right">
-                              <div className={`${isHighest ? "text-[10px] text-emerald-700" : "text-[10px] text-slate-500"}`}>@ Rp {pricePerPcs.toLocaleString('id-ID')} /pcs</div>
-                              <div className={`${isHighest ? "text-xs text-emerald-950" : "text-xs text-slate-800"} font-bold`}>Rp {(pricePerPcs * qty).toLocaleString('id-ID')}</div>
+                          }}
+                          className={`flex flex-col border transition-all cursor-pointer hover:border-brand-gold hover:shadow-md ${isHighest ? "bg-emerald-50 border-emerald-300 rounded-xl px-4 py-3 shadow-sm ring-1 ring-emerald-100" :
+                              isLowest ? "bg-rose-50 border-rose-200 rounded-lg px-3 py-2" :
+                                "bg-slate-50 border-slate-200 rounded-lg px-3 py-2"
+                            } hover:border-brand-gold hover:ring-1 hover:ring-brand-gold`}
+                        >
+                          <div className="flex justify-between items-center w-full mb-1">
+                            <span className={`${isHighest ? "text-sm text-emerald-800" : "text-xs text-slate-600"} font-bold`}>{tier.label}</span>
+                            <div className="flex flex-col items-end text-right">
+                              <span className={`${isHighest ? "text-[10px] text-emerald-600" : "text-[10px] text-slate-500"} uppercase font-semibold`}>Total Jual ({qty} Pcs)</span>
+                              <span className={`font-black ${isHighest ? "text-emerald-700 text-lg sm:text-xl" : "text-brand-primary text-sm"}`}>
+                                Rp {totalPrice.toLocaleString('id-ID')}
+                              </span>
                             </div>
                           </div>
-                        ) : (
-                          <div className={`flex flex-col gap-2 mt-1 pt-2 border-t ${isHighest ? "border-emerald-200/50" : isLowest ? "border-rose-200/50" : "border-slate-200/50"}`}>
-                            <div className="flex justify-between items-center">
-                              <div className="flex flex-col">
-                                <span className={`${isHighest ? "text-emerald-900" : "text-slate-600"} text-xs font-medium`}>S-XL ({qty - bigSizes.reduce((a, b) => a + b.qty, 0)} pcs)</span>
-                                <span className={`${isHighest ? "text-emerald-700" : "text-slate-500"} text-[10px]`}>@ Rp {pricePerPcs.toLocaleString('id-ID')}</span>
+
+                          {bigSizes.length === 0 ? (
+                            <div className={`flex justify-between items-center mt-1 pt-1 border-t ${isHighest ? "border-emerald-200/50" : isLowest ? "border-rose-200/50" : "border-slate-200/50"}`}>
+                              <span className={`${isHighest ? "text-emerald-900" : "text-slate-600"} text-xs font-medium`}>S-XL ({qty} pcs)</span>
+                              <div className="text-right">
+                                <div className={`${isHighest ? "text-[10px] text-emerald-700" : "text-[10px] text-slate-500"}`}>@ Rp {pricePerPcs.toLocaleString('id-ID')} /pcs</div>
+                                <div className={`${isHighest ? "text-xs text-emerald-950" : "text-xs text-slate-800"} font-bold`}>Rp {(pricePerPcs * qty).toLocaleString('id-ID')}</div>
                               </div>
-                              <span className={`${isHighest ? "text-emerald-950" : "text-slate-800"} text-xs font-bold`}>Rp {(pricePerPcs * (qty - bigSizes.reduce((a, b) => a + b.qty, 0))).toLocaleString('id-ID')}</span>
                             </div>
-                            {bigSizes.map((bs, index) => {
-                              const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
-                              const fullPrice = pricePerPcs + extraCostWithMargin;
-                              return (
-                                <div key={`${bs.size}-${index}`} className="flex justify-between items-center">
-                                  <div className="flex flex-col">
-                                    <span className={`${isHighest ? "text-emerald-900" : "text-slate-600"} text-xs font-medium`}>{bs.size} ({bs.qty} pcs)</span>
-                                    <span className={`${isHighest ? "text-emerald-700" : "text-slate-500"} text-[10px]`}>@ Rp {fullPrice.toLocaleString('id-ID')}</span>
-                                  </div>
-                                  <span className={`${isHighest ? "text-emerald-950" : "text-slate-800"} text-xs font-bold`}>Rp {(fullPrice * bs.qty).toLocaleString('id-ID')}</span>
+                          ) : (
+                            <div className={`flex flex-col gap-2 mt-1 pt-2 border-t ${isHighest ? "border-emerald-200/50" : isLowest ? "border-rose-200/50" : "border-slate-200/50"}`}>
+                              <div className="flex justify-between items-center">
+                                <div className="flex flex-col">
+                                  <span className={`${isHighest ? "text-emerald-900" : "text-slate-600"} text-xs font-medium`}>S-XL ({qty - bigSizes.reduce((a, b) => a + b.qty, 0)} pcs)</span>
+                                  <span className={`${isHighest ? "text-emerald-700" : "text-slate-500"} text-[10px]`}>@ Rp {pricePerPcs.toLocaleString('id-ID')}</span>
                                 </div>
-                              );
-                            })}
-                          </div>
-                        )}
+                                <span className={`${isHighest ? "text-emerald-950" : "text-slate-800"} text-xs font-bold`}>Rp {(pricePerPcs * (qty - bigSizes.reduce((a, b) => a + b.qty, 0))).toLocaleString('id-ID')}</span>
+                              </div>
+                              {bigSizes.map((bs, index) => {
+                                const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
+                                const fullPrice = pricePerPcs + extraCostWithMargin;
+                                return (
+                                  <div key={`${bs.size}-${index}`} className="flex justify-between items-center">
+                                    <div className="flex flex-col">
+                                      <span className={`${isHighest ? "text-emerald-900" : "text-slate-600"} text-xs font-medium`}>{bs.size} ({bs.qty} pcs)</span>
+                                      <span className={`${isHighest ? "text-emerald-700" : "text-slate-500"} text-[10px]`}>@ Rp {fullPrice.toLocaleString('id-ID')}</span>
+                                    </div>
+                                    <span className={`${isHighest ? "text-emerald-950" : "text-slate-800"} text-xs font-bold`}>Rp {(fullPrice * bs.qty).toLocaleString('id-ID')}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
-        </div>
         )}
       </div>
     </div>
