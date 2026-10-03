@@ -42,3 +42,5 @@ test_base64_pdf.js
 read-pdf.cjs
 update_tables.cjs
 scripts/
+*.tsbuildinfo
+tsconfig.tsbuildinfo
