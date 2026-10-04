@@ -235,7 +235,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
               <button
                 key={p}
                 onClick={() => setPerspective(p as any)}
-                className={`px-4 py-1.5 text-xs font-bold rounded-full capitalize whitespace-nowrap transition-colors cursor-pointer ${perspective === p ? 'bg-brand-primary text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                className={`px-4 py-1.5 text-xs font-bold rounded-full capitalize whitespace-nowrap transition-colors cursor-pointer ${perspective === p ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
               >
                 {p.replace("-", " ")}
               </button>
@@ -494,7 +494,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                       </div>
                     </div>
                     <div className="flex flex-col gap-1 items-end">
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 bg-brand-primary text-white rounded uppercase">{logo.method}</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 bg-slate-800 text-white rounded uppercase">{logo.method}</span>
                       <span className="text-[8px] font-bold px-1.5 py-0.5 bg-slate-200 text-slate-700 rounded uppercase">{logo.perspective.replace('-', ' ')}</span>
                     </div>
                   </div>
