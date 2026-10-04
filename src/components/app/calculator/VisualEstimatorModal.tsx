@@ -456,17 +456,14 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-800 truncate">Titik {i + 1}</p>
-                      <p className="text-[10px] font-mono text-slate-500 mb-1.5">
+                      <p className="text-[10px] font-mono text-slate-500 mb-2">
                         {(logo.widthPx * cmPerPixel).toFixed(1)} x {((logo.widthPx / logo.naturalRatio) * cmPerPixel).toFixed(1)} cm
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        <button onClick={(e) => { e.stopPropagation(); updateBlendMode(logo.id, 'normal'); }} className={`text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors ${(!logo.blendMode || logo.blendMode === 'normal') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>Normal</button>
-                        <button onClick={(e) => { e.stopPropagation(); updateBlendMode(logo.id, 'multiply'); }} className={`text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors ${logo.blendMode === 'multiply' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>Hapus BG Putih</button>
-                        <button onClick={(e) => { e.stopPropagation(); updateBlendMode(logo.id, 'screen'); }} className={`text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors ${logo.blendMode === 'screen' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>Hapus BG Hitam</button>
+                      <div className="flex">
                         <button 
                           onClick={(e) => { e.stopPropagation(); removeBgAI(logo.id, logo.originalUrl || logo.url); }} 
                           disabled={isRemovingBgId === logo.id}
-                          className="text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors bg-brand-gold/10 text-yellow-700 hover:bg-brand-gold hover:text-white disabled:opacity-50"
+                          className="text-[10px] px-2 py-1 rounded font-bold transition-colors bg-brand-gold/10 text-yellow-700 hover:bg-brand-gold hover:text-white disabled:opacity-50 flex items-center gap-1"
                         >
                           {isRemovingBgId === logo.id ? "⏳ Memproses..." : "✨ AI Remove BG"}
                         </button>
