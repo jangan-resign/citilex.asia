@@ -152,12 +152,12 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
 
   const handleApply = () => {
     const spots = logos.map(logo => {
-      // 2% Shrinkage / Margin Tolerance implementation (secretly calculated)
+      // Use exact dimensions shown in the UI without hidden shrinkage
       const rawCmWidth = logo.widthPx * cmPerPixel;
       const rawCmHeight = (logo.widthPx / logo.naturalRatio) * cmPerPixel;
 
-      const finalCmWidth = Math.round((rawCmWidth * 0.98) * 10) / 10;
-      const finalCmHeight = Math.round((rawCmHeight * 0.98) * 10) / 10;
+      const finalCmWidth = Math.round(rawCmWidth * 10) / 10;
+      const finalCmHeight = Math.round(rawCmHeight * 10) / 10;
 
       const perspekInfo = logo.perspective.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
