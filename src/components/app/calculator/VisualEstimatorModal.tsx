@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, ChangeEvent } from "react";
-import { X, Ruler, Download, Plus, Trash2, Maximize2, Image as ImageIcon, Palette, FileText } from "lucide-react";
+import { X, Ruler, Download, Plus, Trash2, Maximize2, Image as ImageIcon, Palette, FileText, Wand2, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import * as htmlToImage from "html-to-image";
 import { removeBackground } from "@imgly/background-removal";
@@ -463,9 +463,17 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                         <button 
                           onClick={(e) => { e.stopPropagation(); removeBgAI(logo.id, logo.originalUrl || logo.url); }} 
                           disabled={isRemovingBgId === logo.id}
-                          className="text-[10px] px-2 py-1 rounded font-bold transition-colors bg-brand-gold/10 text-yellow-700 hover:bg-brand-gold hover:text-white disabled:opacity-50 flex items-center gap-1"
+                          className="text-[10px] px-2 py-1.5 rounded font-bold transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-50 disabled:hover:bg-slate-100 disabled:hover:text-slate-600 flex items-center gap-1.5"
                         >
-                          {isRemovingBgId === logo.id ? "⏳ Memproses..." : "✨ AI Remove BG"}
+                          {isRemovingBgId === logo.id ? (
+                            <>
+                              <Loader2 className="w-3 h-3 animate-spin" /> Memproses...
+                            </>
+                          ) : (
+                            <>
+                              <Wand2 className="w-3 h-3 text-brand-primary" /> AI Remove BG
+                            </>
+                          )}
                         </button>
                       </div>
                     </div>
