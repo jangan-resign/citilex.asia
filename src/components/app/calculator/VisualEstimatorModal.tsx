@@ -119,10 +119,10 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
       setIsRemovingBgId(id);
       // Reset error state
       setLogos(prev => prev.map(l => l.id === id ? { ...l, error: undefined } : l));
-      
+
       const blob = await removeBackground(url);
       const transparentUrl = URL.createObjectURL(blob);
-      
+
       // Wait for image to be fully loaded into memory before removing spinner
       await new Promise<void>((resolve, reject) => {
         const img = new Image();
@@ -473,8 +473,8 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                         {(logo.widthPx * cmPerPixel).toFixed(1)} x {((logo.widthPx / logo.naturalRatio) * cmPerPixel).toFixed(1)} cm
                       </p>
                       <div className="flex flex-col gap-1.5 items-start">
-                        <button 
-                          onClick={(e) => { e.stopPropagation(); removeBgAI(logo.id, logo.originalUrl || logo.url); }} 
+                        <button
+                          onClick={(e) => { e.stopPropagation(); removeBgAI(logo.id, logo.originalUrl || logo.url); }}
                           disabled={isRemovingBgId === logo.id}
                           className="text-[10px] px-2 py-1.5 rounded font-bold transition-colors bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 disabled:opacity-50 disabled:hover:bg-slate-100 disabled:hover:text-slate-600 flex items-center gap-1.5"
                         >
