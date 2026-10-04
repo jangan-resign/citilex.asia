@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { recordAttendance, getEmployees } from "@/src/actions/hrd";
 import { Save, Calendar, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewAttendancePage() {
   const router = useRouter();
@@ -90,17 +91,14 @@ export default function NewAttendancePage() {
               
               <div className="col-span-2">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Pilih Pegawai</label>
-                <select 
-                  required
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.employeeId}
-                  onChange={(e) => setFormData({...formData, employeeId: e.target.value})}
-                >
-                  <option value="" disabled>-- Pilih Pegawai --</option>
-                  {employees.map(emp => (
-                    <option key={emp.id} value={emp.id}>{emp.employeeId} - {emp.name}</option>
-                  ))}
-                </select>
+                  onChange={(val) => setFormData({...formData, employeeId: val})}
+                  options={[
+                    { value: "", label: "-- Pilih Pegawai --" },
+                    ...employees.map(emp => ({ value: emp.id, label: `${emp.employeeId} - ${emp.name}` }))
+                  ]}
+                />
               </div>
 
               <div className="col-span-2 sm:col-span-1">
@@ -116,17 +114,17 @@ export default function NewAttendancePage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Status Kehadiran</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.status}
-                  onChange={(e) => setFormData({...formData, status: e.target.value})}
-                >
-                  <option value="PRESENT">Hadir</option>
-                  <option value="LATE">Terlambat</option>
-                  <option value="SICK">Sakit</option>
-                  <option value="LEAVE">Izin / Cuti</option>
-                  <option value="ABSENT">Alpa (Tanpa Keterangan)</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, status: val})}
+                  options={[
+                    { value: "PRESENT", label: "Hadir" },
+                    { value: "LATE", label: "Terlambat" },
+                    { value: "SICK", label: "Sakit" },
+                    { value: "LEAVE", label: "Izin / Cuti" },
+                    { value: "ABSENT", label: "Alpa (Tanpa Keterangan)" }
+                  ]}
+                />
               </div>
 
               {(formData.status === "PRESENT" || formData.status === "LATE") && (

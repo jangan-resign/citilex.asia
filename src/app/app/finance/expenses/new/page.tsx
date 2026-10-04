@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { recordExpense } from "@/src/actions/finance";
 import { Receipt, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewExpensePage() {
   const router = useRouter();
@@ -77,17 +78,17 @@ export default function NewExpensePage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Kategori Pengeluaran</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.category}
-                  onChange={(e) => setFormData({...formData, category: e.target.value})}
-                >
-                  <option value="OPERASIONAL PABRIK">Operasional Pabrik</option>
-                  <option value="BAHAN BAKU">Pembelian Bahan Baku</option>
-                  <option value="LISTRIK & AIR">Tagihan Listrik & Air</option>
-                  <option value="MAINTENANCE">Maintenance Mesin</option>
-                  <option value="LAINNYA">Lain-lain</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, category: val})}
+                  options={[
+                    { value: "OPERASIONAL PABRIK", label: "Operasional Pabrik" },
+                    { value: "BAHAN BAKU", label: "Pembelian Bahan Baku" },
+                    { value: "LISTRIK & AIR", label: "Tagihan Listrik & Air" },
+                    { value: "MAINTENANCE", label: "Maintenance Mesin" },
+                    { value: "LAINNYA", label: "Lain-lain" }
+                  ]}
+                />
               </div>
 
               <div className="col-span-2">

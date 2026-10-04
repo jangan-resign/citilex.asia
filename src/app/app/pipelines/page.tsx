@@ -6,6 +6,7 @@ import { Customer } from "@prisma/client";
 import { Save, Plus, Trash2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { MonthYearFilter } from "../../../components/app/MonthYearFilter";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 type TabId = "deal" | "pre-production" | "production" | "payment" | "delivery";
 type DateFilter = "today" | "this_week" | "this_month" | "this_year" | "all_time";
@@ -296,19 +297,18 @@ export default function PipelinesPage() {
             <div className="p-6 space-y-4 overflow-y-auto">
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-1">Pilih Client</label>
-                <select 
-                  id="modal-client" 
+                <CustomSelect 
                   value={modalClientType}
-                  onChange={(e) => setModalClientType(e.target.value)}
-                  className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"
-                >
-                  <option value="">-- Pilih Client --</option>
-                  <option value="manual">-- Input Manual (Client Baru) --</option>
-                  {customers.map(c => {
-                    const extra = [c.company, c.domicile].filter(Boolean).join(" - ");
-                    return <option key={c.id} value={c.id}>{c.name} {extra ? `(${extra})` : ''}</option>;
-                  })}
-                </select>
+                  onChange={setModalClientType}
+                  options={[
+                    { value: "", label: "-- Pilih Client --" },
+                    { value: "manual", label: "-- Input Manual (Client Baru) --" },
+                    ...customers.map(c => {
+                      const extra = [c.company, c.domicile].filter(Boolean).join(" - ");
+                      return { value: c.id, label: `${c.name} ${extra ? `(${extra})` : ''}`.trim() };
+                    })
+                  ]}
+                />
               </div>
 
               {modalClientType === 'manual' && (
@@ -440,7 +440,7 @@ export default function PipelinesPage() {
               <button 
                 className="px-4 py-2 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition-colors flex items-center justify-center gap-2 text-sm shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={async () => {
-                  const clientId = (document.getElementById('modal-client') as HTMLSelectElement).value;
+                  const clientId = modalClientType;
                   const title = (document.getElementById('modal-project') as HTMLInputElement).value;
                   const value = modalItems.length > 0 
                     ? modalItems.reduce((acc, curr) => acc + curr.totalPrice, 0)

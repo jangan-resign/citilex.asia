@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Save, Plus, FileEdit, Trash2, Search, Filter, Loader2, ChevronDown } from "lucide-react";
 import { getKnowledge, createKnowledge, updateKnowledge, deleteKnowledge } from "../../../actions/playbook";
+import { CustomSelect } from "../../ui/CustomSelect";
 
 export function KnowledgeTab() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -97,33 +98,18 @@ export function KnowledgeTab() {
               className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
             />
           </div>
-          <div className="relative">
-            <button 
-              onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-              className="flex items-center justify-center gap-2 px-3 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors cursor-pointer shadow-sm"
-            >
-              <Filter className="h-4 w-4" />
-              {selectedCategory === "All" ? "Kategori" : selectedCategory}
-            </button>
-            {isCategoryDropdownOpen && (
-              <>
-                <div className="fixed inset-0 z-40" onClick={() => setIsCategoryDropdownOpen(false)} />
-                <div className="absolute top-full mt-2 left-0 w-48 bg-white border border-slate-200 rounded-lg shadow-lg z-50 py-1">
-                  {["All", "FAQ", "Produk", "Operasional", "Lainnya"].map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setSelectedCategory(cat);
-                        setIsCategoryDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${selectedCategory === cat ? 'text-brand-gold font-bold' : 'text-slate-700'}`}
-                    >
-                      {cat === "All" ? "Semua Kategori" : cat}
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
+          <div className="relative min-w-[150px]">
+            <CustomSelect
+              value={selectedCategory}
+              onChange={setSelectedCategory}
+              options={[
+                { value: "All", label: "Semua Kategori" },
+                { value: "FAQ", label: "FAQ" },
+                { value: "Produk", label: "Produk" },
+                { value: "Operasional", label: "Operasional" },
+                { value: "Lainnya", label: "Lainnya" }
+              ]}
+            />
           </div>
         </div>
         <button onClick={() => handleOpenModal()} className="flex w-full md:w-auto justify-center items-center gap-2 px-4 py-2 bg-slate-800 text-white rounded-lg text-sm font-medium hover:bg-slate-900 transition-colors cursor-pointer">
@@ -191,34 +177,16 @@ export function KnowledgeTab() {
               <form id="knowledgeForm" onSubmit={handleSubmit} className="space-y-4">
                 <div className="relative">
                   <label className="block text-sm font-medium text-slate-700 mb-1">Kategori</label>
-                  <div
-                    onClick={() => setIsFormCategoryDropdownOpen(!isFormCategoryDropdownOpen)}
-                    className="w-full p-2 border border-slate-300 rounded-lg bg-white cursor-pointer flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
-                    tabIndex={0}
-                  >
-                    <span>{formData.category}</span>
-                    <ChevronDown className="w-4 h-4 text-slate-500" />
-                  </div>
-                  
-                  {isFormCategoryDropdownOpen && (
-                    <>
-                      <div className="fixed inset-0 z-40" onClick={() => setIsFormCategoryDropdownOpen(false)} />
-                      <div className="absolute top-full mt-1 left-0 w-full bg-white border border-slate-200 rounded-lg shadow-lg z-50 py-1 overflow-hidden">
-                        {["Produk", "Operasional", "FAQ", "Lainnya"].map((cat) => (
-                          <div
-                            key={cat}
-                            onClick={() => {
-                              setFormData({ ...formData, category: cat });
-                              setIsFormCategoryDropdownOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-2 cursor-pointer transition-colors ${formData.category === cat ? 'bg-brand-gold/10 text-brand-gold font-bold' : 'text-slate-700 hover:bg-slate-50'}`}
-                          >
-                            {cat}
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
+                  <CustomSelect
+                    value={formData.category}
+                    onChange={(val) => setFormData({ ...formData, category: val })}
+                    options={[
+                      { value: "Produk", label: "Produk" },
+                      { value: "Operasional", label: "Operasional" },
+                      { value: "FAQ", label: "FAQ" },
+                      { value: "Lainnya", label: "Lainnya" }
+                    ]}
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Judul Topik</label>

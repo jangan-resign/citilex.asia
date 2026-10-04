@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { addEmployee } from "@/src/actions/hrd";
 import { Save, UserPlus, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewEmployeePage() {
   const router = useRouter();
@@ -127,17 +128,17 @@ export default function NewEmployeePage() {
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Status Pegawai</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.status}
-                  onChange={(e) => setFormData({...formData, status: e.target.value})}
-                >
-                  <option value="Magang">Magang</option>
-                  <option value="THL">THL (Tenaga Harian Lepas)</option>
-                  <option value="PKWT">PKWT (Kontrak)</option>
-                  <option value="PKWTT">PKWTT (Tetap)</option>
-                  <option value="Outsourced">Outsourced</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, status: val})}
+                  options={[
+                    { value: "Magang", label: "Magang" },
+                    { value: "THL", label: "THL (Tenaga Harian Lepas)" },
+                    { value: "PKWT", label: "PKWT (Kontrak)" },
+                    { value: "PKWTT", label: "PKWTT (Tetap)" },
+                    { value: "Outsourced", label: "Outsourced" }
+                  ]}
+                />
               </div>
               
               <div className="col-span-2">

@@ -5,6 +5,7 @@ import { useFactoryData } from "../../providers/FactoryDataProvider";
 import { calculateCombinedArea, evalOrientationDTF, getQtyColIndex } from "../../../lib/calculatorLogic";
 import { Calculator as CalcIcon, FileText, Send, Scissors, PlusCircle, Trash2, ChevronDown, Search, Lock, Unlock, X, Ruler, Copy, MessageSquare, Handshake, Receipt, Minimize2, ChevronRight } from "lucide-react";
 import { VisualEstimatorModal } from "./VisualEstimatorModal";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 type SpotType = "DTF" | "RUBBER" | "PLASTISOL" | "BORDIR";
 
@@ -488,47 +489,44 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">Pola Badan</label>
-                  <select value={model} onChange={(e) => setModel(e.target.value)}
-                    className="w-full p-2 border border-slate-300 rounded focus:ring-brand-gold cursor-pointer">
-                    {Object.keys(SEWING_COST[productType] || SEWING_COST["KAOS"])
+                  <CustomSelect value={model} onChange={setModel}
+                    options={Object.keys(SEWING_COST[productType] || SEWING_COST["KAOS"])
                       .filter(m => {
                         if (["panjang", "tigaperempat", "tujuhperlapan"].includes(m)) return false;
                         if (productType === "POLO" && ["croptop", "oversized", "boxy"].includes(m)) return false;
                         return true;
                       })
-                      .map(m => <option key={m} value={m}>{m === "pendek" ? "regular" : m}</option>)}
-                  </select>
+                      .map(m => ({ value: m, label: m === "pendek" ? "regular" : m }))}
+                  />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">Panjang Lengan</label>
                   {model === "pendek" ? (
-                    <select value={lengan} onChange={(e) => setLengan(e.target.value)}
-                      className="w-full p-2 border border-slate-300 rounded focus:ring-brand-gold cursor-pointer">
-                      <option value="pendek">Pendek</option>
-                      <option value="tigaperempat">3/4</option>
-                      <option value="tujuhperlapan">7/8</option>
-                      <option value="panjang">Panjang</option>
-                    </select>
+                    <CustomSelect value={lengan} onChange={setLengan}
+                      options={[
+                        { value: "pendek", label: "Pendek" },
+                        { value: "tigaperempat", label: "3/4" },
+                        { value: "tujuhperlapan", label: "7/8" },
+                        { value: "panjang", label: "Panjang" }
+                      ]}
+                    />
                   ) : (
-                    <select disabled className="w-full p-2 border border-slate-200 bg-slate-100 text-slate-400 rounded">
-                      <option>Bawaan Pola</option>
-                    </select>
+                    <CustomSelect disabled value="bawaan" onChange={() => {}} options={[{value: "bawaan", label: "Bawaan Pola"}]} />
                   )}
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">Bahan Baku (Kain)</label>
-                  <select value={material} onChange={(e) => {
-                    setMaterial(e.target.value);
-                    const list = FABRIC_COLORS_MAP[e.target.value] || FABRIC_COLORS_MAP["Cotton Combed 30S"];
+                  <CustomSelect value={material} onChange={(val) => {
+                    setMaterial(val);
+                    const list = FABRIC_COLORS_MAP[val] || FABRIC_COLORS_MAP["Cotton Combed 30S"];
                     if (!list.find(c => c.n === colorName)) {
                       setColorName(list[0].n);
                     }
                   }}
-                    className="w-full p-2 border border-slate-300 rounded focus:ring-brand-gold cursor-pointer">
-                    {availableMaterials.map(m => <option key={m} value={m}>{m}</option>)}
-                  </select>
+                    options={availableMaterials.map(m => ({ value: m, label: m }))}
+                  />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 mb-1">Warna Kain</label>
@@ -559,17 +557,15 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                       <div key={index} className="flex items-end gap-2">
                         <div className="w-24">
                           <label className="block text-[10px] font-bold text-slate-500 mb-1">Size</label>
-                          <select
+                          <CustomSelect
                             value={bs.size}
-                            onChange={(e) => {
+                            onChange={(val) => {
                               const newSizes = [...bigSizes];
-                              newSizes[index].size = e.target.value;
+                              newSizes[index].size = val;
                               setBigSizes(newSizes);
                             }}
-                            className="w-full p-2 border border-slate-300 rounded text-sm font-bold cursor-pointer"
-                          >
-                            {["2XL", "3XL", "4XL", "5XL", "6XL", "7XL", "8XL", "9XL", "10XL"].map(s => <option key={s} value={s}>{s}</option>)}
-                          </select>
+                            options={["2XL", "3XL", "4XL", "5XL", "6XL", "7XL", "8XL", "9XL", "10XL"].map(s => ({ value: s, label: s }))}
+                          />
                         </div>
                         <div className="w-20">
                           <label className="block text-[10px] font-bold text-slate-500 mb-1">Qty</label>
@@ -652,33 +648,41 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">Kerah</label>
-                    <select value={kerahPolo} onChange={e => setKerahPolo(e.target.value as any)} className="w-full p-2 border border-slate-300 rounded text-sm cursor-pointer">
-                      <option value="standar">Standar</option>
-                      <option value="custom">Custom</option>
-                    </select>
+                    <CustomSelect value={kerahPolo} onChange={setKerahPolo as any}
+                      options={[
+                        { value: "standar", label: "Standar" },
+                        { value: "custom", label: "Custom" }
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">Manset</label>
-                    <select value={mansetPolo} onChange={e => setMansetPolo(e.target.value as any)} className="w-full p-2 border border-slate-300 rounded text-sm cursor-pointer">
-                      <option value="standar">Standar</option>
-                      <option value="custom">Custom</option>
-                      <option value="tanpa">Tanpa Manset</option>
-                    </select>
+                    <CustomSelect value={mansetPolo} onChange={setMansetPolo as any}
+                      options={[
+                        { value: "standar", label: "Standar" },
+                        { value: "custom", label: "Custom" },
+                        { value: "tanpa", label: "Tanpa Manset" }
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">Saku</label>
-                    <select value={sakuPolo} onChange={e => setSakuPolo(e.target.value as any)} className="w-full p-2 border border-slate-300 rounded text-sm cursor-pointer">
-                      <option value="tanpa">Tanpa Saku</option>
-                      <option value="tempel">Saku Tempel</option>
-                      <option value="dalam">Saku Dalam</option>
-                    </select>
+                    <CustomSelect value={sakuPolo} onChange={setSakuPolo as any}
+                      options={[
+                        { value: "tanpa", label: "Tanpa Saku" },
+                        { value: "tempel", label: "Saku Tempel" },
+                        { value: "dalam", label: "Saku Dalam" }
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-600 mb-1">Melet</label>
-                    <select value={meletPolo} onChange={e => setMeletPolo(e.target.value as any)} className="w-full p-2 border border-slate-300 rounded text-sm cursor-pointer">
-                      <option value="melet">Melet</option>
-                      <option value="tanpa">Tanpa Melet</option>
-                    </select>
+                    <CustomSelect value={meletPolo} onChange={setMeletPolo as any}
+                      options={[
+                        { value: "melet", label: "Melet" },
+                        { value: "tanpa", label: "Tanpa Melet" }
+                      ]}
+                    />
                   </div>
                 </div>
               )}
@@ -739,19 +743,20 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                           <span>Teknik Titik {index + 1}</span>
                           {spot.info && <span className="px-2 py-0.5 bg-brand-gold/10 border border-brand-gold/30 text-yellow-700 rounded-full normal-case text-[10px]">{spot.info}</span>}
                         </label>
-                        <select
+                        <CustomSelect
                           value={spot.type}
-                          onChange={(e) => {
+                          onChange={(val) => {
                             const newSpots = [...spots];
-                            newSpots[index].type = e.target.value as SpotType;
+                            newSpots[index].type = val as SpotType;
                             setSpots(newSpots);
                           }}
-                          className="w-full p-2 border border-slate-300 rounded focus:ring-brand-gold text-sm font-bold cursor-pointer">
-                          <option value="DTF">Sablon DTF</option>
-                          <option value="RUBBER">Sablon Manual (Rubber)</option>
-                          <option value="PLASTISOL">Sablon Manual (Plastisol)</option>
-                          <option value="BORDIR">Bordir Komputer</option>
-                        </select>
+                          options={[
+                            { value: "DTF", label: "Sablon DTF" },
+                            { value: "RUBBER", label: "Sablon Manual (Rubber)" },
+                            { value: "PLASTISOL", label: "Sablon Manual (Plastisol)" },
+                            { value: "BORDIR", label: "Bordir Komputer" }
+                          ]}
+                        />
                       </div>
 
 

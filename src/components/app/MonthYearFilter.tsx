@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { CustomSelect } from "../ui/CustomSelect";
 
 export function MonthYearFilter() {
   const router = useRouter();
@@ -35,32 +36,30 @@ export function MonthYearFilter() {
 
   return (
     <div className="flex gap-2 items-center w-full md:w-auto">
-      <select 
-        value={month} 
-        onChange={(e) => {
-          const newMonth = e.target.value === "all" ? "all" : parseInt(e.target.value);
+      <CustomSelect 
+        value={month.toString()} 
+        onChange={(val) => {
+          const newMonth = val === "all" ? "all" : parseInt(val);
           handleFilterChange(newMonth, year);
         }}
-        className="px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm flex-1 md:w-40 md:flex-none font-medium focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
-      >
-        <option value="all">Semua Bulan</option>
-        {months.map(m => (
-          <option key={m.id} value={m.id}>{m.name}</option>
-        ))}
-      </select>
-      <select 
-        value={year} 
-        onChange={(e) => {
-          const newYear = e.target.value === "all" ? "all" : parseInt(e.target.value);
+        options={[
+          { value: "all", label: "Semua Bulan" },
+          ...months.map(m => ({ value: m.id.toString(), label: m.name }))
+        ]}
+        className="flex-1 md:w-40 md:flex-none"
+      />
+      <CustomSelect 
+        value={year.toString()} 
+        onChange={(val) => {
+          const newYear = val === "all" ? "all" : parseInt(val);
           handleFilterChange(month, newYear);
         }}
-        className="px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm flex-1 md:w-32 md:flex-none font-medium focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
-      >
-        <option value="all">Semua Tahun</option>
-        {years.map(y => (
-          <option key={y} value={y}>{y}</option>
-        ))}
-      </select>
+        options={[
+          { value: "all", label: "Semua Tahun" },
+          ...years.map(y => ({ value: y.toString(), label: y.toString() }))
+        ]}
+        className="flex-1 md:w-32 md:flex-none"
+      />
     </div>
   );
 }

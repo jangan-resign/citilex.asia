@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { getEmployees, recordTermination } from "@/src/actions/hrd";
 import { UserMinus, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewTerminationPage() {
   const router = useRouter();
@@ -76,17 +77,14 @@ export default function NewTerminationPage() {
               
               <div className="col-span-2">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Pilih Pegawai</label>
-                <select 
-                  required
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.employeeId}
-                  onChange={(e) => setFormData({...formData, employeeId: e.target.value})}
-                >
-                  <option value="" disabled>-- Pilih Pegawai Aktif --</option>
-                  {employees.map(emp => (
-                    <option key={emp.id} value={emp.id}>{emp.employeeId} - {emp.name} ({emp.position})</option>
-                  ))}
-                </select>
+                  onChange={(val) => setFormData({...formData, employeeId: val})}
+                  options={[
+                    { value: "", label: "-- Pilih Pegawai Aktif --" },
+                    ...employees.map(emp => ({ value: emp.id, label: `${emp.employeeId} - ${emp.name} (${emp.position})` }))
+                  ]}
+                />
               </div>
 
               <div className="col-span-2 sm:col-span-1">
@@ -102,16 +100,16 @@ export default function NewTerminationPage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Termination Type</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.type}
-                  onChange={(e) => setFormData({...formData, type: e.target.value})}
-                >
-                  <option value="RESIGN">Pengunduran Diri (Resign)</option>
-                  <option value="CONTRACT_END">Habis Kontrak (PKWT)</option>
-                  <option value="FIRED">Pemutusan Hubungan Kerja (PHK)</option>
-                  <option value="RETIRED">Pensiun (Retired)</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, type: val})}
+                  options={[
+                    { value: "RESIGN", label: "Pengunduran Diri (Resign)" },
+                    { value: "CONTRACT_END", label: "Habis Kontrak (PKWT)" },
+                    { value: "FIRED", label: "Pemutusan Hubungan Kerja (PHK)" },
+                    { value: "RETIRED", label: "Pensiun (Retired)" }
+                  ]}
+                />
               </div>
 
               <div className="col-span-2">

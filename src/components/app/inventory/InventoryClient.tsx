@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import { Save, Scissors, Plus, TrendingDown, TrendingUp, History, Package, Loader2 } from "lucide-react";
 import { FABRIC_YIELD, FABRIC_COLORS_MAP } from "@/src/lib/factoryData";
 import { updateStock } from "@/src/actions/inventory";
+import { CustomSelect } from "../../ui/CustomSelect";
 
 // --- Custom Components ---
 function SearchableSelect({ options, value, onChange, disabled, placeholder }: { options: string[], value: string, onChange: (v: string) => void, disabled?: boolean, placeholder?: string }) {
@@ -290,15 +291,14 @@ export function InventoryClient({ initialInventory }: { initialInventory: Invent
             <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Jenis Bahan</label>
-                <select 
-                  required
+                <CustomSelect 
                   value={fabric}
-                  onChange={e => setFabric(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
-                >
-                  <option value="">-- Pilih Bahan --</option>
-                  {availableFabrics.map(f => <option key={f} value={f}>{f}</option>)}
-                </select>
+                  onChange={setFabric}
+                  options={[
+                    { value: "", label: "-- Pilih Bahan --" },
+                    ...availableFabrics.map(f => ({ value: f, label: f }))
+                  ]}
+                />
               </div>
               
               <div>
@@ -327,16 +327,14 @@ export function InventoryClient({ initialInventory }: { initialInventory: Invent
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Tipe Transaksi</label>
-                  <select 
+                  <CustomSelect 
                     value={type}
-                    onChange={e => setType(e.target.value as 'IN' | 'OUT')}
-                    className={`w-full px-3 py-2 border rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-gold/50 ${
-                      type === 'IN' ? 'bg-brand-gold-light border-brand-gold/30 text-brand-gold-dark' : 'bg-rose-50 border-rose-200 text-rose-700'
-                    }`}
-                  >
-                    <option value="IN">Masuk (+)</option>
-                    <option value="OUT">Keluar (-)</option>
-                  </select>
+                    onChange={v => setType(v as 'IN' | 'OUT')}
+                    options={[
+                      { value: "IN", label: "Masuk (+)" },
+                      { value: "OUT", label: "Keluar (-)" }
+                    ]}
+                  />
                 </div>
               </div>
 

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { generatePayroll, getEmployees } from "@/src/actions/hrd";
 import { Banknote, ArrowLeft, Loader2, Calculator } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewPayrollPage() {
   const router = useRouter();
@@ -95,17 +96,14 @@ export default function NewPayrollPage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Pilih Pegawai</label>
-                <select 
-                  required
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.employeeId}
-                  onChange={(e) => handleEmployeeChange(e.target.value)}
-                >
-                  <option value="" disabled>-- Pilih Pegawai --</option>
-                  {employees.map(emp => (
-                    <option key={emp.id} value={emp.id}>{emp.employeeId} - {emp.name}</option>
-                  ))}
-                </select>
+                  onChange={handleEmployeeChange}
+                  options={[
+                    { value: "", label: "-- Pilih Pegawai --" },
+                    ...employees.map(emp => ({ value: emp.id, label: `${emp.employeeId} - ${emp.name}` }))
+                  ]}
+                />
               </div>
 
               <div className="col-span-2 pt-4 border-t border-slate-100">

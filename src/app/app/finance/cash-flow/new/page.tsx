@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { addCashFlow } from "@/src/actions/finance";
 import { Wallet, ArrowLeft, Loader2, Save } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewCashFlowPage() {
   const router = useRouter();
@@ -79,14 +80,14 @@ export default function NewCashFlowPage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Tipe Transaksi</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white font-bold"
+                <CustomSelect 
                   value={formData.type}
-                  onChange={(e) => setFormData({...formData, type: e.target.value})}
-                >
-                  <option value="IN" className="text-brand-primary">Uang Masuk (IN)</option>
-                  <option value="OUT" className="text-slate-600">Uang Keluar (OUT)</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, type: val})}
+                  options={[
+                    { value: "IN", label: "Uang Masuk (IN)" },
+                    { value: "OUT", label: "Uang Keluar (OUT)" }
+                  ]}
+                />
               </div>
 
               <div className="col-span-2">
@@ -107,17 +108,17 @@ export default function NewCashFlowPage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Kategori</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.category}
-                  onChange={(e) => setFormData({...formData, category: e.target.value})}
-                >
-                  <option value="OPERATIONAL">Operasional</option>
-                  <option value="SALES">Penjualan (Sales)</option>
-                  <option value="CAPITAL">Modal (Capital)</option>
-                  <option value="TAX">Pajak (Tax)</option>
-                  <option value="OTHER">Lainnya</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, category: val})}
+                  options={[
+                    { value: "OPERATIONAL", label: "Operasional" },
+                    { value: "SALES", label: "Penjualan (Sales)" },
+                    { value: "CAPITAL", label: "Modal (Capital)" },
+                    { value: "TAX", label: "Pajak (Tax)" },
+                    { value: "OTHER", label: "Lainnya" }
+                  ]}
+                />
               </div>
 
               <div className="col-span-2">

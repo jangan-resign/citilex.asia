@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { recordTax } from "@/src/actions/finance";
 import { Calculator, ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { CustomSelect } from "@/src/components/ui/CustomSelect";
 
 export default function NewTaxPage() {
   const router = useRouter();
@@ -77,17 +78,17 @@ export default function NewTaxPage() {
 
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-bold text-slate-700 mb-2">Jenis Pajak</label>
-                <select 
-                  className="w-full p-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all bg-white"
+                <CustomSelect 
                   value={formData.type}
-                  onChange={(e) => setFormData({...formData, type: e.target.value})}
-                >
-                  <option value="PPN">PPN (Pajak Pertambahan Nilai)</option>
-                  <option value="PPh 21">PPh 21 (Pajak Karyawan)</option>
-                  <option value="PPh Badan">PPh Badan</option>
-                  <option value="Pajak Daerah">Pajak Daerah / Reklame</option>
-                  <option value="Lainnya">Lainnya</option>
-                </select>
+                  onChange={(val) => setFormData({...formData, type: val})}
+                  options={[
+                    { value: "PPN", label: "PPN (Pajak Pertambahan Nilai)" },
+                    { value: "PPh 21", label: "PPh 21 (Pajak Karyawan)" },
+                    { value: "PPh Badan", label: "PPh Badan" },
+                    { value: "Pajak Daerah", label: "Pajak Daerah / Reklame" },
+                    { value: "Lainnya", label: "Lainnya" }
+                  ]}
+                />
               </div>
 
               <div className="col-span-2">
