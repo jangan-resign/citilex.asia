@@ -213,11 +213,18 @@ export async function markInvoicePaid(id: string) {
         name: invoice.customerName || "Klien Manual",
         company: invoice.customerCompany,
         domicile: invoice.customerDomicile,
-        phone: invoice.customerPhone || `manual-${Date.now()}-${Math.floor(Math.random()*1000)}`
+        phone: invoice.customerPhone || `manual-${Date.now()}-${Math.floor(Math.random()*1000)}`,
+        owner: "CRM"
       }
     });
     customerId = newCustomer.id;
     await prisma.invoice.update({ where: { id }, data: { customerId: newCustomer.id } });
+  } else {
+    // Change owner to CRM for existing customer
+    await prisma.customer.update({
+      where: { id: customerId },
+      data: { owner: "CRM" }
+    });
   }
 
   if (customerId) {
@@ -333,7 +340,7 @@ export async function updateQuotationStatus(id: string, status: string) {
 
 
 export async function markInvoiceUnpaid(id: string) {
-  await prisma.invoice.update({
+  const invoice = await prisma.invoice.update({
     where: { id },
     data: {
       status: 'UNPAID',
@@ -344,6 +351,23 @@ export async function markInvoiceUnpaid(id: string) {
   await prisma.cashFlow.deleteMany({
     where: { referenceId: id, category: 'INVOICE' },
   });
+
+  if (invoice.projectId) {
+    await prisma.project.update({
+      where: { id: invoice.projectId },
+      data: {
+        pipeline: "DEAL",
+        status: "invoice-dp-issued"
+      }
+    });
+  }
+
+  if (invoice.customerId) {
+    await prisma.customer.update({
+      where: { id: invoice.customerId },
+      data: { owner: "CS" }
+    });
+  }
 
   revalidatePath('/app/invoices');
 }

@@ -36,7 +36,9 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
         in: ["active", "qualified"]
       },
       invoices: {
-        none: {}
+        none: {
+          status: "PAID"
+        }
       },
       ...dateFilter,
       OR: query ? [

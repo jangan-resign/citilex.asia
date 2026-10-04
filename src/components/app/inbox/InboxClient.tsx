@@ -7,10 +7,10 @@ import { ChatList } from "./ChatList";
 import { ChatTimeline } from "./ChatTimeline";
 import { CustomerInfo } from "./CustomerInfo";
 import { CalculatorClient } from "../calculator/CalculatorClient";
-import { Customer, Message, OrderQualification } from "@prisma/client";
+import { Customer, Message, OrderQualification, Invoice } from "@prisma/client";
 import { sendMessage, changeChatOwner, markMessagesAsRead } from "../../../actions/inbox";
 
-export type CustomerWithMessages = Customer & { messages: Message[], qualification: OrderQualification | null };
+export type CustomerWithMessages = Customer & { messages: Message[], qualification: OrderQualification | null, invoices?: Invoice[] };
 
 export function InboxClient({ initialCustomers }: { initialCustomers: CustomerWithMessages[] }) {
   const [customers, setCustomers] = useState<CustomerWithMessages[]>(initialCustomers);

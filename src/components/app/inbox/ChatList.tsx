@@ -89,6 +89,16 @@ export function ChatList({ customers, selectedChatId, onSelectChat }: ChatListPr
             const isSelected = selectedChatId === customer.id;
             const unreadCount = customer.messages.filter(m => !m.isRead && m.sender === 'customer').length;
             const lastMessage = customer.messages[customer.messages.length - 1];
+            
+            // CRM Follow-up logic
+            let needsCrmFollowUp = false;
+            const latestPaidInvoice = customer.invoices?.[0];
+            if (latestPaidInvoice && customer.owner === "CRM") {
+              const hasCrmMessageAfterPaid = customer.messages.some(
+                m => m.sender === "crm" && new Date(m.createdAt).getTime() >= new Date(latestPaidInvoice.updatedAt).getTime()
+              );
+              needsCrmFollowUp = !hasCrmMessageAfterPaid;
+            }
 
             return (
               <div 
@@ -99,7 +109,7 @@ export function ChatList({ customers, selectedChatId, onSelectChat }: ChatListPr
                 }`}
               >
                 <div className="flex justify-between items-start mb-1">
-                  <h3 className={`font-bold text-sm ${unreadCount > 0 ? "text-slate-900" : "text-slate-700"}`}>
+                  <h3 className={`font-bold text-sm ${(unreadCount > 0 || needsCrmFollowUp) ? "text-slate-900" : "text-slate-700"}`}>
                     {customer.name}
                   </h3>
                   <span suppressHydrationWarning className="text-[10px] text-slate-400 whitespace-nowrap ml-2">
@@ -124,14 +134,21 @@ export function ChatList({ customers, selectedChatId, onSelectChat }: ChatListPr
                 </div>
 
                 <div className="flex justify-between items-center gap-4">
-                  <p className={`text-xs truncate ${unreadCount > 0 ? "font-semibold text-slate-700" : "text-slate-500"}`}>
+                  <p className={`text-xs truncate ${(unreadCount > 0 || needsCrmFollowUp) ? "font-semibold text-slate-700" : "text-slate-500"}`}>
                     {lastMessage?.text || "Tidak ada pesan."}
                   </p>
-                  {unreadCount > 0 && (
-                    <span className="bg-slate-800 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 shadow-sm">
-                      {unreadCount}
-                    </span>
-                  )}
+                  <div className="flex gap-1 shrink-0 items-center">
+                    {needsCrmFollowUp && (
+                      <span className="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap">
+                        Need Follow-up
+                      </span>
+                    )}
+                    {unreadCount > 0 && (
+                      <span className="bg-slate-800 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                        {unreadCount}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             );

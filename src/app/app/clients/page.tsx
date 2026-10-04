@@ -34,7 +34,9 @@ export default async function ClientsPage({ searchParams }: { searchParams: Prom
   const dbCustomers = await prisma.customer.findMany({
     where: {
       invoices: {
-        some: {} // Harus punya setidaknya satu tagihan
+        some: {
+          status: "PAID"
+        }
       },
       ...dateFilter,
       OR: query ? [

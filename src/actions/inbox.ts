@@ -21,6 +21,11 @@ export async function getCustomers() {
     orderBy: { updatedAt: "desc" },
     include: {
       qualification: true,
+      invoices: {
+        where: { status: "PAID" },
+        orderBy: { updatedAt: "desc" },
+        take: 1
+      },
       messages: {
         orderBy: { createdAt: "asc" },
       },
