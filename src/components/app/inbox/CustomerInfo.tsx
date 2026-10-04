@@ -306,7 +306,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
                 Project Progress
               </span>
               <span className="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded-full font-bold">
-                {customer.projects[0].pipeline}
+                {customer.projects[0].pipeline === 'DEAL' ? 'SALES' : customer.projects[0].pipeline.replace('_', '-')}
               </span>
             </h3>
             
@@ -323,15 +323,15 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
                 );
               })}
             </div>
-            <div className="grid grid-cols-5 text-[8px] font-bold text-slate-400 uppercase text-center">
-              <span>Deal</span>
+            <div className="grid grid-cols-5 text-[8px] font-bold text-slate-400 uppercase text-center mt-2">
+              <span>Sales</span>
               <span>Pre-Prod</span>
               <span>Prod</span>
               <span>Payment</span>
               <span>Delivery</span>
             </div>
             
-            <div className="mt-3 pt-3 border-t border-slate-100">
+            <div className="mt-4 pt-3 border-t border-slate-100">
               <div className="text-[10px] text-slate-500 font-bold uppercase mb-1">Status Kanban Saat Ini:</div>
               <div className="text-xs font-medium text-slate-700 capitalize">
                 {customer.projects[0].status.replace(/-/g, ' ')}
