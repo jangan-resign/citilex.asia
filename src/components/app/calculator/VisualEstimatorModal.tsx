@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import { X, Ruler, Download, Plus, Trash2, Maximize2, Image as ImageIcon, Palette, FileText } from "lucide-react";
 import { motion } from "motion/react";
 import * as htmlToImage from "html-to-image";
+import { removeBackground } from "@imgly/background-removal";
 
 type PrintMethod = "DTF" | "RUBBER" | "PLASTISOL" | "BORDIR";
 
@@ -14,6 +15,8 @@ interface LogoItem {
   widthPx: number; // current pixel width in canvas
   naturalRatio: number;
   perspective: string; // The perspective it was added on
+  blendMode?: 'normal' | 'multiply' | 'screen';
+  originalUrl?: string;
 }
 
 interface VisualEstimatorModalProps {
@@ -42,6 +45,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
   // Download Prompt State
   const [showDownloadPrompt, setShowDownloadPrompt] = useState(false);
   const [isCapturingWithOverlay, setIsCapturingWithOverlay] = useState(false);
+  const [isRemovingBgId, setIsRemovingBgId] = useState<string | null>(null);
 
   // Canvas Refs
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -102,9 +106,29 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
       method,
       naturalRatio: pendingUploadRatio,
       widthPx: initialWidthPx,
-      perspective
+      perspective,
+      blendMode: 'normal',
+      originalUrl: pendingUploadUrl
     }]);
     setPendingUploadUrl(null);
+  };
+
+  const removeBgAI = async (id: string, url: string) => {
+    try {
+      setIsRemovingBgId(id);
+      const blob = await removeBackground(url);
+      const transparentUrl = URL.createObjectURL(blob);
+      setLogos(prev => prev.map(l => l.id === id ? { ...l, url: transparentUrl, blendMode: 'normal' } : l));
+    } catch (error) {
+      console.error("Gagal menghapus background:", error);
+      alert("Gagal menghapus background. Coba lagi.");
+    } finally {
+      setIsRemovingBgId(null);
+    }
+  };
+
+  const updateBlendMode = (id: string, blendMode: 'normal' | 'multiply' | 'screen') => {
+    setLogos(prev => prev.map(l => l.id === id ? { ...l, blendMode } : l));
   };
 
   // --- ACTIONS ---
@@ -296,7 +320,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                     pointerEvents: isVisible ? 'auto' : 'none'
                   }}
                 >
-                  <img src={logo.url} className="w-full h-full object-contain pointer-events-none drop-shadow-sm" />
+                  <img src={logo.url} className="w-full h-full object-contain pointer-events-none drop-shadow-sm" style={{ mixBlendMode: logo.blendMode || 'normal' }} />
 
                   {isActive && (
                     <>
@@ -432,9 +456,21 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-800 truncate">Titik {i + 1}</p>
-                      <p className="text-[10px] font-mono text-slate-500">
+                      <p className="text-[10px] font-mono text-slate-500 mb-1.5">
                         {(logo.widthPx * cmPerPixel).toFixed(1)} x {((logo.widthPx / logo.naturalRatio) * cmPerPixel).toFixed(1)} cm
                       </p>
+                      <div className="flex flex-wrap gap-1">
+                        <button onClick={(e) => { e.stopPropagation(); updateBlendMode(logo.id, 'normal'); }} className={`text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors ${(!logo.blendMode || logo.blendMode === 'normal') ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>Normal</button>
+                        <button onClick={(e) => { e.stopPropagation(); updateBlendMode(logo.id, 'multiply'); }} className={`text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors ${logo.blendMode === 'multiply' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>Hapus BG Putih</button>
+                        <button onClick={(e) => { e.stopPropagation(); updateBlendMode(logo.id, 'screen'); }} className={`text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors ${logo.blendMode === 'screen' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>Hapus BG Hitam</button>
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); removeBgAI(logo.id, logo.originalUrl || logo.url); }} 
+                          disabled={isRemovingBgId === logo.id}
+                          className="text-[9px] px-1.5 py-0.5 rounded font-bold transition-colors bg-brand-gold/10 text-yellow-700 hover:bg-brand-gold hover:text-white disabled:opacity-50"
+                        >
+                          {isRemovingBgId === logo.id ? "⏳ Memproses..." : "✨ AI Remove BG"}
+                        </button>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-1 items-end">
                       <span className="text-[9px] font-bold px-1.5 py-0.5 bg-brand-primary text-white rounded uppercase">{logo.method}</span>
