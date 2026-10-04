@@ -32,15 +32,52 @@ export async function generateKarinaResponse(customerPhone: string, messageHisto
   });
 
   try {
-    // Generate content
     const result = await model.generateContent({
       contents,
       systemInstruction,
+      tools: [{
+        functionDeclarations: [{
+          name: "updateCustomerInfo",
+          description: "Gunakan fungsi ini jika percakapan telah memunculkan informasi terkait identitas klien. Kumpulkan dan update datanya.",
+          parameters: {
+            type: "OBJECT",
+            properties: {
+              name: { type: "STRING", description: "Nama panggilan atau nama asli pelanggan." },
+              company: { type: "STRING", description: "Bisa berupa nama perusahaan, instansi, sekolah, komunitas, event, atau organisasi." },
+              domicile: { type: "STRING", description: "Bisa berupa asal kota, provinsi, alamat, atau letak instansi." }
+            },
+          }
+        }]
+      }]
     });
-    const response = await result.response;
-    return response.text();
+    
+    const response = result.response;
+    let replyText = "";
+    let extractedInfo = null;
+
+    if (response.functionCalls && response.functionCalls().length > 0) {
+      const call = response.functionCalls()[0];
+      if (call.name === "updateCustomerInfo") {
+        extractedInfo = call.args;
+      }
+      
+      // Jika model memanggil fungsi, biasanya text kosong. Kita minta model merespons sebagai balasan function
+      const followUp = await model.generateContent({
+        contents: [
+          ...contents,
+          { role: "model", parts: [{ functionCall: call }] },
+          { role: "user", parts: [{ functionResponse: { name: call.name, response: { status: "ok" } } }] }
+        ],
+        systemInstruction
+      });
+      replyText = followUp.response.text();
+    } else {
+      replyText = response.text();
+    }
+
+    return { text: replyText, extractedInfo };
   } catch (error) {
     console.error("Gemini AI Error:", error);
-    return "Maaf kak, Karina lagi sedikit pusing nih (sistem error). Mohon ditunggu ya, nanti dibalas lagi!";
+    return { text: "Maaf kak, Karina lagi sedikit pusing nih (sistem error). Mohon ditunggu ya, nanti dibalas lagi!" };
   }
 }

@@ -99,14 +99,29 @@ export async function POST(request: Request) {
               }));
 
               // 4. Generate respons AI
-              const karinaReply = await generateKarinaResponse(senderPhone, formattedHistory, messageText);
+              const karinaResult = await generateKarinaResponse(senderPhone, formattedHistory, messageText);
+              const karinaReply = karinaResult.text;
+              const extractedInfo = karinaResult.extractedInfo;
 
-              // 5. Kirim balasan via WhatsApp API (reply ke pesan masuk)
+              // 5. Update Customer jika ada info yang terekstrak
+              if (extractedInfo) {
+                await prisma.customer.update({
+                  where: { id: customer.id },
+                  data: {
+                    name: extractedInfo.name || customer.name,
+                    company: extractedInfo.company || customer.company,
+                    domicile: extractedInfo.domicile || customer.domicile,
+                  }
+                });
+                console.log(`🤖 Karina otomatis mengupdate data klien:`, extractedInfo);
+              }
+
+              // 6. Kirim balasan via WhatsApp API (reply ke pesan masuk)
               const sentResult = await sendWhatsAppMessage(senderPhone, karinaReply, incomingWamid);
 
               if (sentResult) {
                 const botWamid = typeof sentResult === "string" ? sentResult : null;
-                // 6. Simpan balasan bot ke DB
+                // 7. Simpan balasan bot ke DB
                 await prisma.message.create({
                   data: {
                     customerId: customer.id,

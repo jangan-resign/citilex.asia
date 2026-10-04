@@ -257,3 +257,61 @@ export async function updateInboxNotes(customerId: string, inboxNotes: string) {
   });
   revalidatePath("/app");
 }
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+export async function autoFillCustomerInfo(customerId: string) {
+  const customer = await prisma.customer.findUnique({
+    where: { id: customerId },
+    include: {
+      messages: {
+        orderBy: { createdAt: "asc" },
+      },
+    },
+  });
+
+  if (!customer || customer.messages.length === 0) return null;
+
+  const transcript = customer.messages.map((m) => `${m.sender.toUpperCase()}: ${m.text}`).join("\n");
+
+  const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+  const prompt = `Ekstrak informasi pelanggan dari riwayat chat berikut:
+
+${transcript}
+
+Tugasmu:
+1. Temukan nama pelanggan (jika disebutkan).
+2. Temukan "company": Bisa berupa nama perusahaan, instansi, sekolah, kampus, dinas, event, atau komunitas pelanggan. Jika tidak ada petunjuk sama sekali, kembalikan null atau "".
+3. Temukan "domicile": Bisa berupa asal kota, alamat pengiriman, letak perusahaan, atau domisili pelanggan. Jika tidak ada petunjuk sama sekali, kembalikan null atau "".
+
+Balas HANYA dengan valid JSON dengan format persis seperti ini, tanpa markdown dan tanpa penjelasan tambahan:
+{
+  "name": "nama",
+  "company": "perusahaan",
+  "domicile": "domisili"
+}`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const text = result.response.text();
+    const jsonStr = text.replace(/```json/g, "").replace(/```/g, "").trim();
+    const data = JSON.parse(jsonStr);
+
+    const updatedCustomer = await prisma.customer.update({
+      where: { id: customerId },
+      data: {
+        name: data.name || customer.name,
+        company: data.company || customer.company,
+        domicile: data.domicile || customer.domicile,
+      }
+    });
+
+    revalidatePath("/app");
+    return updatedCustomer;
+  } catch (error) {
+    console.error("Auto fill error:", error);
+    return null;
+  }
+}

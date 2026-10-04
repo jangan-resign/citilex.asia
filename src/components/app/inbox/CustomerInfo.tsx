@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Building, Phone, Calculator, ClipboardList, CheckCircle2, Edit3, X, Save, ChevronLeft, StickyNote, Trash2, FileText, Receipt, Copy, MessageSquare, ShoppingCart, Loader2 } from "lucide-react";
+import { Building, Phone, Calculator, ClipboardList, CheckCircle2, Edit3, X, Save, ChevronLeft, StickyNote, Trash2, FileText, Receipt, Copy, MessageSquare, ShoppingCart, Loader2, Sparkles } from "lucide-react";
 import { CustomerWithMessages } from "./InboxClient";
-import { updateCustomerQualification, updateInboxNotes } from "../../../actions/inbox";
+import { updateCustomerQualification, updateInboxNotes, autoFillCustomerInfo } from "../../../actions/inbox";
 
 interface CustomerInfoProps {
   customer: CustomerWithMessages;
@@ -15,6 +15,7 @@ interface CustomerInfoProps {
 export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRemoveItem }: CustomerInfoProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isAiLoading, setIsAiLoading] = useState(false);
 
   // Form State (Only basic customer info now)
   const [formData, setFormData] = useState({
@@ -24,6 +25,28 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
   });
 
   const items = Array.isArray(customer.qualification?.items) ? customer.qualification!.items : [];
+
+  const handleAutoFill = async () => {
+    if (!confirm("Biar AI yang baca chat dan isi data klien ini?")) return;
+    setIsAiLoading(true);
+    try {
+      const updatedData = await autoFillCustomerInfo(customer.id);
+      if (updatedData) {
+        setFormData({
+          name: updatedData.name || "",
+          company: updatedData.company || "",
+          domicile: updatedData.domicile || "",
+        });
+      } else {
+        alert("Gagal membaca info dari chat.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Terjadi kesalahan saat memanggil AI.");
+    } finally {
+      setIsAiLoading(false);
+    }
+  };
 
   const handleSave = async () => {
     setIsSaving(true);
@@ -130,16 +153,26 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
               <ClipboardList className="h-4 w-4 text-brand-gold" />
               Client Info
             </h3>
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-bold text-slate-500">{progress}%</span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-slate-500 mr-1">{progress}%</span>
               {!isEditing && (
-                <button 
-                  onClick={() => setIsEditing(true)}
-                  className="text-brand-primary hover:text-brand-primary/80 transition-colors p-1 cursor-pointer"
-                  title="Isi/Edit Manual"
-                >
-                  <Edit3 className="w-3.5 h-3.5" />
-                </button>
+                <>
+                  <button 
+                    onClick={handleAutoFill}
+                    disabled={isAiLoading}
+                    className="text-amber-500 hover:text-amber-600 transition-colors p-1 cursor-pointer disabled:opacity-50"
+                    title="Auto-fill dengan AI Copilot"
+                  >
+                    {isAiLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+                  </button>
+                  <button 
+                    onClick={() => setIsEditing(true)}
+                    className="text-brand-primary hover:text-brand-primary/80 transition-colors p-1 cursor-pointer"
+                    title="Isi/Edit Manual"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" />
+                  </button>
+                </>
               )}
             </div>
           </div>
