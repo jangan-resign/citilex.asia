@@ -233,49 +233,6 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
           </div>
         </div>
 
-        {/* Project Pipeline Tracker */}
-        {customer.projects && customer.projects.length > 0 && (
-          <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
-            <h3 className="font-semibold text-sm text-slate-800 flex items-center justify-between mb-3">
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-brand-gold" />
-                Project Progress
-              </span>
-              <span className="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-bold">
-                {customer.projects[0].pipeline}
-              </span>
-            </h3>
-            
-            <div className="w-full bg-slate-100 h-2 rounded-full mb-2 overflow-hidden flex">
-              {['DEAL', 'PRE_PROD', 'PROD', 'PAYMENT', 'DELIVERY'].map((stage, idx) => {
-                const stages = ['DEAL', 'PRE_PROD', 'PROD', 'PAYMENT', 'DELIVERY'];
-                const currentIdx = stages.indexOf(customer.projects![0].pipeline);
-                const isActive = idx <= currentIdx;
-                return (
-                  <div 
-                    key={stage} 
-                    className={`h-full flex-1 border-r border-white last:border-0 ${isActive ? 'bg-brand-primary' : 'bg-transparent'}`}
-                  />
-                );
-              })}
-            </div>
-            <div className="flex justify-between text-[8px] font-bold text-slate-400 uppercase">
-              <span>Deal</span>
-              <span>Pre-Prod</span>
-              <span>Prod</span>
-              <span>Payment</span>
-              <span>Delivery</span>
-            </div>
-            
-            <div className="mt-3 pt-3 border-t border-slate-100">
-              <div className="text-[10px] text-slate-500 font-bold uppercase mb-1">Status Kanban Saat Ini:</div>
-              <div className="text-xs font-medium text-slate-700 capitalize">
-                {customer.projects[0].status.replace(/-/g, ' ')}
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Lead Qualifications (Cart) */}
         <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
           <h3 className="font-semibold text-sm text-slate-800 flex items-center justify-between mb-3">
@@ -283,7 +240,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
               <ShoppingCart className="h-4 w-4 text-brand-gold" />
               Lead Qualifications
             </span>
-            <span className="bg-brand-primary/10 text-brand-primary text-[10px] px-2 py-0.5 rounded-full">
+            <span className="bg-brand-primary/10 text-brand-primary text-[10px] px-2 py-0.5 rounded-full font-bold">
               {items.length} Item
             </span>
           </h3>
@@ -339,6 +296,49 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
             </div>
           )}
         </div>
+
+        {/* Project Pipeline Tracker */}
+        {customer.projects && customer.projects.length > 0 && (
+          <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <h3 className="font-semibold text-sm text-slate-800 flex items-center justify-between mb-3">
+              <span className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-brand-gold" />
+                Project Progress
+              </span>
+              <span className="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded-full font-bold">
+                {customer.projects[0].pipeline}
+              </span>
+            </h3>
+            
+            <div className="w-full bg-slate-100 h-2 rounded-full mb-2 overflow-hidden flex">
+              {['DEAL', 'PRE_PROD', 'PROD', 'PAYMENT', 'DELIVERY'].map((stage, idx) => {
+                const stages = ['DEAL', 'PRE_PROD', 'PROD', 'PAYMENT', 'DELIVERY'];
+                const currentIdx = stages.indexOf(customer.projects![0].pipeline);
+                const isActive = idx <= currentIdx;
+                return (
+                  <div 
+                    key={stage} 
+                    className={`h-full flex-1 border-r border-white last:border-0 ${isActive ? 'bg-brand-primary' : 'bg-transparent'}`}
+                  />
+                );
+              })}
+            </div>
+            <div className="grid grid-cols-5 text-[8px] font-bold text-slate-400 uppercase text-center">
+              <span>Deal</span>
+              <span>Pre-Prod</span>
+              <span>Prod</span>
+              <span>Payment</span>
+              <span>Delivery</span>
+            </div>
+            
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <div className="text-[10px] text-slate-500 font-bold uppercase mb-1">Status Kanban Saat Ini:</div>
+              <div className="text-xs font-medium text-slate-700 capitalize">
+                {customer.projects[0].status.replace(/-/g, ' ')}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Document Generation Options */}
         {items.length > 0 && (

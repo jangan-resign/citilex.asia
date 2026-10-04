@@ -191,6 +191,28 @@ export default function PipelinesPage() {
     }
   };
 
+  const handleItemMove = async (itemId: string, newStatus: string) => {
+    const pipelineStage = activeTab === "deal" ? "DEAL" : 
+                          activeTab === "pre-production" ? "PRE_PROD" : 
+                          activeTab === "production" ? "PROD" : 
+                          activeTab === "payment" ? "PAYMENT" : "DELIVERY";
+    
+    // Update local state optimistically
+    setDbItems(prev => prev.map(item => item.id === itemId ? { ...item, status: newStatus } : item));
+    
+    try {
+      const { updateProject } = await import("../../../actions/pipeline");
+      await updateProject({
+        projectId: itemId,
+        newPipeline: pipelineStage as any,
+        newStatus: newStatus
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Gagal memperbarui status Kanban");
+    }
+  };
+
   // Render proper kanban based on active tab
   const renderKanban = () => {
     const items = dbItems.filter((i: any) => {
@@ -207,11 +229,11 @@ export default function PipelinesPage() {
     });
 
     switch (activeTab) {
-      case "deal": return <KanbanBoard columns={dealColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} key={`deal-${items.length}`} />;
-      case "pre-production": return <KanbanBoard columns={preProdColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} key={`pre-${items.length}`} />;
-      case "production": return <KanbanBoard columns={prodColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} key={`prod-${items.length}`} />;
-      case "payment": return <KanbanBoard columns={paymentColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} key={`pay-${items.length}`} />;
-      case "delivery": return <KanbanBoard columns={deliveryColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} key={`del-${items.length}`} />;
+      case "deal": return <KanbanBoard columns={dealColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} onItemMove={handleItemMove} key={`deal-${items.length}`} />;
+      case "pre-production": return <KanbanBoard columns={preProdColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} onItemMove={handleItemMove} key={`pre-${items.length}`} />;
+      case "production": return <KanbanBoard columns={prodColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} onItemMove={handleItemMove} key={`prod-${items.length}`} />;
+      case "payment": return <KanbanBoard columns={paymentColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} onItemMove={handleItemMove} key={`pay-${items.length}`} />;
+      case "delivery": return <KanbanBoard columns={deliveryColumns} initialItems={items} onAddCard={handleAddCard} onDeleteCard={handleDeleteCard} onClearColumn={handleClearColumn} onItemMove={handleItemMove} key={`del-${items.length}`} />;
       default: return null;
     }
   };
