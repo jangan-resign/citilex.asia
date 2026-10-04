@@ -269,8 +269,7 @@ export async function markInvoicePaid(id: string) {
     }
   });
 
-  revalidatePath("/app/invoices");
-  revalidatePath("/app/finance/cash-flow");
+  revalidatePath("/app", "layout");
 }
 
 
@@ -369,6 +368,6 @@ export async function markInvoiceUnpaid(id: string) {
     });
   }
 
-  revalidatePath('/app/invoices');
+  revalidatePath('/app', 'layout');
 }
 
