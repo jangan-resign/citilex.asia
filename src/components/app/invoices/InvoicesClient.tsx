@@ -41,6 +41,7 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
   // --- Invoice Generator State ---
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [selectedCustomerId, setSelectedCustomerId] = useState<string>('manual');
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(true);
   const [customerName, setCustomerName] = useState('');
   const [customerCompany, setCustomerCompany] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
@@ -71,7 +72,8 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
   };
 
   useEffect(() => {
-    getCustomers().then(data => setCustomers(data)).catch(console.error);
+    setIsLoadingCustomers(true);
+    getCustomers().then(data => setCustomers(data)).catch(console.error).finally(() => setIsLoadingCustomers(false));
     refreshList();
 
     if (typeof window !== 'undefined') {
@@ -580,7 +582,9 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
               <CustomSelect
                 value={selectedCustomerId}
                 onChange={setSelectedCustomerId}
-                options={[
+                options={isLoadingCustomers ? [
+                  { value: 'manual', label: '-- Memuat data client... --' }
+                ] : [
                   { value: 'manual', label: '-- Input Manual (Client Baru) --' },
                   ...customers.map(c => ({ value: c.id, label: `${c.name} ${c.company ? `(${c.company})` : ''}`.trim() }))
                 ]}
