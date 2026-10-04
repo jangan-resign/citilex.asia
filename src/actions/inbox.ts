@@ -26,6 +26,10 @@ export async function getCustomers() {
         orderBy: { updatedAt: "desc" },
         take: 1
       },
+      projects: {
+        orderBy: { updatedAt: "desc" },
+        take: 1
+      },
       messages: {
         orderBy: { createdAt: "asc" },
       },
