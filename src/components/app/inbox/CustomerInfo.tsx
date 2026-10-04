@@ -30,13 +30,16 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
     if (!confirm("Biar AI yang baca chat dan isi data klien ini?")) return;
     setIsAiLoading(true);
     try {
-      const updatedData = await autoFillCustomerInfo(customer.id);
-      if (updatedData) {
+      const response = await autoFillCustomerInfo(customer.id);
+      if (response && response.success && response.updatedCustomer) {
         setFormData({
-          name: updatedData.name || "",
-          company: updatedData.company || "",
-          domicile: updatedData.domicile || "",
+          name: response.updatedCustomer.name || "",
+          company: response.updatedCustomer.company || "",
+          domicile: response.updatedCustomer.domicile || "",
         });
+        if (!response.hasNewInfo) {
+          alert("AI tidak menemukan informasi baru (Nama, Perusahaan/Instansi, Domisili/Asal) di dalam chat ini.");
+        }
       } else {
         alert("Gagal membaca info dari chat.");
       }
@@ -160,7 +163,7 @@ export function CustomerInfo({ customer, onOpenCalculator, onActionSelect, onRem
                   <button 
                     onClick={handleAutoFill}
                     disabled={isAiLoading}
-                    className="text-amber-500 hover:text-amber-600 transition-colors p-1 cursor-pointer disabled:opacity-50"
+                    className="text-brand-primary hover:text-brand-primary/80 transition-colors p-1 cursor-pointer disabled:opacity-50"
                     title="Auto-fill dengan AI Copilot"
                   >
                     {isAiLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}

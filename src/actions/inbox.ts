@@ -298,6 +298,10 @@ Balas HANYA dengan valid JSON dengan format persis seperti ini, tanpa markdown d
     const text = result.response.text();
     const jsonStr = text.replace(/```json/g, "").replace(/```/g, "").trim();
     const data = JSON.parse(jsonStr);
+    
+    const hasNewInfo = (data.name && data.name !== customer.name) || 
+                       (data.company && data.company !== customer.company) || 
+                       (data.domicile && data.domicile !== customer.domicile);
 
     const updatedCustomer = await prisma.customer.update({
       where: { id: customerId },
@@ -309,9 +313,9 @@ Balas HANYA dengan valid JSON dengan format persis seperti ini, tanpa markdown d
     });
 
     revalidatePath("/app");
-    return updatedCustomer;
+    return { success: true, updatedCustomer, hasNewInfo };
   } catch (error) {
     console.error("Auto fill error:", error);
-    return null;
+    return { success: false, updatedCustomer: null, hasNewInfo: false };
   }
 }
