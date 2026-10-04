@@ -200,7 +200,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           {(["super-admin", "business-partner", "sales"].includes(userRole)) && (
             <div className="space-y-1">
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-                Sales Area
+                Sales Module
               </h4>
               {salesNavigation.map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
@@ -240,7 +240,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           {(["super-admin", "business-partner", "crm"].includes(userRole)) && (
             <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-                CRM Area
+                CRM Module
               </h4>
               {(() => {
                 const items = [...crmNavigation];
@@ -288,7 +288,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           {(["super-admin", "business-partner", "materials"].includes(userRole)) && (
             <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-                Materials Area
+                Materials Module
               </h4>
               {operationNavigation.map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
@@ -321,7 +321,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           {(["super-admin", "business-partner", "marketing"].includes(userRole)) && (
             <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-                Marketing Area
+                Marketing Module
               </h4>
               {marketingNavigation.map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
@@ -354,7 +354,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           {(["super-admin", "business-partner", "hrd"].includes(userRole)) && (
             <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-                HRD Area
+                HRD Module
               </h4>
               {hrdNavigation.map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
@@ -387,7 +387,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
           {(["super-admin", "business-partner", "finance"].includes(userRole)) && (
             <div className={`space-y-1 ${isMultiArea ? "border-t border-slate-100 pt-4 mt-4" : ""}`}>
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
-                Finance Area
+                Finance Module
               </h4>
               {financeNavigation.map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
