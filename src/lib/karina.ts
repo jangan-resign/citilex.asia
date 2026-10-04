@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 // Pastikan GOOGLE_API_KEY sudah terpasang
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
@@ -40,11 +40,11 @@ export async function generateKarinaResponse(customerPhone: string, messageHisto
           name: "updateCustomerInfo",
           description: "Gunakan fungsi ini jika percakapan telah memunculkan informasi terkait identitas klien. Kumpulkan dan update datanya.",
           parameters: {
-            type: "OBJECT",
+            type: SchemaType.OBJECT,
             properties: {
-              name: { type: "STRING", description: "Nama panggilan atau nama asli pelanggan." },
-              company: { type: "STRING", description: "Bisa berupa nama perusahaan, instansi, sekolah, komunitas, event, atau organisasi." },
-              domicile: { type: "STRING", description: "Bisa berupa asal kota, provinsi, alamat, atau letak instansi." }
+              name: { type: SchemaType.STRING, description: "Nama panggilan atau nama asli pelanggan." },
+              company: { type: SchemaType.STRING, description: "Bisa berupa nama perusahaan, instansi, sekolah, komunitas, event, atau organisasi." },
+              domicile: { type: SchemaType.STRING, description: "Bisa berupa asal kota, provinsi, alamat, atau letak instansi." }
             },
           }
         }]
