@@ -17,6 +17,7 @@ interface LogoItem {
   perspective: string; // The perspective it was added on
   blendMode?: 'normal' | 'multiply' | 'screen';
   originalUrl?: string;
+  error?: string;
 }
 
 interface VisualEstimatorModalProps {
@@ -116,12 +117,24 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
   const removeBgAI = async (id: string, url: string) => {
     try {
       setIsRemovingBgId(id);
+      // Reset error state
+      setLogos(prev => prev.map(l => l.id === id ? { ...l, error: undefined } : l));
+      
       const blob = await removeBackground(url);
       const transparentUrl = URL.createObjectURL(blob);
+      
+      // Wait for image to be fully loaded into memory before removing spinner
+      await new Promise<void>((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => reject(new Error("Gagal render hasil AI"));
+        img.src = transparentUrl;
+      });
+
       setLogos(prev => prev.map(l => l.id === id ? { ...l, url: transparentUrl, blendMode: 'normal' } : l));
     } catch (error) {
       console.error("Gagal menghapus background:", error);
-      alert("Gagal menghapus background. Coba lagi.");
+      setLogos(prev => prev.map(l => l.id === id ? { ...l, error: "AI gagal memproses gambar ini. Resolusi terlalu besar atau format tidak didukung." } : l));
     } finally {
       setIsRemovingBgId(null);
     }
@@ -459,7 +472,7 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                       <p className="text-[10px] font-mono text-slate-500 mb-2">
                         {(logo.widthPx * cmPerPixel).toFixed(1)} x {((logo.widthPx / logo.naturalRatio) * cmPerPixel).toFixed(1)} cm
                       </p>
-                      <div className="flex">
+                      <div className="flex flex-col gap-1.5 items-start">
                         <button 
                           onClick={(e) => { e.stopPropagation(); removeBgAI(logo.id, logo.originalUrl || logo.url); }} 
                           disabled={isRemovingBgId === logo.id}
@@ -475,6 +488,9 @@ export function VisualEstimatorModal({ isOpen, garmentType, onClose, onApply }: 
                             </>
                           )}
                         </button>
+                        {logo.error && (
+                          <span className="text-[9px] text-red-500 font-bold max-w-[180px] leading-tight">{logo.error}</span>
+                        )}
                       </div>
                     </div>
                     <div className="flex flex-col gap-1 items-end">
