@@ -501,6 +501,13 @@ export function InvoicesClient({ initialMonth = "all" as any, initialYear = "all
                                       <td className="px-4 py-3">
                                         <div className="font-medium text-slate-800">{item.name}</div>
                                         {item.tierLabel && <div className="text-[10px] text-slate-400 mt-0.5 uppercase">{item.tierLabel}</div>}
+                                        {item.specs && Array.isArray(item.specs) && (
+                                          <ul className="list-disc pl-4 text-[10px] text-slate-500 space-y-1 mt-2">
+                                            {item.specs.map((s: string, sIdx: number) => (
+                                              <li key={sIdx}>{s}</li>
+                                            ))}
+                                          </ul>
+                                        )}
                                       </td>
                                       <td className="px-4 py-3 text-center text-slate-600">{item.qty}</td>
                                       <td className="px-4 py-3 text-right font-medium text-slate-700">
