@@ -27,11 +27,11 @@ function SearchableSelect({ options, value, onChange, disabled, placeholder }: {
   return (
     <div ref={wrapperRef} className="relative w-full">
       <div
-        className={`w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-gold/50 bg-white flex justify-between items-center cursor-pointer min-h-[38px] ${disabled ? 'bg-slate-50 text-slate-400 cursor-not-allowed' : ''}`}
+        className={`w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50 focus:border-brand-gold flex justify-between items-center cursor-pointer min-h-[42px] ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         onClick={() => !disabled && setIsOpen(!isOpen)}
       >
-        <span className="truncate">{value || placeholder || "Pilih warna..."}</span>
-        <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+        <span className={`block truncate ${value ? 'text-slate-900' : 'text-slate-500'}`}>{value || placeholder || "Pilih warna..."}</span>
+        <svg className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180 text-brand-gold' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
       </div>
       {isOpen && !disabled && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 flex flex-col overflow-hidden">
@@ -54,7 +54,9 @@ function SearchableSelect({ options, value, onChange, disabled, placeholder }: {
               filtered.map(opt => (
                 <div
                   key={opt}
-                  className={`px-3 py-2 text-sm rounded-md cursor-pointer hover:bg-slate-100 transition-colors ${opt === value ? 'bg-brand-gold-light/30 text-brand-gold-dark font-semibold' : 'text-slate-700'}`}
+                  className={`w-full text-left px-4 py-2.5 text-sm hover:bg-brand-gold/10 hover:text-brand-primary transition-colors block truncate cursor-pointer ${
+                    value === opt ? 'bg-brand-gold/5 text-brand-primary font-medium' : 'text-slate-700'
+                  }`}
                   onClick={() => {
                     onChange(opt);
                     setIsOpen(false);

@@ -71,11 +71,11 @@ function SearchableSelect({ options, value, onChange, disabled }: { options: str
   return (
     <div ref={wrapperRef} className="relative w-full">
       <div
-        className={`w-full p-2 border border-slate-300 rounded focus:ring-brand-gold bg-white flex justify-between items-center cursor-pointer min-h-[38px] ${disabled ? 'bg-slate-100 text-slate-400 cursor-not-allowed border-slate-200' : ''}`}
+        className={`w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/50 focus:border-brand-gold flex justify-between items-center cursor-pointer min-h-[42px] ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         onClick={() => !disabled && setIsOpen(!isOpen)}
       >
-        <span className="truncate text-sm">{value || "Pilih warna..."}</span>
-        <ChevronDown className="w-4 h-4 text-slate-400" />
+        <span className={`block truncate ${value ? 'text-slate-900' : 'text-slate-500'}`}>{value || "Pilih warna..."}</span>
+        <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180 text-brand-gold' : 'text-slate-400'}`} />
       </div>
       {isOpen && !disabled && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-slate-300 rounded-md shadow-lg max-h-60 flex flex-col">
@@ -98,7 +98,9 @@ function SearchableSelect({ options, value, onChange, disabled }: { options: str
               filtered.map(opt => (
                 <div
                   key={opt}
-                  className={`p-2 text-sm rounded cursor-pointer hover:bg-slate-100 ${opt === value ? 'bg-brand-gold/10 text-brand-gold font-bold' : 'text-slate-700'}`}
+                  className={`w-full text-left px-4 py-2.5 text-sm hover:bg-brand-gold/10 hover:text-brand-primary transition-colors block truncate cursor-pointer ${
+                    value === opt ? 'bg-brand-gold/5 text-brand-primary font-medium' : 'text-slate-700'
+                  }`}
                   onClick={() => {
                     onChange(opt);
                     setIsOpen(false);
