@@ -202,7 +202,7 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
               <h4 className={`px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 transition-all ${!isExpanded ? "opacity-0 w-0 h-0 overflow-hidden" : "opacity-100"}`}>
                 Sales Module
               </h4>
-              {salesNavigation.map((item) => {
+              {salesNavigation.filter((item) => item.name !== "Calculator" || userRole === "super-admin").map((item) => {
                 const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
                 return (
                   <Link
