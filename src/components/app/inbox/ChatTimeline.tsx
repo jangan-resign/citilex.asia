@@ -429,7 +429,7 @@ export function ChatTimeline({ customer, allCustomers = [], onChangeOwner, onSen
 
                 {/* Sender Name for non-customer */}
                 {!isCustomer && (
-                  <div className={`text-[10px] font-bold mb-1 ${isBot ? "text-blue-600" : msg.sender === "crm" ? "text-emerald-700" : "text-emerald-600"}`}>
+                  <div className={`text-[10px] font-bold mb-1 ${isBot ? "text-blue-600" : msg.sender === "crm" ? "text-emerald-700" : "text-amber-600"}`}>
                     {isBot ? "Karina" : msg.sender === "crm" ? "CRM Citilex" : "CS Citilex"}
                   </div>
                 )}
