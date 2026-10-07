@@ -37,12 +37,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-snow relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-brand-snow relative overflow-hidden p-4 sm:p-8">
       {/* Abstract Background Shapes */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-gold/20 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-platinum/50 rounded-full blur-3xl pointer-events-none"></div>
       
-      <div className="relative z-10 w-full max-w-md p-8 bg-white/70 backdrop-blur-xl border border-white/40 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
+      <div className="relative z-10 w-full max-w-md p-6 sm:p-8 bg-white/70 backdrop-blur-xl border border-white/40 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
              <Image 
