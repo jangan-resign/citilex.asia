@@ -70,13 +70,10 @@ export function AssetsClient() {
                 <FolderOpen className="h-6 w-6" />
               </div>
               <div>
-                <div className="flex items-center gap-2">
+                <div>
                   <h1 className="text-xl lg:text-2xl font-bold text-slate-900 tracking-tight">
                     Asset Management
                   </h1>
-                  <span className="px-2 py-0.5 text-xs font-semibold bg-slate-100 text-slate-600 rounded-full border border-slate-200">
-                    {assets.length} file
-                  </span>
                 </div>
                 <p className="text-slate-500 text-xs lg:text-sm mt-0.5">
                   Gudang file, foto produk, size chart, dan template katalog untuk tim CS.
@@ -111,7 +108,7 @@ export function AssetsClient() {
               onClick={() => setIsUploadOpen(true)}
               className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-sm font-semibold flex items-center gap-2 shadow-sm transition-all shrink-0 cursor-pointer"
             >
-              <Plus className="h-4 w-4 text-brand-gold" />
+              <Plus className="h-4 w-4 text-white" />
               <span>Upload Aset</span>
             </button>
           </div>
@@ -151,7 +148,7 @@ export function AssetsClient() {
                   onClick={() => setIsUploadOpen(true)}
                   className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer inline-flex items-center gap-2"
                 >
-                  <Plus className="h-3.5 w-3.5 text-brand-gold" />
+                  <Plus className="h-3.5 w-3.5 text-white" />
                   Upload Aset Sekarang
                 </button>
               )}
