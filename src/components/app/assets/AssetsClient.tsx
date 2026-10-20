@@ -65,21 +65,13 @@ export function AssetsClient() {
       <div className="bg-white border-b border-slate-200 px-6 lg:px-8 py-5 shrink-0 sticky top-0 z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 bg-amber-50 rounded-lg border border-amber-200/60 text-brand-gold">
-                <FolderOpen className="h-6 w-6" />
-              </div>
-              <div>
-                <div>
-                  <h1 className="text-xl lg:text-2xl font-bold text-slate-900 tracking-tight">
-                    Asset Management
-                  </h1>
-                </div>
-                <p className="text-slate-500 text-xs lg:text-sm mt-0.5">
-                  Gudang file, foto produk, size chart, dan template katalog untuk tim CS.
-                </p>
-              </div>
-            </div>
+            <h1 className="text-xl lg:text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
+              <FolderOpen className="h-7 w-7 text-brand-gold" />
+              Asset Management
+            </h1>
+            <p className="text-slate-500 text-xs lg:text-sm mt-1">
+              Gudang file, foto produk, size chart, dan template katalog untuk tim CS.
+            </p>
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
