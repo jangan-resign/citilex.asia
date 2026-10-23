@@ -4,7 +4,7 @@ export const packages = [
     price: "55.000",
     description: "Sangat direkomendasikan untuk event massal, jalan sehat, gathering besar, merchandise atau promosi brand yang fungsional dan ekonomis.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 50 Pcs",
       "Bahan Polyester Double Knit / PE Soft",
       "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -18,7 +18,7 @@ export const packages = [
     price: "79.000",
     description: "Pilihan terbaik & terpopuler untuk gathering perusahaan, seragam seminar, merchandise premium, serta panitia acara dengan ketebalan kain sempurna.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 50 Pcs",
       "Bahan 100% Cotton Combed 30s/24s",
       "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -32,7 +32,7 @@ export const packages = [
     price: "89.000",
     description: "Kualitas premium tertinggi yang super lembut, sejuk, antibakteri alami, sangat ramah lingkungan, ideal untuk acara eksklusif.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 50 Pcs",
       "Bahan Premium Cotton Bamboo 30s/24s",
       "Sablon DTF / Rubber / Plastisol / Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -50,7 +50,7 @@ export const faqs = [
   },
   {
     question: "Berapa minimal jumlah pemesanan kaos & polo?",
-    answer: "Minimal pemesanan standar kami adalah 100 pcs per desain. Ini merupakan batas minimum efisiensi mesin sablon, bordir dan pemotongan bahan untuk dapat memberikan Anda harga penawaran terbaik dan kualitas yang konsisten."
+    answer: "Minimal pemesanan standar kami adalah 50 pcs per desain. Ini merupakan batas minimum efisiensi mesin sablon, bordir dan pemotongan bahan untuk dapat memberikan Anda harga penawaran terbaik dan kualitas yang konsisten."
   },
   {
     question: "Berapa lama proses pembuatan kaos & polo hingga selesai?",
@@ -121,7 +121,7 @@ export const poloPackages = [
     description:
       "Pilihan ekonomis untuk kebutuhan seragam perusahaan, event, gathering, komunitas, dan merchandise dalam jumlah besar.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 50 Pcs",
       "Bahan Lacoste Soft",
       "Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -137,7 +137,7 @@ export const poloPackages = [
     description:
       "Pilihan populer untuk seragam perusahaan dan event dengan bahan Lacoste Pique, rapi, dan cocok digunakan sehari-hari.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 50 Pcs",
       "Bahan Lacoste Pique",
       "Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
@@ -153,7 +153,7 @@ export const poloPackages = [
     description:
       "Kualitas premium untuk kebutuhan corporate dan merchandise eksklusif dengan bahan yang nyaman, tampilan elegan, dan finishing lebih detail.",
     features: [
-      "Minimal order 100 Pcs",
+      "Minimal order 50 Pcs",
       "Bahan Lacoste Diamond Premium",
       "Bordir Komputer",
       "Ukuran Standard Asia (XS - XL)",
