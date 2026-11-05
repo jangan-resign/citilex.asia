@@ -1205,6 +1205,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
 
                                 const specLines = [
                                   `Jenis Produk: ${productType === "KAOS" ? "Kaos" : "Polo Shirt"}`,
+                                  `Ukuran: S-XL`,
                                   `Pola Badan: ${modelLabel}`,
                                   `Panjang Lengan: ${lenganLabel}`,
                                   `Bahan Baku: ${material}`,
@@ -1233,13 +1234,13 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                                   const fullPrice = pricePerPcs + extraCostWithMargin;
                                   itemsToAdd.push({
                                     name: `${productType === "KAOS" ? "Kaos" : "Polo"} - ${modelLabel}`,
-                                    tierLabel: `${tier.label} (${bs.size})`,
+                                    tierLabel: `${tier.label} (Jumbo ${bs.size})`,
                                     qty: bs.qty,
                                     pricePerPcs: fullPrice,
                                     totalPrice: fullPrice * bs.qty,
                                     specs: [
                                       `Jenis Produk: ${productType === "KAOS" ? "Kaos" : "Polo Shirt"}`,
-                                      `Size Khusus: ${bs.size}`,
+                                      `Ukuran: Jumbo ${bs.size}`,
                                       `Pola Badan: ${modelLabel}`,
                                       `Panjang Lengan: ${lenganLabel}`,
                                       `Bahan Baku: ${material}`,
@@ -1263,7 +1264,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                               activeBigSizes.forEach(bs => {
                                 const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
                                 const fullPrice = pricePerPcs + extraCostWithMargin;
-                                textToCopy += `*Size ${bs.size} (${bs.qty} pcs)*\n@ Rp ${fullPrice.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(fullPrice * bs.qty).toLocaleString('id-ID')}\n\n`;
+                                textToCopy += `*Size Jumbo ${bs.size} (${bs.qty} pcs)*\n@ Rp ${fullPrice.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(fullPrice * bs.qty).toLocaleString('id-ID')}\n\n`;
                               });
                               textToCopy += activeBigSizes.length > 0
                                 ? `*Total Keseluruhan (Termasuk Jumbo): Rp ${totalPrice.toLocaleString('id-ID')}*`
