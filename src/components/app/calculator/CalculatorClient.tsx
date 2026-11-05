@@ -1195,7 +1195,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                             if (customerContext) {
                               const isConfirmed = window.confirm("Tambahkan ke Leads Qualification?");
                               if (isConfirmed) {
-                                const modelLabel = model === "regular" ? "Regular" : model === "tunik" ? "Tunik" : model === "tunik_aline" ? "Tunik A-Line" : model === "paud" ? "PAUD" : model === "sd" ? "SD" : model === "raglan" ? "Raglan" : model;
+                                const modelLabel = (model === "pendek" || model === "regular") ? "Regular" : model === "tunik" ? "Tunik" : model === "tunik_aline" ? "Tunik A-Line" : model === "paud" ? "PAUD" : model === "sd" ? "SD" : model === "raglan" ? "Raglan" : model;
                                 const sablonTypes = Array.from(new Set(sablonSpots.map((s: any) => s.type === 'RUBBER' ? 'Rubber' : s.type === 'PLASTISOL' ? 'Plastisol' : 'DTF'))).join(', ');
                                 const customText = `${sablonSpots.length > 0 ? sablonSpots.length + " Titik Sablon (" + sablonTypes + ")" : "Tanpa Sablon"}${bordirSpots.length > 0 ? ", " + bordirSpots.length + " Titik Bordir" : ""}`;
 
@@ -1213,7 +1213,8 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                                   `Custom: ${customText}`
                                 ];
 
-                                const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
+                                const activeBigSizes = bigSizes.filter(bs => bs.qty > 0);
+                                const baseQty = qty - activeBigSizes.reduce((a, b) => a + b.qty, 0);
                                 const itemsToAdd: any[] = [];
 
                                 if (baseQty > 0) {
@@ -1227,7 +1228,7 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                                   });
                                 }
 
-                                bigSizes.forEach(bs => {
+                                activeBigSizes.forEach(bs => {
                                   const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
                                   const fullPrice = pricePerPcs + extraCostWithMargin;
                                   itemsToAdd.push({
@@ -1253,17 +1254,20 @@ export function CalculatorClient({ customerContext, onClose, onActionSelect }: C
                                 alert("Hitunganmu berhasil ditambahkan ke lead qualifications. silahkan tutup (>) calculator dan cek panel kanan inbox.");
                               }
                             } else {
-                              const baseQty = qty - bigSizes.reduce((a, b) => a + b.qty, 0);
+                              const activeBigSizes = bigSizes.filter(bs => bs.qty > 0);
+                              const baseQty = qty - activeBigSizes.reduce((a, b) => a + b.qty, 0);
                               let textToCopy = `Estimasi Harga:\n\n`;
                               if (baseQty > 0) {
                                 textToCopy += `*Size S-XL (${baseQty} pcs)*\n@ Rp ${pricePerPcs.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(pricePerPcs * baseQty).toLocaleString('id-ID')}\n\n`;
                               }
-                              bigSizes.forEach(bs => {
+                              activeBigSizes.forEach(bs => {
                                 const extraCostWithMargin = Math.ceil(bs.pricePerPcs / tier.margin);
                                 const fullPrice = pricePerPcs + extraCostWithMargin;
                                 textToCopy += `*Size ${bs.size} (${bs.qty} pcs)*\n@ Rp ${fullPrice.toLocaleString('id-ID')} /pcs\nTotal: Rp ${(fullPrice * bs.qty).toLocaleString('id-ID')}\n\n`;
                               });
-                              textToCopy += `*Total Keseluruhan (Termasuk Jumbo): Rp ${totalPrice.toLocaleString('id-ID')}*`;
+                              textToCopy += activeBigSizes.length > 0
+                                ? `*Total Keseluruhan (Termasuk Jumbo): Rp ${totalPrice.toLocaleString('id-ID')}*`
+                                : `*Total Keseluruhan: Rp ${totalPrice.toLocaleString('id-ID')}*`;
 
                               try {
                                 await navigator.clipboard.writeText(textToCopy);
