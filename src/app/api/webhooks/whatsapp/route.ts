@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../lib/prisma";
 import { generateKarinaResponse } from "../../../../lib/karina";
-import { sendWhatsAppMessage } from "../../../../lib/whatsapp";
+import { sendWhatsAppMessage, sendWhatsAppMedia } from "../../../../lib/whatsapp";
 
 // GET: Verifikasi Webhook dari Meta (WhatsApp Cloud API)
 export async function GET(request: Request) {
@@ -92,8 +92,8 @@ export async function POST(request: Request) {
                 take: 6 // Termasuk pesan yang baru masuk
               });
               
-              // Balik urutannya agar dari terlama ke terbaru
-              const formattedHistory = history.reverse().slice(0, 5).map(m => ({
+              // Balik urutannya agar dari terlama ke terbaru (kecualikan pesan yang baru saja masuk di index 0)
+              const formattedHistory = history.slice(1).reverse().map(m => ({
                 role: m.sender,
                 text: m.text
               }));
@@ -102,6 +102,7 @@ export async function POST(request: Request) {
               const karinaResult = await generateKarinaResponse(senderPhone, formattedHistory, messageText);
               const karinaReply = karinaResult.text;
               const extractedInfo = karinaResult.extractedInfo;
+              const assetsToSend = karinaResult.assetsToSend || [];
 
               // 5. Update Customer jika ada info yang terekstrak
               if (extractedInfo) {
@@ -117,21 +118,48 @@ export async function POST(request: Request) {
               }
 
               // 6. Kirim balasan via WhatsApp API (reply ke pesan masuk)
-              const sentResult = await sendWhatsAppMessage(senderPhone, karinaReply, incomingWamid);
+              if (karinaReply) {
+                const sentResult = await sendWhatsAppMessage(senderPhone, karinaReply, incomingWamid);
 
-              if (sentResult) {
-                const botWamid = typeof sentResult === "string" ? sentResult : null;
-                // 7. Simpan balasan bot ke DB
-                await prisma.message.create({
-                  data: {
-                    customerId: customer.id,
-                    sender: "bot",
-                    text: karinaReply,
-                    isRead: true,
-                    ...(botWamid && { wamid: botWamid }),
-                    replyToWamid: incomingWamid,
-                  }
-                });
+                if (sentResult) {
+                  const botWamid = typeof sentResult === "string" ? sentResult : null;
+                  // 7. Simpan balasan bot ke DB
+                  await prisma.message.create({
+                    data: {
+                      customerId: customer.id,
+                      sender: "bot",
+                      text: karinaReply,
+                      isRead: true,
+                      ...(botWamid && { wamid: botWamid }),
+                      replyToWamid: incomingWamid,
+                    }
+                  });
+                }
+              }
+
+              // 8. Jika Karina memanggil fungsi sendAsset, kirimkan file dokumen/gambar via WhatsApp
+              for (const asset of assetsToSend) {
+                const mediaWamid = await sendWhatsAppMedia(
+                  senderPhone,
+                  asset.url,
+                  asset.type,
+                  asset.name,
+                  undefined,
+                  incomingWamid
+                );
+                if (mediaWamid) {
+                  await prisma.message.create({
+                    data: {
+                      customerId: customer.id,
+                      sender: "bot",
+                      text: asset.name,
+                      attachments: [asset.url],
+                      isRead: true,
+                      ...(typeof mediaWamid === "string" && { wamid: mediaWamid }),
+                      replyToWamid: incomingWamid,
+                    }
+                  });
+                }
               }
             }
           }
