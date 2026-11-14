@@ -10,7 +10,7 @@ export async function getSops() {
   });
 }
 
-export async function createSop(data: { title: string; description: string; content: string }) {
+export async function createSop(data: { title: string; description: string; content: string; isActive?: boolean }) {
   const sop = await prisma.sop.create({
     data,
   });

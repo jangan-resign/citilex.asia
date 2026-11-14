@@ -200,6 +200,10 @@ ${assetListText}`;
     return { text: replyText, extractedInfo, assetsToSend };
   } catch (error) {
     console.error("Gemini AI Error:", error);
-    return { text: "Maaf kak, Karina lagi sedikit pusing nih (sistem error). Mohon ditunggu ya, nanti dibalas lagi!", extractedInfo: null, assetsToSend: [] };
+    return {
+      text: "Mohon ditunggu sebentar ya kak, pesan kakak sedang kami cek terlebih dahulu 😊🙏",
+      extractedInfo: null,
+      assetsToSend: []
+    };
   }
 }
