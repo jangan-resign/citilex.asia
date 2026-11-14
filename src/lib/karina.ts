@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
+import { prisma } from "./prisma";
 
 // Pastikan GOOGLE_API_KEY sudah terpasang
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
@@ -7,27 +8,61 @@ export async function generateKarinaResponse(customerPhone: string, messageHisto
   // Model yang digunakan (Gemini 2.5 Flash!)
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-  // Konteks Karina dari DB
+  // Konteks Karina langsung dari DB (SOP, Knowledge, Persona, Asset)
   let systemInstruction = `Kamu adalah Karina, Customer Service ramah dari Citilex Asia.`;
   let availableAssets: { id: string; name: string; type: string; url: string; size: string; description: string | null }[] = [];
   try {
-    const { prisma } = require('../lib/prisma');
-    const [config, assets] = await Promise.all([
-      prisma.systemConfig.findUnique({ where: { key: "karina_context" } }),
+    const [sops, knowledges, persona, assets] = await Promise.all([
+      prisma.sop.findMany({ where: { isActive: true } }),
+      prisma.knowledge.findMany(),
+      prisma.persona.findFirst(),
       prisma.asset.findMany(),
     ]);
     availableAssets = assets || [];
-    if (config?.value) {
-      systemInstruction = typeof config.value === "string" ? JSON.parse(config.value) : String(config.value);
-    }
+
+    const toneText =
+      persona?.tone === "profesional"
+        ? "Profesional (formal, lugas)"
+        : persona?.tone === "konsultan"
+        ? "Konsultan Pakar (memberi saran teknis)"
+        : "Ramah & Santai (emoji seperlunya, hangat)";
+
+    const coreInstructions =
+      persona?.coreInstructions ||
+      `1. Kamu adalah Karina, Asisten Virtual CITILEX ASIA.\n2. Selalu gunakan emoji seperlunya untuk mencairkan suasana.\n3. Fokus pada konsultasi dan membantu menyelesaikan masalah pelanggan.`;
+
+    let prompt = `## IDENTITAS
+Kamu adalah Karina, Customer Service dari Citilex Asia (produsen kaos & polo shirt custom B2B/B2C).
+Jangan pernah panggil dirimu AI. Panggil pelanggan dengan "Kakak" atau "Kak", jangan pernah pakai kata "Anda".
+Gaya bahasa: ${toneText}
+
+## INSTRUKSI INTI
+${coreInstructions}
+
+## SOP AKTIF (Ikuti alur ini)
+`;
+
+    sops.forEach((sop) => {
+      prompt += `\n### ${sop.title}\n${sop.content}\n`;
+    });
+
+    prompt += `\n## PENGETAHUAN PERUSAHAAN (WAJIB patuhi angka/aturan di bawah ini, jangan mengarang angka di luar ini)\n`;
+    knowledges.forEach((kn) => {
+      prompt += `\n### ${kn.title} (${kn.category})\n${kn.content}\n`;
+    });
+
     if (availableAssets.length > 0) {
       const assetListText = availableAssets
         .map((a) => `- "${a.name}" (${a.type}, ${a.size})${a.description ? ` - ${a.description}` : ""}`)
         .join("\n");
-      systemInstruction += `\n\n## INSTRUKSI PENGIRIMAN FILE / KATALOG
+      prompt += `\n\n## ASET & DOKUMEN YANG TERSEDIA
 Jika pelanggan meminta katalog, warna kain, size chart, pricelist, atau dokumen yang relevan dengan daftar aset berikut, PANGGIL fungsi \`sendAsset\` dengan \`fileName\` yang sesuai dari daftar ini, lalu jawab pesan pelanggan dengan ramah bahwa filenya sedang dikirimkan:
 ${assetListText}`;
+    } else {
+      prompt += `\n\n## ASET & DOKUMEN YANG TERSEDIA\n- Belum ada aset yang tersedia.\n`;
     }
+
+    systemInstruction = prompt;
   } catch (error) {
     console.error("Gagal membaca konteks Karina dari DB", error);
   }
