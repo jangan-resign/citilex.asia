@@ -22,7 +22,7 @@ export default function CtaSection() {
       id="contact"
       className="relative overflow-hidden bg-brand-primary text-brand-white py-20 md:py-24 px-6 md:px-12"
     >
-      <div className="hidden md:block absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-white/10 blur-3xl" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[320px] h-[320px] rounded-full bg-[#D4AF37]/10 blur-3xl" />
         <div className="absolute top-[40%] left-[10%] w-[260px] h-[260px] rounded-full bg-[#D4AF37]/8 blur-3xl" />

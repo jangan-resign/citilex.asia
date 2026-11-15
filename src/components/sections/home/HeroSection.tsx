@@ -19,7 +19,7 @@ const heroCtaClass = [
 export default function HeroSection() {
   return (
     <section id="hero" className="relative overflow-hidden px-6 md:px-12">
-      <div className="hidden md:block absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-brand-primary/[0.04] blur-3xl" />
         <div className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full bg-brand-primary/[0.05] blur-3xl" />
       </div>
@@ -80,11 +80,11 @@ export default function HeroSection() {
         {/* RIGHT */}
         <div className="lg:col-span-5">
           <div className="relative">
-            <div className="hidden md:block absolute inset-0 scale-95 rounded-full bg-brand-primary/10 blur-3xl"></div>
+            <div className="absolute inset-0 scale-95 rounded-full bg-brand-primary/10 blur-3xl"></div>
             {/* floating card top */}
             <div className="absolute -top-4 -left-4 md:-left-8 z-20">
               <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-              <div className="relative px-5 py-4 bg-black/85 md:bg-black/65 md:backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]">
+              <div className="relative px-5 py-4 bg-black/65 backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10 pointer-events-none" />
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                 <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">PREMIUM MATERIAL</p>
@@ -95,18 +95,17 @@ export default function HeroSection() {
             {/* image */}
             <div className="relative aspect-[4/5] bg-white border border-brand-platinum p-3 shadow-2xl">
               <Image
-                src="/lia-karina.webp"
+                src="/lia-karina.png"
                 alt="Kaos Custom Event CITILEX ASIA"
                 fill
-                sizes="(max-width: 768px) 90vw, 480px"
-                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 hover:scale-[1.03]"
               />
             </div>
 
             {/* floating card bottom */}
             <div className="absolute -bottom-4 right-0 md:-right-6 z-20">
-              <div className="relative px-5 py-4 bg-black/85 md:bg-black/70 md:backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]">
+              <div className="relative px-5 py-4 bg-black/70 backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]">
                 <div className="absolute inset-0 bg-gradient-to-tl from-[#D4AF37]/10 via-transparent to-[#F8E7B9]/10 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                 <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">FAST PRODUCTION</p>

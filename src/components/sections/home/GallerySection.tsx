@@ -36,7 +36,7 @@ export default function GallerySection() {
         {/* HERO CARD */}
         <div className="lg:col-span-7 group relative overflow-hidden bg-white border border-brand-platinum min-h-[620px] shadow-xl">
           <div className="relative w-full h-full min-h-[620px] overflow-hidden">
-            <Image src="/galeri5.webp" alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+            <Image src="/galeri5.png" alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara" fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
             <div className="absolute top-6 left-6">
               <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
@@ -55,7 +55,7 @@ export default function GallerySection() {
         <div className="lg:col-span-5 grid grid-cols-1 gap-6 md:gap-7">
           <div className="group relative overflow-hidden bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
             <div className="relative w-full h-full min-h-[296px] overflow-hidden">
-              <Image src="/galeri6.webp" alt="CITILEX ASIA Computer Embroidered Polo Shirt" fill sizes="(max-width: 1024px) 100vw, 38vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+              <Image src="/galeri6.png" alt="CITILEX ASIA Computer Embroidered Polo Shirt" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute top-6 left-6">
                 <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
@@ -72,7 +72,7 @@ export default function GallerySection() {
 
           <div className="group relative overflow-hidden bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
             <div className="relative w-full h-full min-h-[296px] overflow-hidden">
-              <Image src="/galeri3.webp" alt="CITILEX ASIA Close Up Fabric Quality Check" fill sizes="(max-width: 1024px) 100vw, 38vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+              <Image src="/galeri3.png" alt="CITILEX ASIA Close Up Fabric Quality Check" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute top-6 left-6">
                 <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
@@ -117,7 +117,7 @@ export default function GallerySection() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 640px) 90vw, 75vw"
+                    sizes="100vw"
                     draggable={false}
                     referrerPolicy="no-referrer"
                     className={`object-cover transition-transform duration-700 ${galleryIndex === Number(item.number) - 1 ? "scale-105" : "scale-100"}`}
