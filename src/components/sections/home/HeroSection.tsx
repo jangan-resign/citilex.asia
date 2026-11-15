@@ -98,10 +98,8 @@ export default function HeroSection() {
                 src="/lia-karina.webp"
                 alt="Kaos Custom Event CITILEX ASIA"
                 fill
-                sizes="(max-width: 640px) 88vw, (max-width: 1024px) 70vw, 480px"
-                quality={72}
+                sizes="(max-width: 768px) 90vw, 480px"
                 priority
-                fetchPriority="high"
                 className="object-cover transition-transform duration-700 hover:scale-[1.03]"
               />
             </div>
