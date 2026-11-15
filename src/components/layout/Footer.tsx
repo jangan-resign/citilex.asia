@@ -23,9 +23,9 @@ export default function Footer() {
         {/* Kolom Kanan: Alamat */}
         <div className="flex flex-col md:items-end max-w-sm">
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-900 tracking-widest uppercase">
+            <h3 className="text-xs font-bold text-slate-900 tracking-widest uppercase">
               Jakarta Office
-            </h4>
+            </h3>
             <div className="text-sm text-slate-600">
               <p className="leading-relaxed text-left">
                 Bintaro Pesanggrahan<br />

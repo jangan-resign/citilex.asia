@@ -95,19 +95,19 @@ export const workflowSteps = [
 
 export const gallerySlides = [
   {
-    image: "/galeri5.png",
+    image: "/galeri5.webp",
     title: "Corporate Gathering Shirt",
     desc: "Bahan: Cotton Combed 30s • Sablon: DTF",
     number: "01",
   },
   {
-    image: "/galeri6.png",
+    image: "/galeri6.webp",
     title: "Solstice Collective Edition",
     desc: "Bahan: Premium Cotton Bamboo • Sablon: DTF",
     number: "02",
   },
   {
-    image: "/galeri3.png",
+    image: "/galeri3.webp",
     title: "Full Color DTF Printing",
     desc: "Bahan: Cotton Combed 30s • Sablon: DTF",
     number: "03",
