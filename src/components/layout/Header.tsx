@@ -194,6 +194,16 @@ export default function Header() {
             </div>
 
             <Link
+              href="/portofolio"
+              className={[
+                navLinkClass,
+                pathname === "/portofolio" ? "text-brand-primary border-b-2 border-[#D4AF37]" : "",
+              ].join(" ")}
+            >
+              Portofolio
+            </Link>
+
+            <Link
               href="/kontak"
               className={[
                 navLinkClass,
@@ -241,12 +251,12 @@ export default function Header() {
         >
           <div className="space-y-6">
             {/* Link Utama */}
-            <div className="grid grid-cols-2 gap-3 pb-4 border-b border-brand-platinum">
+            <div className="grid grid-cols-3 gap-2.5 pb-4 border-b border-brand-platinum">
               <Link
                 href="/"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-4 py-3 border text-xs font-bold tracking-[0.16em] uppercase text-center transition-colors",
+                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
@@ -255,10 +265,22 @@ export default function Header() {
                 Beranda
               </Link>
               <Link
+                href="/portofolio"
+                onClick={() => setIsMobileOpen(false)}
+                className={[
+                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  pathname === "/portofolio"
+                    ? "border-brand-primary bg-brand-primary text-white"
+                    : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
+                ].join(" ")}
+              >
+                Portofolio
+              </Link>
+              <Link
                 href="/kontak"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-4 py-3 border text-xs font-bold tracking-[0.16em] uppercase text-center transition-colors",
+                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/kontak"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",

@@ -164,3 +164,107 @@ export const poloPackages = [
     popular: false,
   },
 ];
+
+export interface PortfolioItem {
+  id: string;
+  title: string;
+  category: "Kaos Custom" | "Polo Shirt";
+  client: string;
+  year: string;
+  qty: string;
+  technique: string;
+  image: string;
+}
+
+export const portfolioItems: PortfolioItem[] = [
+  {
+    id: "kaos-shopee-2020",
+    title: "Kaos Shopee",
+    category: "Kaos Custom",
+    client: "Shopee",
+    year: "2020",
+    qty: "1200 pcs",
+    technique: "Sablon Rubber",
+    image: "/porto1.png",
+  },
+  {
+    id: "kaos-pos-indonesia-2021",
+    title: "Kaos POS Indonesia",
+    category: "Kaos Custom",
+    client: "POS Indonesia",
+    year: "2021",
+    qty: "400 pcs",
+    technique: "Sablon Plastisol",
+    image: "/rarapegangkaos.png",
+  },
+  {
+    id: "kaos-bank-bri-2022",
+    title: "Kaos BANK BRI",
+    category: "Kaos Custom",
+    client: "BANK BRI",
+    year: "2022",
+    qty: "1000 pcs",
+    technique: "Sablon Polyflex",
+    image: "/galeri5.png",
+  },
+  {
+    id: "kaos-adhi-karya-2023",
+    title: "Kaos Adhi Karya",
+    category: "Kaos Custom",
+    client: "Adhi Karya",
+    year: "2023",
+    qty: "5200 pcs",
+    technique: "Sablon Plastisol",
+    image: "/galeri3.png",
+  },
+  {
+    id: "kaos-bika-squad-2026",
+    title: "Kaos BIKA SQUAD",
+    category: "Kaos Custom",
+    client: "SDIT BIKA",
+    year: "2026",
+    qty: "400 pcs",
+    technique: "Sablon DTF",
+    image: "/galeri6.png",
+  },
+  {
+    id: "polo-shirt-yogyakarta-2019",
+    title: "Polo Shirt Yogyakarta",
+    category: "Polo Shirt",
+    client: "Bakpia Jogkau",
+    year: "2019",
+    qty: "690 pcs",
+    technique: "Bordir Komputer",
+    image: "/lia-karina.png",
+  },
+  {
+    id: "kaos-corporate-gathering-2024",
+    title: "Kaos Corporate Gathering",
+    category: "Kaos Custom",
+    client: "Corporate Partner",
+    year: "2024",
+    qty: "850 pcs",
+    technique: "Sablon DTF",
+    image: "/galeri5.png",
+  },
+  {
+    id: "polo-shirt-seragam-korporat-2025",
+    title: "Polo Shirt Seragam Korporat",
+    category: "Polo Shirt",
+    client: "Nusa Garment Partner",
+    year: "2025",
+    qty: "500 pcs",
+    technique: "Bordir Komputer",
+    image: "/lia-karina.png",
+  },
+  {
+    id: "kaos-solstice-collective-2025",
+    title: "Kaos Solstice Collective",
+    category: "Kaos Custom",
+    client: "Solstice Edition",
+    year: "2025",
+    qty: "350 pcs",
+    technique: "Sablon DTF",
+    image: "/galeri6.png",
+  },
+];

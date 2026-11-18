@@ -1,7 +1,7 @@
 import { OrganizationSchema } from "./Organization";
 import { LocalBusinessSchema } from "./LocalBusiness";
 import { FaqPageSchema } from "./Faq";
-import { GalleryItemListSchema } from "./ItemList";
+import { GalleryItemListSchema, PortfolioItemListSchema } from "./ItemList";
 import { KaosProductSchema, PoloProductSchema } from "./Product";
 import type { SeoMoneyPage } from "../seo-pages";
 
@@ -113,6 +113,34 @@ export const getContactPageJsonLd = () => {
             "position": 2,
             "name": "Kontak",
             "item": "https://citilex.asia/kontak"
+          }
+        ]
+      }
+    ]
+  };
+};
+
+export const getPortfolioPageJsonLd = () => {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      OrganizationSchema,
+      LocalBusinessSchema,
+      PortfolioItemListSchema,
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://citilex.asia"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Portofolio",
+            "item": "https://citilex.asia/portofolio"
           }
         ]
       }
