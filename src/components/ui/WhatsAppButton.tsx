@@ -14,7 +14,7 @@ export default function WhatsAppButton({ message, className, children }: WhatsAp
     <a
       href={generateWaLink(message)}
       onClick={() => {
-        gtag_report_conversion();
+        gtag_report_conversion(undefined, message);
       }}
       target="_blank"
       rel="noopener noreferrer"
