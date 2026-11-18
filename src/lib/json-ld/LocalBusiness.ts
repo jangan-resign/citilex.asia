@@ -6,7 +6,7 @@ export const LocalBusinessSchema = {
   "name": OrganizationSchema.name,
   "legalName": OrganizationSchema.parentOrganization.name,
   "url": OrganizationSchema.url,
-  "image": "https://citilex.asia/hero.png",
+  "image": "https://citilex.asia/og-image.png",
   "logo": OrganizationSchema.logo,
   "founder": {
     "@type": "Person",
@@ -15,7 +15,7 @@ export const LocalBusinessSchema = {
   "description": "Vendor kaos custom untuk perusahaan, event, komunitas, dan instansi dengan kapasitas produksi skala besar.",
   "telephone": OrganizationSchema.telephone,
   "email": OrganizationSchema.email,
-  "priceRange": "Rp55.000-Rp89000",
+  "priceRange": "Rp55.000 - Rp119.000",
   "currenciesAccepted": "IDR",
   "paymentAccepted": [
     "Bank Transfer",

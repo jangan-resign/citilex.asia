@@ -11,7 +11,7 @@ export const OrganizationSchema = {
     "caption": `${companyConfig.name} Logo`,
   },
   "email": "behagroup@gmail.com",
-  "telephone": "+6281319888488",
+  "telephone": "+6281329271515",
   "parentOrganization": {
     "@type": "Organization",
     "name": "PT Nusa Garment Indonesia",

@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/app/", "/cms/", "/api/", "/login"],
     },
     sitemap: "https://citilex.asia/sitemap.xml",
   };
