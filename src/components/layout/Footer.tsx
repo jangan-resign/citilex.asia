@@ -4,11 +4,11 @@ import WhatsAppButton from "../ui/WhatsAppButton";
 import { companyConfig } from "../../config/company";
 
 const serviceLinks = [
-  { label: "Kaos Custom Sablon", href: "/#pricing" },
-  { label: "Polo Shirt Bordir", href: "/#pricing-polo" },
-  { label: "Kaos Gathering Kantor", href: "/#pricing" },
-  { label: "Seragam Kerja Korporat", href: "/#pricing-polo" },
-  { label: "Kaos Event & Promosi", href: "/#pricing" },
+  { label: "Kaos Custom Sablon", href: "/kaos-custom" },
+  { label: "Polo Shirt Bordir", href: "/polo-shirt-custom" },
+  { label: "Kaos Gathering Kantor", href: "/kaos-gathering-kantor" },
+  { label: "Seragam Kerja Korporat", href: "/seragam-kerja-polo-shirt" },
+  { label: "Kaos Event & Promosi", href: "/kaos-event-promosi" },
 ];
 
 const areaLinks = [
