@@ -48,6 +48,20 @@ export const LocalBusinessSchema = {
     "@type": "Place",
     "name": "Yogyakarta"
   },
+  "department": {
+    "@type": "LocalBusiness",
+    "@id": "https://citilex.asia/#production-center-yogyakarta",
+    "name": "CITILEX ASIA - Production Center Yogyakarta",
+    "telephone": OrganizationSchema.telephone,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Menayu Lor Plurugan No.112, Tirtonirmolo, Kasihan",
+      "addressLocality": "Bantul",
+      "addressRegion": "Daerah Istimewa Yogyakarta",
+      "addressCountry": "ID"
+    },
+    "hasMap": "https://maps.app.goo.gl/jLiq3Eev19tLpshH6"
+  },
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": OrganizationSchema.telephone,

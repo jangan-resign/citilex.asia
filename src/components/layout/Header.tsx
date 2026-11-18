@@ -120,7 +120,7 @@ export default function Header() {
           </Link>
 
           {/* TENGAH: DESKTOP NAVIGATION */}
-          <nav aria-label="Navigasi Utama" className="hidden lg:flex items-center gap-8">
+          <nav aria-label="Navigasi Utama" className="hidden lg:flex items-center gap-9">
             <Link
               href="/"
               className={[
@@ -193,15 +193,13 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/#pricing" className={navLinkClass}>
-              Daftar Harga
-            </Link>
-
-            <Link href="/#workflow" className={navLinkClass}>
-              Alur Pesan
-            </Link>
-
-            <Link href="/#address" className={navLinkClass}>
+            <Link
+              href="/kontak"
+              className={[
+                navLinkClass,
+                pathname === "/kontak" ? "text-brand-primary border-b-2 border-[#D4AF37]" : "",
+              ].join(" ")}
+            >
               Kontak
             </Link>
           </nav>
@@ -257,23 +255,14 @@ export default function Header() {
                 Beranda
               </Link>
               <Link
-                href="/#pricing"
+                href="/kontak"
                 onClick={() => setIsMobileOpen(false)}
-                className="px-4 py-3 border border-brand-platinum text-xs font-bold tracking-[0.16em] uppercase text-center text-brand-primary hover:bg-brand-snow transition-colors"
-              >
-                Daftar Harga
-              </Link>
-              <Link
-                href="/#workflow"
-                onClick={() => setIsMobileOpen(false)}
-                className="px-4 py-3 border border-brand-platinum text-xs font-bold tracking-[0.16em] uppercase text-center text-brand-primary hover:bg-brand-snow transition-colors"
-              >
-                Alur Pesan
-              </Link>
-              <Link
-                href="/#address"
-                onClick={() => setIsMobileOpen(false)}
-                className="px-4 py-3 border border-brand-platinum text-xs font-bold tracking-[0.16em] uppercase text-center text-brand-primary hover:bg-brand-snow transition-colors"
+                className={[
+                  "px-4 py-3 border text-xs font-bold tracking-[0.16em] uppercase text-center transition-colors",
+                  pathname === "/kontak"
+                    ? "border-brand-primary bg-brand-primary text-white"
+                    : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
+                ].join(" ")}
               >
                 Kontak
               </Link>

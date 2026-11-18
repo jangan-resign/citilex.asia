@@ -12,12 +12,12 @@ const serviceLinks = [
 ];
 
 const areaLinks = [
-  { label: "Jakarta Selatan (Bintaro)", href: "/#contact" },
-  { label: "DKI Jakarta", href: "/#contact" },
-  { label: "Tangerang & BSD", href: "/#contact" },
-  { label: "Bekasi & Cikarang", href: "/#contact" },
-  { label: "Depok & Margonda", href: "/#contact" },
-  { label: "Bogor & Sentul", href: "/#contact" },
+  { label: "Jakarta Selatan (Bintaro)", href: "/kontak" },
+  { label: "DKI Jakarta", href: "/kontak" },
+  { label: "Tangerang & BSD", href: "/kontak" },
+  { label: "Bekasi & Cikarang", href: "/kontak" },
+  { label: "Depok & Margonda", href: "/kontak" },
+  { label: "Bogor & Sentul", href: "/kontak" },
 ];
 
 const footerLinkClass = [
@@ -33,7 +33,7 @@ export default function Footer() {
       className="bg-white border-t border-brand-platinum pt-16 pb-10 px-6 md:px-12"
     >
       <div className="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
-        {/* Kolom 1: Brand & Legalitas */}
+        {/* Kolom 1: Brand & Kontak Cepat */}
         <div className="lg:col-span-4 space-y-4">
           <Link href="/" className="inline-block">
             <Image
@@ -52,6 +52,37 @@ export default function Footer() {
             event, gathering, seminar, dan merchandise di bawah naungan{" "}
             <span className="font-semibold text-brand-primary">PT Nusa Garment Indonesia</span>.
           </p>
+          <div className="text-xs text-brand-onyx leading-relaxed space-y-1.5 pt-1">
+            <p>
+              <span className="font-semibold text-brand-primary">WhatsApp: </span>
+              <WhatsAppButton
+                message={companyConfig.defaultWaMessage}
+                className="inline-block py-1 hover:text-brand-primary underline underline-offset-4 transition-colors"
+              >
+                +62 813-2927-1515
+              </WhatsAppButton>
+            </p>
+            <p>
+              <span className="font-semibold text-brand-primary">Email: </span>
+              <a
+                href="mailto:behagroup@gmail.com"
+                className="inline-block py-1 hover:text-brand-primary underline underline-offset-4 transition-colors"
+              >
+                behagroup@gmail.com
+              </a>
+            </p>
+            <p className="text-brand-onyx/80">
+              Jam Kerja: Senin – Sabtu, 09:00 – 17:00 WIB
+            </p>
+            <p className="pt-1">
+              <Link
+                href="/kontak"
+                className="inline-block py-1.5 text-[11px] font-bold tracking-[0.16em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
+              >
+                Halaman Kontak &amp; Lokasi ↗
+              </Link>
+            </p>
+          </div>
         </div>
 
         {/* Kolom 2: Layanan Produksi */}
@@ -59,7 +90,7 @@ export default function Footer() {
           <h3 className="text-xs font-bold text-brand-primary tracking-[0.18em] uppercase">
             Layanan Produksi
           </h3>
-          <ul className="space-y-1.5">
+          <ul className="space-y-1">
             {serviceLinks.map((item) => (
               <li key={item.label}>
                 <Link href={item.href} className={footerLinkClass}>
@@ -71,11 +102,11 @@ export default function Footer() {
         </div>
 
         {/* Kolom 3: Area Layanan B2B */}
-        <div className="lg:col-span-3 space-y-3">
+        <div className="lg:col-span-2 space-y-3">
           <h3 className="text-xs font-bold text-brand-primary tracking-[0.18em] uppercase">
             Area Jabodetabek
           </h3>
-          <ul className="space-y-1.5">
+          <ul className="space-y-1">
             {areaLinks.map((item) => (
               <li key={item.label}>
                 <Link href={item.href} className={footerLinkClass}>
@@ -86,51 +117,46 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Kolom 4: Jakarta Rep. Office & Kontak Resmi (NAP Sinkron JSON-LD) */}
-        <div className="lg:col-span-3 space-y-3">
+        {/* Kolom 4: Lokasi Kantor & Production Center Resmi (NAP Sinkron JSON-LD) */}
+        <div className="lg:col-span-4 space-y-4">
           <h3 className="text-xs font-bold text-brand-primary tracking-[0.18em] uppercase">
-            Jakarta Rep. Office
+            Kantor &amp; Pusat Produksi
           </h3>
-          <div className="text-xs text-brand-onyx leading-relaxed space-y-2.5">
-            <p>
-              <span className="font-semibold text-brand-primary block">
-                Rep. Office PT Nusa Garment Indonesia
-              </span>
-              Jl. Bintaro Tengah Blok J4 No.12, Bintaro, Pesanggrahan, Jakarta Selatan 12330
-            </p>
-            <div className="space-y-2 pt-1">
-              <p>
-                <span className="font-semibold text-brand-primary">WhatsApp: </span>
-                <WhatsAppButton
-                  message={companyConfig.defaultWaMessage}
-                  className="inline-block py-1 hover:text-brand-primary underline underline-offset-4 transition-colors"
-                >
-                  +62 813-2927-1515
-                </WhatsAppButton>
+
+          <div className="text-xs text-brand-onyx leading-relaxed space-y-4">
+            <div className="space-y-1">
+              <p className="font-semibold text-brand-primary">
+                Jakarta Rep. Office — PT Nusa Garment Indonesia
               </p>
-              <p>
-                <span className="font-semibold text-brand-primary">Email: </span>
-                <a
-                  href="mailto:behagroup@gmail.com"
-                  className="inline-block py-1 hover:text-brand-primary underline underline-offset-4 transition-colors"
-                >
-                  behagroup@gmail.com
-                </a>
+              <p className="text-brand-onyx/85">
+                Jl. Bintaro Tengah Blok J4 No.12, Bintaro, Pesanggrahan, Jakarta Selatan 12330
               </p>
-              <p className="text-brand-onyx/80 pt-0.5">
-                Jam Kerja: Senin – Sabtu, 09:00 – 17:00 WIB
-              </p>
-            </div>
-            <p className="pt-1">
               <a
                 href="https://maps.app.goo.gl/TCbUWmqaG9rHAdoL7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block py-1.5 text-[11px] font-bold tracking-[0.16em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
+                className="inline-block py-1 text-[11px] font-bold tracking-[0.14em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
               >
-                Lihat Lokasi Google Maps ↗
+                Google Maps Jakarta ↗
               </a>
-            </p>
+            </div>
+
+            <div className="space-y-1 pt-2 border-t border-brand-platinum">
+              <p className="font-semibold text-brand-primary">
+                Production Center Yogyakarta
+              </p>
+              <p className="text-brand-onyx/85">
+                Jl. Menayu Lor Plurugan No.112, Tirtonirmolo, Kasihan, Bantul, Daerah Istimewa Yogyakarta
+              </p>
+              <a
+                href="https://maps.app.goo.gl/jLiq3Eev19tLpshH6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block py-1 text-[11px] font-bold tracking-[0.14em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
+              >
+                Google Maps Production Center ↗
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -141,10 +167,13 @@ export default function Footer() {
           © {new Date().getFullYear()} {companyConfig.name} — PT Nusa Garment Indonesia. All Rights Reserved.
         </span>
         <div className="flex items-center gap-6">
-          <Link href="/terms-of-service" className="py-1 hover:text-brand-primary transition-colors">
+          <Link href="/kontak" className="py-1.5 hover:text-brand-primary transition-colors">
+            Kontak
+          </Link>
+          <Link href="/terms-of-service" className="py-1.5 hover:text-brand-primary transition-colors">
             Terms of Service
           </Link>
-          <Link href="/privacy-policy" className="py-1 hover:text-brand-primary transition-colors">
+          <Link href="/privacy-policy" className="py-1.5 hover:text-brand-primary transition-colors">
             Privacy Policy
           </Link>
         </div>

@@ -82,3 +82,40 @@ export const getMoneyPageJsonLd = (page: SeoMoneyPage) => {
     ]
   };
 };
+
+export const getContactPageJsonLd = () => {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      OrganizationSchema,
+      LocalBusinessSchema,
+      {
+        "@type": "ContactPage",
+        "@id": "https://citilex.asia/kontak#webpage",
+        "url": "https://citilex.asia/kontak",
+        "name": "Kontak & Lokasi Kantor Resmi CITILEX ASIA",
+        "description": "Hubungi tim produksi CITILEX ASIA via WhatsApp (+6281329271515), email (behagroup@gmail.com), atau kunjungi Jakarta Rep. Office (Bintaro) dan Production Center Yogyakarta.",
+        "mainEntity": {
+          "@id": LocalBusinessSchema["@id"]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://citilex.asia"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kontak",
+            "item": "https://citilex.asia/kontak"
+          }
+        ]
+      }
+    ]
+  };
+};
