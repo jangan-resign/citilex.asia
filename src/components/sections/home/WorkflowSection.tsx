@@ -30,7 +30,7 @@ export default function WorkflowSection() {
                   </div>
                 </div>
 
-                <div className="relative h-full min-h-[315px] pt-14 px-8 pb-8 border border-[#D4AF37]/20 bg-gradient-to-br from-[#101010] via-[#181818] to-[#222222] shadow-[0_18px_40px_rgba(0,0,0,.18)] transition-all duration-500 hover:-translate-y-2 hover:border-[#D4AF37]/45 hover:shadow-[0_24px_60px_rgba(0,0,0,.28)] overflow-hidden">
+                <div className="relative h-full min-h-[315px] pt-14 px-8 pb-8 rounded-2xl border border-[#D4AF37]/20 bg-gradient-to-br from-[#101010] via-[#181818] to-[#222222] shadow-[0_18px_40px_rgba(0,0,0,.18)] transition-all duration-500 hover:-translate-y-2 hover:border-[#D4AF37]/45 hover:shadow-[0_24px_60px_rgba(0,0,0,.28)] overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#F6D98B]/[0.03] via-transparent to-[#D4AF37]/[0.03] pointer-events-none" />
 

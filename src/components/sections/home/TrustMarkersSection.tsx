@@ -8,8 +8,8 @@ export default function TrustMarkersSection() {
           Mengapa Memilih Produksi Citilex Asia?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-5xl mx-auto pt-4">
-          <div className="bg-white p-8 border border-brand-platinum space-y-4">
-            <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+          <div className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-4">
+            <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
               <Shirt className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Custom Konsep Fleksibel</h3>
@@ -17,8 +17,8 @@ export default function TrustMarkersSection() {
               Bebas kustomisasi material bahan, paduan warna benang jahitan, ketebalan kain, hingga teknik penempatan cetakan sablon maupun bordir komputer.
             </p>
           </div>
-          <div className="bg-white p-8 border border-brand-platinum space-y-4">
-            <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+          <div className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-4">
+            <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Quality Control Ketat</h3>
@@ -26,8 +26,8 @@ export default function TrustMarkersSection() {
               Setiap lembar pakaian menjalani proses inspeksi detail sejak pemotongan bahan pola, pencetakan warna sablon, bordir komputer, penjahitan rantai, hingga proses pengemasan akhir.
             </p>
           </div>
-          <div className="bg-white p-8 border border-brand-platinum space-y-4">
-            <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+          <div className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-4">
+            <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
               <Clock className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">Ketepatan Waktu Mutlak</h3>

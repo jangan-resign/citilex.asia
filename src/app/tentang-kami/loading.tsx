@@ -19,31 +19,31 @@ export default function TentangKamiLoading() {
             {/* LEFT */}
             <div className="lg:col-span-7 space-y-7">
               <div className="flex items-center gap-2">
-                <Skeleton className="h-3.5 w-16 rounded-none" />
-                <Skeleton className="h-3.5 w-3 rounded-none" />
-                <Skeleton className="h-3.5 w-24 rounded-none" />
+                <Skeleton className="h-3.5 w-16 rounded-md" />
+                <Skeleton className="h-3.5 w-3 rounded-md" />
+                <Skeleton className="h-3.5 w-24 rounded-md" />
               </div>
 
-              <Skeleton className="h-3.5 w-56 rounded-none" />
+              <Skeleton className="h-3.5 w-56 rounded-md" />
 
               <div className="space-y-3">
-                <Skeleton className="h-11 md:h-14 w-11/12 rounded-none" />
-                <Skeleton className="h-11 md:h-14 w-4/5 rounded-none" />
+                <Skeleton className="h-11 md:h-14 w-11/12 rounded-xl" />
+                <Skeleton className="h-11 md:h-14 w-4/5 rounded-xl" />
               </div>
 
               <div className="space-y-2.5 max-w-2xl">
-                <Skeleton className="h-4 w-full rounded-none" />
-                <Skeleton className="h-4 w-11/12 rounded-none" />
-                <Skeleton className="h-4 w-3/4 rounded-none" />
+                <Skeleton className="h-4 w-full rounded-md" />
+                <Skeleton className="h-4 w-11/12 rounded-md" />
+                <Skeleton className="h-4 w-3/4 rounded-md" />
               </div>
 
               <div className="flex flex-wrap gap-3">
                 {badgeIndices.map((idx) => (
-                  <Skeleton key={idx} className="h-9 w-40 rounded-none" />
+                  <Skeleton key={idx} className="h-9 w-40 rounded-lg" />
                 ))}
               </div>
 
-              <Skeleton className="h-14 w-64 rounded-none" />
+              <Skeleton className="h-14 w-64 rounded-xl" />
             </div>
 
             {/* RIGHT: 2x2 FOTO FASILITAS */}
@@ -51,10 +51,10 @@ export default function TentangKamiLoading() {
               {facilityIndices.map((idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-brand-platinum p-2 rounded-none space-y-2"
+                  className="bg-white border border-brand-platinum p-2 rounded-2xl space-y-2"
                 >
-                  <Skeleton className="w-full aspect-[4/3] rounded-none" />
-                  <Skeleton className="h-3.5 w-3/4 rounded-none" />
+                  <Skeleton className="w-full aspect-[4/3] rounded-xl" />
+                  <Skeleton className="h-3.5 w-3/4 rounded-md" />
                 </div>
               ))}
             </div>
@@ -68,12 +68,12 @@ export default function TentangKamiLoading() {
               {locationIndices.map((idx) => (
                 <div
                   key={idx}
-                  className="bg-white p-8 border border-brand-platinum rounded-none space-y-4"
+                  className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-4"
                 >
-                  <Skeleton className="h-3.5 w-36 rounded-none" />
-                  <Skeleton className="h-6 w-2/3 rounded-none" />
-                  <Skeleton className="h-4 w-full rounded-none" />
-                  <Skeleton className="h-4 w-4/5 rounded-none" />
+                  <Skeleton className="h-3.5 w-36 rounded-md" />
+                  <Skeleton className="h-6 w-2/3 rounded-md" />
+                  <Skeleton className="h-4 w-full rounded-md" />
+                  <Skeleton className="h-4 w-4/5 rounded-md" />
                 </div>
               ))}
             </div>
@@ -82,12 +82,12 @@ export default function TentangKamiLoading() {
               {advantageIndices.map((idx) => (
                 <div
                   key={idx}
-                  className="bg-white p-8 border border-brand-platinum rounded-none space-y-3"
+                  className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-3"
                 >
-                  <Skeleton className="h-7 w-7 rounded-none" />
-                  <Skeleton className="h-5 w-3/4 rounded-none" />
-                  <Skeleton className="h-3.5 w-full rounded-none" />
-                  <Skeleton className="h-3.5 w-5/6 rounded-none" />
+                  <Skeleton className="h-10 w-10 rounded-xl" />
+                  <Skeleton className="h-5 w-3/4 rounded-md" />
+                  <Skeleton className="h-3.5 w-full rounded-md" />
+                  <Skeleton className="h-3.5 w-5/6 rounded-md" />
                 </div>
               ))}
             </div>

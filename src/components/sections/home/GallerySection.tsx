@@ -34,13 +34,13 @@ export default function GallerySection() {
 
       <div className="hidden lg:grid lg:grid-cols-12 gap-6 md:gap-7">
         {/* HERO CARD */}
-        <div className="lg:col-span-7 group relative overflow-hidden bg-white border border-brand-platinum min-h-[620px] shadow-xl">
+        <div className="lg:col-span-7 group relative overflow-hidden rounded-2xl bg-white border border-brand-platinum min-h-[620px] shadow-xl">
           <div className="relative w-full h-full min-h-[620px] overflow-hidden">
             <Image src="/galeri5.png" alt="CITILEX ASIA Custom Event Kaos Panitia dan Peserta Acara" fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
             <div className="absolute top-6 left-6">
-              <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
-                <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+              <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
+                <div className="absolute inset-[1px] border border-white/5 rounded-lg" />
                 <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">01</span>
               </div>
             </div>
@@ -53,13 +53,13 @@ export default function GallerySection() {
 
         {/* RIGHT STACK */}
         <div className="lg:col-span-5 grid grid-cols-1 gap-6 md:gap-7">
-          <div className="group relative overflow-hidden bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
+          <div className="group relative overflow-hidden rounded-2xl bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
             <div className="relative w-full h-full min-h-[296px] overflow-hidden">
               <Image src="/galeri6.png" alt="CITILEX ASIA Computer Embroidered Polo Shirt" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute top-6 left-6">
-                <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
-                  <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+                <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
+                  <div className="absolute inset-[1px] border border-white/5 rounded-lg" />
                   <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">02</span>
                 </div>
               </div>
@@ -70,13 +70,13 @@ export default function GallerySection() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
+          <div className="group relative overflow-hidden rounded-2xl bg-white border border-brand-platinum min-h-[296px] hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
             <div className="relative w-full h-full min-h-[296px] overflow-hidden">
               <Image src="/galeri3.png" alt="CITILEX ASIA Close Up Fabric Quality Check" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute top-6 left-6">
-                <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
-                  <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+                <div className="relative px-4 py-2 bg-black/60 backdrop-blur-xl border border-[#D4AF37]/30 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(212,175,55,0.16)]">
+                  <div className="absolute inset-[1px] border border-white/5 rounded-lg" />
                   <span className="relative text-[11px] font-black tracking-[0.28em] text-[#F3D27A]">03</span>
                 </div>
               </div>
@@ -111,7 +111,7 @@ export default function GallerySection() {
         >
           {gallerySlides.map((item) => (
             <div key={item.number} className="w-full shrink-0">
-              <div className="relative overflow-hidden bg-white border border-brand-platinum shadow-xl">
+              <div className="relative overflow-hidden rounded-2xl bg-white border border-brand-platinum shadow-xl">
                 <div className="relative aspect-[4/5]">
                   <Image
                     src={item.image}
@@ -124,8 +124,8 @@ export default function GallerySection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
                   <div className="absolute top-6 left-6">
-                    <div className="relative px-3 py-1.5 bg-black/80 border border-[#D4AF37]/30 rounded-sm shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-                      <div className="absolute inset-[1px] border border-white/5 rounded-sm" />
+                    <div className="relative px-3 py-1.5 bg-black/80 border border-[#D4AF37]/30 rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+                      <div className="absolute inset-[1px] border border-white/5 rounded-lg" />
                       <span className="relative text-[10px] font-black tracking-[0.28em] text-[#F3D27A]">{item.number}</span>
                     </div>
                   </div>

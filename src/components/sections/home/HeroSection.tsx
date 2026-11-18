@@ -3,7 +3,7 @@ import WhatsAppButton from "../../ui/WhatsAppButton";
 import { companyConfig } from "../../../config/company";
 
 const heroCtaClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "inline-flex items-center justify-center",
   "px-10 py-5",
   "bg-[#000000] text-white",
@@ -46,8 +46,6 @@ export default function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-              <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
               <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
               <span className="relative z-10">KONSULTASI GRATIS</span>
             </WhatsAppButton>
@@ -83,8 +81,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 scale-95 rounded-full bg-brand-primary/10 blur-3xl"></div>
             {/* floating card top */}
             <div className="absolute -top-4 -left-4 md:-left-8 z-20">
-              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-              <div className="relative px-5 py-4 bg-black/65 backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]">
+              <div className="relative px-5 py-4 bg-black/65 backdrop-blur-xl border border-[#D4AF37]/30 rounded-xl overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10 pointer-events-none" />
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                 <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">PREMIUM MATERIAL</p>
@@ -93,19 +90,19 @@ export default function HeroSection() {
             </div>
 
             {/* image */}
-            <div className="relative aspect-[4/5] bg-white border border-brand-platinum p-3 shadow-2xl">
+            <div className="relative aspect-[4/5] bg-white border border-brand-platinum p-3 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/lia-karina.png"
                 alt="Kaos Custom Event CITILEX ASIA"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                className="object-cover rounded-xl transition-transform duration-700 hover:scale-[1.03]"
               />
             </div>
 
             {/* floating card bottom */}
             <div className="absolute -bottom-4 right-0 md:-right-6 z-20">
-              <div className="relative px-5 py-4 bg-black/70 backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]">
+              <div className="relative px-5 py-4 bg-black/70 backdrop-blur-xl border border-[#D4AF37]/30 rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]">
                 <div className="absolute inset-0 bg-gradient-to-tl from-[#D4AF37]/10 via-transparent to-[#F8E7B9]/10 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                 <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/80">FAST PRODUCTION</p>

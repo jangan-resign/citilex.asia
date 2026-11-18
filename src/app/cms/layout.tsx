@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { CmsSidebar } from "../../components/cms/CmsSidebar";
+import { prisma } from "../../lib/prisma";
 
 export const metadata: Metadata = {
   title: "AI Blog CMS Studio | CITILEX ASIA",
@@ -16,8 +17,21 @@ export const metadata: Metadata = {
 export default async function CmsLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();
   const role = cookieStore.get("cms_auth_role")?.value;
+  const sessionToken = cookieStore.get("cms_session_token")?.value;
 
-  if (role !== "cms") {
+  if (role !== "cms" || !sessionToken) {
+    redirect("/login?from=cms");
+  }
+
+  const activeSession = await prisma.roleSession.findUnique({
+    where: { role: "cms" },
+  });
+
+  if (
+    !activeSession ||
+    activeSession.sessionToken !== sessionToken ||
+    activeSession.expiresAt <= new Date()
+  ) {
     redirect("/login?from=cms");
   }
 

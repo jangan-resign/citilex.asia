@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 };
 
 const serviceLinkCardClass = [
-  "group bg-white p-6 border border-brand-platinum",
+  "group bg-white p-6 border border-brand-platinum rounded-2xl",
   "hover:border-brand-primary hover:shadow-md",
   "transition-all duration-300 flex items-start justify-between gap-4",
 ].join(" ");

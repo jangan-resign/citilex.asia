@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 const heroCtaClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "inline-flex items-center justify-center",
   "px-10 py-5",
   "bg-[#000000] text-white",
@@ -61,27 +61,27 @@ const heroCtaClass = [
 ].join(" ");
 
 const channelCardClass = [
-  "bg-white p-8 border border-brand-platinum",
+  "bg-white p-8 border border-brand-platinum rounded-2xl",
   "flex flex-col justify-between space-y-6",
   "hover:border-brand-primary/40 hover:shadow-md transition-all duration-300",
 ].join(" ");
 
 const locationDarkCardClass = [
-  "relative overflow-hidden bg-[#000000] text-white",
+  "relative overflow-hidden bg-[#000000] text-white rounded-2xl",
   "border border-[#D4AF37]/30 p-8 md:p-10",
   "flex flex-col justify-between space-y-8",
   "shadow-[0_25px_70px_rgba(0,0,0,0.2)]",
 ].join(" ");
 
 const locationLightCardClass = [
-  "relative overflow-hidden bg-white text-brand-primary",
+  "relative overflow-hidden bg-white text-brand-primary rounded-2xl",
   "border border-brand-platinum p-8 md:p-10",
   "flex flex-col justify-between space-y-8",
   "shadow-sm hover:border-brand-primary/40 hover:shadow-md transition-all duration-300",
 ].join(" ");
 
 const mapBtnGoldClass = [
-  "inline-flex items-center justify-center w-full sm:w-auto",
+  "inline-flex items-center justify-center w-full sm:w-auto rounded-xl",
   "px-7 py-4",
   "bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B]",
   "text-black text-xs font-bold tracking-[0.18em] uppercase",
@@ -90,7 +90,7 @@ const mapBtnGoldClass = [
 ].join(" ");
 
 const mapBtnDarkClass = [
-  "inline-flex items-center justify-center w-full sm:w-auto",
+  "inline-flex items-center justify-center w-full sm:w-auto rounded-xl",
   "px-7 py-4",
   "bg-brand-primary text-brand-white",
   "text-xs font-bold tracking-[0.18em] uppercase",
@@ -147,8 +147,6 @@ export default function KontakPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
                   <span className="relative z-10">Hubungi Kami</span>
                 </WhatsAppButton>
@@ -165,7 +163,7 @@ export default function KontakPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className={channelCardClass}>
                 <div className="space-y-4">
-                  <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+                  <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
@@ -188,7 +186,7 @@ export default function KontakPage() {
 
               <div className={channelCardClass}>
                 <div className="space-y-4">
-                  <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+                  <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
                     <Mail className="w-5 h-5" />
                   </div>
                   <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
@@ -213,7 +211,7 @@ export default function KontakPage() {
 
               <div className={channelCardClass}>
                 <div className="space-y-4">
-                  <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+                  <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
                     <Clock className="w-5 h-5" />
                   </div>
                   <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
@@ -253,8 +251,6 @@ export default function KontakPage() {
               {/* KARTU 1: JAKARTA REPRESENTATIVE OFFICE */}
               <div className={locationDarkCardClass}>
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
 
                 <div className="space-y-6 relative">
                   <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/5 border border-[#D4AF37]/30">

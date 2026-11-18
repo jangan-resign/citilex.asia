@@ -17,6 +17,65 @@ const authData: Record<string, string> = {
   [process.env.AUTH_QUOTE_CMS || "contentking"]: "cms",
 };
 
+interface SessionCookieKeys {
+  roleCookie: "auth_role" | "cms_auth_role";
+  tokenCookie: "auth_session_token" | "cms_session_token";
+}
+
+function getCookieKeysForRole(role: string): SessionCookieKeys {
+  return role === "cms"
+    ? { roleCookie: "cms_auth_role", tokenCookie: "cms_session_token" }
+    : { roleCookie: "auth_role", tokenCookie: "auth_session_token" };
+}
+
+async function claimRoleSession(role: string): Promise<{ ok: boolean; error?: string }> {
+  const cookieStore = await cookies();
+  const { roleCookie, tokenCookie } = getCookieKeysForRole(role);
+
+  const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 8, // 8 hours
+    path: "/",
+  };
+
+  // Super Admin (pemilik) tidak dibatasi 1-device / 1-browser
+  if (role === "super-admin") {
+    cookieStore.set(roleCookie, role, cookieOptions);
+    return { ok: true };
+  }
+
+  const existingSession = await prisma.roleSession.findUnique({
+    where: { role },
+  });
+
+  const currentDeviceSession = cookieStore.get(tokenCookie)?.value;
+
+  if (existingSession && existingSession.expiresAt > new Date()) {
+    if (existingSession.sessionToken !== currentDeviceSession) {
+      return {
+        ok: false,
+        error: "Akses ditolak: Akun ini sedang login di perangkat/browser lain.",
+      };
+    }
+  }
+
+  const sessionToken = crypto.randomUUID();
+  const expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + 8);
+
+  await prisma.roleSession.upsert({
+    where: { role },
+    update: { sessionToken, expiresAt },
+    create: { role, sessionToken, expiresAt },
+  });
+
+  cookieStore.set(tokenCookie, sessionToken, cookieOptions);
+  cookieStore.set(roleCookie, role, cookieOptions);
+
+  return { ok: true };
+}
+
 export async function loginAction(prevState: any, formData: FormData) {
   const password = formData.get("password") as string;
 
@@ -30,61 +89,10 @@ export async function loginAction(prevState: any, formData: FormData) {
     return { error: "Invalid password." };
   }
 
-  const cookieStore = await cookies();
-
-  if (role === "cms") {
-    await prisma.roleSession.deleteMany({
-      where: { role: "cms" },
-    });
-
-    cookieStore.delete("cms_session_token");
-    cookieStore.set("cms_auth_role", "cms", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 8, // 8 hours
-      path: "/",
-    });
-
-    return { success: true, role };
+  const result = await claimRoleSession(role);
+  if (!result.ok) {
+    return { error: result.error };
   }
-
-  if (role !== "super-admin") {
-    const existingSession = await prisma.roleSession.findUnique({
-      where: { role }
-    });
-
-    const currentDeviceSession = cookieStore.get("auth_session_token")?.value;
-
-    if (existingSession && existingSession.expiresAt > new Date()) {
-      if (existingSession.sessionToken !== currentDeviceSession) {
-        return { error: "Akses ditolak: Akun ini sedang login di perangkat/browser lain." };
-      }
-    }
-
-    const sessionToken = crypto.randomUUID();
-    const expiresAt = new Date();
-    expiresAt.setHours(expiresAt.getHours() + 8);
-
-    await prisma.roleSession.upsert({
-      where: { role },
-      update: { sessionToken, expiresAt },
-      create: { role, sessionToken, expiresAt }
-    });
-
-    cookieStore.set("auth_session_token", sessionToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 8, // 8 hours
-      path: "/",
-    });
-  }
-
-  cookieStore.set("auth_role", role, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 8, // 8 hours
-    path: "/",
-  });
 
   return { success: true, role };
 }
@@ -92,17 +100,15 @@ export async function loginAction(prevState: any, formData: FormData) {
 export async function logoutAction() {
   const cookieStore = await cookies();
   const role = cookieStore.get("auth_role")?.value;
+  const currentDeviceSession = cookieStore.get("auth_session_token")?.value;
 
-  if (role && role !== "super-admin") {
-    const currentDeviceSession = cookieStore.get("auth_session_token")?.value;
-    if (currentDeviceSession) {
-      await prisma.roleSession.deleteMany({
-        where: {
-          role,
-          sessionToken: currentDeviceSession
-        }
-      });
-    }
+  if (role && role !== "super-admin" && currentDeviceSession) {
+    await prisma.roleSession.deleteMany({
+      where: {
+        role,
+        sessionToken: currentDeviceSession,
+      },
+    });
   }
 
   cookieStore.delete("auth_role");
@@ -112,10 +118,16 @@ export async function logoutAction() {
 
 export async function logoutCmsAction() {
   const cookieStore = await cookies();
+  const currentCmsSession = cookieStore.get("cms_session_token")?.value;
 
-  await prisma.roleSession.deleteMany({
-    where: { role: "cms" },
-  });
+  if (currentCmsSession) {
+    await prisma.roleSession.deleteMany({
+      where: {
+        role: "cms",
+        sessionToken: currentCmsSession,
+      },
+    });
+  }
 
   cookieStore.delete("cms_auth_role");
   cookieStore.delete("cms_session_token");

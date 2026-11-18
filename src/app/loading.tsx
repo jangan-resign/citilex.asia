@@ -16,34 +16,34 @@ export default function PublicLoading() {
             {/* LEFT */}
             <div className="lg:col-span-7 space-y-7 md:space-y-8">
               <div className="flex items-center gap-2">
-                <Skeleton className="h-3.5 w-16 rounded-none" />
-                <Skeleton className="h-3.5 w-3 rounded-none" />
-                <Skeleton className="h-3.5 w-28 rounded-none" />
+                <Skeleton className="h-3.5 w-16 rounded-md" />
+                <Skeleton className="h-3.5 w-3 rounded-md" />
+                <Skeleton className="h-3.5 w-28 rounded-md" />
               </div>
 
-              <Skeleton className="h-3.5 w-48 rounded-none" />
+              <Skeleton className="h-3.5 w-48 rounded-md" />
 
               <div className="space-y-3">
-                <Skeleton className="h-11 md:h-14 w-11/12 rounded-none" />
-                <Skeleton className="h-11 md:h-14 w-4/5 rounded-none" />
-                <Skeleton className="h-11 md:h-14 w-2/3 rounded-none" />
+                <Skeleton className="h-11 md:h-14 w-11/12 rounded-xl" />
+                <Skeleton className="h-11 md:h-14 w-4/5 rounded-xl" />
+                <Skeleton className="h-11 md:h-14 w-2/3 rounded-xl" />
               </div>
 
               <div className="space-y-2.5 max-w-xl">
-                <Skeleton className="h-4 w-full rounded-none" />
-                <Skeleton className="h-4 w-5/6 rounded-none" />
+                <Skeleton className="h-4 w-full rounded-md" />
+                <Skeleton className="h-4 w-5/6 rounded-md" />
               </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
-                <Skeleton className="h-14 w-64 rounded-none" />
-                <Skeleton className="h-14 w-44 rounded-none" />
+                <Skeleton className="h-14 w-64 rounded-xl" />
+                <Skeleton className="h-14 w-44 rounded-xl" />
               </div>
             </div>
 
             {/* RIGHT */}
             <div className="lg:col-span-5">
-              <div className="bg-white border border-brand-platinum p-2.5 shadow-xl rounded-none">
-                <Skeleton className="w-full h-[460px] md:h-[560px] rounded-none" />
+              <div className="bg-white border border-brand-platinum p-2.5 shadow-xl rounded-2xl overflow-hidden">
+                <Skeleton className="w-full h-[460px] md:h-[560px] rounded-xl" />
               </div>
             </div>
           </div>
@@ -52,20 +52,20 @@ export default function PublicLoading() {
         {/* SECTION 2: 3-COLUMN HIGHLIGHTS */}
         <section className="py-16 md:py-20 px-6 md:px-12 bg-brand-snow border-y border-brand-platinum">
           <div className="max-w-[1280px] mx-auto space-y-10">
-            <Skeleton className="h-8 w-72 rounded-none" />
+            <Skeleton className="h-8 w-72 rounded-lg" />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {highlightSkeletonIndices.map((idx) => (
                 <div
                   key={idx}
-                  className="bg-white p-7 md:p-8 border border-brand-platinum rounded-none space-y-4"
+                  className="bg-white p-7 md:p-8 border border-brand-platinum rounded-2xl space-y-4"
                 >
-                  <Skeleton className="h-8 w-8 rounded-none" />
-                  <Skeleton className="h-5 w-3/4 rounded-none" />
+                  <Skeleton className="h-10 w-10 rounded-xl" />
+                  <Skeleton className="h-5 w-3/4 rounded-md" />
                   <div className="space-y-2">
-                    <Skeleton className="h-3.5 w-full rounded-none" />
-                    <Skeleton className="h-3.5 w-11/12 rounded-none" />
-                    <Skeleton className="h-3.5 w-4/5 rounded-none" />
+                    <Skeleton className="h-3.5 w-full rounded-md" />
+                    <Skeleton className="h-3.5 w-11/12 rounded-md" />
+                    <Skeleton className="h-3.5 w-4/5 rounded-md" />
                   </div>
                 </div>
               ))}

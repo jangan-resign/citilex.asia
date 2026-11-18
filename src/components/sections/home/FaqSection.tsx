@@ -28,7 +28,7 @@ export default function FaqSection() {
             </p>
           </div>
 
-          <div className="relative overflow-hidden border border-white/10 bg-[#000000] p-7 md:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.18)]">
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#000000] p-7 md:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.18)]">
             <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-amber-300/10 blur-3xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-yellow-200/10 blur-3xl pointer-events-none" />
 
@@ -68,7 +68,7 @@ export default function FaqSection() {
               <div
                 key={idx}
                 className={[
-                  "group bg-white border transition-all duration-500",
+                  "group bg-white border rounded-2xl overflow-hidden transition-all duration-500",
                   isOpen
                     ? "border-brand-primary shadow-xl ring-1 ring-amber-300/30"
                     : "border-brand-platinum hover:border-brand-primary/20 hover:shadow-md",
@@ -79,14 +79,14 @@ export default function FaqSection() {
                   className="w-full flex justify-between items-center text-left px-6 py-6 md:px-8 md:py-7"
                 >
                   <div className="flex items-start gap-5 pr-4">
-                    <div className={["w-11 h-11 shrink-0 flex items-center justify-center border transition-all", isOpen ? "bg-brand-primary border-brand-primary text-white shadow-[0_0_25px_rgba(212,175,55,0.15)]" : "border-brand-platinum text-brand-primary"].join(" ")}>
+                    <div className={["w-11 h-11 rounded-xl shrink-0 flex items-center justify-center border transition-all", isOpen ? "bg-brand-primary border-brand-primary text-white shadow-[0_0_25px_rgba(212,175,55,0.15)]" : "border-brand-platinum text-brand-primary"].join(" ")}>
                       <HelpCircle className="w-4 h-4" />
                     </div>
                     <span className="font-bold text-xs md:text-sm tracking-[0.14em] uppercase text-brand-primary leading-relaxed">
                       {faq.question}
                     </span>
                   </div>
-                  <div className={["w-10 h-10 shrink-0 flex items-center justify-center border transition-all", isOpen ? "bg-brand-primary border-brand-primary text-white" : "border-brand-platinum text-brand-primary"].join(" ")}>
+                  <div className={["w-10 h-10 rounded-xl shrink-0 flex items-center justify-center border transition-all", isOpen ? "bg-brand-primary border-brand-primary text-white" : "border-brand-platinum text-brand-primary"].join(" ")}>
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>

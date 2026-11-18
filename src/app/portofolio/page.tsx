@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 const heroWaClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "inline-flex items-center justify-center",
   "px-9 py-4.5",
   "bg-[#000000] text-white",
@@ -58,7 +58,7 @@ const heroWaClass = [
 ].join(" ");
 
 const secondaryDarkOutlineClass = [
-  "inline-flex items-center justify-center",
+  "inline-flex items-center justify-center rounded-xl",
   "px-7 py-4.5",
   "bg-white/5 text-white",
   "text-xs font-bold tracking-[0.18em] uppercase",
@@ -130,7 +130,7 @@ export default function PortofolioPage() {
           </div>
 
           <div className="relative max-w-5xl mx-auto">
-            <div className="border border-[#D4AF37]/20 bg-white/[0.03] backdrop-blur-sm px-6 py-10 md:px-12 md:py-14 shadow-[0_25px_70px_rgba(0,0,0,0.35)] text-center space-y-8">
+            <div className="border border-[#D4AF37]/20 rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-sm px-6 py-10 md:px-12 md:py-14 shadow-[0_25px_70px_rgba(0,0,0,0.35)] text-center space-y-8">
               <div className="space-y-5">
                 <div className="flex justify-center">
                   <div className="px-5 py-2 rounded-full bg-white/5 border border-[#D4AF37]/25">

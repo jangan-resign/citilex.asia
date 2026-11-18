@@ -17,12 +17,12 @@ export default function PricingSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-0 lg:items-stretch">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-6 lg:items-stretch">
         {packages.map((pkg, idx) => {
           const cardClass = [
-            "relative flex flex-col justify-between transition-all duration-500 ease-out",
+            "relative flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-500 ease-out",
             pkg.popular
-              ? "z-20 bg-gradient-to-br from-[#0e0c00] via-[#080808] to-[#111111] text-white border-x border-[#D4AF37]/40 shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_40px_100px_rgba(0,0,0,0.6),0_0_80px_rgba(212,175,55,0.12),0_0_160px_rgba(212,175,55,0.05)] lg:-translate-y-6 hover:-translate-y-8 hover:shadow-[0_0_0_1px_rgba(212,175,55,0.25),0_50px_120px_rgba(0,0,0,0.7),0_0_120px_rgba(212,175,55,0.18)] px-8 py-10 min-h-[740px]"
+              ? "z-20 bg-gradient-to-br from-[#0e0c00] via-[#080808] to-[#111111] text-white border border-[#D4AF37]/40 shadow-[0_0_0_1px_rgba(212,175,55,0.15),0_40px_100px_rgba(0,0,0,0.6),0_0_80px_rgba(212,175,55,0.12),0_0_160px_rgba(212,175,55,0.05)] lg:-translate-y-6 hover:-translate-y-8 hover:shadow-[0_0_0_1px_rgba(212,175,55,0.25),0_50px_120px_rgba(0,0,0,0.7),0_0_120px_rgba(212,175,55,0.18)] px-8 py-10 min-h-[740px]"
               : "bg-gradient-to-br from-[#1B1B1B] to-[#101010] text-white border border-white/10 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.3)] px-8 py-8 min-h-[660px]",
           ].join(" ");
 
@@ -49,7 +49,7 @@ export default function PricingSection() {
           ].join(" ");
 
           const ctaClass = [
-            "relative block w-full text-center font-bold tracking-[0.18em] uppercase transition-all duration-300 hover:-translate-y-1",
+            "relative block w-full text-center rounded-xl font-bold tracking-[0.18em] uppercase transition-all duration-300 hover:-translate-y-1",
             pkg.popular
               ? "py-5 text-xs bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B] text-black shadow-[0_0_40px_rgba(212,175,55,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_24px_60px_rgba(212,175,55,0.35)]"
               : "py-4 text-xs bg-white/10 text-white border border-white/20 hover:bg-white/15 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)]",

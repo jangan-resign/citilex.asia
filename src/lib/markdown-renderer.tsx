@@ -56,7 +56,7 @@ function renderInlineMarkdown(text: string): React.ReactNode[] {
 
     if (part.startsWith("`") && part.endsWith("`") && part.length > 2) {
       return (
-        <code key={idx} className="px-1.5 py-0.5 bg-brand-snow border border-brand-platinum text-xs font-mono text-brand-primary">
+        <code key={idx} className="px-1.5 py-0.5 rounded-md bg-brand-snow border border-brand-platinum text-xs font-mono text-brand-primary">
           {part.slice(1, -1)}
         </code>
       );
@@ -115,7 +115,7 @@ export function MarkdownArticleContent({ content }: { content: string }) {
       }
 
       blocks.push(
-        <div key={`tbl-${i}`} className="overflow-x-auto my-8 border border-brand-platinum bg-white">
+        <div key={`tbl-${i}`} className="overflow-x-auto my-8 border border-brand-platinum rounded-xl overflow-hidden bg-white">
           <table className="w-full text-left border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-brand-primary text-brand-white">
@@ -190,7 +190,7 @@ export function MarkdownArticleContent({ content }: { content: string }) {
       blocks.push(
         <blockquote
           key={`bq-${i}`}
-          className="my-6 border-l-4 border-[#D4AF37] bg-brand-snow px-6 py-4 text-sm md:text-base text-brand-primary leading-relaxed"
+          className="my-6 border-l-4 border-[#D4AF37] bg-brand-snow rounded-r-xl px-6 py-4 text-sm md:text-base text-brand-primary leading-relaxed"
         >
           {renderInlineMarkdown(quoteLines.join(" "))}
         </blockquote>

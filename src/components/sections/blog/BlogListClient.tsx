@@ -21,11 +21,11 @@ export interface PublicBlogCard {
 
 const filterBtnBaseClass = [
   "px-5 py-3 text-xs font-bold tracking-[0.16em] uppercase",
-  "border transition-colors duration-200",
+  "border rounded-xl transition-colors duration-200",
 ].join(" ");
 
 const articleCardClass = [
-  "group bg-white border border-brand-platinum",
+  "group bg-white border border-brand-platinum rounded-2xl overflow-hidden",
   "hover:border-brand-primary hover:shadow-lg",
   "transition-all duration-300 flex flex-col justify-between",
 ].join(" ");
@@ -76,7 +76,7 @@ export default function BlogListClient({ posts }: { posts: PublicBlogCard[] }) {
 
       {/* Articles Grid */}
       {filteredPosts.length === 0 ? (
-        <div className="bg-white border border-brand-platinum p-10 text-center space-y-2">
+        <div className="bg-white border border-brand-platinum rounded-2xl p-10 text-center space-y-2">
           <p className="text-sm font-extrabold uppercase tracking-wider text-brand-primary">
             Belum ada artikel pada kategori ini
           </p>
@@ -100,7 +100,7 @@ export default function BlogListClient({ posts }: { posts: PublicBlogCard[] }) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
-                  <div className="absolute top-3 left-3 z-10 px-3 py-1 bg-black/85 border border-[#D4AF37]/40 backdrop-blur-xs">
+                  <div className="absolute top-3 left-3 z-10 px-3 py-1 rounded-lg bg-black/85 border border-[#D4AF37]/40 backdrop-blur-xs">
                     <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#F3D98B]">
                       {post.category}
                     </span>

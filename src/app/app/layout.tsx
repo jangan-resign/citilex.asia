@@ -4,6 +4,7 @@ import { FactoryDataProvider } from "../../components/providers/FactoryDataProvi
 import { prisma } from "../../lib/prisma";
 import { unstable_cache } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Dashboard | CITILEX ASIA Workspace",
@@ -27,9 +28,29 @@ const getCachedFactoryData = unstable_cache(
 );
 
 export default async function CSLayout({ children }: { children: ReactNode }) {
-  const factoryData = await getCachedFactoryData();
   const cookieStore = await cookies();
-  const role = cookieStore.get("auth_role")?.value || "Unknown";
+  const role = cookieStore.get("auth_role")?.value;
+  const sessionToken = cookieStore.get("auth_session_token")?.value;
+
+  if (!role || role === "cms" || (role !== "super-admin" && !sessionToken)) {
+    redirect("/login");
+  }
+
+  if (role !== "super-admin") {
+    const activeSession = await prisma.roleSession.findUnique({
+      where: { role },
+    });
+
+    if (
+      !activeSession ||
+      activeSession.sessionToken !== sessionToken ||
+      activeSession.expiresAt <= new Date()
+    ) {
+      redirect("/login");
+    }
+  }
+
+  const factoryData = await getCachedFactoryData();
 
   return (
     <div className="flex h-screen w-full flex-col md:flex-row bg-slate-50 font-sans antialiased overflow-hidden">

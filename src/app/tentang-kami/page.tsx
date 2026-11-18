@@ -151,7 +151,7 @@ const targetMarkets = [
 ];
 
 const heroCtaClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "inline-flex items-center justify-center",
   "px-10 py-5",
   "bg-[#000000] text-white",
@@ -165,7 +165,7 @@ const heroCtaClass = [
 ].join(" ");
 
 const secondaryDarkOutlineClass = [
-  "inline-flex items-center justify-center",
+  "inline-flex items-center justify-center rounded-xl",
   "px-8 py-5",
   "bg-white/5 text-white",
   "text-xs font-bold tracking-[0.2em] uppercase",
@@ -174,7 +174,7 @@ const secondaryDarkOutlineClass = [
 ].join(" ");
 
 const whiteCardClass = [
-  "bg-white p-8 border border-brand-platinum",
+  "bg-white p-8 border border-brand-platinum rounded-2xl",
   "space-y-4 hover:border-brand-primary/40 hover:shadow-md transition-all duration-300",
 ].join(" ");
 
@@ -235,8 +235,6 @@ export default function TentangKamiPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
                   <span className="relative z-10">Konsultasi Gratis</span>
                 </WhatsAppButton>
@@ -248,9 +246,9 @@ export default function TentangKamiPage() {
               {heroFacilities.map((fac) => (
                 <div
                   key={fac.label}
-                  className="group relative aspect-square bg-white border border-brand-platinum p-2 shadow-md overflow-hidden"
+                  className="group relative aspect-square bg-white border border-brand-platinum p-2 rounded-2xl shadow-md overflow-hidden"
                 >
-                  <div className="relative w-full h-full overflow-hidden">
+                  <div className="relative w-full h-full rounded-xl overflow-hidden">
                     <Image
                       src={fac.src}
                       alt={fac.alt}
@@ -301,7 +299,7 @@ export default function TentangKamiPage() {
             </div>
 
             <div className="lg:col-span-5 space-y-6">
-              <div className="bg-white p-8 border border-brand-platinum space-y-3">
+              <div className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-3">
                 <span className="inline-block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
                   OFFICE • REPRESENTATIVE OFFICE
                 </span>
@@ -324,7 +322,7 @@ export default function TentangKamiPage() {
                 </TrackedExternalLink>
               </div>
 
-              <div className="relative overflow-hidden bg-[#000000] text-white p-8 border border-[#D4AF37]/30 space-y-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
+              <div className="relative overflow-hidden rounded-2xl bg-[#000000] text-white p-8 border border-[#D4AF37]/30 space-y-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                 <span className="inline-block text-[10px] font-bold tracking-[0.22em] uppercase text-[#F3D98B]">
                   PRODUKSI • PRODUCTION CENTER
@@ -368,10 +366,8 @@ export default function TentangKamiPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-              <div className="lg:col-span-5 relative overflow-hidden bg-[#000000] text-white border border-[#D4AF37]/30 p-8 md:p-10 space-y-5 shadow-[0_25px_70px_rgba(0,0,0,0.2)]">
+              <div className="lg:col-span-5 relative overflow-hidden rounded-2xl bg-[#000000] text-white border border-[#D4AF37]/30 p-8 md:p-10 space-y-5 shadow-[0_25px_70px_rgba(0,0,0,0.2)]">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
 
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/5 border border-[#D4AF37]/30">
                   <span className="text-[10px] font-black tracking-[0.22em] uppercase text-[#F3D98B]">
@@ -387,7 +383,7 @@ export default function TentangKamiPage() {
                 </p>
               </div>
 
-              <div className="lg:col-span-7 bg-white border border-brand-platinum p-8 md:p-10 space-y-6">
+              <div className="lg:col-span-7 bg-white border border-brand-platinum rounded-2xl p-8 md:p-10 space-y-6">
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-snow border border-brand-platinum">
                   <span className="text-[10px] font-black tracking-[0.22em] uppercase text-brand-gold">
                     MISI KAMI
@@ -430,7 +426,7 @@ export default function TentangKamiPage() {
                 const IconComponent = item.icon;
                 return (
                   <div key={item.title} className={whiteCardClass}>
-                    <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+                    <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <h3 className="text-base font-extrabold tracking-tight uppercase text-brand-primary">
@@ -502,7 +498,7 @@ export default function TentangKamiPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {roadmapStages.map((stage) => (
-                  <div key={stage.step} className="bg-brand-snow p-8 border border-brand-platinum space-y-3">
+                  <div key={stage.step} className="bg-brand-snow p-8 border border-brand-platinum rounded-2xl space-y-3">
                     <span className="block text-[11px] font-black tracking-[0.24em] uppercase text-brand-gold">
                       {stage.step}
                     </span>
@@ -539,8 +535,8 @@ export default function TentangKamiPage() {
                 {targetMarkets.map((mkt) => {
                   const IconComponent = mkt.icon;
                   return (
-                    <div key={mkt.title} className="bg-white p-6 border border-brand-platinum space-y-3">
-                      <div className="w-9 h-9 bg-brand-primary text-brand-white flex items-center justify-center">
+                    <div key={mkt.title} className="bg-white p-6 border border-brand-platinum rounded-2xl space-y-3">
+                      <div className="w-9 h-9 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
                         <IconComponent className="w-4 h-4" />
                       </div>
                       <h3 className="text-xs font-extrabold tracking-wider uppercase text-brand-primary leading-snug">
@@ -566,7 +562,7 @@ export default function TentangKamiPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Link
                   href="/kaos-custom"
-                  className="group bg-white p-8 border border-brand-platinum hover:border-brand-primary hover:shadow-md transition-all flex items-start justify-between gap-4"
+                  className="group bg-white p-8 border border-brand-platinum rounded-2xl hover:border-brand-primary hover:shadow-md transition-all flex items-start justify-between gap-4"
                 >
                   <div className="space-y-3">
                     <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
@@ -585,7 +581,7 @@ export default function TentangKamiPage() {
 
                 <Link
                   href="/polo-shirt-custom"
-                  className="group bg-white p-8 border border-brand-platinum hover:border-brand-primary hover:shadow-md transition-all flex items-start justify-between gap-4"
+                  className="group bg-white p-8 border border-brand-platinum rounded-2xl hover:border-brand-primary hover:shadow-md transition-all flex items-start justify-between gap-4"
                 >
                   <div className="space-y-3">
                     <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
@@ -605,10 +601,8 @@ export default function TentangKamiPage() {
             </div>
 
             {/* Positioning Box */}
-            <div className="relative overflow-hidden bg-[#000000] text-white border border-[#D4AF37]/30 p-8 md:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.25)]">
+            <div className="relative overflow-hidden rounded-2xl bg-[#000000] text-white border border-[#D4AF37]/30 p-8 md:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.25)]">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-              <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
 
               <div className="max-w-3xl space-y-4">
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/5 border border-[#D4AF37]/30">
@@ -640,7 +634,7 @@ export default function TentangKamiPage() {
           </div>
 
           <div className="relative max-w-5xl mx-auto">
-            <div className="border border-[#D4AF37]/20 bg-white/[0.03] backdrop-blur-sm px-6 py-10 md:px-12 md:py-14 shadow-[0_25px_70px_rgba(0,0,0,0.35)] text-center space-y-8">
+            <div className="border border-[#D4AF37]/20 rounded-2xl overflow-hidden bg-white/[0.03] backdrop-blur-sm px-6 py-10 md:px-12 md:py-14 shadow-[0_25px_70px_rgba(0,0,0,0.35)] text-center space-y-8">
               <div className="space-y-5">
                 <div className="flex justify-center">
                   <div className="px-5 py-2 rounded-full bg-white/5 border border-[#D4AF37]/25">
@@ -669,8 +663,6 @@ export default function TentangKamiPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
                   <span className="relative z-10">Konsultasi Gratis</span>
                 </WhatsAppButton>

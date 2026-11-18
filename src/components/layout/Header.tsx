@@ -76,7 +76,7 @@ const navLinkClass = [
 ].join(" ");
 
 const dropdownPanelClass = [
-  "bg-white border border-brand-platinum",
+  "bg-white border border-brand-platinum rounded-2xl",
   "shadow-[0_20px_50px_rgba(0,0,0,0.12)]",
   "relative overflow-hidden",
 ].join(" ");
@@ -89,14 +89,14 @@ const dropdownItemClass = [
 
 const headerWaClass = [
   "hidden md:inline-flex items-center justify-center shrink-0",
-  "px-6 py-2.5 bg-brand-primary text-brand-white",
+  "px-6 py-2.5 bg-brand-primary text-brand-white rounded-xl",
   "text-xs font-semibold tracking-wider uppercase",
   "border border-white hover:-translate-y-1 transition-transform duration-300",
 ].join(" ");
 
 const mobileWaClass = [
   "flex items-center justify-center w-full",
-  "px-6 py-4 bg-brand-primary text-brand-white",
+  "px-6 py-4 bg-brand-primary text-brand-white rounded-xl",
   "text-xs font-bold tracking-[0.2em] uppercase",
   "border border-[#D4AF37]/40 shadow-lg",
 ].join(" ");
@@ -323,7 +323,7 @@ export default function Header() {
               onClick={() => setIsMobileOpen((prev) => !prev)}
               aria-expanded={isMobileOpen}
               aria-label={isMobileOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
-              className="lg:hidden w-11 h-11 border border-brand-platinum flex items-center justify-center text-brand-primary hover:bg-brand-snow transition-colors"
+              className="lg:hidden w-11 h-11 rounded-xl border border-brand-platinum flex items-center justify-center text-brand-primary hover:bg-brand-snow transition-colors"
             >
               {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -353,7 +353,7 @@ export default function Header() {
                 href="/"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "col-span-2 px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  "col-span-2 px-3 py-3 border rounded-xl text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
@@ -365,7 +365,7 @@ export default function Header() {
                 href="/portofolio"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  "px-3 py-3 border rounded-xl text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/portofolio"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
@@ -377,7 +377,7 @@ export default function Header() {
                 href="/tentang-kami"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  "px-3 py-3 border rounded-xl text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/tentang-kami"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
@@ -389,7 +389,7 @@ export default function Header() {
                 href="/blog"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  "px-3 py-3 border rounded-xl text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/blog" || pathname?.startsWith("/blog/")
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
@@ -401,7 +401,7 @@ export default function Header() {
                 href="/kontak"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  "px-3 py-3 border rounded-xl text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/kontak"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
@@ -416,7 +416,7 @@ export default function Header() {
               <span className="block text-[10px] font-bold tracking-[0.24em] uppercase text-brand-onyx/75">
                 Layanan Produksi B2B
               </span>
-              <div className="border border-brand-platinum divide-y divide-brand-platinum">
+              <div className="border border-brand-platinum rounded-xl overflow-hidden divide-y divide-brand-platinum">
                 {serviceMenuItems.map((item) => {
                   const isItemActive = pathname === item.href;
                   return (
@@ -449,7 +449,7 @@ export default function Header() {
               <span className="block text-[10px] font-bold tracking-[0.24em] uppercase text-brand-onyx/75">
                 Area Layanan Jabodetabek
               </span>
-              <div className="grid grid-cols-2 border border-brand-platinum">
+              <div className="grid grid-cols-2 border border-brand-platinum rounded-xl overflow-hidden">
                 {areaMenuItems.map((item) => {
                   const isItemActive = pathname === item.href;
                   return (

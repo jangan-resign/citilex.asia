@@ -20,7 +20,7 @@ import type { BlogFaqItem } from "../../../lib/cms-utils";
 export const revalidate = 60;
 
 const articleWaBtnClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "inline-flex items-center justify-center",
   "px-8 py-4",
   "bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B]",
@@ -164,8 +164,8 @@ export default async function BlogDetailPage({ params }: BlogPostPageProps) {
             </p>
 
             {post.coverImage && (
-              <div className="relative aspect-[16/9] max-h-[520px] w-full bg-brand-snow border border-brand-platinum p-2 shadow-xl overflow-hidden mt-8">
-                <div className="relative w-full h-full overflow-hidden">
+              <div className="relative aspect-[16/9] max-h-[520px] w-full bg-brand-snow border border-brand-platinum p-2 rounded-2xl shadow-xl overflow-hidden mt-8">
+                <div className="relative w-full h-full rounded-xl overflow-hidden">
                   <Image
                     src={post.coverImage}
                     alt={post.coverAlt || post.title}
@@ -194,7 +194,7 @@ export default async function BlogDetailPage({ params }: BlogPostPageProps) {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-brand-snow border border-brand-platinum text-xs font-semibold text-brand-onyx"
+                      className="px-3 py-1 rounded-lg bg-brand-snow border border-brand-platinum text-xs font-semibold text-brand-onyx"
                     >
                       #{tag}
                     </span>
@@ -203,10 +203,8 @@ export default async function BlogDetailPage({ params }: BlogPostPageProps) {
               )}
 
               {/* Bottom-Article CTA Card */}
-              <div className="mt-12 relative overflow-hidden bg-[#000000] text-white border border-[#D4AF37]/30 p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.2)] space-y-6">
+              <div className="mt-12 relative overflow-hidden rounded-2xl bg-[#000000] text-white border border-[#D4AF37]/30 p-8 md:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.2)] space-y-6">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
 
                 <div className="space-y-3">
                   <span className="inline-block text-[10px] font-bold tracking-[0.24em] uppercase text-[#F3D98B]">
@@ -232,7 +230,7 @@ export default async function BlogDetailPage({ params }: BlogPostPageProps) {
 
             {/* Kolom Kanan: Sidebar Sticky */}
             <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
-              <div className="bg-brand-snow border border-brand-platinum p-6 space-y-4">
+              <div className="bg-brand-snow border border-brand-platinum rounded-2xl p-6 space-y-4">
                 <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
                   SOLUSI PRODUKSI CITILEX ASIA
                 </span>
@@ -254,7 +252,7 @@ export default async function BlogDetailPage({ params }: BlogPostPageProps) {
               </div>
 
               {relatedPosts.length > 0 && (
-                <div className="bg-white border border-brand-platinum p-6 space-y-4">
+                <div className="bg-white border border-brand-platinum rounded-2xl p-6 space-y-4">
                   <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-onyx/75">
                     BACA JUGA
                   </span>

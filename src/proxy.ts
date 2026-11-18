@@ -28,11 +28,12 @@ const defaultPathMap: Record<string, string> = {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Protect /cms routes exclusively for cms role using isolated cookie
+  // Protect /cms routes exclusively for cms role using isolated cookie & session token
   if (pathname.startsWith("/cms")) {
     const cmsRoleCookie = request.cookies.get("cms_auth_role")?.value;
+    const cmsSessionToken = request.cookies.get("cms_session_token")?.value;
 
-    if (cmsRoleCookie !== "cms") {
+    if (cmsRoleCookie !== "cms" || !cmsSessionToken) {
       return NextResponse.redirect(new URL("/login?from=cms", request.url));
     }
 
@@ -42,8 +43,9 @@ export function proxy(request: NextRequest) {
   // Only protect /app routes
   if (pathname.startsWith("/app")) {
     const roleCookie = request.cookies.get("auth_role")?.value;
+    const sessionToken = request.cookies.get("auth_session_token")?.value;
 
-    if (!roleCookie) {
+    if (!roleCookie || (roleCookie !== "super-admin" && !sessionToken)) {
       // Redirect to login if not authenticated
       return NextResponse.redirect(new URL("/login", request.url));
     }
@@ -79,24 +81,6 @@ export function proxy(request: NextRequest) {
        // Redirect to unauthorized or their main area
        const defaultPath = defaultPathMap[roleCookie] || "/login";
        return NextResponse.redirect(new URL(defaultPath, request.url));
-    }
-  }
-
-  // Redirect authenticated users from /login
-  if (pathname === "/login") {
-    const fromParam = request.nextUrl.searchParams.get("from");
-
-    if (fromParam === "cms") {
-      const cmsRoleCookie = request.cookies.get("cms_auth_role")?.value;
-      if (cmsRoleCookie === "cms") {
-        return NextResponse.redirect(new URL("/cms", request.url));
-      }
-      return NextResponse.next();
-    }
-
-    const roleCookie = request.cookies.get("auth_role")?.value;
-    if (roleCookie && roleCookie !== "cms") {
-      return NextResponse.redirect(new URL(defaultPathMap[roleCookie] || "/app", request.url));
     }
   }
 

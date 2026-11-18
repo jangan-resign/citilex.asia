@@ -13,7 +13,7 @@ import { seoServicePages, seoLocationPages, type SeoMoneyPage } from "../../../l
 import { getMoneyPageJsonLd } from "../../../lib/json-ld";
 
 const heroCtaClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "inline-flex items-center justify-center",
   "px-10 py-5",
   "bg-[#000000] text-white",
@@ -27,7 +27,7 @@ const heroCtaClass = [
 ].join(" ");
 
 const sideCtaClass = [
-  "group relative overflow-hidden",
+  "group relative overflow-hidden rounded-xl",
   "flex items-center justify-center w-full",
   "px-6 py-4",
   "bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B]",
@@ -38,14 +38,14 @@ const sideCtaClass = [
 ].join(" ");
 
 const editorialCardClass = [
-  "bg-white p-7 md:p-8 border border-brand-platinum",
+  "bg-white p-7 md:p-8 border border-brand-platinum rounded-2xl",
   "hover:border-brand-primary/40 hover:shadow-md",
   "transition-all duration-300 space-y-3",
 ].join(" ");
 
 const relatedCardClass = [
   "group flex items-start justify-between gap-4",
-  "bg-white p-6 border border-brand-platinum",
+  "bg-white p-6 border border-brand-platinum rounded-2xl",
   "hover:border-brand-primary hover:shadow-md",
   "transition-all duration-300",
 ].join(" ");
@@ -109,8 +109,6 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                   <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/10 via-[#F8E7B9]/10 to-[#D4AF37]/10 opacity-80" />
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
                   <span className="relative z-10">KONSULTASI GRATIS</span>
                 </WhatsAppButton>
@@ -146,8 +144,7 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                 <div className="absolute inset-0 scale-95 rounded-full bg-brand-primary/10 blur-3xl" />
 
                 <div className="absolute -top-4 -left-4 md:-left-8 z-20">
-                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                  <div className="relative px-5 py-4 bg-black/65 backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]">
+                  <div className="relative px-5 py-4 bg-black/65 backdrop-blur-xl border border-[#D4AF37]/30 rounded-xl overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.14)]">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#F8E7B9]/10 via-transparent to-[#D4AF37]/10 pointer-events-none" />
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                     <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/90">
@@ -157,18 +154,18 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                   </div>
                 </div>
 
-                <div className="relative aspect-[4/5] bg-white border border-brand-platinum p-3 shadow-2xl">
+                <div className="relative aspect-[4/5] bg-white border border-brand-platinum p-3 rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src={page.heroImage}
                     alt={page.heroImageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    className="object-cover rounded-xl transition-transform duration-700 hover:scale-[1.03]"
                   />
                 </div>
 
                 <div className="absolute -bottom-4 right-0 md:-right-6 z-20">
-                  <div className="relative px-5 py-4 bg-black/70 backdrop-blur-xl border border-[#D4AF37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]">
+                  <div className="relative px-5 py-4 bg-black/70 backdrop-blur-xl border border-[#D4AF37]/30 rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.14)]">
                     <div className="absolute inset-0 bg-gradient-to-tl from-[#D4AF37]/10 via-transparent to-[#F8E7B9]/10 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                     <p className="relative text-[10px] font-bold tracking-[0.18em] uppercase text-[#D4AF37]/90">
@@ -192,8 +189,8 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
               {page.highlights.map((item, idx) => {
                 const IconComponent = highlightIcons[idx % highlightIcons.length];
                 return (
-                  <div key={item.title} className="bg-white p-8 border border-brand-platinum space-y-4">
-                    <div className="w-10 h-10 bg-brand-primary text-brand-white flex items-center justify-center">
+                  <div key={item.title} className="bg-white p-8 border border-brand-platinum rounded-2xl space-y-4">
+                    <div className="w-10 h-10 bg-brand-primary text-brand-white rounded-xl flex items-center justify-center">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <h3 className="text-sm font-bold tracking-wider uppercase text-brand-primary">
@@ -237,10 +234,8 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                 ))}
               </div>
 
-              <div className="lg:col-span-4 relative overflow-hidden bg-[#000000] text-white border border-[#D4AF37]/30 p-8 flex flex-col justify-between shadow-[0_25px_70px_rgba(0,0,0,0.2)]">
+              <div className="lg:col-span-4 relative overflow-hidden rounded-2xl bg-[#000000] text-white border border-[#D4AF37]/30 p-8 flex flex-col justify-between shadow-[0_25px_70px_rgba(0,0,0,0.2)]">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
-                <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
 
                 <div className="space-y-5 relative">
                   <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/5 border border-[#D4AF37]/30">
@@ -335,7 +330,7 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                   <Link
                     key={loc.slug}
                     href={`/${loc.slug}`}
-                    className="group flex items-center justify-between gap-3 px-5 py-4 bg-brand-snow border border-brand-platinum hover:border-brand-primary hover:bg-white transition-all"
+                    className="group flex items-center justify-between gap-3 px-5 py-4 bg-brand-snow border border-brand-platinum rounded-xl hover:border-brand-primary hover:bg-white transition-all"
                   >
                     <div>
                       <span className="block text-xs font-extrabold uppercase tracking-wider text-brand-primary group-hover:underline underline-offset-4">
