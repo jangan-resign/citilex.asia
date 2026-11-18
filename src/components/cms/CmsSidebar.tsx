@@ -51,12 +51,7 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
   };
 
   const displayRole = roleDisplayNames[userRole] || "CMS Staff";
-  const initials = displayRole
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .substring(0, 2)
-    .toUpperCase();
+  const initials = "CMS";
 
   const isExpanded = isHovered || isMobileOpen;
 
@@ -234,7 +229,7 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
             }`}
             title={!isExpanded ? displayRole : undefined}
           >
-            <div className="h-8 w-8 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold font-bold text-xs">
+            <div className="h-8 w-8 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold font-bold text-[10px] tracking-tight">
               {initials}
             </div>
             <div
@@ -255,7 +250,7 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
             >
               <div className="p-3 border-b border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold font-bold text-sm">
+                  <div className="h-10 w-10 shrink-0 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold font-bold text-xs tracking-tight">
                     {initials}
                   </div>
                   <div className="flex flex-col truncate">
