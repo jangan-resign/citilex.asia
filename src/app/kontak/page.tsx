@@ -149,7 +149,7 @@ export default function KontakPage() {
                   <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/80" />
                   <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/80" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
-                  <span className="relative z-10">CHAT WHATSAPP SEKARANG</span>
+                  <span className="relative z-10">Hubungi Kami</span>
                 </WhatsAppButton>
                 <div className="flex items-center gap-3">
                   <span className="h-[1px] w-8 bg-brand-platinum" />
