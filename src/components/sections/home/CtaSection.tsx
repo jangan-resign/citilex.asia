@@ -34,7 +34,7 @@ export default function CtaSection() {
             <div className="flex justify-center">
               <div className="px-5 py-2 rounded-full bg-white/5 border border-[#D4AF37]/25 backdrop-blur-md shadow-[0_8px_24px_rgba(212,175,55,0.12)]">
                 <span className="text-xs font-bold tracking-[0.3em] text-[#D4AF37] uppercase">
-                  SIAPKAN SEKARANG UNTUK KAOS & POLO ANDA
+                  SIAPKAN SEKARANG
                 </span>
               </div>
             </div>

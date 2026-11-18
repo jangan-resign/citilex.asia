@@ -297,7 +297,7 @@ export default function KontakPage() {
                     rel="noopener noreferrer"
                     className={mapBtnGoldClass}
                   >
-                    <span>Buka Google Maps Jakarta</span>
+                    <span>Buka Maps Jakarta</span>
                     <ArrowUpRight className="w-4 h-4 ml-2" />
                   </TrackedExternalLink>
                 </div>
@@ -350,7 +350,7 @@ export default function KontakPage() {
                     rel="noopener noreferrer"
                     className={mapBtnDarkClass}
                   >
-                    <span>Buka Google Maps Production Center</span>
+                    <span>Buka Maps Production</span>
                     <ArrowUpRight className="w-4 h-4 ml-2" />
                   </TrackedExternalLink>
                 </div>

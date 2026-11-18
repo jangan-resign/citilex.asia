@@ -135,7 +135,7 @@ export default function PortofolioPage() {
                 <div className="flex justify-center">
                   <div className="px-5 py-2 rounded-full bg-white/5 border border-[#D4AF37]/25">
                     <span className="text-xs font-bold tracking-[0.28em] text-[#D4AF37] uppercase">
-                      KONSULTASI PRODUKSI B2B
+                      KONSULTASI PRODUKSI
                     </span>
                   </div>
                 </div>
@@ -158,15 +158,15 @@ export default function PortofolioPage() {
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
-                  <span className="relative z-10">WhatsApp Sekarang</span>
+                  <span className="relative z-10">Hubungi Kami</span>
                 </WhatsAppButton>
 
                 <Link href="/#pricing" className={secondaryDarkOutlineClass}>
-                  Lihat Estimasi Harga Kaos
+                  Harga Kaos
                 </Link>
 
                 <Link href="/#pricing-polo" className={secondaryDarkOutlineClass}>
-                  Lihat Estimasi Harga Polo
+                  Harga Polo
                 </Link>
               </div>
 

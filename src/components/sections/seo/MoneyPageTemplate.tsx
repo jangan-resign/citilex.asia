@@ -262,7 +262,7 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                 <div className="pt-8 relative">
                   <WhatsAppButton message={page.waMessage} className={sideCtaClass}>
                     <Image src="/wablack.svg" alt="WhatsApp" width={16} height={16} className="w-4 h-4 mr-2" />
-                    <span>MINTA PENAWARAN WA</span>
+                    <span>HUBUNGI KAMI</span>
                   </WhatsAppButton>
                 </div>
               </div>

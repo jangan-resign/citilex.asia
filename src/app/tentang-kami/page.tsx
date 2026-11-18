@@ -664,7 +664,7 @@ export default function TentangKamiPage() {
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
-                  <span className="relative z-10">Konsultasi Gratis</span>
+                  <span className="relative z-10">Hubungi Kami</span>
                 </WhatsAppButton>
 
                 <Link href="/portofolio" className={secondaryDarkOutlineClass}>
