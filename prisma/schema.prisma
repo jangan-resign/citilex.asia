@@ -409,3 +409,58 @@ model Asset {
 
   @@map("assets")
 }
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model BlogPost {
+  id              String     @id @default(cuid())
+  title           String
+  slug            String     @unique
+  excerpt         String
+  content         String
+  coverImage      String?
+  coverAlt        String?
+  category        String
+  targetKeyword   String?
+  tags            String[]   @default([])
+  metaTitle       String?
+  metaDescription String?
+  faqItems        Json       @default("[]")
+  readingTimeMin  Int        @default(4)
+  seoScore        Int        @default(0)
+  status          BlogStatus @default(DRAFT)
+  authorName      String     @default("Tim Editorial Citilex Asia")
+  publishedAt     DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([status, publishedAt])
+  @@map("blog_posts")
+}
+
+model SeoTopic {
+  id            String   @id @default(cuid())
+  title         String
+  targetKeyword String
+  category      String
+  searchIntent  String   @default("Commercial")
+  notes         String?
+  isUsed        Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@map("seo_topics")
+}
+
+model BlogMedia {
+  id        String   @id @default(cuid())
+  name      String
+  url       String   @unique
+  size      String
+  altText   String?
+  createdAt DateTime @default(now())
+
+  @@map("blog_media")
+}

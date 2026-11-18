@@ -14,6 +14,7 @@ const authData: Record<string, string> = {
   [process.env.AUTH_QUOTE_MARKETING || "makeithappen"]: "marketing",
   [process.env.AUTH_QUOTE_HRD || "thinkbig"]: "hrd",
   [process.env.AUTH_QUOTE_FINANCE || "stayfocused"]: "finance",
+  [process.env.AUTH_QUOTE_CMS || "contentking"]: "cms",
 };
 
 export async function loginAction(prevState: any, formData: FormData) {

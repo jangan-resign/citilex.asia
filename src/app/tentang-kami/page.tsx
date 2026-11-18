@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "Citilex Asia",
     images: [
       {
-        url: "/og-image.png",
+        url: "/tentang-kami/kantor1.jpg",
         width: 1200,
         height: 630,
         alt: "Tentang CITILEX ASIA - PT Nusa Garment Indonesia",
@@ -62,24 +62,24 @@ export const metadata: Metadata = {
 
 const heroFacilities = [
   {
-    src: "/lia-karina.png",
+    src: "/tentang-kami/kantor1.jpg",
     label: "Kantor CITILEX ASIA",
-    alt: "Tim dan sampel apparel Kantor CITILEX ASIA",
+    alt: "Ruang konsultasi dan sampel Kantor CITILEX ASIA",
   },
   {
-    src: "/galeri5.png",
+    src: "/tentang-kami/jahit.jpg",
     label: "Produksi Jahit",
-    alt: "Kualitas jahitan rantai produksi CITILEX ASIA",
+    alt: "Proses penjahitan produksi apparel CITILEX ASIA",
   },
   {
-    src: "/galeri3.png",
+    src: "/tentang-kami/sablon.jpg",
     label: "Produksi Sablon",
-    alt: "Hasil cetak sablon presisi CITILEX ASIA",
+    alt: "Proses cetak sablon presisi CITILEX ASIA",
   },
   {
-    src: "/galeri6.png",
+    src: "/tentang-kami/kantor2.jpg",
     label: "Fasilitas CITILEX ASIA",
-    alt: "Produk unggulan fasilitas produksi CITILEX ASIA",
+    alt: "Fasilitas operasional dan galeri CITILEX ASIA",
   },
 ];
 

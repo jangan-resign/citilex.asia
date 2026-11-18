@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Citilex Asia",
     images: [
       {
-        url: "/porto1.png",
+        url: "/portofolio/kaosshopee.jpg",
         width: 1200,
         height: 630,
         alt: "Portofolio Produksi CITILEX ASIA",

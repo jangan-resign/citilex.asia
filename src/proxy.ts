@@ -22,10 +22,29 @@ const defaultPathMap: Record<string, string> = {
   "marketing": "/app/google-ads",
   "hrd": "/app/hrd/employees",
   "finance": "/app/finance/cash-flow",
+  "cms": "/cms",
 };
+
+const cmsAllowedRoles = ["super-admin", "business-partner", "marketing", "cms"];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Protect /cms routes
+  if (pathname.startsWith("/cms")) {
+    const roleCookie = request.cookies.get("auth_role")?.value;
+
+    if (!roleCookie) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    if (!cmsAllowedRoles.includes(roleCookie)) {
+      const defaultPath = defaultPathMap[roleCookie] || "/login";
+      return NextResponse.redirect(new URL(defaultPath, request.url));
+    }
+
+    return NextResponse.next();
+  }
 
   // Only protect /app routes
   if (pathname.startsWith("/app")) {
@@ -82,5 +101,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/app/:path*", "/login"],
+  matcher: ["/app/:path*", "/cms/:path*", "/login"],
 };

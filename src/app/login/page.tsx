@@ -29,8 +29,9 @@ export default function LoginPage() {
       setIsLoading(false);
     } else if (result?.success) {
       setIsTransitioning(true);
+      const targetPath = result.role === "cms" ? "/cms" : "/app";
       setTimeout(() => {
-        router.push("/app");
+        router.push(targetPath);
         router.refresh();
       }, 600);
     }

@@ -1,8 +1,10 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
+import { cookies } from "next/headers";
 import { prisma } from "../../../lib/prisma";
 import { compileKarinaContext } from "../../../actions/playbook";
 
 const f = createUploadthing();
+const cmsAllowedRoles = ["super-admin", "business-partner", "marketing", "cms"];
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -31,7 +33,32 @@ export const ourFileRouter = {
       console.log("Asset saved to DB:", asset.id, "for userId:", metadata.userId);
       return { assetId: asset.id };
     }),
+
+  blogImageUploader: f({ image: { maxFileSize: "8MB", maxFileCount: 1 } })
+    .middleware(async () => {
+      const cookieStore = await cookies();
+      const role = cookieStore.get("auth_role")?.value;
+      if (!role || !cmsAllowedRoles.includes(role)) {
+        throw new Error("Unauthorized");
+      }
+      return { role };
+    })
+    .onUploadComplete(async ({ file }) => {
+      const media = await prisma.blogMedia.upsert({
+        where: { url: file.url },
+        update: {
+          name: file.name,
+          size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+        },
+        create: {
+          name: file.name,
+          url: file.url,
+          size: (file.size / 1024 / 1024).toFixed(2) + " MB",
+        },
+      });
+
+      return { mediaId: media.id, url: media.url, name: media.name };
+    }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
-
