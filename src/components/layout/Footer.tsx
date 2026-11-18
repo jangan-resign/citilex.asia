@@ -12,12 +12,12 @@ const serviceLinks = [
 ];
 
 const areaLinks = [
-  { label: "Jakarta Selatan (Bintaro)", href: "/kontak" },
-  { label: "DKI Jakarta", href: "/kontak" },
-  { label: "Tangerang & BSD", href: "/kontak" },
-  { label: "Bekasi & Cikarang", href: "/kontak" },
-  { label: "Depok & Margonda", href: "/kontak" },
-  { label: "Bogor & Sentul", href: "/kontak" },
+  { label: "Jakarta Selatan (Bintaro)", href: "/konveksi-kaos-jakarta-selatan" },
+  { label: "DKI Jakarta", href: "/konveksi-kaos-jakarta" },
+  { label: "Tangerang & BSD", href: "/konveksi-kaos-tangerang" },
+  { label: "Bekasi & Cikarang", href: "/konveksi-kaos-bekasi" },
+  { label: "Depok & Margonda", href: "/konveksi-kaos-depok" },
+  { label: "Bogor & Sentul", href: "/konveksi-kaos-bogor" },
 ];
 
 const footerLinkClass = [

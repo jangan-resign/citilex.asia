@@ -9,7 +9,7 @@ import PricingPoloSection from "../home/PricingPoloSection";
 import WorkflowSection from "../home/WorkflowSection";
 import CtaSection from "../home/CtaSection";
 import MoneyPageFaqSection from "./MoneyPageFaqSection";
-import { seoServicePages, type SeoMoneyPage } from "../../../lib/seo-pages";
+import { seoServicePages, seoLocationPages, type SeoMoneyPage } from "../../../lib/seo-pages";
 import { getMoneyPageJsonLd } from "../../../lib/json-ld";
 
 const heroCtaClass = [
@@ -57,7 +57,8 @@ interface MoneyPageTemplateProps {
 }
 
 export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
-  const relatedPages = seoServicePages.filter((item) => item.slug !== page.slug);
+  const relatedServices = seoServicePages.filter((item) => item.slug !== page.slug);
+  const relatedLocations = seoLocationPages.filter((item) => item.slug !== page.slug);
 
   return (
     <div className="min-h-screen bg-white text-brand-primary selection:bg-brand-primary selection:text-brand-white">
@@ -288,9 +289,9 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
         {/* SECTION 6: FAQ SPESIFIK */}
         <MoneyPageFaqSection faqs={page.faqs} />
 
-        {/* SECTION 7: INTERNAL LINKING KE LAYANAN B2B TERKAIT */}
+        {/* SECTION 7: INTERNAL LINKING KE LAYANAN & WILAYAH B2B TERKAIT */}
         <section className="py-16 md:py-20 px-6 md:px-12 bg-white">
-          <div className="max-w-[1280px] mx-auto space-y-10">
+          <div className="max-w-[1280px] mx-auto space-y-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="space-y-2">
                 <span className="inline-block text-xs font-bold tracking-[0.24em] text-brand-onyx/75 uppercase">
@@ -309,7 +310,7 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedPages.map((rel) => (
+              {relatedServices.map((rel) => (
                 <Link key={rel.slug} href={`/${rel.slug}`} className={relatedCardClass}>
                   <div className="space-y-2">
                     <span className="block text-[10px] font-bold tracking-[0.2em] uppercase text-brand-gold">
@@ -323,6 +324,31 @@ export default function MoneyPageTemplate({ page }: MoneyPageTemplateProps) {
                   <ArrowUpRight className="w-4 h-4 shrink-0 text-brand-primary mt-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               ))}
+            </div>
+
+            <div className="space-y-6 pt-8 border-t border-brand-platinum">
+              <h3 className="text-sm font-extrabold tracking-[0.18em] uppercase text-brand-primary">
+                Area Layanan Wilayah Jabodetabek
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {relatedLocations.map((loc) => (
+                  <Link
+                    key={loc.slug}
+                    href={`/${loc.slug}`}
+                    className="group flex items-center justify-between gap-3 px-5 py-4 bg-brand-snow border border-brand-platinum hover:border-brand-primary hover:bg-white transition-all"
+                  >
+                    <div>
+                      <span className="block text-xs font-extrabold uppercase tracking-wider text-brand-primary group-hover:underline underline-offset-4">
+                        {loc.breadcrumbLabel}
+                      </span>
+                      <span className="block text-[11px] text-brand-onyx/75 mt-0.5">
+                        {loc.h1Highlight}
+                      </span>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 shrink-0 text-brand-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>

@@ -1,11 +1,11 @@
 import { MetadataRoute } from "next";
-import { seoServicePages } from "../lib/seo-pages";
+import { allSeoMoneyPages } from "../lib/seo-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://citilex.asia";
   const now = new Date();
 
-  const serviceEntries: MetadataRoute.Sitemap = seoServicePages.map((page) => ({
+  const moneyPageEntries: MetadataRoute.Sitemap = allSeoMoneyPages.map((page) => ({
     url: `${baseUrl}/${page.slug}`,
     lastModified: now,
     changeFrequency: "weekly",
@@ -19,7 +19,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1.0,
     },
-    ...serviceEntries,
+    ...moneyPageEntries,
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/tentang-kami`,
       lastModified: now,

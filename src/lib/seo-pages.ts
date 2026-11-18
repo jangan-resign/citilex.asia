@@ -5,7 +5,13 @@ export type SeoPageSlug =
   | "polo-shirt-custom"
   | "kaos-gathering-kantor"
   | "seragam-kerja-polo-shirt"
-  | "kaos-event-promosi";
+  | "kaos-event-promosi"
+  | "konveksi-kaos-jakarta-selatan"
+  | "konveksi-kaos-jakarta"
+  | "konveksi-kaos-tangerang"
+  | "konveksi-kaos-bekasi"
+  | "konveksi-kaos-depok"
+  | "konveksi-kaos-bogor";
 
 export interface SeoHighlightItem {
   title: string;
@@ -564,8 +570,619 @@ export const seoServicePages: SeoMoneyPage[] = [
   },
 ];
 
+export const seoLocationPages: SeoMoneyPage[] = [
+  {
+    slug: "konveksi-kaos-jakarta-selatan",
+    category: "location",
+    metaTitle: "Konveksi Kaos & Vendor Polo Shirt Jakarta Selatan (Bintaro) | CITILEX ASIA",
+    metaDescription:
+      "Vendor & konveksi kaos custom, polo shirt bordir, dan seragam kantor di Jakarta Selatan. Rep. Office resmi PT Nusa Garment Indonesia di Bintaro Pesanggrahan — melayani SCBD, TB Simatupang, Kuningan, & Pondok Indah minimal 50 pcs.",
+    keywords: [
+      "konveksi kaos jakarta selatan",
+      "vendor kaos bintaro",
+      "bikin kaos custom scbd tb simatupang",
+      "konveksi polo shirt jakarta selatan",
+      "vendor seragam kantor bintaro pesanggrahan",
+    ],
+    breadcrumbLabel: "Jakarta Selatan",
+    eyebrow: "JAKARTA REPRESENTATIVE OFFICE • BINTARO",
+    h1Primary: "Konveksi Kaos Jakarta Selatan",
+    h1Highlight: "Rep. Office Bintaro untuk Korporat & Event",
+    heroDescription:
+      "Berlokasi strategis di Jl. Bintaro Tengah Blok J4 No.12, Pesanggrahan, Jakarta Selatan. CITILEX ASIA melayani pengadaan kaos custom & polo shirt bordir minimal 50 pcs untuk perkantoran TB Simatupang, SCBD, Kuningan, Kemang, hingga Pondok Indah dengan opsi konsultasi sampel kain langsung.",
+    waMessage:
+      "Halo CITILEX ASIA, kami berlokasi di Jakarta Selatan dan ingin konsultasi pembuatan kaos/polo custom (minimal 50 pcs). Apakah bisa koordinasi via Rep. Office Bintaro?",
+    heroImage: "/lia-karina.png",
+    heroImageAlt: "Konveksi kaos dan polo shirt Jakarta Selatan Bintaro CITILEX ASIA",
+    badgeTopTitle: "KANTOR PERWAKILAN",
+    badgeTopValue: "Bintaro, Jakarta Selatan",
+    badgeBottomTitle: "LAYANAN KORPORAT",
+    badgeBottomValue: "SCBD, Kuningan, Simatupang",
+    pricingMode: "both",
+    highlightsTitle: "Keunggulan Pesan dari Rep. Office Jakarta Selatan",
+    highlights: [
+      {
+        title: "Konsultasi & Cek Sampel di Bintaro",
+        desc: "Tim procurement dan panitia acara di area Jakarta Selatan dapat membuat janji temu di kantor Bintaro Pesanggrahan untuk memegang langsung tekstur Cotton Combed, Bamboo, dan Lacoste.",
+      },
+      {
+        title: "Siap Administrasi Vendor Korporat",
+        desc: "Terbiasa menangani pengadaan perusahaan multinasional, startup, perbankan, hingga BUMN di koridor Sudirman–SCBD–TB Simatupang dengan dokumen SPH dan Invoice resmi PT.",
+      },
+      {
+        title: "Pengiriman Cepat ke Kantor Pusat",
+        desc: "Pesanan yang lolos QC dikirim langsung ke gedung perkantoran Jakarta Selatan lengkap dengan pemilahan ukuran sehingga panitia tinggal mendistribusikan ke karyawan.",
+      },
+    ],
+    editorialTitle: "Melayani Kawasan Bisnis Utama Jakarta Selatan",
+    editorialSubtitle:
+      "Kombinasi kemudahan koordinasi tatap muka di Jakarta Selatan dan kapasitas pabrik terpusat memastikan hasil seragam perusahaan Anda seragam tanpa cacat.",
+    editorialPoints: [
+      {
+        label: "01 / KORIDOR TB SIMATUPANG & PONDOK INDAH",
+        title: "Akses Dekat dari Bintaro Pesanggrahan",
+        desc: "Hanya berjarak singkat melalui Tol JORR W2 untuk tim HRD perusahaan energi, konstruksi, dan perbankan di sepanjang TB Simatupang, Lebak Bulus, dan Pondok Indah.",
+      },
+      {
+        label: "02 / SCBD, SENOPATI & KUNINGAN",
+        title: "Kualitas Rapi Standar Eksekutif",
+        desc: "Kain Cotton Bamboo dan Polo Lacoste Diamond banyak dipilih kantor korporat SCBD dan Kuningan untuk townhall, merchandise klien, maupun acara peluncuran produk.",
+      },
+      {
+        label: "03 / KEMANG, PANCORAN & TEBET",
+        title: "Kaos Event Agency & Kreatif",
+        desc: "Mendukung kebutuhan agensi aktivasi brand dan event organizer dengan sablon DTF presisi warna tinggi maupun Plastisol solid untuk kampanye pemasaran.",
+      },
+      {
+        label: "04 / RE-ORDER BERKALA MUDAH",
+        title: "Arsip Pola & Warna Corporate",
+        desc: "Spesifikasi warna Pantone/kain serta setting file bordir komputer perusahaan Anda disimpan rapi untuk memudahkan pemesanan tambahan karyawan baru.",
+      },
+    ],
+    editorialSideBox: {
+      badge: "JAKARTA SELATAN HUB",
+      title: "Butuh Diskusi Sampel di Bintaro?",
+      desc: "Hubungi tim kami terlebih dahulu melalui WhatsApp untuk penjadwalan konsultasi di Jl. Bintaro Tengah Blok J4 No.12, Jakarta Selatan 12330.",
+      bullets: [
+        "Senin – Sabtu, 09:00 – 17:00 WIB",
+        "Mockup desain digital gratis sebelum produksi",
+        "Legalitas lengkap PT Nusa Garment Indonesia",
+      ],
+    },
+    faqs: [
+      {
+        question: "Apakah bisa datang langsung ke kantor Citilex Asia di Jakarta Selatan untuk cek bahan?",
+        answer:
+          "Bisa. Jakarta Representative Office kami berlokasi di Jl. Bintaro Tengah Blok J4 No.12, Bintaro, Pesanggrahan, Jakarta Selatan. Silakan konfirmasi jadwal kedatangan terlebih dahulu via WhatsApp (+62 813-2927-1515) agar tim kami menyiapkan sampel bahan.",
+      },
+      {
+        question: "Apakah pengiriman ke area SCBD, Kuningan, atau TB Simatupang bisa cepat?",
+        answer:
+          "Ya, setelah produksi selesai dan lolos QC, paket dikemas rapi per ukuran dan dikirim menggunakan kurir armada khusus ke gedung perkantoran atau lobi perusahaan Anda di seluruh Jakarta Selatan.",
+      },
+      {
+        question: "Berapa minimal pemesanan kaos & polo untuk kantor di Jakarta Selatan?",
+        answer:
+          "Minimal order standar kami adalah 50 pcs per desain, dengan fleksibilitas campur ukuran mulai XS, S, M, L, XL hingga ukuran Jumbo.",
+      },
+      {
+        question: "Apakah bisa menerbitkan SPH dan Invoice resmi atas nama perusahaan?",
+        answer:
+          "Tentu. Seluruh transaksi B2B diterbitkan secara resmi di bawah naungan PT Nusa Garment Indonesia untuk mempermudah proses approval finance perusahaan Anda.",
+      },
+    ],
+  },
+  {
+    slug: "konveksi-kaos-jakarta",
+    category: "location",
+    metaTitle: "Konveksi Kaos & Vendor Polo Custom DKI Jakarta | CITILEX ASIA",
+    metaDescription:
+      "Jasa konveksi kaos custom dan polo shirt bordir untuk seluruh wilayah DKI Jakarta (Jakarta Pusat, Jakarta Barat, Jakarta Timur, Jakarta Utara). Minimal 50 pcs, kapasitas skala besar & tepat waktu.",
+    keywords: [
+      "konveksi kaos jakarta",
+      "vendor polo shirt jakarta",
+      "pabrik kaos custom jakarta pusat barat timur utara",
+      "konveksi seragam kantor jakarta",
+      "bikin kaos event jakarta",
+    ],
+    breadcrumbLabel: "DKI Jakarta",
+    eyebrow: "DKI JAKARTA B2B HUB",
+    h1Primary: "Konveksi Kaos DKI Jakarta",
+    h1Highlight: "Pusat, Barat, Timur & Utara dalam Satu Pintu",
+    heroDescription:
+      "Melayani pengadaan kaos event, gathering, seminar, serta seragam polo shirt untuk perkantoran di Thamrin–Sudirman (Jakarta Pusat), Slipi–Puri Indah (Jakarta Barat), kawasan industri Pulogadung–Cakung (Jakarta Timur), hingga Sunter–Kelapa Gading–PIK (Jakarta Utara).",
+    waMessage:
+      "Halo CITILEX ASIA, perusahaan kami di area DKI Jakarta membutuhkan produksi kaos/polo custom. Mohon info paket harga dan estimasi pengiriman.",
+    heroImage: "/galeri3.png",
+    heroImageAlt: "Produksi kaos event dan perusahaan area DKI Jakarta CITILEX ASIA",
+    badgeTopTitle: "CAKUPAN WILAYAH",
+    badgeTopValue: "Pusat, Barat, Timur, Utara",
+    badgeBottomTitle: "KAPASITAS ORDER",
+    badgeBottomValue: "50 Pcs – Ribuan Potong",
+    pricingMode: "both",
+    highlightsTitle: "Solusi Konveksi Terstandar untuk Klien DKI Jakarta",
+    highlights: [
+      {
+        title: "Skala Ratusan hingga Ribuan Pcs",
+        desc: "Mendukung acara skala besar di GBK Senayan, JIExpo Kemayoran, JCC, maupun pengadaan seragam tahunan kantor pusat kementerian dan BUMN di Jakarta Pusat.",
+      },
+      {
+        title: "Koordinasi Digital Tanpa Macet",
+        desc: "Dari konsultasi kain, pembuatan mockup desain, hingga update progres produksi dapat dipantau praktis via WhatsApp atau janji temu di Rep. Office Jakarta Selatan.",
+      },
+      {
+        title: "Kualitas Terkontrol & Bergaransi Waktu",
+        desc: "Sistem produksi terpusat menjaga konsistensi warna kain dan kerapatan jahitan agar ribuan potong kaos tetap memiliki mutu seragam.",
+      },
+    ],
+    editorialTitle: "Cakupan Distribusi B2B di 4 Wilayah Utama Jakarta",
+    editorialSubtitle:
+      "Setiap kawasan bisnis di DKI Jakarta memiliki karakter kebutuhan apparel yang berbeda—kami menyiapkan spesifikasi yang tepat untuk masing-masing.",
+    editorialPoints: [
+      {
+        label: "01 / JAKARTA PUSAT (THAMRIN, MENTENG, KEMAYORAN)",
+        title: "Instansi, Kementerian & Event Exhibition",
+        desc: "Produksi seragam polo bordir instansi serta kaos panitia pameran/konferensi di JCC Senayan maupun JIExpo Kemayoran dengan ketepatan waktu ketat.",
+      },
+      {
+        label: "02 / JAKARTA BARAT (SLIPI, GROGOL, PURI INDAH)",
+        title: "Korporat Swasta, Kampus & Ritel",
+        desc: "Menangani kebutuhan kaos merchandise perusahaan ritel, seragam kampus di koridor Grogol, dan acara aktivasi brand di mal besar Jakarta Barat.",
+      },
+      {
+        label: "03 / JAKARTA TIMUR (PULOGADUNG, CAKUNG, MT HARYONO)",
+        title: "Kawasan Industri, Konstruksi & Logistik",
+        desc: "Pengadaan rutin polo shirt kerja berbahan Lacoste Pique tebal dan kaos lapangan karyawan pabrik maupun proyek infrastruktur di Jakarta Timur.",
+      },
+      {
+        label: "04 / JAKARTA UTARA (SUNTER, KELAPA GADING, PIK)",
+        title: "Perusahaan Otomotif, Pelabuhan & F&B",
+        desc: "Menyediakan seragam polo tim showroom otomotif, operasional logistik pelabuhan, hingga kaos promo komunitas otomotif & lifestyle di PIK dan Kelapa Gading.",
+      },
+    ],
+    editorialSideBox: {
+      badge: "JAKARTA B2B DELIVERY",
+      title: "Kirim ke Gedung Kantor atau Venue Event",
+      desc: "Sebutkan lokasi kantor atau gedung penyelenggaraan event Anda di Jakarta agar tim logistik kami menghitung jadwal tiba paling aman.",
+      bullets: [
+        "Minimal order 50 pcs per desain",
+        "Opsi Polyester, Combed, Bamboo & Lacoste",
+        "Support pengiriman ke venue pameran Jakarta",
+      ],
+    },
+    faqs: [
+      {
+        question: "Apakah bisa kirim langsung ke venue acara di Senayan, Kemayoran, atau gedung perkantoran Thamrin?",
+        answer:
+          "Ya, sangat sering kami lakukan. Kami bisa menjadwalkan pengiriman langsung ke panitia di lokasi pameran/hotel maupun ke bagian general affair kantor pusat Anda di seluruh DKI Jakarta.",
+      },
+      {
+        question: "Bagaimana jika desain kami butuh revisi sebelum diproduksi massal?",
+        answer:
+          "Sebelum masuk tahap potong kain, tim kami mengirimkan mockup digital resmi terlebih dahulu agar seluruh penempatan logo, ukuran sablon/bordir, dan warna kain disetujui penuh oleh tim Anda.",
+      },
+      {
+        question: "Apakah melayani order ekspres untuk acara mendadak di Jakarta?",
+        answer:
+          "Waktu pengerjaan standar adalah 3 hingga 21 hari kerja tergantung kuantitas dan kerumitan cetak. Jika acara Anda mendesak, konsultasikan tanggal hari-H Anda via WhatsApp agar kami cek slot produksi tercepat.",
+      },
+      {
+        question: "Jenis kaos apa yang paling laris dipesan perusahaan Jakarta?",
+        answer:
+          "Untuk event & gathering paling laris adalah Cotton Combed 30s dengan sablon DTF, sedangkan untuk seragam kantor paling banyak dipilih Polo Lacoste Pique dengan bordir komputer.",
+      },
+    ],
+  },
+  {
+    slug: "konveksi-kaos-tangerang",
+    category: "location",
+    metaTitle: "Konveksi Kaos Tangerang Selatan, BSD & Tangerang | CITILEX ASIA",
+    metaDescription:
+      "Vendor kaos custom dan polo shirt bordir terdekat untuk Tangerang Selatan (BSD City, Bintaro Jaya, Alam Sutera, Serpong) serta Tangerang Kota & kawasan industri. Minimal order 50 pcs.",
+    keywords: [
+      "konveksi kaos tangerang selatan",
+      "vendor kaos bsd city serpong",
+      "konveksi kaos bintaro jaya alam sutera",
+      "vendor seragam polo tangerang",
+      "bikin kaos custom tangerang",
+    ],
+    breadcrumbLabel: "Tangerang & Tangsel",
+    eyebrow: "TANGSEL, BSD & TANGERANG RAYA",
+    h1Primary: "Konveksi Kaos Tangerang & Tangsel",
+    h1Highlight: "Layanan Cepat untuk BSD, Bintaro Jaya & Alam Sutera",
+    heroDescription:
+      "Dari kantor perwakilan kami di perbatasan Bintaro Pesanggrahan, CITILEX ASIA sangat dekat menjangkau korporat dan komunitas di Bintaro Jaya, BSD City, Alam Sutera, Gading Serpong, hingga kawasan industri Tangerang Raya. Kualitas terukur minimal 50 pcs.",
+    waMessage:
+      "Halo CITILEX ASIA, kami dari area Tangerang/Tangsel (BSD/Bintaro/Alam Sutera) ingin konsultasi pembuatan kaos/polo custom minimal 50 pcs.",
+    heroImage: "/galeri5.png",
+    heroImageAlt: "Konveksi kaos custom area Tangerang Selatan BSD Bintaro Jaya CITILEX ASIA",
+    badgeTopTitle: "JARAK TERDEKAT",
+    badgeTopValue: "Bersebelahan Bintaro Jaya",
+    badgeBottomTitle: "AREA PRIORITAS",
+    badgeBottomValue: "BSD, Serpong, Cikupa, Bandara",
+    pricingMode: "both",
+    highlightsTitle: "Kenapa Perusahaan di Tangerang & Tangsel Memilih Citilex",
+    highlights: [
+      {
+        title: "Lokasi Berbatasan Langsung dengan Tangsel",
+        desc: "Kantor Rep. Office kami di Bintaro Tengah hanya selangkah dari Bintaro Jaya dan akses tol Serpong–Pondok Aren, memudahkan koordinasi cek sampel bahan.",
+      },
+      {
+        title: "Melayani Kawasan Digital Hub & Perkantoran Modern",
+        desc: "Mendukung perusahaan teknologi di BSD Green Office Park, perusahaan properti, bank, serta event berskala besar di ICE BSD City.",
+      },
+      {
+        title: "Pengerjaan Massal untuk Industri Tangerang",
+        desc: "Siap melayani pengadaan seragam kerja polo shirt dan kaos karyawan pabrik di kawasan industri Cikupa, Jatake, Curug, dan Bandara Soekarno-Hatta.",
+      },
+    ],
+    editorialTitle: "Cakupan Layanan Konveksi Tangerang & Tangerang Selatan",
+    editorialSubtitle:
+      "Menjawab kebutuhan event pameran modern di BSD/Serpong hingga pengadaan seragam pabrik berskala besar di Kabupaten Tangerang.",
+    editorialPoints: [
+      {
+        label: "01 / BINTARO JAYA & CIPUTAT",
+        title: "Koordinasi Paling Cepat & Praktis",
+        desc: "Jarak sangat dekat ke Rep. Office Bintaro memungkinkan tim HRD, sekolah, maupun kampus di Ciputat dan Bintaro Jaya berkonsultasi tanpa hambatan jarak.",
+      },
+      {
+        label: "02 / BSD CITY & ICE BSD EXHIBITION",
+        title: "Kaos Event, Startup & Tenant Pameran",
+        desc: "Produksi cepat kaos Cotton Combed & Bamboo untuk kebutuhan peserta seminar, kru pameran di ICE BSD, maupun seragam santai startup digital.",
+      },
+      {
+        label: "03 / ALAM SUTERA & GADING SERPONG",
+        title: "Seragam Polo Bordir & Komunitas",
+        desc: "Polo Lacoste Pique dan Diamond berbordir rapi untuk dealer otomotif, perusahaan properti, sekolah internasional, serta komunitas olahraga di Serpong.",
+      },
+      {
+        label: "04 / TANGERANG KOTA, JATAKE & CIKUPA",
+        title: "Kaos Karyawan & Seragam Pabrik",
+        desc: "Pilihan paket ekonomis hingga menengah untuk pengadaan ratusan hingga ribuan seragam kerja pabrik dan gudang distribusi logistik Tangerang.",
+      },
+    ],
+    editorialSideBox: {
+      badge: "TANGERANG RAYA SERVICE",
+      title: "Persiapan Acara di ICE BSD atau Kantor Tangsel?",
+      desc: "Konsultasikan desain, pilihan bahan, dan jumlah pesanan minimal 50 pcs Anda sekarang agar tim kami dapat menyiapkan estimasi lengkap.",
+      bullets: [
+        "Dekat dari Bintaro Jaya, BSD & Serpong",
+        "Kualitas sablon DTF & bordir komputer presisi",
+        "Paket harga mulai Rp 55.000 – Rp 119.000/pcs",
+      ],
+    },
+    faqs: [
+      {
+        question: "Seberapa dekat kantor perwakilan Citilex dengan area Bintaro Jaya dan BSD?",
+        answer:
+          "Kantor perwakilan kami berada di Jl. Bintaro Tengah Blok J4 No.12, Pesanggrahan — tepat di perbatasan Bintaro Jaya Sektor 1/2 dan terhubung langsung ke akses Tol Pondok Aren–Serpong menuju BSD.",
+      },
+      {
+        question: "Apakah bisa antar pesanan langsung ke gedung perkantoran di BSD atau ICE BSD?",
+        answer:
+          "Ya, kami melayani pengantaran langsung ke kantor Anda di kawasan BSD, Alam Sutera, Gading Serpong, maupun langsung ke venue pameran seperti ICE BSD City.",
+      },
+      {
+        question: "Bahan apa yang cocok untuk seragam perusahaan manufaktur di Cikupa atau Jatake?",
+        answer:
+          "Untuk operasional lapangan atau pabrik kami menyarankan Polo Lacoste Pique (kokoh dan tetap sejuk) atau kaos Cotton Combed 24s/30s yang menyerap keringat.",
+      },
+      {
+        question: "Apakah tersedia ukuran besar (Jumbo) untuk seragam karyawan?",
+        answer:
+          "Tersedia. Ukuran standar Asia kami meliputi XS hingga XL, serta melayani ukuran Big Size/Jumbo mulai 2XL ke atas sesuai rekap ukuran karyawan Anda.",
+      },
+    ],
+  },
+  {
+    slug: "konveksi-kaos-bekasi",
+    category: "location",
+    metaTitle: "Konveksi Kaos Bekasi & Kawasan Industri Cikarang | CITILEX ASIA",
+    metaDescription:
+      "Vendor & konveksi kaos custom, polo shirt bordir, dan seragam karyawan pabrik skala besar untuk area Bekasi Kota serta kawasan industri Cikarang (Jababeka, MM2100, EJIP, Delta Silicon).",
+    keywords: [
+      "konveksi kaos bekasi",
+      "vendor seragam cikarang",
+      "konveksi polo shirt jababeka mm2100",
+      "pabrik kaos karyawan bekasi cikarang",
+      "bikin kaos family day perusahaan bekasi",
+    ],
+    breadcrumbLabel: "Bekasi & Cikarang",
+    eyebrow: "BEKASI & CIKARANG INDUSTRIAL CORRIDOR",
+    h1Primary: "Konveksi Kaos Bekasi & Cikarang",
+    h1Highlight: "Spesialis Order Skala Besar Pabrik & Industri",
+    heroDescription:
+      "Mendukung kebutuhan seragam kerja polo shirt, kaos family day karyawan, serta peringatan HUT perusahaan di kawasan industri Bekasi, Tambun, hingga Cikarang (Jababeka, MM2100, EJIP, Delta Silicon, GIIC). Kapasitas teruji ribuan pcs dengan legalitas PT lengkap.",
+    waMessage:
+      "Halo CITILEX ASIA, perusahaan/pabrik kami di area Bekasi/Cikarang membutuhkan pengadaan kaos atau polo shirt jumlah besar. Mohon info SPH resmi & harganya.",
+    heroImage: "/galeri3.png",
+    heroImageAlt: "Konveksi kaos perusahaan dan industri Bekasi Cikarang CITILEX ASIA",
+    badgeTopTitle: "KORIDOR INDUSTRI",
+    badgeTopValue: "Jababeka, MM2100, EJIP, GIIC",
+    badgeBottomTitle: "VOLUME PRODUKSI",
+    badgeBottomValue: "50 Pcs hingga Ribuan Pcs",
+    pricingMode: "both",
+    highlightsTitle: "Keunggulan untuk Procurement Pabrik Bekasi & Cikarang",
+    highlights: [
+      {
+        title: "Terbiasa Order Kuantitas Ribuan Potong",
+        desc: "Pengadaan kaos family day buruh/karyawan atau pembagian seragam tahunan pabrik membutuhkan vendor yang mampu menjaga konsistensi warna dan jahitan di angka ribuan pcs.",
+      },
+      {
+        title: "Bordir & Sablon Tahan Lama untuk Kerja",
+        desc: "Aplikasi bordir komputer rapat untuk logo pabrik di dada dan punggung polo shirt, serta opsi sablon Plastisol yang tidak mudah pecah meski sering dicuci.",
+      },
+      {
+        title: "Dokumen Pengadaan Korporat Lengkap",
+        desc: "Setiap penawaran dilengkapi Surat Penawaran Harga (SPH) dan Invoice resmi di bawah badan hukum PT Nusa Garment Indonesia sesuai prosedur bagian purchasing pabrik.",
+      },
+    ],
+    editorialTitle: "Melayani Kawasan Industri & Bisnis Bekasi – Cikarang",
+    editorialSubtitle:
+      "Dari pengadaan seragam kerja harian di lini manufaktur hingga kaos event HUT perusahaan berskala ribuan peserta.",
+    editorialPoints: [
+      {
+        label: "01 / KAWASAN MM2100 & CIBITUNG",
+        title: "Seragam Polo Kerja & Operasional Gudang",
+        desc: "Bahan Lacoste Pique dan Diamond berpori menjaga kenyamanan staf produksi, supervisor, serta operator logistik sepanjang shift kerja.",
+      },
+      {
+        label: "02 / JABABEKA, EJIP & DELTA SILICON CIKARANG",
+        title: "Kaos Family Day & Anniversary Pabrik",
+        desc: "Menyediakan Cotton Combed 30s maupun Polyester ekonomis untuk acara jalan sehat dan family day ribuan karyawan beserta keluarganya (tersedia ukuran anak hingga Jumbo).",
+      },
+      {
+        label: "03 / BEKASI KOTA & HARAPAN INDAH",
+        title: "Komersial, Perbankan & Event Olahraga",
+        desc: "Melayani kantor cabang perusahaan, dealer, instansi, dan komunitas olahraga di wilayah Bekasi Barat, Summarecon Bekasi, hingga Pondok Gede.",
+      },
+      {
+        label: "04 / PACKING TERLABEL & PENGIRIMAN CARGO",
+        title: "Siap Kirim ke Area Pabrik Cikarang",
+        desc: "Pesanan dikemas dalam dus karton rapi dengan label ukuran per divisi/departemen sehingga tim HRD pabrik mudah mendistribusikannya.",
+      },
+    ],
+    editorialSideBox: {
+      badge: "PURCHASING & HRD CIKARANG",
+      title: "Minta Penawaran Harga untuk Tender atau Order Besar",
+      desc: "Kirimkan perkiraan jumlah pcs, jenis bahan, dan titik bordir/sablon ke WhatsApp kami untuk mendapatkan penawaran harga khusus volume besar.",
+      bullets: [
+        "Teruji proyek hingga 5.200+ pcs per order",
+        "Bisa terbitkan SPH & Invoice resmi PT",
+        "Kualitas QC ketat pada seluruh batch pengiriman",
+      ],
+    },
+    faqs: [
+      {
+        question: "Apakah Citilex Asia berpengalaman mengerjakan order ribuan pcs untuk pabrik?",
+        answer:
+          "Ya. Dalam dokumentasi portofolio kami, Citilex Asia telah dipercaya mengerjakan proyek korporasi hingga 5.200 pcs dalam satu project (Adhi Karya) serta ribuan pcs untuk berbagai brand nasional.",
+      },
+      {
+        question: "Apakah bisa mengirimkan SPH resmi terlebih dahulu untuk diajukan ke manajemen pabrik?",
+        answer:
+          "Bisa. Informasikan nama perusahaan, alamat pabrik di Bekasi/Cikarang, spesifikasi kaos/polo, serta jumlah kebutuhan Anda agar tim sales kami menerbitkan dokumen SPH resmi PT Nusa Garment Indonesia.",
+      },
+      {
+        question: "Untuk acara Family Day ribuan peserta, apakah tersedia ukuran anak sampai Jumbo?",
+        answer:
+          "Ya, pengadaan kaos Family Day perusahaan bisa menggabungkan ukuran anak, dewasa XS–XL, hingga Big Size Jumbo (2XL ke atas) dalam satu batch produksi.",
+      },
+      {
+        question: "Bagaimana sistem pengemasan untuk pengiriman ke kawasan industri Cikarang?",
+        answer:
+          "Seluruh produk dilipat rapi dalam plastik satuan dan dipisahkan per ukuran dalam kardus terlabel agar bagian GA/HRD mudah melakukan serah terima dan pembagian per divisi.",
+      },
+    ],
+  },
+  {
+    slug: "konveksi-kaos-depok",
+    category: "location",
+    metaTitle: "Konveksi Kaos Depok & Sekitarnya | CITILEX ASIA",
+    metaDescription:
+      "Vendor konveksi kaos custom & polo shirt bordir melayani Depok, Margonda, Kampus UI, Cimanggis, Cinere, dan Sawangan. Minimal 50 pcs, cocok untuk panitia kampus, seminar, sekolah, & instansi.",
+    keywords: [
+      "konveksi kaos depok",
+      "vendor kaos acara kampus depok",
+      "bikin kaos panitia margonda",
+      "konveksi polo shirt depok",
+      "vendor kaos reuni seminar depok",
+    ],
+    breadcrumbLabel: "Depok",
+    eyebrow: "DEPOK, MARGONDA & PENDIDIKAN",
+    h1Primary: "Konveksi Kaos Depok",
+    h1Highlight: "Event Kampus, Instansi, Seminar & Komunitas",
+    heroDescription:
+      "Melayani produksi kaos kepanitiaan universitas, seminar nasional, reuni alumni, seragam yayasan sekolah, hingga event perusahaan di wilayah Margonda, Kampus UI, Cinere, Cimanggis, dan Sawangan. Minimum order 50 pcs dengan kualitas sablon DTF & jahitan rantai rapi.",
+    waMessage:
+      "Halo CITILEX ASIA, kami dari area Depok ingin pesan kaos/polo custom untuk acara/instansi (minimal 50 pcs). Mohon info daftar paket dan estimasi jadinya.",
+    heroImage: "/galeri6.png",
+    heroImageAlt: "Konveksi kaos acara kampus, komunitas dan instansi di Depok CITILEX ASIA",
+    badgeTopTitle: "TARGET KEBUTUHAN",
+    badgeTopValue: "Kampus, Yayasan, Seminar, Instansi",
+    badgeBottomTitle: "HARGA BERSAHABAT",
+    badgeBottomValue: "Mulai Rp 55.000 /pcs",
+    pricingMode: "both",
+    highlightsTitle: "Solusi Konveksi Kaos & Polo Tepercaya untuk Area Depok",
+    highlights: [
+      {
+        title: "Hasil Sablon Distro untuk Acara Kampus",
+        desc: "Desain visual acara mahasiswa, himpunan, maupun festival seni tercetak penuh warna secara presisi menggunakan teknologi sablon DTF atau Plastisol di atas Cotton Combed 30s/24s.",
+      },
+      {
+        title: "Tepat Waktu Mengikuti Kalender Acara",
+        desc: "Jadwal produksi transparan mulai 3–21 hari kerja (menyesuaikan kuantitas) menjaga kepastian agar kaos panitia dan peserta siap sebelum pembukaan acara.",
+      },
+      {
+        title: "Dekat dengan Akses Cinere – Jakarta Selatan",
+        desc: "Lokasi perwakilan Bintaro dapat dijangkau dengan mudah via Tol Brigif / Desari bagi koordinator acara dari Cinere, Limo, maupun Margonda.",
+      },
+    ],
+    editorialTitle: "Ragam Kebutuhan Apparel Custom di Wilayah Depok",
+    editorialSubtitle:
+      "Fleksibilitas bahan mulai dari paket hemat acara publik hingga kualitas premium untuk suvenir pembicara dan alumni.",
+    editorialPoints: [
+      {
+        label: "01 / KAWASAN KAMPUS MARGONDA & UI",
+        title: "Kaos Panitia, BEM, Seminar & Festival",
+        desc: "Cotton Combed 30s dan 24s paling diminati mahasiswa untuk kaos kepanitiaan, merchandise wisuda, serta acara seminar berskala regional maupun nasional.",
+      },
+      {
+        label: "02 / YAYASAN PENDIDIKAN & SEKOLAH",
+        title: "Kaos Olahraga, Outing & Seragam Polo Guru",
+        desc: "Berpengalaman memproduksi kaos murid maupun seragam polo bordir bagi guru dan staf sekolah (seperti proyek SDIT BIKA sebanyak 400 pcs).",
+      },
+      {
+        label: "03 / REUNI ALUMNI & KOMUNITAS DEPOK",
+        title: "Ukuran Lengkap untuk Lintas Usia",
+        desc: "Mendukung rekap ukuran beragam dari S hingga Jumbo serta pilihan kaos lengan panjang dan hijab-friendly untuk reuni alumni angkatan.",
+      },
+      {
+        label: "04 / BANTUAN MOCKUP DESAIN",
+        title: "Penyempurnaan Desain Sketsa Panitia",
+        desc: "Belum punya file vektor siap cetak? Kirimkan konsep atau referensi warna agar tim desain kami menyusun mockup digital siap ACC tanpa biaya tambahan.",
+      },
+    ],
+    editorialSideBox: {
+      badge: "DEPOK EVENT & CAMPUS SUPPORT",
+      title: "Hitung Budget Kaos Panitia atau Reuni Sekarang",
+      desc: "Konsultasikan estimasi jumlah pesanan dan anggaran per pcs Anda bersama tim kami di WhatsApp untuk rekomendasi bahan terbaik.",
+      bullets: [
+        "MOQ 50 pcs (bebas campur ukuran & lengan)",
+        "Tersedia Cotton Combed 30s/24s hingga PE hemat",
+        "Gratis pembuatan mockup digital awal",
+      ],
+    },
+    faqs: [
+      {
+        question: "Apakah bisa pesan kaos panitia acara kampus dengan desain full color banyak warna?",
+        answer:
+          "Sangat bisa. Kami menggunakan sablon DTF resolusi tinggi yang mampu mencetak ilustrasi penuh warna, gradasi, dan banyak logo media partner tanpa biaya tambahan per warna.",
+      },
+      {
+        question: "Apakah melayani kaos sekolah atau yayasan lengkap dengan sablon nama angkatan?",
+        answer:
+          "Ya, seperti proyek 400 pcs kaos SDIT BIKA pada portofolio kami. Tersedia pilihan lengan panjang maupun pendek untuk kenyamanan siswa dan guru.",
+      },
+      {
+        question: "Berapa minimal pemesanan jika panitia acara kami baru butuh 50–100 pcs?",
+        answer:
+          "Minimal order standar kami tepat di angka 50 pcs per desain, sehingga sangat cocok untuk kebutuhan panitia divisi, komunitas, maupun acara alumni.",
+      },
+      {
+        question: "Berapa biaya kirim ke daerah Margonda, Cinere, atau Sawangan?",
+        answer:
+          "Biaya pengiriman disesuaikan volume berat kemasan menggunakan kurir/ekspedisi reguler atau kargo Jakarta–Depok yang cepat sampai dalam hitungan jam hingga hari yang sama setelah barang dikirim dari hub.",
+      },
+    ],
+  },
+  {
+    slug: "konveksi-kaos-bogor",
+    category: "location",
+    metaTitle: "Konveksi Kaos Bogor, Sentul & Outing Puncak | CITILEX ASIA",
+    metaDescription:
+      "Vendor kaos gathering kantor, outing, family day, dan polo shirt bordir untuk perusahaan di Bogor Kota, Sentul, Cibinong, hingga venue acara Puncak. Minimal 50 pcs, kain adem & pengiriman tepat waktu.",
+    keywords: [
+      "konveksi kaos bogor",
+      "vendor kaos gathering sentul puncak",
+      "bikin kaos outing bogor",
+      "konveksi polo shirt bogor cibinong",
+      "kaos raker perusahaan sentul",
+    ],
+    breadcrumbLabel: "Bogor & Sentul",
+    eyebrow: "BOGOR, SENTUL & OUTING PUNCAK HUB",
+    h1Primary: "Konveksi Kaos Bogor & Sentul",
+    h1Highlight: "Outing Kantor, Gathering Puncak & Industri",
+    heroDescription:
+      "Menangani pembuatan kaos gathering, seragam outing/team building, serta polo shirt rapat kerja untuk perusahaan yang berlokasi di Bogor–Cibinong–Gunung Putri maupun kantor Jakarta yang menggelar acara di Sentul dan Puncak. Kain adem menyerap keringat dengan garansi kirim sebelum hari-H.",
+    waMessage:
+      "Halo CITILEX ASIA, kami membutuhkan kaos/polo untuk acara gathering di area Bogor/Sentul/Puncak (minimal 50 pcs). Mohon info rekomendasi bahan dan jadwal kirimnya.",
+    heroImage: "/galeri5.png",
+    heroImageAlt: "Kaos gathering dan outing kantor area Bogor Sentul Puncak CITILEX ASIA",
+    badgeTopTitle: "SPESIALIS ACARA",
+    badgeTopValue: "Gathering Sentul & Puncak",
+    badgeBottomTitle: "REKOMENDASI KAIN",
+    badgeBottomValue: "Combed 30s & Lacoste Pique",
+    pricingMode: "both",
+    highlightsTitle: "Solusi Konveksi Kaos untuk Bogor, Sentul & Venue Puncak",
+    highlights: [
+      {
+        title: "Nyaman di Iklim Lembap maupun Aktivitas Outbond",
+        desc: "Cotton Combed 30s dan Cotton Bamboo terasa sejuk saat aktivitas team building siang hari, sementara Polo Lacoste Pique menjaga tampilan rapi di ruang konferensi hotel Sentul/Bogor.",
+      },
+      {
+        title: "Opsi Pengiriman ke Kantor atau Langsung ke Hotel/Resort",
+        desc: "Fleksibel dikirim ke kantor Jakarta sebelum rombongan berangkat, atau dikirim langsung ke panitia di hotel/villa lokasi acara di Sentul maupun Puncak.",
+      },
+      {
+        title: "Layanan Industri & Instansi Bogor",
+        desc: "Juga melayani pemesanan seragam kerja perusahaan manufaktur di koridor Cibinong, Citeureup, dan Gunung Putri serta lembaga riset dan pendidikan di Bogor Kota.",
+      },
+    ],
+    editorialTitle: "Kebutuhan Apparel Khusus Area Bogor, Sentul & Puncak",
+    editorialSubtitle:
+      "Memastikan acara gathering perusahaan maupun operasional industri di Bogor berjalan lancar dengan apparel yang tepat fungsi.",
+    editorialPoints: [
+      {
+        label: "01 / SENTUL CITY & SICC MEETING HUB",
+        title: "Polo Shirt Raker & Gala Dinner Korporat",
+        desc: "Kombinasi seragam polo bordir logo perusahaan berbahan Lacoste Pique untuk sesi rapat kerja siang dan kegiatan team building bersama.",
+      },
+      {
+        label: "02 / PUNCAK, CIAWI & PANCAR",
+        title: "Kaos Outing, Lengan Panjang & Team Building",
+        desc: "Pilihan kaos Cotton Combed 30s lengan panjang atau pendek yang lembut di kulit dan nyaman untuk udara sejuk pegunungan.",
+      },
+      {
+        label: "03 / CIBINONG, CITEUREUP & GUNUNG PUTRI",
+        title: "Seragam Pabrik & Perusahaan Logistik",
+        desc: "Pengadaan ratusan hingga ribuan pcs seragam karyawan pabrik dengan standar jahitan kuat serta dokumen penawaran B2B resmi PT.",
+      },
+      {
+        label: "04 / BOGOR KOTA & KAMPUS",
+        title: "Kaos Komunitas, Seminar & Event Publik",
+        desc: "Paket Polyester mulai Rp 55.000 hingga Cotton Bamboo Rp 89.000 untuk jalan sehat, peringatan instansi, dan acara mahasiswa di Bogor.",
+      },
+    ],
+    editorialSideBox: {
+      badge: "OUTING & GATHERING READY",
+      title: "Booking Slot Produksi Sebelum Tanggal Keberangkatan",
+      desc: "Beritahukan tanggal acara Anda di Bogor, Sentul, atau Puncak serta estimasi jumlah peserta lewat WhatsApp untuk mengunci timeline pengerjaan.",
+      bullets: [
+        "Bisa kirim ke kantor pusat atau hotel lokasi acara",
+        "Tersedia opsi kaos oblong + polo dalam 1 event",
+        "Minimal order 50 pcs per desain",
+      ],
+    },
+    faqs: [
+      {
+        question: "Apakah bisa kirim kaos gathering langsung ke hotel di Sentul atau Puncak?",
+        answer:
+          "Bisa. Banyak klien kami dari Jakarta meminta barang dikirim ke kantor H-3 keberangkatan atau langsung ke resepsionis/panitia di hotel lokasi acara area Bogor dan Sentul.",
+      },
+      {
+        question: "Apakah tersedia kaos lengan panjang untuk udara dingin di Puncak?",
+        answer:
+          "Ya, seluruh bahan kaos (Polyester, Cotton Combed 30s/24s, Cotton Bamboo) maupun Polo Shirt dapat dipesan dalam varian lengan panjang sesuai kebutuhan peserta.",
+      },
+      {
+        question: "Jika perusahaan kami memesan 100 kaos outing dan 100 polo raker sekaligus, apakah bisa?",
+        answer:
+          "Sangat bisa. Dengan masing-masing memenuhi minimal order 50 pcs per desain/model, kami dapat memproduksi paket kaos outdoor dan polo formal sekaligus agar seragam acara Anda selaras.",
+      },
+      {
+        question: "Kapan sebaiknya mulai order untuk acara gathering bulan depan?",
+        answer:
+          "Sebaiknya hubungi kami minimal 2–3 minggu sebelum hari keberangkatan agar tersedia waktu ideal untuk persetujuan mockup, pendataan ukuran peserta, produksi, dan QC pengiriman.",
+      },
+    ],
+  },
+];
+
+export const allSeoMoneyPages: SeoMoneyPage[] = [...seoServicePages, ...seoLocationPages];
+
 export function getSeoPageBySlug(slug: string): SeoMoneyPage | undefined {
-  return seoServicePages.find((page) => page.slug === slug);
+  return allSeoMoneyPages.find((page) => page.slug === slug);
 }
 
 export function getSeoPageMetadata(slug: SeoPageSlug): Metadata {

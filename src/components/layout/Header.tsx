@@ -36,6 +36,39 @@ const serviceMenuItems = [
   },
 ];
 
+const areaMenuItems = [
+  {
+    label: "Jakarta Selatan (Bintaro)",
+    desc: "Rep. Office, SCBD, Simatupang",
+    href: "/konveksi-kaos-jakarta-selatan",
+  },
+  {
+    label: "DKI Jakarta",
+    desc: "Pusat, Barat, Timur & Utara",
+    href: "/konveksi-kaos-jakarta",
+  },
+  {
+    label: "Tangerang & BSD",
+    desc: "Tangsel, Bintaro Jaya & Serpong",
+    href: "/konveksi-kaos-tangerang",
+  },
+  {
+    label: "Bekasi & Cikarang",
+    desc: "Jababeka, MM2100 & Industri",
+    href: "/konveksi-kaos-bekasi",
+  },
+  {
+    label: "Depok & Margonda",
+    desc: "Kampus, Yayasan & Instansi",
+    href: "/konveksi-kaos-depok",
+  },
+  {
+    label: "Bogor & Sentul",
+    desc: "Gathering Puncak & Industri",
+    href: "/konveksi-kaos-bogor",
+  },
+];
+
 const navLinkClass = [
   "relative py-2 text-xs font-bold tracking-[0.16em] uppercase",
   "text-brand-onyx hover:text-brand-primary",
@@ -74,7 +107,9 @@ export default function Header() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const isServiceActive = serviceMenuItems.some((item) => pathname === item.href);
+  const isServiceActive =
+    serviceMenuItems.some((item) => pathname === item.href) ||
+    areaMenuItems.some((item) => pathname === item.href);
 
   useEffect(() => {
     setIsLayananOpen(false);
@@ -159,34 +194,74 @@ export default function Header() {
               </button>
 
               {isLayananOpen && (
-                <div className="absolute left-0 top-full pt-3 w-80 z-50">
+                <div className="absolute left-0 top-full pt-3 w-[580px] z-50">
                   <div className={dropdownPanelClass}>
                     <div className="h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                    <div>
-                      {serviceMenuItems.map((item) => {
-                        const isItemActive = pathname === item.href;
-                        return (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            onClick={() => setIsLayananOpen(false)}
-                            className={[
-                              dropdownItemClass,
-                              isItemActive ? "bg-brand-snow" : "",
-                            ].join(" ")}
-                          >
-                            <div className="space-y-0.5">
-                              <span className="block text-xs font-extrabold tracking-wider uppercase text-brand-primary">
-                                {item.label}
-                              </span>
-                              <span className="block text-[11px] text-brand-onyx/75">
-                                {item.desc}
-                              </span>
-                            </div>
-                            <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-brand-onyx/70 group-hover:text-brand-primary mt-0.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                          </Link>
-                        );
-                      })}
+                    <div className="grid grid-cols-2 divide-x divide-brand-platinum">
+                      <div>
+                        <div className="px-5 py-2.5 bg-brand-snow border-b border-brand-platinum">
+                          <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-onyx/75">
+                            Layanan Produksi B2B
+                          </span>
+                        </div>
+                        {serviceMenuItems.map((item) => {
+                          const isItemActive = pathname === item.href;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setIsLayananOpen(false)}
+                              className={[
+                                dropdownItemClass,
+                                isItemActive ? "bg-brand-snow" : "",
+                              ].join(" ")}
+                            >
+                              <div className="space-y-0.5">
+                                <span className="block text-xs font-extrabold tracking-wider uppercase text-brand-primary">
+                                  {item.label}
+                                </span>
+                                <span className="block text-[11px] text-brand-onyx/75">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-brand-onyx/70 group-hover:text-brand-primary mt-0.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </Link>
+                          );
+                        })}
+                      </div>
+
+                      <div>
+                        <div className="px-5 py-2.5 bg-brand-snow border-b border-brand-platinum">
+                          <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-onyx/75">
+                            Area Jabodetabek
+                          </span>
+                        </div>
+                        {areaMenuItems.map((item) => {
+                          const isItemActive = pathname === item.href;
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setIsLayananOpen(false)}
+                              className={[
+                                dropdownItemClass,
+                                "py-3",
+                                isItemActive ? "bg-brand-snow" : "",
+                              ].join(" ")}
+                            >
+                              <div className="space-y-0.5">
+                                <span className="block text-xs font-extrabold tracking-wider uppercase text-brand-primary">
+                                  {item.label}
+                                </span>
+                                <span className="block text-[11px] text-brand-onyx/75">
+                                  {item.desc}
+                                </span>
+                              </div>
+                              <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-brand-onyx/70 group-hover:text-brand-primary mt-0.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -363,6 +438,36 @@ export default function Header() {
                         </span>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-brand-primary shrink-0" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Daftar 6 Area Wilayah Jabodetabek */}
+            <div className="space-y-2.5">
+              <span className="block text-[10px] font-bold tracking-[0.24em] uppercase text-brand-onyx/75">
+                Area Layanan Jabodetabek
+              </span>
+              <div className="grid grid-cols-2 border border-brand-platinum">
+                {areaMenuItems.map((item) => {
+                  const isItemActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMobileOpen(false)}
+                      className={[
+                        "p-3.5 border-b border-r border-brand-platinum transition-colors",
+                        isItemActive ? "bg-brand-snow" : "bg-white hover:bg-brand-snow",
+                      ].join(" ")}
+                    >
+                      <span className="block text-[11px] font-extrabold tracking-wider uppercase text-brand-primary">
+                        {item.label}
+                      </span>
+                      <span className="block text-[10px] text-brand-onyx/75 mt-0.5">
+                        {item.desc}
+                      </span>
                     </Link>
                   );
                 })}
