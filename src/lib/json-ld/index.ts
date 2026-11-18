@@ -184,3 +184,150 @@ export const getAboutPageJsonLd = () => {
     ]
   };
 };
+
+export interface BlogJsonLdInput {
+  slug: string;
+  title: string;
+  excerpt: string;
+  coverImage?: string | null;
+  category: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  authorName: string;
+  publishedAt?: Date | string | null;
+  updatedAt?: Date | string | null;
+  faqItems?: { question: string; answer: string }[];
+}
+
+function resolveAbsoluteUrl(url?: string | null): string {
+  if (!url) return "https://citilex.asia/og-image.png";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `https://citilex.asia${url.startsWith("/") ? url : `/${url}`}`;
+}
+
+export const getBlogIndexJsonLd = (posts: BlogJsonLdInput[]) => {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      OrganizationSchema,
+      LocalBusinessSchema,
+      {
+        "@type": "CollectionPage",
+        "@id": "https://citilex.asia/blog#webpage",
+        "url": "https://citilex.asia/blog",
+        "name": "Blog & Panduan Apparel B2B | CITILEX ASIA",
+        "description":
+          "Kumpulan panduan teknis bahan kain, sablon DTF vs Plastisol, bordir komputer polo shirt, dan perencanaan anggaran kaos custom perusahaan.",
+      },
+      {
+        "@type": "ItemList",
+        "name": "Artikel Panduan Apparel CITILEX ASIA",
+        "numberOfItems": posts.length,
+        "itemListElement": posts.map((post, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "url": `https://citilex.asia/blog/${post.slug}`,
+          "name": post.title,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://citilex.asia",
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://citilex.asia/blog",
+          },
+        ],
+      },
+    ],
+  };
+};
+
+export const getBlogPostJsonLd = (post: BlogJsonLdInput) => {
+  const pageUrl = `https://citilex.asia/blog/${post.slug}`;
+  const publishedIso = post.publishedAt
+    ? new Date(post.publishedAt).toISOString()
+    : new Date().toISOString();
+  const modifiedIso = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedIso;
+
+  const validFaqs = (post.faqItems || []).filter(
+    (item) => item.question.trim().length > 0 && item.answer.trim().length > 0
+  );
+
+  const graph: Record<string, unknown>[] = [
+    OrganizationSchema,
+    LocalBusinessSchema,
+    {
+      "@type": "Article",
+      "@id": `${pageUrl}#article`,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": pageUrl,
+      },
+      "headline": post.metaTitle || post.title,
+      "description": post.metaDescription || post.excerpt,
+      "image": resolveAbsoluteUrl(post.coverImage),
+      "datePublished": publishedIso,
+      "dateModified": modifiedIso,
+      "articleSection": post.category,
+      "inLanguage": "id-ID",
+      "author": {
+        "@type": "Person",
+        "name": post.authorName || "Tim Editorial Citilex Asia",
+      },
+      "publisher": {
+        "@id": OrganizationSchema["@id"],
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://citilex.asia",
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://citilex.asia/blog",
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": pageUrl,
+        },
+      ],
+    },
+  ];
+
+  if (validFaqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "mainEntity": validFaqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer,
+        },
+      })),
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
+};

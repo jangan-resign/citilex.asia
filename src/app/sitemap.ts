@@ -1,7 +1,10 @@
 import { MetadataRoute } from "next";
 import { allSeoMoneyPages } from "../lib/seo-pages";
+import { prisma } from "../lib/prisma";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = "force-dynamic";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://citilex.asia";
   const now = new Date();
 
@@ -12,6 +15,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  let blogPostEntries: MetadataRoute.Sitemap = [];
+  try {
+    const publishedPosts = await prisma.blogPost.findMany({
+      where: { status: "PUBLISHED" },
+      select: { slug: true, updatedAt: true },
+      orderBy: { publishedAt: "desc" },
+    });
+
+    blogPostEntries = publishedPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.75,
+    }));
+  } catch {
+    blogPostEntries = [];
+  }
+
   return [
     {
       url: baseUrl,
@@ -20,12 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     ...moneyPageEntries,
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
     {
       url: `${baseUrl}/tentang-kami`,
       lastModified: now,
@@ -38,6 +53,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.85,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    ...blogPostEntries,
     {
       url: `${baseUrl}/kontak`,
       lastModified: now,

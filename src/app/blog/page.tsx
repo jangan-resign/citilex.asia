@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import CtaSection from "../../components/sections/home/CtaSection";
-import WhatsAppButton from "../../components/ui/WhatsAppButton";
-import { companyConfig } from "../../config/company";
+import BlogListClient, { type PublicBlogCard } from "../../components/sections/blog/BlogListClient";
+import { getPublishedBlogPosts } from "../../actions/cms";
+import { getBlogIndexJsonLd } from "../../lib/json-ld";
 import { seoServicePages } from "../../lib/seo-pages";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog & Panduan Apparel B2B | CITILEX ASIA",
@@ -39,27 +41,50 @@ export const metadata: Metadata = {
   },
 };
 
-const cardClass = [
-  "group bg-white p-7 md:p-8 border border-brand-platinum",
+const serviceLinkCardClass = [
+  "group bg-white p-6 border border-brand-platinum",
   "hover:border-brand-primary hover:shadow-md",
   "transition-all duration-300 flex items-start justify-between gap-4",
 ].join(" ");
 
-const heroWaClass = [
-  "group relative overflow-hidden",
-  "inline-flex items-center justify-center",
-  "px-9 py-4.5",
-  "bg-[#000000] text-white",
-  "text-xs font-bold tracking-[0.2em] uppercase",
-  "border border-[#D4AF37]/30",
-  "shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_24px_rgba(212,175,55,0.12)]",
-  "hover:-translate-y-1 hover:border-[#D4AF37]/50",
-  "transition-all duration-300",
-].join(" ");
+export default async function BlogIndexPage() {
+  const rawPosts = await getPublishedBlogPosts().catch(() => []);
 
-export default function BlogIndexPage() {
+  const posts: PublicBlogCard[] = rawPosts.map((p) => ({
+    id: p.id,
+    title: p.title,
+    slug: p.slug,
+    excerpt: p.excerpt,
+    coverImage: p.coverImage,
+    coverAlt: p.coverAlt,
+    category: p.category,
+    readingTimeMin: p.readingTimeMin,
+    publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
+    authorName: p.authorName,
+  }));
+
+  const jsonLdPayload = getBlogIndexJsonLd(
+    rawPosts.map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      coverImage: p.coverImage,
+      category: p.category,
+      metaTitle: p.metaTitle,
+      metaDescription: p.metaDescription,
+      authorName: p.authorName,
+      publishedAt: p.publishedAt,
+      updatedAt: p.updatedAt,
+    }))
+  );
+
   return (
     <div className="min-h-screen bg-white text-brand-primary selection:bg-brand-primary selection:text-brand-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPayload) }}
+      />
+
       <Header />
 
       <main className="pt-8">
@@ -96,69 +121,51 @@ export default function BlogIndexPage() {
           </div>
         </section>
 
-        {/* SECTION 2: PANDUAN LAYANAN & STATUS EDITORIAL */}
-        <section className="py-16 md:py-20 px-6 md:px-12 bg-brand-snow">
-          <div className="max-w-[1280px] mx-auto space-y-12">
-            <div className="bg-white border border-brand-platinum p-8 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-              <div className="space-y-3 max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-snow border border-brand-platinum">
-                  <BookOpen className="w-3.5 h-3.5 text-brand-gold" />
-                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-primary">
-                    EDITORIAL STUDIO
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase text-brand-primary">
-                  Artikel Panduan Sedang Disiapkan Tim Editorial
-                </h2>
-                <p className="text-sm text-brand-onyx leading-relaxed">
-                  Kami sedang menyusun rangkaian artikel mendalam seputar spesifikasi bahan, simulasi waktu produksi,
-                  serta studi kasus pengadaan seragam B2B. Sambil menunggu artikel diterbitkan, Anda dapat langsung
-                  menjelajahi halaman spesifikasi layanan kami atau berkonsultasi gratis dengan konsultan produksi kami.
-                </p>
-              </div>
+        {/* SECTION 2: DAFTAR ARTIKEL */}
+        <section className="py-16 md:py-20 px-6 md:px-12 bg-brand-snow border-b border-brand-platinum">
+          <div className="max-w-[1280px] mx-auto space-y-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-primary uppercase">
+              Artikel &amp; Panduan Terbaru
+            </h2>
+            <BlogListClient posts={posts} />
+          </div>
+        </section>
 
-              <div className="shrink-0">
-                <WhatsAppButton message={companyConfig.defaultWaMessage} className={heroWaClass}>
-                  <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
-                  <span className="relative z-10">KONSULTASI GRATIS</span>
-                </WhatsAppButton>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <h2 className="text-xl md:text-2xl font-extrabold tracking-tight uppercase text-brand-primary">
-                Panduan Cepat Layanan Produksi Citilex Asia
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {seoServicePages.map((service) => (
-                  <Link key={service.slug} href={`/${service.slug}`} className={cardClass}>
-                    <div className="space-y-2">
-                      <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
-                        {service.breadcrumbLabel}
-                      </span>
-                      <h3 className="text-base font-extrabold uppercase tracking-tight text-brand-primary group-hover:underline underline-offset-4">
-                        {service.h1Primary}
-                      </h3>
-                      <p className="text-xs text-brand-onyx/80 leading-relaxed">{service.h1Highlight}</p>
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 shrink-0 text-brand-primary mt-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                ))}
-                <Link href="/portofolio" className={cardClass}>
-                  <div className="space-y-2">
+        {/* SECTION 3: PINTASAN MONEY PAGES */}
+        <section className="py-16 md:py-20 px-6 md:px-12 bg-white">
+          <div className="max-w-[1280px] mx-auto space-y-8">
+            <h2 className="text-xl md:text-2xl font-extrabold tracking-tight uppercase text-brand-primary">
+              Eksplorasi Layanan Produksi Citilex Asia
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {seoServicePages.map((service) => (
+                <Link key={service.slug} href={`/${service.slug}`} className={serviceLinkCardClass}>
+                  <div className="space-y-1.5">
                     <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
-                      Portofolio
+                      {service.breadcrumbLabel}
                     </span>
-                    <h3 className="text-base font-extrabold uppercase tracking-tight text-brand-primary group-hover:underline underline-offset-4">
-                      Hasil Produksi Klien
+                    <h3 className="text-sm font-extrabold uppercase tracking-tight text-brand-primary group-hover:underline underline-offset-4">
+                      {service.h1Primary}
                     </h3>
-                    <p className="text-xs text-brand-onyx/80 leading-relaxed">
-                      Dokumentasi project Shopee, POS Indonesia, BANK BRI, Adhi Karya &amp; berbagai brand.
-                    </p>
+                    <p className="text-xs text-brand-onyx/80 leading-relaxed">{service.h1Highlight}</p>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 shrink-0 text-brand-primary mt-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-4 h-4 shrink-0 text-brand-primary mt-1" />
                 </Link>
-              </div>
+              ))}
+              <Link href="/portofolio" className={serviceLinkCardClass}>
+                <div className="space-y-1.5">
+                  <span className="block text-[10px] font-bold tracking-[0.22em] uppercase text-brand-gold">
+                    Portofolio
+                  </span>
+                  <h3 className="text-sm font-extrabold uppercase tracking-tight text-brand-primary group-hover:underline underline-offset-4">
+                    Hasil Produksi Klien
+                  </h3>
+                  <p className="text-xs text-brand-onyx/80 leading-relaxed">
+                    Dokumentasi project Shopee, POS Indonesia, BANK BRI, Adhi Karya &amp; lainnya.
+                  </p>
+                </div>
+                <ArrowUpRight className="w-4 h-4 shrink-0 text-brand-primary mt-1" />
+              </Link>
             </div>
           </div>
         </section>
