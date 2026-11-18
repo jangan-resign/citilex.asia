@@ -120,7 +120,7 @@ export default function BlogIndexPage() {
               <div className="shrink-0">
                 <WhatsAppButton message={companyConfig.defaultWaMessage} className={heroWaClass}>
                   <Image src="/wa.svg" alt="WhatsApp" width={16} height={16} className="relative z-10 w-4 h-4 mr-3" />
-                  <span className="relative z-10">KONSULTASI VIA WHATSAPP</span>
+                  <span className="relative z-10">KONSULTASI GRATIS</span>
                 </WhatsAppButton>
               </div>
             </div>
