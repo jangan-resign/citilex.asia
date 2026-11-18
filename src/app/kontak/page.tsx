@@ -68,32 +68,32 @@ const channelCardClass = [
 
 const locationDarkCardClass = [
   "relative overflow-hidden bg-[#000000] text-white rounded-2xl",
-  "border border-[#D4AF37]/30 p-8 md:p-10",
+  "border border-[#D4AF37]/30 p-6 sm:p-8 md:p-10",
   "flex flex-col justify-between space-y-8",
   "shadow-[0_25px_70px_rgba(0,0,0,0.2)]",
 ].join(" ");
 
 const locationLightCardClass = [
   "relative overflow-hidden bg-white text-brand-primary rounded-2xl",
-  "border border-brand-platinum p-8 md:p-10",
+  "border border-brand-platinum p-6 sm:p-8 md:p-10",
   "flex flex-col justify-between space-y-8",
   "shadow-sm hover:border-brand-primary/40 hover:shadow-md transition-all duration-300",
 ].join(" ");
 
 const mapBtnGoldClass = [
   "inline-flex items-center justify-center w-full sm:w-auto rounded-xl",
-  "px-7 py-4",
+  "px-4 sm:px-7 py-3.5 sm:py-4",
   "bg-gradient-to-r from-[#F8E7B9] via-[#D4AF37] to-[#B8860B]",
-  "text-black text-xs font-bold tracking-[0.18em] uppercase",
+  "text-black text-xs font-bold tracking-[0.1em] sm:tracking-[0.18em] uppercase whitespace-nowrap",
   "hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(212,175,55,0.3)]",
   "transition-all duration-300",
 ].join(" ");
 
 const mapBtnDarkClass = [
   "inline-flex items-center justify-center w-full sm:w-auto rounded-xl",
-  "px-7 py-4",
+  "px-4 sm:px-7 py-3.5 sm:py-4",
   "bg-brand-primary text-brand-white",
-  "text-xs font-bold tracking-[0.18em] uppercase",
+  "text-xs font-bold tracking-[0.1em] sm:tracking-[0.18em] uppercase whitespace-nowrap",
   "border border-[#D4AF37]/30",
   "hover:-translate-y-1 hover:shadow-xl transition-all duration-300",
 ].join(" ");
@@ -297,8 +297,8 @@ export default function KontakPage() {
                     rel="noopener noreferrer"
                     className={mapBtnGoldClass}
                   >
-                    <span>Buka Maps Jakarta</span>
-                    <ArrowUpRight className="w-4 h-4 ml-2" />
+                    <span className="whitespace-nowrap">Buka Maps Jakarta</span>
+                    <ArrowUpRight className="w-4 h-4 ml-2 shrink-0" />
                   </TrackedExternalLink>
                 </div>
               </div>
@@ -350,8 +350,8 @@ export default function KontakPage() {
                     rel="noopener noreferrer"
                     className={mapBtnDarkClass}
                   >
-                    <span>Buka Maps Production</span>
-                    <ArrowUpRight className="w-4 h-4 ml-2" />
+                    <span className="whitespace-nowrap">Buka Maps Production</span>
+                    <ArrowUpRight className="w-4 h-4 ml-2 shrink-0" />
                   </TrackedExternalLink>
                 </div>
               </div>
