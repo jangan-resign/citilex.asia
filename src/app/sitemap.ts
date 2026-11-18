@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...serviceEntries,
     {
+      url: `${baseUrl}/tentang-kami`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/portofolio`,
       lastModified: now,
       changeFrequency: "weekly",

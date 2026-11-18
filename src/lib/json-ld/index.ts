@@ -147,3 +147,40 @@ export const getPortfolioPageJsonLd = () => {
     ]
   };
 };
+
+export const getAboutPageJsonLd = () => {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      OrganizationSchema,
+      LocalBusinessSchema,
+      {
+        "@type": "AboutPage",
+        "@id": "https://citilex.asia/tentang-kami#webpage",
+        "url": "https://citilex.asia/tentang-kami",
+        "name": "Tentang CITILEX ASIA - Partner Produksi Apparel Skala Besar",
+        "description": "CITILEX ASIA adalah apparel manufacturing partner di bawah PT Nusa Garment Indonesia untuk corporate, instansi, event organizer, dan brand dengan Representative Office di Jakarta dan Production Center di Yogyakarta.",
+        "mainEntity": {
+          "@id": OrganizationSchema["@id"]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://citilex.asia"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tentang Kami",
+            "item": "https://citilex.asia/tentang-kami"
+          }
+        ]
+      }
+    ]
+  };
+};

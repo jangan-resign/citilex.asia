@@ -120,7 +120,7 @@ export default function Header() {
           </Link>
 
           {/* TENGAH: DESKTOP NAVIGATION */}
-          <nav aria-label="Navigasi Utama" className="hidden lg:flex items-center gap-9">
+          <nav aria-label="Navigasi Utama" className="hidden lg:flex items-center gap-8">
             <Link
               href="/"
               className={[
@@ -129,6 +129,16 @@ export default function Header() {
               ].join(" ")}
             >
               Beranda
+            </Link>
+
+            <Link
+              href="/tentang-kami"
+              className={[
+                navLinkClass,
+                pathname === "/tentang-kami" ? "text-brand-primary border-b-2 border-[#D4AF37]" : "",
+              ].join(" ")}
+            >
+              Tentang Kami
             </Link>
 
             {/* Dropdown Layanan */}
@@ -251,7 +261,7 @@ export default function Header() {
         >
           <div className="space-y-6">
             {/* Link Utama */}
-            <div className="grid grid-cols-3 gap-2.5 pb-4 border-b border-brand-platinum">
+            <div className="grid grid-cols-2 gap-2.5 pb-4 border-b border-brand-platinum">
               <Link
                 href="/"
                 onClick={() => setIsMobileOpen(false)}
@@ -263,6 +273,18 @@ export default function Header() {
                 ].join(" ")}
               >
                 Beranda
+              </Link>
+              <Link
+                href="/tentang-kami"
+                onClick={() => setIsMobileOpen(false)}
+                className={[
+                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  pathname === "/tentang-kami"
+                    ? "border-brand-primary bg-brand-primary text-white"
+                    : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
+                ].join(" ")}
+              >
+                Tentang Kami
               </Link>
               <Link
                 href="/portofolio"
