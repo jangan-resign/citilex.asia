@@ -10,6 +10,72 @@ import { BLOG_CATEGORIES, slugifyText, type BlogFaqItem } from "../lib/cms-utils
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
 
+const GEMINI_FALLBACK_CHAIN: { model: string; delayMsBefore: number }[] = [
+  { model: "gemini-2.5-flash", delayMsBefore: 0 },
+  { model: "gemini-2.5-flash-lite", delayMsBefore: 1200 },
+  { model: "gemini-2.0-flash", delayMsBefore: 1200 },
+  { model: "gemini-2.5-flash", delayMsBefore: 2000 },
+];
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isTransientGeminiError(err: unknown): boolean {
+  const msg = err instanceof Error ? err.message.toLowerCase() : String(err).toLowerCase();
+  return (
+    msg.includes("503") ||
+    msg.includes("429") ||
+    msg.includes("overloaded") ||
+    msg.includes("unavailable") ||
+    msg.includes("high demand") ||
+    msg.includes("rate limit") ||
+    msg.includes("resource_exhausted") ||
+    msg.includes("quota") ||
+    msg.includes("timeout")
+  );
+}
+
+async function generateJsonWithFallback<T>(prompt: string, responseSchema: ObjectSchema): Promise<T> {
+  let lastError: unknown;
+
+  for (const step of GEMINI_FALLBACK_CHAIN) {
+    if (step.delayMsBefore > 0) {
+      await sleep(step.delayMsBefore);
+    }
+
+    try {
+      const model = genAI.getGenerativeModel({
+        model: step.model,
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema,
+        },
+      });
+
+      const result = await model.generateContent(prompt);
+      const rawText = result.response.text();
+      return JSON.parse(rawText) as T;
+    } catch (err: unknown) {
+      lastError = err;
+      const errMsg = err instanceof Error ? err.message : String(err);
+      console.warn(`Gemini model "${step.model}" attempt failed:`, errMsg);
+
+      if (errMsg.toLowerCase().includes("api_key_invalid")) {
+        throw err;
+      }
+    }
+  }
+
+  if (isTransientGeminiError(lastError)) {
+    throw new Error(
+      "Server Gemini AI sedang sibuk / limit sementara (sudah dicoba ulang dengan model cadangan). Tunggu 10-30 detik lalu klik Generate lagi."
+    );
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Gagal memproses permintaan Gemini AI.");
+}
+
 async function requireCmsAuth(): Promise<void> {
   const cookieStore = await cookies();
   const role = cookieStore.get("cms_auth_role")?.value;
@@ -156,14 +222,6 @@ export async function generateSeoArticleWithAi(params: {
       return { success: false, error: "Masukkan topik atau kata kunci artikel terlebih dahulu." };
     }
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: articleResponseSchema,
-      },
-    });
-
     const prompt = `Kamu adalah Senior SEO Content Strategist & B2B Apparel Copywriter untuk CITILEX ASIA.
 
 ${buildBrandContext()}
@@ -185,9 +243,7 @@ ${params.additionalNotes?.trim() ? `- Catatan Tambahan Penulis: ${params.additio
 4. Gunakan hanya harga & data MOQ (50 pcs) resmi Citilex Asia di atas.
 5. Buat 3-4 FAQ di field faqItems yang benar-benar sering ditanyakan panitia/HRD.`;
 
-    const result = await model.generateContent(prompt);
-    const rawText = result.response.text();
-    const parsed = JSON.parse(rawText) as GeneratedSeoArticle;
+    const parsed = await generateJsonWithFallback<GeneratedSeoArticle>(prompt, articleResponseSchema);
 
     return {
       success: true,
@@ -225,14 +281,6 @@ export async function generateTopicIdeasWithAi(focusArea?: string): Promise<{
     });
     const existingList = existingTopics.map((t) => `- ${t.title} (${t.targetKeyword})`).join("\n");
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: topicIdeasResponseSchema,
-      },
-    });
-
     const prompt = `Kamu adalah SEO Strategist untuk konveksi kaos & polo B2B CITILEX ASIA (Jakarta & Yogyakarta).
 Hasilkan **8 ide topik artikel blog bernilai komersial tinggi** yang dicari oleh HRD, panitia event, EO, sekolah/kampus, dan procurement sebelum mereka memesan kaos/polo minimal 50 pcs.
 
@@ -244,9 +292,7 @@ searchIntent hanya salah satu dari: Commercial, Informational, Local.
 Hindari menduplikasi topik yang sudah ada berikut:
 ${existingList || "(Belum ada topik tersimpan)"}`;
 
-    const result = await model.generateContent(prompt);
-    const rawText = result.response.text();
-    const parsed = JSON.parse(rawText) as {
+    const parsed = await generateJsonWithFallback<{
       topics: Array<{
         title: string;
         targetKeyword: string;
@@ -254,7 +300,7 @@ ${existingList || "(Belum ada topik tersimpan)"}`;
         searchIntent: string;
         notes: string;
       }>;
-    };
+    }>(prompt, topicIdeasResponseSchema);
 
     const topicsToInsert = (parsed.topics || []).slice(0, 8);
     if (topicsToInsert.length === 0) {

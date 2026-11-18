@@ -117,9 +117,34 @@ export function ArticleStudioClient({
 
   // Save state
   const [isSaving, setIsSaving] = useState(false);
+  const [lastPublishedSlug, setLastPublishedSlug] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; text: string } | null>(
     null
   );
+
+  const resetFormToNew = () => {
+    setPostId(undefined);
+    setStatus("DRAFT");
+    setTitle("");
+    setSlug("");
+    setSlugLocked(false);
+    setCategory(BLOG_CATEGORIES[0]);
+    setExcerpt("");
+    setContent("");
+    setCoverImage("");
+    setCoverAlt("");
+    setTargetKeyword("");
+    setTagsText("");
+    setMetaTitle("");
+    setMetaDescription("");
+    setAuthorName("Tim Editorial Citilex Asia");
+    setFaqItems([{ question: "", answer: "" }]);
+    setAiTopic("");
+    setAiKeyword("");
+    setAiNotes("");
+    setShowGalleryPicker(false);
+    setShowLinkPicker(false);
+  };
 
   const seoEval = useMemo(
     () =>
@@ -167,6 +192,7 @@ export function ArticleStudioClient({
     }
     setIsGenerating(true);
     setFeedback(null);
+    setLastPublishedSlug(null);
     try {
       const res = await generateSeoArticleWithAi({
         topic: aiTopic,
@@ -208,6 +234,7 @@ export function ArticleStudioClient({
   const handleSave = async (targetStatus: "DRAFT" | "PUBLISHED") => {
     setIsSaving(true);
     setFeedback(null);
+    setLastPublishedSlug(null);
     try {
       const tags = tagsText
         .split(",")
@@ -234,17 +261,30 @@ export function ArticleStudioClient({
       });
 
       if (res.success) {
-        setPostId(res.post.id);
-        setSlug(res.post.slug);
-        setSlugLocked(true);
-        setStatus(res.post.status);
-        setFeedback({
-          type: "success",
-          text:
-            targetStatus === "PUBLISHED"
-              ? "Artikel berhasil diterbitkan ke /blog dan otomatis masuk sitemap.xml!"
-              : "Artikel berhasil disimpan sebagai Draft.",
-        });
+        if (targetStatus === "PUBLISHED" && !initialPost) {
+          const publishedTitle = title.trim() || res.post.title;
+          setLastPublishedSlug(res.post.slug);
+          resetFormToNew();
+          setFeedback({
+            type: "success",
+            text: `Artikel "${publishedTitle}" berhasil diterbitkan ke /blog dan otomatis masuk sitemap.xml! Editor telah dikosongkan untuk artikel berikutnya.`,
+          });
+        } else {
+          setPostId(res.post.id);
+          setSlug(res.post.slug);
+          setSlugLocked(true);
+          setStatus(res.post.status);
+          if (targetStatus === "PUBLISHED") {
+            setLastPublishedSlug(res.post.slug);
+          }
+          setFeedback({
+            type: "success",
+            text:
+              targetStatus === "PUBLISHED"
+                ? "Artikel berhasil diperbarui & diterbitkan ke /blog dan sitemap.xml!"
+                : "Artikel berhasil disimpan sebagai Draft.",
+          });
+        }
         router.refresh();
       } else {
         setFeedback({ type: "error", text: res.error });
@@ -303,6 +343,25 @@ export function ArticleStudioClient({
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
+            {postId && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (initialPost) {
+                    router.push("/cms/write");
+                  } else {
+                    setLastPublishedSlug(null);
+                    setFeedback(null);
+                    resetFormToNew();
+                  }
+                }}
+                className="px-3 py-2 text-xs font-semibold bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg flex items-center gap-1.5"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Artikel Baru</span>
+              </button>
+            )}
+
             {status === "PUBLISHED" && slug && (
               <Link
                 href={`/blog/${slug}`}
@@ -389,9 +448,9 @@ export function ArticleStudioClient({
             }`}
           >
             <span>{feedback.text}</span>
-            {feedback.type === "success" && status === "PUBLISHED" && slug && (
+            {feedback.type === "success" && (lastPublishedSlug || (status === "PUBLISHED" && slug)) && (
               <Link
-                href={`/blog/${slug}`}
+                href={`/blog/${lastPublishedSlug || slug}`}
                 target="_blank"
                 className="font-bold underline shrink-0 flex items-center gap-1"
               >
