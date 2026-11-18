@@ -120,7 +120,7 @@ export default function Header() {
           </Link>
 
           {/* TENGAH: DESKTOP NAVIGATION */}
-          <nav aria-label="Navigasi Utama" className="hidden lg:flex items-center gap-8">
+          <nav aria-label="Navigasi Utama" className="hidden lg:flex items-center gap-6 xl:gap-8">
             <Link
               href="/"
               className={[
@@ -129,16 +129,6 @@ export default function Header() {
               ].join(" ")}
             >
               Beranda
-            </Link>
-
-            <Link
-              href="/tentang-kami"
-              className={[
-                navLinkClass,
-                pathname === "/tentang-kami" ? "text-brand-primary border-b-2 border-[#D4AF37]" : "",
-              ].join(" ")}
-            >
-              Tentang Kami
             </Link>
 
             {/* Dropdown Layanan */}
@@ -214,6 +204,28 @@ export default function Header() {
             </Link>
 
             <Link
+              href="/tentang-kami"
+              className={[
+                navLinkClass,
+                pathname === "/tentang-kami" ? "text-brand-primary border-b-2 border-[#D4AF37]" : "",
+              ].join(" ")}
+            >
+              Tentang Kami
+            </Link>
+
+            <Link
+              href="/blog"
+              className={[
+                navLinkClass,
+                pathname === "/blog" || pathname?.startsWith("/blog/")
+                  ? "text-brand-primary border-b-2 border-[#D4AF37]"
+                  : "",
+              ].join(" ")}
+            >
+              Blog
+            </Link>
+
+            <Link
               href="/kontak"
               className={[
                 navLinkClass,
@@ -266,13 +278,25 @@ export default function Header() {
                 href="/"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
-                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  "col-span-2 px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
                   pathname === "/"
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
                 ].join(" ")}
               >
                 Beranda
+              </Link>
+              <Link
+                href="/portofolio"
+                onClick={() => setIsMobileOpen(false)}
+                className={[
+                  "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
+                  pathname === "/portofolio"
+                    ? "border-brand-primary bg-brand-primary text-white"
+                    : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
+                ].join(" ")}
+              >
+                Portofolio
               </Link>
               <Link
                 href="/tentang-kami"
@@ -287,16 +311,16 @@ export default function Header() {
                 Tentang Kami
               </Link>
               <Link
-                href="/portofolio"
+                href="/blog"
                 onClick={() => setIsMobileOpen(false)}
                 className={[
                   "px-3 py-3 border text-xs font-bold tracking-[0.14em] uppercase text-center transition-colors",
-                  pathname === "/portofolio"
+                  pathname === "/blog" || pathname?.startsWith("/blog/")
                     ? "border-brand-primary bg-brand-primary text-white"
                     : "border-brand-platinum text-brand-primary hover:bg-brand-snow",
                 ].join(" ")}
               >
-                Portofolio
+                Blog
               </Link>
               <Link
                 href="/kontak"

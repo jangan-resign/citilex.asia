@@ -167,11 +167,14 @@ export default function Footer() {
           © {new Date().getFullYear()} {companyConfig.name} — PT Nusa Garment Indonesia. All Rights Reserved.
         </span>
         <div className="flex flex-wrap items-center justify-center gap-6">
+          <Link href="/portofolio" className="py-1.5 hover:text-brand-primary transition-colors">
+            Portofolio
+          </Link>
           <Link href="/tentang-kami" className="py-1.5 hover:text-brand-primary transition-colors">
             Tentang Kami
           </Link>
-          <Link href="/portofolio" className="py-1.5 hover:text-brand-primary transition-colors">
-            Portofolio
+          <Link href="/blog" className="py-1.5 hover:text-brand-primary transition-colors">
+            Blog
           </Link>
           <Link href="/kontak" className="py-1.5 hover:text-brand-primary transition-colors">
             Kontak
