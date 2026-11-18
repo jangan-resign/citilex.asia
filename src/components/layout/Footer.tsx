@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import WhatsAppButton from "../ui/WhatsAppButton";
+import TrackedExternalLink from "../ui/TrackedExternalLink";
 import { companyConfig } from "../../config/company";
 
 const serviceLinks = [
@@ -64,12 +65,14 @@ export default function Footer() {
             </p>
             <p>
               <span className="font-semibold text-brand-primary">Email: </span>
-              <a
+              <TrackedExternalLink
                 href="mailto:behagroup@gmail.com"
+                eventName="email_click"
+                eventLabel="footer_email"
                 className="inline-block py-1 hover:text-brand-primary underline underline-offset-4 transition-colors"
               >
                 behagroup@gmail.com
-              </a>
+              </TrackedExternalLink>
             </p>
             <p className="text-brand-onyx/80">
               Jam Kerja: Senin – Sabtu, 09:00 – 17:00 WIB
@@ -131,14 +134,16 @@ export default function Footer() {
               <p className="text-brand-onyx/85">
                 Jl. Bintaro Tengah Blok J4 No.12, Bintaro, Pesanggrahan, Jakarta Selatan 12330
               </p>
-              <a
+              <TrackedExternalLink
                 href="https://maps.app.goo.gl/TCbUWmqaG9rHAdoL7"
+                eventName="maps_click"
+                eventLabel="footer_gmaps_jakarta"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block py-1 text-[11px] font-bold tracking-[0.14em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
               >
                 Google Maps Jakarta ↗
-              </a>
+              </TrackedExternalLink>
             </div>
 
             <div className="space-y-1 pt-2 border-t border-brand-platinum">
@@ -148,14 +153,16 @@ export default function Footer() {
               <p className="text-brand-onyx/85">
                 Jl. Menayu Lor Plurugan No.112, Tirtonirmolo, Kasihan, Bantul, Daerah Istimewa Yogyakarta
               </p>
-              <a
+              <TrackedExternalLink
                 href="https://maps.app.goo.gl/jLiq3Eev19tLpshH6"
+                eventName="maps_click"
+                eventLabel="footer_gmaps_yogyakarta"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block py-1 text-[11px] font-bold tracking-[0.14em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
               >
                 Google Maps Production Center ↗
-              </a>
+              </TrackedExternalLink>
             </div>
           </div>
         </div>

@@ -20,6 +20,7 @@ import {
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import WhatsAppButton from "../../components/ui/WhatsAppButton";
+import TrackedExternalLink from "../../components/ui/TrackedExternalLink";
 import { companyConfig } from "../../config/company";
 import { getAboutPageJsonLd } from "../../lib/json-ld";
 
@@ -311,14 +312,16 @@ export default function TentangKamiPage() {
                   <MapPin className="w-4 h-4 shrink-0 text-brand-primary mt-0.5" />
                   <span>Jl. Bintaro Tengah Blok J4 No.12, Bintaro, Pesanggrahan, Jakarta Selatan 12330</span>
                 </p>
-                <a
+                <TrackedExternalLink
                   href="https://maps.app.goo.gl/TCbUWmqaG9rHAdoL7"
+                  eventName="maps_click"
+                  eventLabel="tentang_gmaps_jakarta"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block py-1 text-[11px] font-bold tracking-[0.16em] uppercase text-brand-primary border-b border-brand-primary hover:opacity-75 transition-opacity"
                 >
                   Google Maps Jakarta ↗
-                </a>
+                </TrackedExternalLink>
               </div>
 
               <div className="relative overflow-hidden bg-[#000000] text-white p-8 border border-[#D4AF37]/30 space-y-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
@@ -333,14 +336,16 @@ export default function TentangKamiPage() {
                   <MapPin className="w-4 h-4 shrink-0 text-[#D4AF37] mt-0.5" />
                   <span>Jl. Menayu Lor Plurugan No.112, Tirtonirmolo, Kasihan, Bantul, Daerah Istimewa Yogyakarta</span>
                 </p>
-                <a
+                <TrackedExternalLink
                   href="https://maps.app.goo.gl/jLiq3Eev19tLpshH6"
+                  eventName="maps_click"
+                  eventLabel="tentang_gmaps_yogyakarta"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block py-1 text-[11px] font-bold tracking-[0.16em] uppercase text-[#F3D98B] border-b border-[#D4AF37] hover:opacity-80 transition-opacity"
                 >
                   Google Maps Yogyakarta ↗
-                </a>
+                </TrackedExternalLink>
               </div>
             </div>
           </div>

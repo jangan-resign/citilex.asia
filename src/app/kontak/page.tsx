@@ -6,6 +6,7 @@ import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
 import CtaSection from "../../components/sections/home/CtaSection";
 import WhatsAppButton from "../../components/ui/WhatsAppButton";
+import TrackedExternalLink from "../../components/ui/TrackedExternalLink";
 import { companyConfig } from "../../config/company";
 import { getContactPageJsonLd } from "../../lib/json-ld";
 
@@ -198,13 +199,15 @@ export default function KontakPage() {
                   </p>
                 </div>
                 <div className="pt-4 border-t border-brand-platinum">
-                  <a
+                  <TrackedExternalLink
                     href="mailto:behagroup@gmail.com"
+                    eventName="email_click"
+                    eventLabel="kontak_email"
                     className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-primary hover:underline underline-offset-4 py-1"
                   >
                     <span>behagroup@gmail.com</span>
                     <ArrowUpRight className="w-4 h-4" />
-                  </a>
+                  </TrackedExternalLink>
                 </div>
               </div>
 
@@ -290,15 +293,17 @@ export default function KontakPage() {
                 </div>
 
                 <div className="pt-2 relative">
-                  <a
+                  <TrackedExternalLink
                     href="https://maps.app.goo.gl/TCbUWmqaG9rHAdoL7"
+                    eventName="maps_click"
+                    eventLabel="kontak_gmaps_jakarta"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={mapBtnGoldClass}
                   >
                     <span>Buka Google Maps Jakarta</span>
                     <ArrowUpRight className="w-4 h-4 ml-2" />
-                  </a>
+                  </TrackedExternalLink>
                 </div>
               </div>
 
@@ -341,15 +346,17 @@ export default function KontakPage() {
                 </div>
 
                 <div className="pt-2">
-                  <a
+                  <TrackedExternalLink
                     href="https://maps.app.goo.gl/jLiq3Eev19tLpshH6"
+                    eventName="maps_click"
+                    eventLabel="kontak_gmaps_yogyakarta"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={mapBtnDarkClass}
                   >
                     <span>Buka Google Maps Production Center</span>
                     <ArrowUpRight className="w-4 h-4 ml-2" />
-                  </a>
+                  </TrackedExternalLink>
                 </div>
               </div>
             </div>
