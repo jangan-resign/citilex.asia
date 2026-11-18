@@ -2,7 +2,10 @@ import { workflowSteps } from "../../../lib/data";
 
 export default function WorkflowSection() {
   return (
-    <section className="py-24 bg-brand-snow border-y border-brand-platinum px-6 md:px-12 overflow-hidden">
+    <section
+      id="workflow"
+      className="py-24 bg-brand-snow border-y border-brand-platinum px-6 md:px-12 overflow-hidden"
+    >
       <div className="max-w-[1280px] mx-auto">
         <div className="text-center mb-20">
           <h2 className="mt-4 text-3xl md:text-5xl font-black tracking-tight uppercase text-brand-primary">
