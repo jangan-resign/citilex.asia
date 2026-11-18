@@ -25,22 +25,15 @@ const defaultPathMap: Record<string, string> = {
   "cms": "/cms",
 };
 
-const cmsAllowedRoles = ["super-admin", "business-partner", "marketing", "cms"];
-
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Protect /cms routes
+  // Protect /cms routes exclusively for cms role using isolated cookie
   if (pathname.startsWith("/cms")) {
-    const roleCookie = request.cookies.get("auth_role")?.value;
+    const cmsRoleCookie = request.cookies.get("cms_auth_role")?.value;
 
-    if (!roleCookie) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-
-    if (!cmsAllowedRoles.includes(roleCookie)) {
-      const defaultPath = defaultPathMap[roleCookie] || "/login";
-      return NextResponse.redirect(new URL(defaultPath, request.url));
+    if (cmsRoleCookie !== "cms") {
+      return NextResponse.redirect(new URL("/login?from=cms", request.url));
     }
 
     return NextResponse.next();
@@ -89,10 +82,20 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  // Redirect authenticated users from /login to /app
+  // Redirect authenticated users from /login
   if (pathname === "/login") {
+    const fromParam = request.nextUrl.searchParams.get("from");
+
+    if (fromParam === "cms") {
+      const cmsRoleCookie = request.cookies.get("cms_auth_role")?.value;
+      if (cmsRoleCookie === "cms") {
+        return NextResponse.redirect(new URL("/cms", request.url));
+      }
+      return NextResponse.next();
+    }
+
     const roleCookie = request.cookies.get("auth_role")?.value;
-    if (roleCookie) {
+    if (roleCookie && roleCookie !== "cms") {
       return NextResponse.redirect(new URL(defaultPathMap[roleCookie] || "/app", request.url));
     }
   }

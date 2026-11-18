@@ -9,12 +9,33 @@ export const getHomePageJsonLd = () => {
   return {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://citilex.asia/#website",
+        "url": "https://citilex.asia",
+        "name": "CITILEX ASIA — Produsen Kaos & Polo Custom Korporat",
+        "inLanguage": "id-ID",
+        "publisher": {
+          "@id": OrganizationSchema["@id"]
+        }
+      },
       OrganizationSchema,
       LocalBusinessSchema,
       KaosProductSchema,
       PoloProductSchema,
       FaqPageSchema,
-      GalleryItemListSchema
+      GalleryItemListSchema,
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://citilex.asia"
+          }
+        ]
+      }
     ]
   };
 };

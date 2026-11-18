@@ -9,12 +9,11 @@ import { allSeoMoneyPages } from "../lib/seo-pages";
 import { BLOG_CATEGORIES, slugifyText, type BlogFaqItem } from "../lib/cms-utils";
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
-const cmsAllowedRoles = ["super-admin", "business-partner", "marketing", "cms"];
 
 async function requireCmsAuth(): Promise<void> {
   const cookieStore = await cookies();
-  const role = cookieStore.get("auth_role")?.value;
-  if (!role || !cmsAllowedRoles.includes(role)) {
+  const role = cookieStore.get("cms_auth_role")?.value;
+  if (role !== "cms") {
     throw new Error("Unauthorized");
   }
 }

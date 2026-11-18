@@ -4,7 +4,6 @@ import { prisma } from "../../../lib/prisma";
 import { compileKarinaContext } from "../../../actions/playbook";
 
 const f = createUploadthing();
-const cmsAllowedRoles = ["super-admin", "business-partner", "marketing", "cms"];
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -37,8 +36,8 @@ export const ourFileRouter = {
   blogImageUploader: f({ image: { maxFileSize: "8MB", maxFileCount: 1 } })
     .middleware(async () => {
       const cookieStore = await cookies();
-      const role = cookieStore.get("auth_role")?.value;
-      if (!role || !cmsAllowedRoles.includes(role)) {
+      const role = cookieStore.get("cms_auth_role")?.value;
+      if (role !== "cms") {
         throw new Error("Unauthorized");
       }
       return { role };

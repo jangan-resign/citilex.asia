@@ -32,6 +32,46 @@ export async function loginAction(prevState: any, formData: FormData) {
 
   const cookieStore = await cookies();
 
+  if (role === "cms") {
+    const existingSession = await prisma.roleSession.findUnique({
+      where: { role },
+    });
+
+    const currentCmsSession = cookieStore.get("cms_session_token")?.value;
+
+    if (existingSession && existingSession.expiresAt > new Date()) {
+      if (existingSession.sessionToken !== currentCmsSession) {
+        return { error: "Akses ditolak: Akun CMS sedang login di perangkat/browser lain." };
+      }
+    }
+
+    const cmsSessionToken = crypto.randomUUID();
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 8);
+
+    await prisma.roleSession.upsert({
+      where: { role },
+      update: { sessionToken: cmsSessionToken, expiresAt },
+      create: { role, sessionToken: cmsSessionToken, expiresAt },
+    });
+
+    cookieStore.set("cms_session_token", cmsSessionToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 8, // 8 hours
+      path: "/",
+    });
+
+    cookieStore.set("cms_auth_role", "cms", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 8, // 8 hours
+      path: "/",
+    });
+
+    return { success: true, role };
+  }
+
   if (role !== "super-admin") {
     const existingSession = await prisma.roleSession.findUnique({
       where: { role }
@@ -92,4 +132,22 @@ export async function logoutAction() {
   cookieStore.delete("auth_role");
   cookieStore.delete("auth_session_token");
   redirect("/login");
+}
+
+export async function logoutCmsAction() {
+  const cookieStore = await cookies();
+  const currentCmsSession = cookieStore.get("cms_session_token")?.value;
+
+  if (currentCmsSession) {
+    await prisma.roleSession.deleteMany({
+      where: {
+        role: "cms",
+        sessionToken: currentCmsSession,
+      },
+    });
+  }
+
+  cookieStore.delete("cms_auth_role");
+  cookieStore.delete("cms_session_token");
+  redirect("/login?from=cms");
 }

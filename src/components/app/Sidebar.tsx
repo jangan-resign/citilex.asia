@@ -17,7 +17,6 @@ import {
   FolderOpen,
   FileText,
   TrendingUp,
-  PenTool,
   Scissors,
   Truck,
   Receipt,
@@ -61,7 +60,6 @@ const operationNavigation = [
 const marketingNavigation = [
   { name: "Google Ads", href: "/app/google-ads", icon: MonitorPlay },
   { name: "Meta Ads", href: "/app/meta-ads", icon: Megaphone },
-  { name: "AI Blog CMS", href: "/cms", icon: PenTool },
 ];
 
 const hrdNavigation = [
@@ -451,16 +449,6 @@ export function Sidebar({ userRole = "Unknown" }: { userRole?: string }) {
                 </div>
               </div>
               <div className="p-1">
-                {["super-admin", "business-partner", "marketing"].includes(userRole) && (
-                  <Link
-                    href="/cms"
-                    onClick={() => setIsProfileMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-brand-primary hover:bg-slate-50 rounded-lg transition-colors"
-                  >
-                    <PenTool className="h-4 w-4 text-brand-gold" />
-                    AI Blog CMS
-                  </Link>
-                )}
                 <Link
                   href="/app/settings"
                   onClick={() => setIsProfileMenuOpen(false)}

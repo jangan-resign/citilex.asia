@@ -14,7 +14,6 @@ import {
   X,
   LogOut,
   ExternalLink,
-  ArrowLeftRight,
 } from "lucide-react";
 
 const contentStudioNavigation = [
@@ -48,13 +47,10 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
   }, []);
 
   const roleDisplayNames: Record<string, string> = {
-    "super-admin": "Super Admin",
-    "business-partner": "Business Partner",
-    "marketing": "Marketing Staff",
     "cms": "CMS Staff",
   };
 
-  const displayRole = roleDisplayNames[userRole] || userRole;
+  const displayRole = roleDisplayNames[userRole] || "CMS Staff";
   const initials = displayRole
     .split(" ")
     .map((w) => w[0])
@@ -63,7 +59,6 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
     .toUpperCase();
 
   const isExpanded = isHovered || isMobileOpen;
-  const canAccessMainWorkspace = ["super-admin", "business-partner", "marketing"].includes(userRole);
 
   return (
     <>
@@ -282,17 +277,6 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
                   <span>Lihat Blog Publik</span>
                 </Link>
 
-                {canAccessMainWorkspace && (
-                  <Link
-                    href="/app"
-                    onClick={() => setIsProfileMenuOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-brand-primary hover:bg-slate-50 rounded-lg transition-colors"
-                  >
-                    <ArrowLeftRight className="h-4 w-4" />
-                    <span>Ke Workspace /app</span>
-                  </Link>
-                )}
-
                 <button
                   type="button"
                   disabled={isLoggingOut}
@@ -300,7 +284,7 @@ export function CmsSidebar({ userRole = "cms" }: { userRole?: string }) {
                     setIsLoggingOut(true);
                     setIsProfileMenuOpen(false);
                     setTimeout(() => {
-                      import("../../actions/auth").then((m) => m.logoutAction());
+                      import("../../actions/auth").then((m) => m.logoutCmsAction());
                     }, 600);
                   }}
                   className="w-full flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-brand-primary hover:bg-slate-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"

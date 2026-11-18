@@ -10,13 +10,11 @@ import {
   type BlogFaqItem,
 } from "../lib/cms-utils";
 
-const cmsAllowedRoles = ["super-admin", "business-partner", "marketing", "cms"];
-
 async function requireCmsAuth(): Promise<string> {
   const cookieStore = await cookies();
-  const role = cookieStore.get("auth_role")?.value;
-  if (!role || !cmsAllowedRoles.includes(role)) {
-    throw new Error("Akses ditolak: Silakan login dengan akun CMS atau Admin.");
+  const role = cookieStore.get("cms_auth_role")?.value;
+  if (role !== "cms") {
+    throw new Error("Akses ditolak: Silakan login dengan akun khusus CMS.");
   }
   return role;
 }
